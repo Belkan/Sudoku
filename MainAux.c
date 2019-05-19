@@ -1,11 +1,10 @@
 #include "MainAux.h"
 #include <Stdio.h>
 #include <stdlib.h>
-#define SEPARATOR_ROW (row == 1 || row == 5 || row == 9 || row == 13)
-#define SEPARATOR_COL (col == 1 || col == 5 || col == 9 || col == 13)
-#define FIXED isFixed(row, col, board))
+#include <stdbool.h>
 
-int transformRow(int row) { /* method to fix alignment of matrices */
+/* fixes alignment of matrices */
+int transformRow(int row) {
     if (row >= 1 && row <= 4) {
         return row-1;
     }
@@ -18,22 +17,20 @@ int transformRow(int row) { /* method to fix alignment of matrices */
 } /* EOF */
 
 
-/* method used to print the current board */
-int row;
-int col;
-
+/* prints the current board */
 /* TODO test this method */
 void printBoard(int board [9][9]) {
+    int row;
+    int col;
     for (row = 1; row <= 13; row++) {
         for (col = 1; col <= 13; col++) {
-
-            if SEPARATOR_ROW {
+            if (separator_row(row)) {
                 col = 1;
                 row++;
                 printf("----------------------------------\n");
             }
 
-            else if SEPARATOR_COL {
+            else if (separator_col(col)) {
                 if (col == 13)
                     printf("|\n"); /* we have reached end of columns, go down one line */
                 else
@@ -42,7 +39,7 @@ void printBoard(int board [9][9]) {
             }
 
             else {
-                if (FIXED) { /* TODO make sure there is actually isFixed function */
+                if (isFixed(row, col, board)) {
                     printf(".%d ", board[transformRow(row)][transformRow(col)]);
                 }
                 else {
@@ -51,4 +48,25 @@ void printBoard(int board [9][9]) {
             }
         }
     }
-} /* EOF */
+}
+
+/* checks if row is a separator row */
+bool separator_row (int row) {
+    if (row == 1 || row == 5 || row == 9 || row == 13){
+        return true;
+    }
+    return false;
+}
+
+/* checks if column is a separator columns */
+bool separator_col (int col) {
+    if (col == 1 || col == 5 || col == 9 || col == 13){
+        return true;
+    }
+    return false;
+}
+
+/* checks if cell is fixed */
+bool isFixed (int row, int col, int board[9][9]){
+
+}
