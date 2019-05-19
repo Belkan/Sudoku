@@ -12,6 +12,6 @@ void restart (int board[9][9]);
 
 void exit();
 
-
+void test();
 
 #endif
