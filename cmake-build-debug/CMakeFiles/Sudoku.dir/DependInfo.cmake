@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "C:/Users/Adar/CLionProjects/Sudoku/Game.c" "C:/Users/Adar/CLionProjects/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/Game.c.obj"
-  "C:/Users/Adar/CLionProjects/Sudoku/MainAux.c" "C:/Users/Adar/CLionProjects/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/MainAux.c.obj"
-  "C:/Users/Adar/CLionProjects/Sudoku/Parser.c" "C:/Users/Adar/CLionProjects/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/Parser.c.obj"
-  "C:/Users/Adar/CLionProjects/Sudoku/Solver.c" "C:/Users/Adar/CLionProjects/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/Solver.c.obj"
-  "C:/Users/Adar/CLionProjects/Sudoku/main.c" "C:/Users/Adar/CLionProjects/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/main.c.obj"
+  "C:/Users/User/Documents/GitHub/Sudoku/Game.c" "C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/Game.c.obj"
+  "C:/Users/User/Documents/GitHub/Sudoku/MainAux.c" "C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/MainAux.c.obj"
+  "C:/Users/User/Documents/GitHub/Sudoku/Parser.c" "C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/Parser.c.obj"
+  "C:/Users/User/Documents/GitHub/Sudoku/Solver.c" "C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/Solver.c.obj"
+  "C:/Users/User/Documents/GitHub/Sudoku/main.c" "C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/main.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
