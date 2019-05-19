@@ -6,7 +6,9 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/User/Documents/GitHub/Sudoku/main.c
-stdio.h
--
+C:/Users/Adar/CLionProjects/Sudoku/MainAux.c
+MainAux.h
+C:/Users/Adar/CLionProjects/Sudoku/MainAux.h
+
+C:/Users/Adar/CLionProjects/Sudoku/MainAux.h
 

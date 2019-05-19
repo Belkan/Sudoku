@@ -47,10 +47,10 @@ RM = "C:\Program Files\JetBrains\CLion 2018.3.4\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\User\Documents\GitHub\Sudoku
+CMAKE_SOURCE_DIR = C:\Users\Adar\CLionProjects\Sudoku
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\User\Documents\GitHub\Sudoku\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\Adar\CLionProjects\Sudoku\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\User\Documents\GitHub\Sudoku\cmake-build-debug\CMakeFiles C:\Users\User\Documents\GitHub\Sudoku\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Adar\CLionProjects\Sudoku\cmake-build-debug\CMakeFiles C:\Users\Adar\CLionProjects\Sudoku\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\User\Documents\GitHub\Sudoku\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Adar\CLionProjects\Sudoku\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -122,6 +122,114 @@ Sudoku/fast:
 	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/build
 .PHONY : Sudoku/fast
 
+Game.obj: Game.c.obj
+
+.PHONY : Game.obj
+
+# target to build an object file
+Game.c.obj:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Game.c.obj
+.PHONY : Game.c.obj
+
+Game.i: Game.c.i
+
+.PHONY : Game.i
+
+# target to preprocess a source file
+Game.c.i:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Game.c.i
+.PHONY : Game.c.i
+
+Game.s: Game.c.s
+
+.PHONY : Game.s
+
+# target to generate assembly for a file
+Game.c.s:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Game.c.s
+.PHONY : Game.c.s
+
+MainAux.obj: MainAux.c.obj
+
+.PHONY : MainAux.obj
+
+# target to build an object file
+MainAux.c.obj:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAux.c.obj
+.PHONY : MainAux.c.obj
+
+MainAux.i: MainAux.c.i
+
+.PHONY : MainAux.i
+
+# target to preprocess a source file
+MainAux.c.i:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAux.c.i
+.PHONY : MainAux.c.i
+
+MainAux.s: MainAux.c.s
+
+.PHONY : MainAux.s
+
+# target to generate assembly for a file
+MainAux.c.s:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAux.c.s
+.PHONY : MainAux.c.s
+
+Parser.obj: Parser.c.obj
+
+.PHONY : Parser.obj
+
+# target to build an object file
+Parser.c.obj:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Parser.c.obj
+.PHONY : Parser.c.obj
+
+Parser.i: Parser.c.i
+
+.PHONY : Parser.i
+
+# target to preprocess a source file
+Parser.c.i:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Parser.c.i
+.PHONY : Parser.c.i
+
+Parser.s: Parser.c.s
+
+.PHONY : Parser.s
+
+# target to generate assembly for a file
+Parser.c.s:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Parser.c.s
+.PHONY : Parser.c.s
+
+Solver.obj: Solver.c.obj
+
+.PHONY : Solver.obj
+
+# target to build an object file
+Solver.c.obj:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Solver.c.obj
+.PHONY : Solver.c.obj
+
+Solver.i: Solver.c.i
+
+.PHONY : Solver.i
+
+# target to preprocess a source file
+Solver.c.i:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Solver.c.i
+.PHONY : Solver.c.i
+
+Solver.s: Solver.c.s
+
+.PHONY : Solver.s
+
+# target to generate assembly for a file
+Solver.c.s:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Solver.c.s
+.PHONY : Solver.c.s
+
 main.obj: main.c.obj
 
 .PHONY : main.obj
@@ -158,6 +266,18 @@ help:
 	@echo ... edit_cache
 	@echo ... Sudoku
 	@echo ... rebuild_cache
+	@echo ... Game.obj
+	@echo ... Game.i
+	@echo ... Game.s
+	@echo ... MainAux.obj
+	@echo ... MainAux.i
+	@echo ... MainAux.s
+	@echo ... Parser.obj
+	@echo ... Parser.i
+	@echo ... Parser.s
+	@echo ... Solver.obj
+	@echo ... Solver.i
+	@echo ... Solver.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
