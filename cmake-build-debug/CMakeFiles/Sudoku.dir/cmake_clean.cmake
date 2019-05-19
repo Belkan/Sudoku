@@ -1,5 +1,9 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Sudoku.dir/main.c.obj"
+  "CMakeFiles/Sudoku.dir/Game.c.obj"
+  "CMakeFiles/Sudoku.dir/MainAux.c.obj"
+  "CMakeFiles/Sudoku.dir/Parser.c.obj"
+  "CMakeFiles/Sudoku.dir/Solver.c.obj"
   "Sudoku.pdb"
   "Sudoku.exe"
   "Sudoku.exe.manifest"

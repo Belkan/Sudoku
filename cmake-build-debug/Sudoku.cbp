@@ -76,6 +76,30 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/Game.c">
+			<Option target="Sudoku"/>
+		</Unit>
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/Game.h">
+			<Option target="Sudoku"/>
+		</Unit>
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/MainAux.c">
+			<Option target="Sudoku"/>
+		</Unit>
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/MainAux.h">
+			<Option target="Sudoku"/>
+		</Unit>
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/Parser.c">
+			<Option target="Sudoku"/>
+		</Unit>
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/Parser.h">
+			<Option target="Sudoku"/>
+		</Unit>
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/Solver.c">
+			<Option target="Sudoku"/>
+		</Unit>
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/Solver.h">
+			<Option target="Sudoku"/>
+		</Unit>
 		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/main.c">
 			<Option target="Sudoku"/>
 		</Unit>
