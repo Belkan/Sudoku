@@ -14,6 +14,4 @@ int isFixed(int row, int col, int board[9][9]);
 
 int transformRow(int row);
 
-int transformCol(int col);
-
 #endif //SUDOKU_MAINAUX_H
