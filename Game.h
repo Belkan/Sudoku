@@ -4,16 +4,16 @@
 
 enum status {Success, Fixed, Invalid, GameOver};
 
-enum status set (int board[9][9], int row, int col, int value);
+enum status set (GameState gameState, int row, int col, int value);
 
-void hint (int board[9][9], int row, int col);
+void hint (GameState gameState, int row, int col);
 
-void validate (int board[9][9]);
+void validate (GameState gameState);
 
-void restart (int board[9][9]);
+void restart (GameState gameState);
 
-bool isLegalMove(int board[9][9], int row, int col, int value);
+bool isLegalMove(GameState gameState, int row, int col, int value);
 
-void set_in_board(int board[9][9], int row, int col, int value);
+void set_in_board(GameState gameState, int row, int col, int value);
 
 #endif
