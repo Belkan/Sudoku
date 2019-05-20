@@ -22,9 +22,9 @@ bool isFixed(int row, int col, GameState *gameState);
 /* fixes alignment of matrices */
 int transformRow(int row);
 
-bool separator_row (int row);
+bool isSeparatorRow(int row);
 
-bool separator_col (int row);
+bool isSeparatorCol(int row);
 
 
 

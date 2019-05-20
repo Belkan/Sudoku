@@ -24,13 +24,13 @@ void printBoard(GameState *gameState) {
     int col;
     for (row = 1; row <= 13; row++) {
         for (col = 1; col <= 13; col++) {
-            if (separator_row(row)) {
+            if (isSeparatorRow(row)) {
                 col = 1;
                 row++;
                 printf("----------------------------------\n");
             }
 
-            else if (separator_col(col)) {
+            else if (isSeparatorCol(col)) {
                 if (col == 13)
                     printf("|\n"); /* we have reached end of columns, go down one line */
                 else
@@ -51,7 +51,7 @@ void printBoard(GameState *gameState) {
 }
 
 /* checks if row is a separator row */
-bool separator_row (int row) {
+bool isSeparatorRow(int row) {
     if (row == 1 || row == 5 || row == 9 || row == 13){
         return true;
     }
@@ -59,7 +59,7 @@ bool separator_row (int row) {
 }
 
 /* checks if column is a separator columns */
-bool separator_col (int col) {
+bool isSeparatorCol(int col) {
     if (col == 1 || col == 5 || col == 9 || col == 13){
         return true;
     }
