@@ -68,5 +68,5 @@ bool separator_col (int col) {
 
 /* checks if cell is fixed */
 bool isFixed (int row, int col, GameState gameState){
-
+    return gameState.fixed[row][col];
 }

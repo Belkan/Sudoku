@@ -13,6 +13,7 @@ enum status set (GameState gameState, int row, int col, int value) {
         return Status;
     }
 
+    set_in_board(gameState, row, col, value);
     Status = Success;
     return Status;
 
