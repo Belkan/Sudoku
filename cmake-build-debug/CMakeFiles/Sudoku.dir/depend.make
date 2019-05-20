@@ -3,6 +3,7 @@
 
 CMakeFiles/Sudoku.dir/Game.c.obj: ../Game.c
 CMakeFiles/Sudoku.dir/Game.c.obj: ../Game.h
+CMakeFiles/Sudoku.dir/Game.c.obj: ../MainAux.h
 
 CMakeFiles/Sudoku.dir/MainAux.c.obj: ../MainAux.c
 CMakeFiles/Sudoku.dir/MainAux.c.obj: ../MainAux.h

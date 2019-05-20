@@ -11,13 +11,13 @@ typedef struct GameState{
 } GameState;
 
 /* prints the current board */
-void printBoard(GameState gameState);
+void printBoard(GameState *gameState);
 
 /* initializes board */
-void initializeGame(GameState gameState);
+void initializeGame(GameState *gameState);
 
 /* checks if cell is fixed */
-bool isFixed(int row, int col, GameState gameState);
+bool isFixed(int row, int col, GameState *gameState);
 
 /* fixes alignment of matrices */
 int transformRow(int row);

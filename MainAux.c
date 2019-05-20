@@ -19,7 +19,7 @@ int transformRow(int row) {
 
 /* prints the current board */
 /* TODO test this method */
-void printBoard(GameState gameState) {
+void printBoard(GameState *gameState) {
     int row;
     int col;
     for (row = 1; row <= 13; row++) {
@@ -40,10 +40,10 @@ void printBoard(GameState gameState) {
 
             else {
                 if (isFixed(row, col, gameState)){
-                    printf(".%d ", gameState.board[transformRow(row)][transformRow(col)]);
+                    printf(".%d ", gameState->board[transformRow(row)][transformRow(col)]);
                 }
                 else {
-                    printf(" %d ", gameState.board[transformRow(row)][transformRow(col)]);
+                    printf(" %d ", gameState->board[transformRow(row)][transformRow(col)]);
                 }
             }
         }
@@ -67,6 +67,6 @@ bool separator_col (int col) {
 }
 
 /* checks if cell is fixed */
-bool isFixed (int row, int col, GameState gameState){
-    return gameState.fixed[row][col];
+bool isFixed (int row, int col, GameState *gameState){
+    return gameState->fixed[row][col];
 }

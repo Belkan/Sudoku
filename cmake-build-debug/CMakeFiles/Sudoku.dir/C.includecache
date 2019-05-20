@@ -6,9 +6,41 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Adar/CLionProjects/Sudoku/MainAux.c
-MainAux.h
-C:/Users/Adar/CLionProjects/Sudoku/MainAux.h
+C:/Users/User/Documents/GitHub/Sudoku/Game.c
+Game.h
+C:/Users/User/Documents/GitHub/Sudoku/Game.h
 
-C:/Users/Adar/CLionProjects/Sudoku/MainAux.h
+C:/Users/User/Documents/GitHub/Sudoku/Game.h
+MainAux.h
+C:/Users/User/Documents/GitHub/Sudoku/MainAux.h
+
+C:/Users/User/Documents/GitHub/Sudoku/MainAux.c
+MainAux.h
+C:/Users/User/Documents/GitHub/Sudoku/MainAux.h
+Stdio.h
+-
+stdlib.h
+-
+stdbool.h
+-
+
+C:/Users/User/Documents/GitHub/Sudoku/MainAux.h
+stdbool.h
+-
+
+C:/Users/User/Documents/GitHub/Sudoku/Parser.c
+Parser.h
+C:/Users/User/Documents/GitHub/Sudoku/Parser.h
+
+C:/Users/User/Documents/GitHub/Sudoku/Parser.h
+
+C:/Users/User/Documents/GitHub/Sudoku/Solver.c
+Solver.h
+C:/Users/User/Documents/GitHub/Sudoku/Solver.h
+
+C:/Users/User/Documents/GitHub/Sudoku/Solver.h
+
+C:/Users/User/Documents/GitHub/Sudoku/main.c
+stdio.h
+-
 
