@@ -47,12 +47,11 @@ void userTurn() {
     int i, k;
     char input[MAX], clone[MAX];
 
-    while (strcmp(fgets(input, MAX, stdin), "")) { /* loop while input line not empty */
+    while (strlen(fgets(input, MAX, stdin)) > 0) { /* loop while input line not empty */
         k = 0;
         /* clone input string into string without whitespaces to check formatting */
         for (i = 0; i < strlen(input) - 1; i++) {
             if (input[i] != ' ') {
-                printf("char i is : %c\n", input[i]);
                 clone[k] = input[i];
                 k++;
             }
