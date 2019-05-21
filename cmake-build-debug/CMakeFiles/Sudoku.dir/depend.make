@@ -12,9 +12,13 @@ CMakeFiles/Sudoku.dir/MainAux.c.obj: ../MainAux.h
 
 CMakeFiles/Sudoku.dir/MainAuxUnitTest.c.obj: ../MainAuxUnitTest.c
 
+CMakeFiles/Sudoku.dir/Parser.c.obj: ../Game.h
+CMakeFiles/Sudoku.dir/Parser.c.obj: ../MainAux.h
 CMakeFiles/Sudoku.dir/Parser.c.obj: ../Parser.c
 CMakeFiles/Sudoku.dir/Parser.c.obj: ../Parser.h
 
+CMakeFiles/Sudoku.dir/ParserUnitTest.c.obj: ../Game.h
+CMakeFiles/Sudoku.dir/ParserUnitTest.c.obj: ../MainAux.h
 CMakeFiles/Sudoku.dir/ParserUnitTest.c.obj: ../Parser.h
 CMakeFiles/Sudoku.dir/ParserUnitTest.c.obj: ../ParserUnitTest.c
 
