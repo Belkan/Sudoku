@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Parser.h"
 #include <string.h>
 #include <ctype.h>
+#include "Parser.h"
+#include "Game.h"
 #define MAX 1024
 
 /* checks if user input matches given regular expressions */
@@ -42,7 +43,7 @@ bool matchesFormat(char* str, USER_CHOICE choice) {
 } /* EOF */
 
 /* scan user input and return it as String format */
-void userTurn() {
+void userTurn(GameState *gameState) {
     bool match = false;
     int i, k;
     char input[MAX], clone[MAX];
@@ -59,23 +60,23 @@ void userTurn() {
 
         if (matchesFormat(clone, SET)) {
             match = true;
-            /* TODO set matrix[i][j] to input */
+            set(gameState, clone[3], clone[4], clone[5]);
         }
         if (matchesFormat(clone, HINT)) {
             match = true;
-            /* TODO give hint to user */
+            hint(gameState, clone[4], clone[5]);
         }
         if (matchesFormat(clone, VALIDATE)) {
             match = true;
-            /* TODO validate board is solvable */
+            validate(gameState);
         }
         if (matchesFormat(clone, EXIT)) {
-            match = true;
-            /* TODO exit program */
+            printf("Exiting…\n");
+            exit(EXIT_SUCCESS);
         }
         if (matchesFormat(clone, RESTART)) {
             match = true;
-            /* TODO restart the game */
+            restart(gameState);
         }
         if (!match) {
             printf("Error: invalid command\\n");
