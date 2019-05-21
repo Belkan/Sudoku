@@ -58,6 +58,10 @@ void userTurn(GameState *gameState) {
             }
         }
 
+        /* line of blanks edge case, do nothing */
+        if(strlen(clone) == 0) {
+            continue;
+        }
         if (matchesFormat(clone, SET)) {
             match = true;
             set(gameState, clone[3], clone[4], clone[5]);
