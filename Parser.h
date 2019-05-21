@@ -2,6 +2,7 @@
 #define SUDOKU_PARSER_H
 
 #include <stdbool.h>
+#include "Game.h"
 
 typedef enum user_choice {
     SET,
@@ -12,12 +13,9 @@ typedef enum user_choice {
 } USER_CHOICE;
 
 /* scan input from user */
-void userTurn();
+void userTurn(GameState *gameState);
 
 /* check if user input in legal format */
 bool matchesFormat(char* str, USER_CHOICE choice);
-
-/* interpret user input */
-void interpretUser(char* input);
 
 #endif //SUDOKU_PARSER_H
