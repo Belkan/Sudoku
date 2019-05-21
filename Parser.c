@@ -48,7 +48,7 @@ void userTurn(GameState *gameState) {
     int i, k;
     char input[MAX], clone[MAX];
 
-    while (strlen(fgets(input, MAX, stdin)) > 0) { /* loop while input line not empty */
+    while (fgets(input, MAX, stdin)) { /* loop while input line not empty */
         k = 0;
         /* clone input string into string without whitespaces to check formatting */
         for (i = 0; i < strlen(input) - 1; i++) {
