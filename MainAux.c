@@ -2,6 +2,7 @@
 #include <Stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#define SIZE 9
 
 /* fixes alignment of matrices */
 int transform(int row) {
@@ -18,10 +19,10 @@ int transform(int row) {
 
 /* this method initializes all matrices of game state, returns empty struct */
 struct GameState initializeGame() {
-    int emptyMatrix[9][9] = {{}};
-    int *ptr = &emptyMatrix[9][9];
-    bool emptyMatrixBool[9][9] = {{}};
-    bool *ptrBool = &emptyMatrixBool[9][9];
+    int emptyMatrix[SIZE][SIZE] = {{}};
+    int *ptr = &emptyMatrix[SIZE][SIZE];
+    bool emptyMatrixBool[SIZE][SIZE] = {{}};
+    bool *ptrBool = &emptyMatrixBool[SIZE][SIZE];
     /* set all of the matrices of the game state to empty 9x9 square matrices */
     GameState gameState = { &ptr, &ptr, &ptrBool};
     return gameState; /* return empty game */
