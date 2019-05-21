@@ -15,6 +15,7 @@ CMakeFiles/Sudoku.dir/MainAuxUnitTest.c.obj: ../MainAuxUnitTest.c
 CMakeFiles/Sudoku.dir/Parser.c.obj: ../Parser.c
 CMakeFiles/Sudoku.dir/Parser.c.obj: ../Parser.h
 
+CMakeFiles/Sudoku.dir/ParserUnitTest.c.obj: ../Parser.h
 CMakeFiles/Sudoku.dir/ParserUnitTest.c.obj: ../ParserUnitTest.c
 
 CMakeFiles/Sudoku.dir/Solver.c.obj: ../Solver.c

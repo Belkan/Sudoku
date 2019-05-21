@@ -6,25 +6,17 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Adar/Sudoku/Game.c
-Game.h
-C:/Users/Adar/Sudoku/Game.h
-
-C:/Users/Adar/Sudoku/Game.h
-MainAux.h
-C:/Users/Adar/Sudoku/MainAux.h
-
-C:/Users/Adar/Sudoku/MainAux.c
-MainAux.h
-C:/Users/Adar/Sudoku/MainAux.h
-Stdio.h
+C:/Users/Adar/Sudoku/Parser.c
+stdio.h
 -
 stdlib.h
 -
-stdbool.h
+Parser.h
+C:/Users/Adar/Sudoku/Parser.h
+string.h
 -
 
-C:/Users/Adar/Sudoku/MainAux.h
+C:/Users/Adar/Sudoku/Parser.h
 stdbool.h
 -
 
