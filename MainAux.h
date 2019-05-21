@@ -20,7 +20,7 @@ void initializeGame(GameState *gameState);
 bool isFixed(int row, int col, GameState *gameState);
 
 /* fixes alignment of matrices */
-int transformRow(int row);
+int transform(int row);
 
 bool isSeparatorRow(int row);
 

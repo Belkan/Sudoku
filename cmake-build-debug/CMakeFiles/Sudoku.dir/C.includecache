@@ -6,17 +6,19 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/User/Documents/GitHub/Sudoku/Game.c
+C:/Users/Adar/Sudoku/Game.c
 Game.h
-C:/Users/User/Documents/GitHub/Sudoku/Game.h
+C:/Users/Adar/Sudoku/Game.h
 
-C:/Users/User/Documents/GitHub/Sudoku/Game.h
+C:/Users/Adar/Sudoku/Game.h
 MainAux.h
-C:/Users/User/Documents/GitHub/Sudoku/MainAux.h
+C:/Users/Adar/Sudoku/MainAux.h
 
-C:/Users/User/Documents/GitHub/Sudoku/MainAux.c
+C:/Users/Adar/Sudoku/GameUnitTest.c
+
+C:/Users/Adar/Sudoku/MainAux.c
 MainAux.h
-C:/Users/User/Documents/GitHub/Sudoku/MainAux.h
+C:/Users/Adar/Sudoku/MainAux.h
 Stdio.h
 -
 stdlib.h
@@ -24,23 +26,29 @@ stdlib.h
 stdbool.h
 -
 
-C:/Users/User/Documents/GitHub/Sudoku/MainAux.h
+C:/Users/Adar/Sudoku/MainAux.h
 stdbool.h
 -
 
-C:/Users/User/Documents/GitHub/Sudoku/Parser.c
+C:/Users/Adar/Sudoku/MainAuxUnitTest.c
+
+C:/Users/Adar/Sudoku/Parser.c
 Parser.h
-C:/Users/User/Documents/GitHub/Sudoku/Parser.h
+C:/Users/Adar/Sudoku/Parser.h
 
-C:/Users/User/Documents/GitHub/Sudoku/Parser.h
+C:/Users/Adar/Sudoku/Parser.h
 
-C:/Users/User/Documents/GitHub/Sudoku/Solver.c
+C:/Users/Adar/Sudoku/ParserUnitTest.c
+
+C:/Users/Adar/Sudoku/Solver.c
 Solver.h
-C:/Users/User/Documents/GitHub/Sudoku/Solver.h
+C:/Users/Adar/Sudoku/Solver.h
 
-C:/Users/User/Documents/GitHub/Sudoku/Solver.h
+C:/Users/Adar/Sudoku/Solver.h
 
-C:/Users/User/Documents/GitHub/Sudoku/main.c
+C:/Users/Adar/Sudoku/SolverUnitTest.c
+
+C:/Users/Adar/Sudoku/main.c
 stdio.h
 -
 

@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 /* fixes alignment of matrices */
-int transformRow(int row) {
+int transform(int row) {
     if (row >= 1 && row <= 4) {
         return row-1;
     }
@@ -40,10 +40,10 @@ void printBoard(GameState *gameState) {
 
             else {
                 if (isFixed(row, col, gameState)){
-                    printf(".%d ", gameState->board[transformRow(row)][transformRow(col)]);
+                    printf(".%d ", gameState->board[transform(row)][transform(col)]);
                 }
                 else {
-                    printf(" %d ", gameState->board[transformRow(row)][transformRow(col)]);
+                    printf(" %d ", gameState->board[transform(row)][transform(col)]);
                 }
             }
         }
