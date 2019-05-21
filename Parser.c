@@ -87,4 +87,7 @@ void userTurn(GameState *gameState) {
         }
     }
 
+    /* EOF reached, exit program */
+    exit(EXIT_SUCCESS);
+
 } /* EOF */
