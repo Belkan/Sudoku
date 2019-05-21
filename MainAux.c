@@ -16,6 +16,16 @@ int transform(int row) {
     }
 } /* EOF */
 
+/* this method initializes all matrices of game state, returns empty struct */
+struct GameState initializeGame() {
+    int emptyMatrix[9][9] = {{}};
+    int *ptr = &emptyMatrix[9][9];
+    bool emptyMatrixBool[9][9] = {{}};
+    bool *ptrBool = &emptyMatrixBool[9][9];
+    /* set all of the matrices of the game state to empty 9x9 square matrices */
+    GameState gameState = { &ptr, &ptr, &ptrBool};
+    return gameState; /* return empty game */
+} /* EOF */
 
 /* prints the current board */
 /* TODO test this method */
@@ -29,7 +39,6 @@ void printBoard(GameState *gameState) {
                 row++;
                 printf("----------------------------------\n");
             }
-
             else if (isSeparatorCol(col)) {
                 if (col == 13)
                     printf("|\n"); /* we have reached end of columns, go down one line */
@@ -37,7 +46,6 @@ void printBoard(GameState *gameState) {
                     printf("|");
                 continue;
             }
-
             else {
                 if (isFixed(row, col, gameState)){
                     printf(".%d ", gameState->board[transform(row)][transform(col)]);
@@ -48,7 +56,7 @@ void printBoard(GameState *gameState) {
             }
         }
     }
-}
+} /* EOF */
 
 /* checks if row is a separator row */
 bool isSeparatorRow(int row) {
@@ -56,7 +64,7 @@ bool isSeparatorRow(int row) {
         return true;
     }
     return false;
-}
+} /* EOF */
 
 /* checks if column is a separator columns */
 bool isSeparatorCol(int col) {
@@ -64,9 +72,9 @@ bool isSeparatorCol(int col) {
         return true;
     }
     return false;
-}
+} /* EOF */
 
 /* checks if cell is fixed */
 bool isFixed (int row, int col, GameState *gameState){
     return gameState->fixed[row][col];
-}
+} /* EOF */

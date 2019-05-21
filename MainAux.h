@@ -14,7 +14,7 @@ typedef struct GameState{
 void printBoard(GameState *gameState);
 
 /* initializes board */
-void initializeGame(GameState *gameState);
+struct GameState initializeGame();
 
 /* checks if cell is fixed */
 bool isFixed(int row, int col, GameState *gameState);

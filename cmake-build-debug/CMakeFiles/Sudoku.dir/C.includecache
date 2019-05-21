@@ -14,8 +14,6 @@ C:/Users/Adar/Sudoku/Game.h
 MainAux.h
 C:/Users/Adar/Sudoku/MainAux.h
 
-C:/Users/Adar/Sudoku/GameUnitTest.c
-
 C:/Users/Adar/Sudoku/MainAux.c
 MainAux.h
 C:/Users/Adar/Sudoku/MainAux.h
@@ -28,27 +26,5 @@ stdbool.h
 
 C:/Users/Adar/Sudoku/MainAux.h
 stdbool.h
--
-
-C:/Users/Adar/Sudoku/MainAuxUnitTest.c
-
-C:/Users/Adar/Sudoku/Parser.c
-Parser.h
-C:/Users/Adar/Sudoku/Parser.h
-
-C:/Users/Adar/Sudoku/Parser.h
-
-C:/Users/Adar/Sudoku/ParserUnitTest.c
-
-C:/Users/Adar/Sudoku/Solver.c
-Solver.h
-C:/Users/Adar/Sudoku/Solver.h
-
-C:/Users/Adar/Sudoku/Solver.h
-
-C:/Users/Adar/Sudoku/SolverUnitTest.c
-
-C:/Users/Adar/Sudoku/main.c
-stdio.h
 -
 
