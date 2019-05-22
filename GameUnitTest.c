@@ -5,7 +5,7 @@
 
 
 void verify_setSuccessful(){
-    GameState* gameState = initializeGame(9);
+    GameState* gameState = createGameState(9);
     SET_STATUS status;
     status = set(gameState, 1, 2, 3);
 
@@ -15,7 +15,7 @@ void verify_setSuccessful(){
 }
 
 void verify_setIllegal() {
-    GameState* gameState = initializeGame(9);
+    GameState* gameState = createGameState(9);
     SET_STATUS status;
     set(gameState, 1, 2, 3);
     status = set(gameState, 2, 2, 3);
@@ -26,7 +26,7 @@ void verify_setIllegal() {
 }
 
 void verify_setFixed() {
-    GameState* gameState = initializeGame(9);
+    GameState* gameState = createGameState(9);
     SET_STATUS status;
     gameState->fixed[1][2] = true;
     status = set(gameState, 1, 2, 3);

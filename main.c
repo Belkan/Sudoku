@@ -6,8 +6,7 @@
 #include "GameUnitTest.h"
 
 int main() {
-    GameState* gameState = initializeGame(9);
-//    printf("%d", gameState->board[0][0]);
+    GameState* gameState = createGameState(9);
     printBoard(gameState);
     GameUnitTest();
 }

@@ -6,6 +6,7 @@
 #define SIZE 9
 
 typedef struct GameState{
+    int size;
     int **board;
     int **solution;
     bool **fixed;
@@ -14,8 +15,10 @@ typedef struct GameState{
 /* prints the current board */
 void printBoard(GameState *gameState);
 
+void destroyGameState(GameState* gameState);
+
 /* initializes board */
-GameState* initializeGame(int Size);
+GameState* createGameState(int size);
 
 /* checks if cell is fixed */
 bool isFixed(int row, int col, GameState *gameState);

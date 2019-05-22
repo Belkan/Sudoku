@@ -16,39 +16,41 @@ int transform(int val) {
     }
 } /* EOF */
 
-// TODO: Not sure what you did here, but it fucked things up.
-///* this method initializes all matrices of game state, returns empty struct */
-//struct GameState initializeGame() {
-//    int emptyMatrix[SIZE][SIZE] = {{}};
-//    int *ptr = &emptyMatrix[SIZE][SIZE];
-//    bool emptyMatrixBool[SIZE][SIZE] = {{}};
-//    bool *ptrBool = &emptyMatrixBool[SIZE][SIZE];
-//    /* set all of the matrices of the game state to empty 9x9 square matrices */
-//    GameState gameState = { &ptr, &ptr, &ptrBool};
-//    return gameState; /* return empty game */
-//} /* EOF */
-
-/// This works for now.
-    GameState* initializeGame(int Size) {
+/* creates a new GameState of Sudoku with Size rows/columns*/
+    GameState* createGameState(int size) {
     GameState* gameState = malloc(sizeof(GameState));
+    gameState->size = size;
 
-    gameState->board =  malloc(Size * sizeof(int*));
-    for (int i = 0; i < Size; i++){
-        gameState->board[i] =  calloc(Size, sizeof(int));
+    gameState->board =  malloc(size * sizeof(int*));
+    for (int i = 0; i < size; i++){
+        gameState->board[i] =  calloc(size, sizeof(int));
     }
 
-    gameState->solution =  malloc(Size * sizeof(int*));
-    for (int i = 0; i < Size; i++){
-        gameState->solution[i] =  calloc(Size, sizeof(int));
+    gameState->solution =  malloc(size * sizeof(int*));
+    for (int i = 0; i < size; i++){
+        gameState->solution[i] =  calloc(size, sizeof(int));
     }
 
-    gameState->fixed = (bool**) malloc(Size * sizeof(bool*));
-    for (int i = 0; i < Size; i++){
-        gameState->fixed[i] = (bool*) calloc(Size, sizeof(bool));
+    gameState->fixed = (bool**) malloc(size * sizeof(bool*));
+    for (int i = 0; i < size; i++){
+        gameState->fixed[i] = (bool*) calloc(size, sizeof(bool));
     }
 
     return gameState;
 }
+
+/* frees all allocated memory */
+void destroyGameState(GameState* gameState){
+    for (int i = 0; i < gameState->size; i++){
+        free(gameState->board[i]);
+        free(gameState->solution[i]);
+        free(gameState->fixed[i]);
+    }
+    free(gameState->board);
+    free(gameState->solution);
+    free(gameState->fixed);
+    free(gameState);
+    }
 
 /* prints the current board */
 /* TODO test this method */
