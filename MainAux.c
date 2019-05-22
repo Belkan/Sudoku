@@ -2,7 +2,6 @@
 #include <Stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#define SIZE 9
 
 /* fixes alignment of matrices */
 int transform(int val) {
@@ -30,8 +29,24 @@ int transform(int val) {
 //} /* EOF */
 
 /// This works for now.
-struct GameState initializeGame() {
-    GameState gameState = {{0}, {0}, {false}};
+    GameState* initializeGame(int Size) {
+    GameState* gameState = malloc(sizeof(GameState));
+
+    gameState->board =  malloc(Size * sizeof(int*));
+    for (int i = 0; i < Size; i++){
+        gameState->board[i] =  calloc(Size, sizeof(int));
+    }
+
+    gameState->solution =  malloc(Size * sizeof(int*));
+    for (int i = 0; i < Size; i++){
+        gameState->solution[i] =  calloc(Size, sizeof(int));
+    }
+
+    gameState->fixed = (bool**) malloc(Size * sizeof(bool*));
+    for (int i = 0; i < Size; i++){
+        gameState->fixed[i] = (bool*) calloc(Size, sizeof(bool));
+    }
+
     return gameState;
 }
 
