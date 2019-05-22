@@ -1,4 +1,5 @@
 
+#include <stdio.h>
 #include "Game.h"
 
 /* tries to set value in (row, col) in board, and returns the status of the request */
@@ -8,7 +9,7 @@ SET_STATUS set (GameState *gameState, int row, int col, int value) {
         Status = CELL_FIXED;
         return Status;
     }
-    if (isLegalMove(gameState, row, col, value)) {
+    if (!isLegalMove(gameState, row, col, value)) {
         Status = ILLEGAL_MOVE;
         return Status;
     }
@@ -38,6 +39,7 @@ bool isLegalMove(GameState *gameState, int row, int col, int value){
             return false;
         }
     }
+    return true;
 }
 
 /* check if the board is full */

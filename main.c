@@ -1,7 +1,12 @@
 #include <stdio.h>
-
+#include "MainAux.h"
+#include "Game.h"
+#include "Solver.h"
+#include "Parser.h"
+#include "GameUnitTest.h"
 
 int main() {
-    printf("Hello, Omri!\n");
-    return 0;
+    GameState gameState = initializeGame();
+    printBoard(&gameState);
+    GameUnitTest();
 }
