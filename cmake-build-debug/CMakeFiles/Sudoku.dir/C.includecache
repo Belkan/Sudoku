@@ -6,19 +6,21 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Adar/Sudoku/MainAux.c
+C:/Users/Adar/Sudoku/Game.h
 MainAux.h
 C:/Users/Adar/Sudoku/MainAux.h
-Stdio.h
--
-stdlib.h
--
-stdbool.h
--
-time.h
--
 
 C:/Users/Adar/Sudoku/MainAux.h
 stdbool.h
+-
+
+C:/Users/Adar/Sudoku/MainAuxUnitTest.c
+MainAux.h
+C:/Users/Adar/Sudoku/MainAux.h
+Game.h
+C:/Users/Adar/Sudoku/Game.h
+stdlib.h
+-
+stdio.h
 -
 
