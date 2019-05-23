@@ -5,9 +5,11 @@
 #include "Parser/Parser.h"
 #include "Game/GameUnitTest.h"
 #include "MainAux/MainAuxUnitTest.h"
+#include "minunit.h"
 
 int main() {
-    GameState* gameState = createGameState(SIZE);
     MainAuxUnitTest();
+    tests_run = 0;
     GameUnitTest();
+
 }

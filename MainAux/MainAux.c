@@ -42,12 +42,12 @@ bool legalFixed(int fixed) {
     GameState* gameState = malloc(sizeof(GameState));
     gameState->size = size;
 
-    gameState->board =  malloc(size * sizeof(int*));
+    gameState->board =  (int**) malloc(size * sizeof(int*));
     for (int i = 0; i < size; i++){
         gameState->board[i] =  calloc(size, sizeof(int));
     }
 
-    gameState->solution =  malloc(size * sizeof(int*));
+    gameState->solution =  (int**) malloc(size * sizeof(int*));
     for (int i = 0; i < size; i++){
         gameState->solution[i] =  calloc(size, sizeof(int));
     }

@@ -5,6 +5,6 @@
 #ifndef SUDOKU_GAMEUNITTEST_H
 #define SUDOKU_GAMEUNITTEST_H
 
-void GameUnitTest();
+int GameUnitTest();
 
 #endif //SUDOKU_GAMEUNITTEST_H

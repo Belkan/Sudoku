@@ -5,6 +5,6 @@
 #ifndef SUDOKU_MAINAUXUNITTEST_H
 #define SUDOKU_MAINAUXUNITTEST_H
 
-void MainAuxUnitTest();
+int MainAuxUnitTest();
 
 #endif //SUDOKU_MAINAUXUNITTEST_H
