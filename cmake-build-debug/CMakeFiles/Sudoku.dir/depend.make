@@ -34,6 +34,7 @@ CMakeFiles/Sudoku.dir/SolverUnitTest.c.obj: ../SolverUnitTest.c
 CMakeFiles/Sudoku.dir/main.c.obj: ../Game.h
 CMakeFiles/Sudoku.dir/main.c.obj: ../GameUnitTest.h
 CMakeFiles/Sudoku.dir/main.c.obj: ../MainAux.h
+CMakeFiles/Sudoku.dir/main.c.obj: ../MainAuxUnitTest.h
 CMakeFiles/Sudoku.dir/main.c.obj: ../Parser.h
 CMakeFiles/Sudoku.dir/main.c.obj: ../Solver.h
 CMakeFiles/Sudoku.dir/main.c.obj: ../main.c

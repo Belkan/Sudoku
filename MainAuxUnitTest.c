@@ -15,7 +15,25 @@ void verify_printBoard() {
     destroyGameState(gameState);
 }
 
+void verify_getRandom() {
+    int lower, upper, res;
+    lower = 4;
+    upper = INT_MAX;
+    res = getRandom(lower, upper);
+    printf("This should print an integer in [4, infinity]: %d\n", res);
+    lower = 5;
+    upper = 17;
+    res = getRandom(lower, upper);
+    printf("This should print an integer in [5,17]: %d\n", res);
+    lower = 250;
+    upper = 2796;
+    res = getRandom(lower, upper);
+    printf("This should print an integer in [250, 2796]: %d\n", res);
+
+}
+
 void MainAuxUnitTest() {
     verify_printBoard();
+    verify_getRandom();
 }
 

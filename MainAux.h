@@ -12,6 +12,9 @@ typedef struct GameState{
     bool **fixed;
 } GameState;
 
+/* generate random number in given range */
+int getRandom(int upper, int lower);
+
 /* prints the current board */
 void printBoard(GameState *gameState);
 
