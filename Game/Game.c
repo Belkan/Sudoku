@@ -208,7 +208,7 @@ int findBlock(int row, int col) {
     return 0;
 } /* EOF */
 
-/* generates a solved board with H filled values */
+/* generates a random solved board */
 /* TODO see this actually generates a random board */
 bool generateRandBoard(GameState *gameState, int row, int col) {
     int val, i, k, nextCol, nextRow;
