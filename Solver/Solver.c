@@ -3,7 +3,6 @@
 //
 
 #include "Solver.h"
-#include <stdbool.h>
 
 /* generates a random solved board */
 /* TODO see this actually generates a random board */
