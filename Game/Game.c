@@ -48,7 +48,6 @@ bool isUserBoardFull(GameState *gameState) {
     return false;
 } /* EOF */
 
-/* TODO make this function generic i.e. able to reference gameState->solution and gameState->board */
 /* return number of empty cells in board */
 int countBlanks(GameState *gameState, BOARD_TYPE type) {
     int row, col, count;
@@ -111,6 +110,7 @@ bool safeMoveCol(int** board, int col, int val, int size) {
     return true;
 }
 
+/* TODO make this work for any size */
 /// WORKS ONLY FOR SIZE 9
 bool safeMoveBlock(int** board, int block, int val) {
     int fromRow, fromCol, toRow, toCol, i, j;
