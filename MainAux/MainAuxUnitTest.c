@@ -1,5 +1,5 @@
 #include "MainAux.h"
-#include "Game.h"
+#include "../Game/Game.h"
 #include <stdlib.h>
 #include <stdio.h>
 

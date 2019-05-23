@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "Game.h"
-#include "MainAux.h"
+#include "../MainAux/MainAux.h"
 
 
 

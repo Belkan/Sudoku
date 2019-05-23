@@ -74,46 +74,46 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/Adar/Sudoku/Game.c">
+		<Unit filename="C:/Users/Adar/Sudoku/Game/Game.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/Sudoku/Game.h">
+		<Unit filename="C:/Users/Adar/Sudoku/Game/Game.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/Sudoku/GameUnitTest.c">
+		<Unit filename="C:/Users/Adar/Sudoku/Game/GameUnitTest.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/Sudoku/GameUnitTest.h">
+		<Unit filename="C:/Users/Adar/Sudoku/Game/GameUnitTest.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/Sudoku/MainAux.c">
+		<Unit filename="C:/Users/Adar/Sudoku/MainAux/MainAux.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/Sudoku/MainAux.h">
+		<Unit filename="C:/Users/Adar/Sudoku/MainAux/MainAux.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/Sudoku/MainAuxUnitTest.c">
+		<Unit filename="C:/Users/Adar/Sudoku/MainAux/MainAuxUnitTest.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/Sudoku/MainAuxUnitTest.h">
+		<Unit filename="C:/Users/Adar/Sudoku/MainAux/MainAuxUnitTest.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/Sudoku/Parser.c">
+		<Unit filename="C:/Users/Adar/Sudoku/Parser/Parser.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/Sudoku/Parser.h">
+		<Unit filename="C:/Users/Adar/Sudoku/Parser/Parser.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/Sudoku/ParserUnitTest.c">
+		<Unit filename="C:/Users/Adar/Sudoku/Parser/ParserUnitTest.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/Sudoku/Solver.c">
+		<Unit filename="C:/Users/Adar/Sudoku/Solver/Solver.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/Sudoku/Solver.h">
+		<Unit filename="C:/Users/Adar/Sudoku/Solver/Solver.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/Sudoku/SolverUnitTest.c">
+		<Unit filename="C:/Users/Adar/Sudoku/Solver/SolverUnitTest.c">
 			<Option target="Sudoku"/>
 		</Unit>
 		<Unit filename="C:/Users/Adar/Sudoku/main.c">

@@ -1,7 +1,7 @@
 #ifndef SUDOKU_GAME_H
 #define SUDOKU_GAME_H
 
-#include "MainAux.h"
+#include "../MainAux/MainAux.h"
 
 typedef enum set_status {
     SUCCESS,

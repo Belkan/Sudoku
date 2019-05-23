@@ -2,7 +2,7 @@
 #define SUDOKU_PARSER_H
 
 #include <stdbool.h>
-#include "Game.h"
+#include "../Game/Game.h"
 
 typedef enum user_choice {
     SET,

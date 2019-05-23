@@ -3,7 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "Parser.h"
-#include "Game.h"
+#include "../Game/Game.h"
 #define MAX 1024
 
 /* checks if user input matches given regular expressions */
