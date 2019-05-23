@@ -9,7 +9,7 @@ void verify_printBoard() {
 
     printBoard(gameState);
     set(gameState, 1, 1, 1);
-    set(gameState, 5,4,18);
+    set(gameState, 5,4,2);
     set(gameState, 4,3,9);
     printf("This should print a board with some fixed cells\n");
 
