@@ -2,6 +2,19 @@
 #include <Stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <time.h>
+
+/* generates pseudorandom number in given range */
+int getRandom(int lower, int upper)
+{
+    /* generate new seed */
+    time_t t;
+    srand((unsigned) time(&t));
+
+    /* randomize result */
+    int res = (rand() % (upper - lower + 1)) + lower;
+    return res;
+} /* EOF */
 
 /* fixes alignment of matrices */
 int transform(int val) {
