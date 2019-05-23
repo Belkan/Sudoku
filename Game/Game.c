@@ -33,34 +33,34 @@ void restart (GameState *gameState){}
 /* TODO: check if it's in the same box (currently only checks row and col */
 /* checks if this set is a legal set (assuming input is valid) */
 bool isLegalMove(GameState *gameState, int row, int col, int value){
-    int i;
-    for (i = 0; i < 9; i++){
-        if (gameState->board[i][col] == value || gameState->board[row][i] == value) {
-            return false;
-        }
+    if (safeMove(gameState, row, col, value, 'b')) {
+        return true;
     }
-    return true;
+    return false;
 }
 
 /* check if the board is full */
 bool fullBoard(GameState *gameState){
-    int i, j;
-    for (i = 0; i < 9; i++){
-        for (j = 0; j < 9; j++){
-            if (gameState->board[i][j] == 0) {
-                return false;
-            }
-        }
+    if (countBlanks(gameState, 'b') == 0) {
+        return true;
     }
-    return true;
+    return false;
 } /* EOF */
 
+/* TODO make this function generic i.e. able to reference gameState->solution and gameState->board */
 /* return number of empty cells in board */
-int countBlanks(GameState *gameState) {
+int countBlanks(GameState *gameState, char type) {
     int row, col, count;
+    int** board;
+
+    if (type == 'b')
+        board = gameState->board;
+    else
+        board = gameState->solution;
+
     for (row = 0; row < gameState->size; row++) {
         for (col = 0; col < gameState->size; col++) {
-            if (gameState->solution[row][col] == 0) {
+            if (board[row][col] == 0) {
                 count++;
             }
         }
@@ -69,35 +69,55 @@ int countBlanks(GameState *gameState) {
 } /* EOF */
 
 /* checks if placement is legal */
-bool safeMove(GameState *gameState, int row, int col, int val) {
+bool safeMove(GameState *gameState, int row, int col, int val, char type) {
     int block = findBlock(row, col);
 
-    return safeMoveRow(gameState, row, val)
-           && safeMoveCol(gameState, col, val)
-           && safeMoveBlock(gameState, block, val);
+    return safeMoveRow(gameState, row, val, type)
+           && safeMoveCol(gameState, col, val, type)
+           && safeMoveBlock(gameState, block, val, type);
 } /* EOF */
 
 /* Util subfunctions used for safeMove */
-bool safeMoveRow(GameState *gameState, int row, int val) {
+bool safeMoveRow(GameState *gameState, int row, int val, char type) {
     int col;
+    int** board;
+
+    if (type == 'b')
+        board = gameState->board;
+    else
+        board = gameState->solution;
 
     for (col = 0; col < gameState->size; col++) {
-        if (gameState->solution[row][col] == val)
+        if (board[row][col] == val)
             return false; /* val exists in row */
     }
     return true;
 }
-bool safeMoveCol(GameState *gameState, int col, int val) {
+
+bool safeMoveCol(GameState *gameState, int col, int val, char type) {
     int row;
+    int** board;
+
+    if (type == 'b')
+        board = gameState->board;
+    else
+        board = gameState->solution;
 
     for (row = 0; row  < gameState->size; row++) {
-        if (gameState->solution[row][col] == val)
+        if (board[row][col] == val)
             return false; /* val exists in column */
     }
     return true;
 }
-bool safeMoveBlock(GameState *gameState, int block, int val) {
+
+bool safeMoveBlock(GameState *gameState, int block, int val, char type) {
     int fromRow, fromCol, toRow, toCol, i, j;
+    int** board;
+
+    if (type == 'b')
+        board = gameState->board;
+    else
+        board = gameState->solution;
 
     switch (block) {
         case 1:
@@ -162,7 +182,7 @@ bool safeMoveBlock(GameState *gameState, int block, int val) {
 
     for (i = fromRow; i <= toRow; i++) {
         for (j = fromCol; j <= toCol; j++) {
-            if (gameState->solution[i][j] == val) { /* val exists in block */
+            if (board[i][j] == val) { /* val exists in block */
                 return false;
             }
         }
@@ -213,7 +233,7 @@ int findBlock(int row, int col) {
 bool generateRandBoard(GameState *gameState, int row, int col) {
     int val, i, k, nextCol, nextRow;
     char possibleVals [8];
-    if (countBlanks(gameState) == 0) {
+    if (countBlanks(gameState, 's') == 0) {
         return true; /* finished placement of all board */
     }
 
@@ -228,7 +248,7 @@ bool generateRandBoard(GameState *gameState, int row, int col) {
 
     k = 0;
     for (i = 1; i < 10; i++) {
-        if (safeMove(gameState, row, col, i)) {
+        if (safeMove(gameState, row, col, i, 's')) {
             possibleVals[k] = i;
             k++;
         }
