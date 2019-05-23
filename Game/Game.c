@@ -72,9 +72,9 @@ int countBlanks(GameState *gameState, char type) {
 bool safeMove(GameState *gameState, int row, int col, int val, char type) {
     int block = findBlock(row, col);
 
-    return safeMoveRow(gameState, row, val, type)
-           && safeMoveCol(gameState, col, val, type)
-           && safeMoveBlock(gameState, block, val, type);
+    return safeMoveRow(gameState, row, val, type) &&
+           safeMoveCol(gameState, col, val, type) &&
+           safeMoveBlock(gameState, block, val, type);
 } /* EOF */
 
 /* Util subfunctions used for safeMove */
