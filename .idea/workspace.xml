@@ -12,14 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/Game.c" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Game.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainAux/MainAux.c" beforeDir="false" afterPath="$PROJECT_DIR$/MainAux/MainAux.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainAux/MainAux.h" beforeDir="false" afterPath="$PROJECT_DIR$/MainAux/MainAux.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/C.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/objects.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Sudoku.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Sudoku.exe" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,8 +39,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Game/Game.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="249" column="10" selection-start-line="249" selection-start-column="10" selection-end-line="249" selection-end-column="10" />
+            <state relative-caret-position="143">
+              <caret line="210" column="35" selection-start-line="210" selection-start-column="35" selection-end-line="210" selection-end-column="35" />
               <folding>
                 <element signature="e#1#19#0" expanded="true" />
               </folding>
@@ -236,7 +229,7 @@
       <updated>1558274317224</updated>
       <workItem from="1558274318533" duration="6553000" />
       <workItem from="1558446283063" duration="16411000" />
-      <workItem from="1558570636656" duration="15612000" />
+      <workItem from="1558570636656" duration="15790000" />
     </task>
     <task id="LOCAL-00001" summary="Ignore shit">
       <created>1558276181836</created>
@@ -448,11 +441,18 @@
       <option name="project" value="LOCAL" />
       <updated>1558627998601</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Added random backtracker to generate a new board">
+      <created>1558636173526</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1558636173526</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39612000" />
+    <option name="totallyTimeSpent" value="39790000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -502,7 +502,8 @@
     <MESSAGE value=" Added Main Aux UT + getRandom func" />
     <MESSAGE value="Added testers" />
     <MESSAGE value="Reorganized folders" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reorganized folders" />
+    <MESSAGE value="Added random backtracker to generate a new board" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added random backtracker to generate a new board" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Parser/Parser.c" />
@@ -661,8 +662,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Game/Game.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="249" column="10" selection-start-line="249" selection-start-column="10" selection-end-line="249" selection-end-column="10" />
+        <state relative-caret-position="143">
+          <caret line="210" column="35" selection-start-line="210" selection-start-column="35" selection-end-line="210" selection-end-column="35" />
           <folding>
             <element signature="e#1#19#0" expanded="true" />
           </folding>
