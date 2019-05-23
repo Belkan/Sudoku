@@ -31,9 +31,6 @@ bool isUserLegalMove(GameState *gameState, int row, int col, int value);
 /* check if the board is full */
 bool isUserBoardFull(GameState *gameState);
 
-/* generate random solved board with H filled cells */
-bool generateRandBoard(GameState *gameState, int row, int col);
-
 /* checks if placement is legal */
 bool safeMove(GameState *gameState, int row, int col, int val, BOARD_TYPE type);
 

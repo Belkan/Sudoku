@@ -119,6 +119,9 @@
 		<Unit filename="C:/Users/Adar/Sudoku/main.c">
 			<Option target="Sudoku"/>
 		</Unit>
+		<Unit filename="C:/Users/Adar/Sudoku/minunit.h">
+			<Option target="Sudoku"/>
+		</Unit>
 		<Unit filename="C:/Users/Adar/Sudoku/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
