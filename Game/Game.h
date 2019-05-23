@@ -1,7 +1,9 @@
 #ifndef SUDOKU_GAME_H
 #define SUDOKU_GAME_H
+#define BLOCK 3
 
 #include "../MainAux/MainAux.h"
+#include <string.h>
 
 typedef enum set_status {
     SUCCESS,
@@ -24,5 +26,19 @@ bool isLegalMove(GameState *gameState, int row, int col, int value);
 /* check if the board is full */
 bool fullBoard(GameState *gameState);
 
+/* generate random solved board with H filled cells */
+bool generateRandBoard(GameState *gameState, int row, int col);
+
+/* checks if placement is legal */
+bool safeMove(GameState *gameState, int row, int col, int val);
+
+/* Util subfunctions used for safeMove */
+bool safeMoveRow(GameState *gameState, int row, int val);
+bool safeMoveCol(GameState *gameState, int col, int val);
+bool safeMoveBlock(GameState *gameState, int block, int val);
+int findBlock(int row, int col);
+
+/* return number of empty cells in board */
+int countBlanks(GameState *gameState);
 
 #endif

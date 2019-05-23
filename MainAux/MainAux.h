@@ -37,6 +37,6 @@ bool isSeparatorRow(int row);
 
 bool isSeparatorCol(int row);
 
-
+bool inBounds(int row, int col);
 
 #endif //SUDOKU_MAINAUX_H

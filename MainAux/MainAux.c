@@ -127,3 +127,10 @@ bool isSeparatorCol(int col) {
 bool isFixed (int row, int col, GameState *gameState){
     return gameState->fixed[row][col];
 } /* EOF */
+
+bool inBounds(int row, int col) {
+    if (row < 0 || row > 8 || col < 0 || col > 8) {
+        return false;
+    }
+    return true;
+} /* EOF */
