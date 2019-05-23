@@ -16,6 +16,14 @@ int transform(int val) {
     }
 } /* EOF */
 
+/* check if given fixed value is in range */
+bool legalFixed(int fixed) {
+    if (fixed > 80 || fixed < 0) {
+        return false;
+    }
+    return true;
+} /* EOF */
+
 /* creates a new GameState of Sudoku with Size rows/columns*/
     GameState* createGameState(int size) {
     GameState* gameState = malloc(sizeof(GameState));

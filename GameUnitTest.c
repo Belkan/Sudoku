@@ -5,23 +5,23 @@
 
 
 void verify_setSuccessful(){
-    GameState* gameState = createGameState(9);
+    GameState* gameState = createGameState(SIZE);
     SET_STATUS status;
     status = set(gameState, 1, 2, 3);
 
     if (status != SUCCESS || gameState->board[1][2] != 3) {
-        printf("ERROR: verify_setSuccessful");
+        printf("ERROR: verify_setSuccessful\n");
     }
 }
 
 void verify_setIllegal() {
-    GameState* gameState = createGameState(9);
+    GameState* gameState = createGameState(SIZE);
     SET_STATUS status;
     set(gameState, 1, 2, 3);
     status = set(gameState, 2, 2, 3);
 
     if (status != ILLEGAL_MOVE) {
-        printf("ERROR: verify_setIllegal");
+        printf("ERROR: verify_setIllegal\n");
     }
 }
 
@@ -32,7 +32,7 @@ void verify_setFixed() {
     status = set(gameState, 1, 2, 3);
 
     if (status != CELL_FIXED){
-        printf("ERROR: verify_setFixed");
+        printf("ERROR: verify_setFixed\n");
     }
 }
 

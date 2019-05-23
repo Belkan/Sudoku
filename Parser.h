@@ -13,7 +13,7 @@ typedef enum user_choice {
 } USER_CHOICE;
 
 /* scan input from user */
-void userTurn(GameState *gameState);
+void parseCommand(GameState *gameState, char* input);
 
 /* check if user input in legal format */
 bool matchesFormat(char* str, USER_CHOICE choice);

@@ -6,11 +6,15 @@ CMakeFiles/Sudoku.dir/Game.c.obj
  C:/Users/Adar/Sudoku/Game.h
  C:/Users/Adar/Sudoku/MainAux.h
 CMakeFiles/Sudoku.dir/GameUnitTest.c.obj
+ C:/Users/Adar/Sudoku/Game.h
  C:/Users/Adar/Sudoku/GameUnitTest.c
+ C:/Users/Adar/Sudoku/MainAux.h
 CMakeFiles/Sudoku.dir/MainAux.c.obj
  C:/Users/Adar/Sudoku/MainAux.c
  C:/Users/Adar/Sudoku/MainAux.h
 CMakeFiles/Sudoku.dir/MainAuxUnitTest.c.obj
+ C:/Users/Adar/Sudoku/Game.h
+ C:/Users/Adar/Sudoku/MainAux.h
  C:/Users/Adar/Sudoku/MainAuxUnitTest.c
 CMakeFiles/Sudoku.dir/Parser.c.obj
  C:/Users/Adar/Sudoku/Game.h
@@ -28,4 +32,9 @@ CMakeFiles/Sudoku.dir/Solver.c.obj
 CMakeFiles/Sudoku.dir/SolverUnitTest.c.obj
  C:/Users/Adar/Sudoku/SolverUnitTest.c
 CMakeFiles/Sudoku.dir/main.c.obj
+ C:/Users/Adar/Sudoku/Game.h
+ C:/Users/Adar/Sudoku/GameUnitTest.h
+ C:/Users/Adar/Sudoku/MainAux.h
+ C:/Users/Adar/Sudoku/Parser.h
+ C:/Users/Adar/Sudoku/Solver.h
  C:/Users/Adar/Sudoku/main.c

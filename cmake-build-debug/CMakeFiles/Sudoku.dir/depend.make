@@ -5,11 +5,15 @@ CMakeFiles/Sudoku.dir/Game.c.obj: ../Game.c
 CMakeFiles/Sudoku.dir/Game.c.obj: ../Game.h
 CMakeFiles/Sudoku.dir/Game.c.obj: ../MainAux.h
 
+CMakeFiles/Sudoku.dir/GameUnitTest.c.obj: ../Game.h
 CMakeFiles/Sudoku.dir/GameUnitTest.c.obj: ../GameUnitTest.c
+CMakeFiles/Sudoku.dir/GameUnitTest.c.obj: ../MainAux.h
 
 CMakeFiles/Sudoku.dir/MainAux.c.obj: ../MainAux.c
 CMakeFiles/Sudoku.dir/MainAux.c.obj: ../MainAux.h
 
+CMakeFiles/Sudoku.dir/MainAuxUnitTest.c.obj: ../Game.h
+CMakeFiles/Sudoku.dir/MainAuxUnitTest.c.obj: ../MainAux.h
 CMakeFiles/Sudoku.dir/MainAuxUnitTest.c.obj: ../MainAuxUnitTest.c
 
 CMakeFiles/Sudoku.dir/Parser.c.obj: ../Game.h
@@ -27,5 +31,10 @@ CMakeFiles/Sudoku.dir/Solver.c.obj: ../Solver.h
 
 CMakeFiles/Sudoku.dir/SolverUnitTest.c.obj: ../SolverUnitTest.c
 
+CMakeFiles/Sudoku.dir/main.c.obj: ../Game.h
+CMakeFiles/Sudoku.dir/main.c.obj: ../GameUnitTest.h
+CMakeFiles/Sudoku.dir/main.c.obj: ../MainAux.h
+CMakeFiles/Sudoku.dir/main.c.obj: ../Parser.h
+CMakeFiles/Sudoku.dir/main.c.obj: ../Solver.h
 CMakeFiles/Sudoku.dir/main.c.obj: ../main.c
 

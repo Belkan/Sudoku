@@ -43,51 +43,44 @@ bool matchesFormat(char* str, USER_CHOICE choice) {
 } /* EOF */
 
 /* scan user input and return it as String format */
-void userTurn(GameState *gameState) {
+void parseCommand(GameState *gameState, char* input) {
     bool match = false;
     int i, k;
-    char input[MAX], clone[MAX];
+    char clone[MAX];
 
-    while (fgets(input, MAX, stdin)) { /* loop while input line not empty */
-        k = 0;
-        /* clone input string into string without whitespaces to check formatting */
-        for (i = 0; i < strlen(input) - 1; i++) {
-            if (input[i] != ' ') {
-                clone[k] = input[i];
-                k++;
-            }
-        }
-
-        /* line of blanks edge case, do nothing */
-        if(strlen(clone) == 0) {
-            continue;
-        }
-        if (matchesFormat(clone, SET)) {
-            match = true;
-            set(gameState, clone[3], clone[4], clone[5]);
-        }
-        if (matchesFormat(clone, HINT)) {
-            match = true;
-            hint(gameState, clone[4], clone[5]);
-        }
-        if (matchesFormat(clone, VALIDATE)) {
-            match = true;
-            validate(gameState);
-        }
-        if (matchesFormat(clone, EXIT)) {
-            printf("Exiting…\n");
-            exit(EXIT_SUCCESS);
-        }
-        if (matchesFormat(clone, RESTART)) {
-            match = true;
-            restart(gameState);
-        }
-        if (!match) {
-            printf("Error: invalid command\\n");
+    k = 0;
+    /* clone input string into string without whitespaces to check formatting */
+    for (i = 0; i < strlen(input) - 1; i++) {
+        if (input[i] != ' ') {
+            clone[k] = input[i];
+            k++;
         }
     }
-
-    /* EOF reached, exit program */
-    exit(EXIT_SUCCESS);
-
+    /* line of blanks edge case, do nothing */
+    if(strlen(clone) == 0) {
+        return;
+    }
+    if (matchesFormat(clone, SET)) {
+        match = true;
+        set(gameState, clone[3], clone[4], clone[5]);
+    }
+    if (matchesFormat(clone, HINT)) {
+        match = true;
+        hint(gameState, clone[4], clone[5]);
+    }
+    if (matchesFormat(clone, VALIDATE)) {
+        match = true;
+        validate(gameState);
+    }
+    if (matchesFormat(clone, EXIT)) {
+        printf("Exiting…\n");
+        exit(EXIT_SUCCESS);
+    }
+    if (matchesFormat(clone, RESTART)) {
+        match = true;
+        restart(gameState);
+    }
+    if (!match) {
+        printf("Error: invalid command\n");
+    }
 } /* EOF */

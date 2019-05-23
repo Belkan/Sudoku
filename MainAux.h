@@ -15,6 +15,7 @@ typedef struct GameState{
 /* prints the current board */
 void printBoard(GameState *gameState);
 
+/* destroys game board and frees allocated resources */
 void destroyGameState(GameState* gameState);
 
 /* initializes board */
@@ -24,7 +25,10 @@ GameState* createGameState(int size);
 bool isFixed(int row, int col, GameState *gameState);
 
 /* fixes alignment of matrices */
-int transform(int row);
+int transform(int val);
+
+/* check if given fixed value is in range */
+bool legalFixed(int fixed);
 
 bool isSeparatorRow(int row);
 

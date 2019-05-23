@@ -83,6 +83,9 @@
 		<Unit filename="C:/Users/Adar/Sudoku/GameUnitTest.c">
 			<Option target="Sudoku"/>
 		</Unit>
+		<Unit filename="C:/Users/Adar/Sudoku/GameUnitTest.h">
+			<Option target="Sudoku"/>
+		</Unit>
 		<Unit filename="C:/Users/Adar/Sudoku/MainAux.c">
 			<Option target="Sudoku"/>
 		</Unit>
@@ -90,6 +93,9 @@
 			<Option target="Sudoku"/>
 		</Unit>
 		<Unit filename="C:/Users/Adar/Sudoku/MainAuxUnitTest.c">
+			<Option target="Sudoku"/>
+		</Unit>
+		<Unit filename="C:/Users/Adar/Sudoku/MainAuxUnitTest.h">
 			<Option target="Sudoku"/>
 		</Unit>
 		<Unit filename="C:/Users/Adar/Sudoku/Parser.c">
