@@ -25,7 +25,7 @@ static char *verify_setIllegal() {
 
 
 static char *verify_setFixed() {
-    GameState *gameState = createGameState(9);
+    GameState *gameState = createGameState(SIZE);
     SET_STATUS status;
     gameState->fixed[1][2] = true;
     status = set(gameState, 1, 2, 3);
@@ -33,6 +33,39 @@ static char *verify_setFixed() {
     ASSERT_THAT(status == CELL_FIXED, "ERROR: verify_setFixed");
     return 0;
 }
+
+static char * verify_countBlanks_ofEmptyBoard() {
+    GameState *gameState = createGameState(SIZE);
+    int blanks = countBlanks(gameState, BOARD);
+    ASSERT_THAT(blanks == SIZE*SIZE,
+            "ERROR: verify_countBlanks_ofEmptyBoard != SIZE*SIZE");
+
+    return 0;
+}
+
+static char * verify_safeMove() {
+    GameState *gameState = createGameState(SIZE);
+    set(gameState, 5, 7, 3);
+    ASSERT_THAT(
+            safeMove(gameState,5,8,3,BOARD) == false &&
+            safeMove(gameState,5,4,3,BOARD) == false &&
+            safeMove(gameState,4,6,4,BOARD) == true ,
+            "ERROR: verify_safeMove, same row");
+    ASSERT_THAT(
+            safeMove(gameState,7,7,3,BOARD) == false &&
+            safeMove(gameState,4,7,3,BOARD) == false &&
+            safeMove(gameState,2,6,4,BOARD) == true ,
+            "ERROR: verify_safeMove, same col");
+    ASSERT_THAT(
+            safeMove(gameState,5,6,3,BOARD) == false &&
+            safeMove(gameState,3,8,3,BOARD) == false &&
+            safeMove(gameState,4,7,4,BOARD) == true ,
+            "ERROR: verify_safeMove, same box");
+
+    return 0;
+
+}
+
 
 // TODO - add this when we finish Solver.
 //void verify_gameOver() {
@@ -43,6 +76,8 @@ static char * run_all_tests() {
     RUN_TEST(verify_setSuccessful);
     RUN_TEST(verify_setIllegal);
     RUN_TEST(verify_setFixed);
+    RUN_TEST(verify_countBlanks_ofEmptyBoard);
+    RUN_TEST(verify_safeMove);
     return 0;
 }
 

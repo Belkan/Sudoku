@@ -96,7 +96,7 @@ void printBoard(GameState *gameState) {
                     printf("| ");
             }
             else {
-                if (isFixed(transform(row), transform(col), gameState)){
+                if (isFixedCell(transform(row), transform(col), gameState)){
                     printf(".%d ", gameState->board[transform(row)][transform(col)]);
                 }
                 else {
@@ -124,7 +124,7 @@ bool isSeparatorCol(int col) {
 } /* EOF */
 
 /* checks if cell is fixed */
-bool isFixed (int row, int col, GameState *gameState){
+bool isFixedCell(int row, int col, GameState *gameState){
     return gameState->fixed[row][col];
 } /* EOF */
 

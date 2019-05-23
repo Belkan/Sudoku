@@ -25,7 +25,7 @@ void destroyGameState(GameState* gameState);
 GameState* createGameState(int size);
 
 /* checks if cell is fixed */
-bool isFixed(int row, int col, GameState *gameState);
+bool isFixedCell(int row, int col, GameState *gameState);
 
 /* fixes alignment of matrices */
 int transform(int val);
