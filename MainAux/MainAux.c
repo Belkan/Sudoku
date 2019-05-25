@@ -154,12 +154,17 @@ int getNumberOfFixedCells(){
     return fixed;
 }
 
-void INITIALIZE_GAME(){
+void restart() {}
+
+
+void START_GAME(){
+    // Initialize
     GameState* gameState = createGameState(SIZE);
     generateRandomSolution(gameState);
-    copyBoardFromSolution(gameState);
+    copyFromBoardToBoard(gameState->solution, gameState->board, gameState->size);
     setFixedCellsRand(gameState,getNumberOfFixedCells());
     printBoard(gameState,BOARD);
-    printBoard(gameState,SOLUTION);
+
+
     destroyGameState(gameState);
 }

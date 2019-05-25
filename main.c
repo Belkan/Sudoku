@@ -11,10 +11,10 @@
 
 int main(int argc, char *argv[]) {
     srand((unsigned) atoi(argv[1]));
-    MainAuxUnitTest();
-    tests_run = 0;
-    GameUnitTest();
-    tests_run = 0;
-    SolverUnitTest();
-    INITIALIZE_GAME();
+//    MainAuxUnitTest();
+//    tests_run = 0;
+//    GameUnitTest();
+//    tests_run = 0;
+//    SolverUnitTest();
+    START_GAME();
 }

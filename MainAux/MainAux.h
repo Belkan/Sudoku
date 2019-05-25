@@ -51,6 +51,8 @@ bool isSeparatorCol(int row);
 
 bool inBounds(int row, int col);
 
-void INITIALIZE_GAME();
+void restart();
+
+void START_GAME();
 
 #endif //SUDOKU_MAINAUX_H

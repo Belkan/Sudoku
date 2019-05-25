@@ -1,6 +1,7 @@
 
 #include <stdio.h>
 #include "Game.h"
+#include "../Solver/Solver.h"
 
 /* tries to set value in (row, col) in board, and returns the status of the request */
 SET_STATUS set(GameState *gameState, int row, int col, int value) {
@@ -25,11 +26,20 @@ SET_STATUS set(GameState *gameState, int row, int col, int value) {
 
 }
 
-void hint(GameState *gameState, int row, int col) {}
+void hint(GameState *gameState, int row, int col) {
+    printf("Hint: set cell to %d\n", gameState->solution[row][col]);
+}
 
-void validate(GameState *gameState) {}
+// validates if board is solvable and updates the solution if so.
+bool validate(GameState *gameState) {
+    if (isSolvable(gameState,DETERMINISTIC)) {
+        printf("Validation passed: board is solvable\n");
+        return true;
+    }
+    printf("Validation failed: board is unsolvable\n");
+    return false;
+    }
 
-void restart(GameState *gameState) {}
 
 /* checks if this set is a legal set (assuming input is valid) */
 bool isUserLegalMove(GameState *gameState, int row, int col, int value) {
@@ -204,10 +214,10 @@ void setFixedCellsRand(GameState *gameState, int fixed) {
     }
 }
 
-void copyBoardFromSolution(GameState *gameState) {
-    for (int i = 0; i < gameState->size; i++){
-        for (int j = 0; j < gameState->size; j++) {
-            gameState->board[i][j] = gameState->solution[i][j];
+void copyFromBoardToBoard(int** board1, int** board2, int size) {
+    for (int i = 0; i < size; i++){
+        for (int j = 0; j < size; j++) {
+            board2[i][j] = board1[i][j];
         }
     }
 }

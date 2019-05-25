@@ -11,9 +11,8 @@ SET_STATUS set(GameState *gameState, int row, int col, int value);
 
 void hint(GameState *gameState, int row, int col);
 
-void validate(GameState *gameState);
+bool validate(GameState *gameState);
 
-void restart(GameState *gameState);
 
 /* checks if this set is a legal set (assuming input is valid) */
 bool isUserLegalMove(GameState *gameState, int row, int col, int value);
@@ -31,7 +30,8 @@ bool safeMoveBlock(int** board, int block, int val);
 int findBlock(int row, int col);
 
 void setFixedCellsRand(GameState *gameState, int fixed);
-void copyBoardFromSolution (GameState *gameState);
+void copyFromBoardToBoard(int** board1, int** board2, int size);
+
 /* return number of empty cells in board */
 int countBlanks(GameState *gameState,  BOARD_TYPE type);
 
