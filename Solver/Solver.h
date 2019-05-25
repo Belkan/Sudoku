@@ -4,6 +4,11 @@
 #include "../Game/Game.h"
 
 /* generate new random board */
-bool generateRandBoard(GameState *gameState, int row, int col);
+void generateRandomSolution(GameState *gameState);
+
+int getNextRow(int size, int row, int col);
+
+int getNextCol(int size, int col);
+
 
 #endif //SUDOKU_SOLVER_H

@@ -1,4 +1,5 @@
 #include "MainAux.h"
+#include "../Solver/Solver.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -7,10 +8,9 @@
 /* generates pseudorandom number in given range */
 int getRandom(int lower, int upper)
 {
-    /* generate new seed */
-    time_t t;
-    srand((unsigned) time(&t));
-
+    if (lower == upper) {
+        return lower;
+    }
     /* randomize result */
     int res = (rand() % (upper - lower + 1)) + lower;
     return res;
@@ -108,6 +108,9 @@ void printBoard(GameState *gameState, BOARD_TYPE type) {
                 if (isFixedCell(transform(row), transform(col), gameState)){
                     printf(".%d ", board[transform(row)][transform(col)]);
                 }
+                else if (board[transform(row)][transform(col)] == 0) {
+                    printf("   ");
+                }
                 else {
                     printf(" %d ", board[transform(row)][transform(col)]);
                 }
@@ -144,6 +147,19 @@ bool inBounds(int row, int col) {
     return true;
 } /* EOF */
 
-void INITIALIZE_GAME(){
+int getNumberOfFixedCells(){
+    int fixed;
+    printf("Please enter the number of cells to fill [0-80]:\n");
+    scanf("%d", &fixed);
+    return fixed;
+}
 
+void INITIALIZE_GAME(){
+    GameState* gameState = createGameState(SIZE);
+    generateRandomSolution(gameState);
+    copyBoardFromSolution(gameState);
+    setFixedCellsRand(gameState,getNumberOfFixedCells());
+    printBoard(gameState,BOARD);
+    printBoard(gameState,SOLUTION);
+    destroyGameState(gameState);
 }

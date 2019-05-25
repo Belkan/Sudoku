@@ -90,8 +90,6 @@ bool safeMove(GameState *gameState, int row, int col, int val, BOARD_TYPE type) 
 /* Util subfunctions used for safeMove */
 bool safeMoveRow(int** board, int row, int val, int size) {
     int col;
-
-
     for (col = 0; col < size; col++) {
         if (board[row][col] == val)
             return false; /* val exists in row */
@@ -184,6 +182,35 @@ bool safeMoveBlock(int** board, int block, int val) {
     }
     return true;
 } /* EOF */
+
+void setFixedCellsRand(GameState *gameState, int fixed) {
+    int row, col, counter;
+    counter = 0;
+
+    while (counter < fixed) {
+        row = getRandom(0,8);
+        col = getRandom(0,8);
+        if (!gameState->fixed[row][col]) {
+            gameState->fixed[row][col] = true;
+            counter++;
+        }
+    }
+    for (int i = 0; i < gameState->size; i++) {
+        for (int j = 0; j < gameState->size; j++) {
+            if (!gameState->fixed[i][j]) {
+                gameState->board[i][j] = 0;
+            }
+        }
+    }
+}
+
+void copyBoardFromSolution(GameState *gameState) {
+    for (int i = 0; i < gameState->size; i++){
+        for (int j = 0; j < gameState->size; j++) {
+            gameState->board[i][j] = gameState->solution[i][j];
+        }
+    }
+}
 
 int findBlock(int row, int col) {
     return ((row / 3)*3 + (col / 3));

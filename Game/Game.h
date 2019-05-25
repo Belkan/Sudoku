@@ -30,6 +30,8 @@ bool safeMoveCol(int** board, int col, int val, int size);
 bool safeMoveBlock(int** board, int block, int val);
 int findBlock(int row, int col);
 
+void setFixedCellsRand(GameState *gameState, int fixed);
+void copyBoardFromSolution (GameState *gameState);
 /* return number of empty cells in board */
 int countBlanks(GameState *gameState,  BOARD_TYPE type);
 

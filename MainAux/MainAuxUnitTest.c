@@ -12,14 +12,6 @@ static char * verify_printBoard() {
     return 0;
 }
 
-static char * verify_printSolution() {
-    GameState *gameState = createGameState(SIZE);
-    printBoard(gameState, SOLUTION);
-    destroyGameState(gameState);
-    return 0;
-
-}
-
 static char * verify_getRandom() {
     int lower, upper, res;
     lower = 4;
@@ -36,14 +28,19 @@ static char * verify_getRandom() {
     upper = 3;
     res = getRandom(lower, upper);
     ASSERT_THAT(res >= 2 && res <= 3, "ERROR (verify_getRandom), int not in range (4,max)");
+
+    lower = 2;
+    upper = 2;
+    res = getRandom(lower, upper);
+    ASSERT_THAT(res == 2, "ERROR (verify_getRandom), int not in range (2,2)");
+
     return 0;
+
 }
 
-char * run_all_tests() {
+static char * run_all_tests() {
     RUN_TEST(verify_getRandom);
     RUN_TEST(verify_printBoard);
-    RUN_TEST(verify_printSolution);
-
     return 0;
 }
 
@@ -53,7 +50,7 @@ int MainAuxUnitTest() {
         printf("%s\n", result);
     }
     else {
-        printf("All MainAuxUnitTest tests passed\n");
+        printf("All MainAux tests passed\n");
         printf("Tests run: %d\n", tests_run);
 
     }
