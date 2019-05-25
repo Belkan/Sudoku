@@ -47,19 +47,19 @@ static char * verify_safeMove() {
     GameState *gameState = createGameState(SIZE);
     set(gameState, 5, 7, 3);
     ASSERT_THAT(
-            safeMove(gameState,5,8,3,BOARD) == false &&
-            safeMove(gameState,5,4,3,BOARD) == false &&
-            safeMove(gameState,4,6,4,BOARD) == true ,
+            safeMove(gameState->board,5,8,3,gameState->size) == false &&
+            safeMove(gameState->board,5,4,3,gameState->size) == false &&
+            safeMove(gameState->board,4,6,4,gameState->size) == true ,
             "ERROR: verify_safeMove, same row");
     ASSERT_THAT(
-            safeMove(gameState,7,7,3,BOARD) == false &&
-            safeMove(gameState,4,7,3,BOARD) == false &&
-            safeMove(gameState,2,6,4,BOARD) == true ,
+            safeMove(gameState->board,7,7,3,gameState->size) == false &&
+            safeMove(gameState->board,4,7,3,gameState->size) == false &&
+            safeMove(gameState->board,2,6,4,gameState->size) == true ,
             "ERROR: verify_safeMove, same col");
     ASSERT_THAT(
-            safeMove(gameState,5,6,3,BOARD) == false &&
-            safeMove(gameState,3,8,3,BOARD) == false &&
-            safeMove(gameState,4,7,4,BOARD) == true ,
+            safeMove(gameState->board,5,6,3,gameState->size) == false &&
+            safeMove(gameState->board,3,8,3,gameState->size) == false &&
+            safeMove(gameState->board,4,7,4,gameState->size) == true ,
             "ERROR: verify_safeMove, same box");
 
     return 0;

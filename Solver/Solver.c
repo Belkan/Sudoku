@@ -5,31 +5,34 @@
 
 /* checks if there is a solution to the board */
 
-bool isSolvableRecursion(GameState *gameState, int **solutionBoardCopy, int row, int col, SOLUTION_TYPE type) {
+bool isSolvableRecursion(GameState *gameState, int** solutionBoardCopy, int row, int col, SOLUTION_TYPE type) {
     int rand, valuesLeft;
     int k = 0;
-    int *possibleVals[gameState->size];
+    int possibleVals[gameState->size];
     int nextRow = getNextRow(gameState->size, row, col);
     int nextCol = getNextCol(gameState->size, col);
 
-    // If fixed cell = move on.
+
     // Stopping condition - filled the entire board.
     if (row == gameState->size) {
         return true;
     }
+    // If empty cell - move to next cell.
+    if (solutionBoardCopy[row][col] != 0) {
+        return (isSolvableRecursion(gameState, solutionBoardCopy, nextRow, nextCol, type));
+    }
     // Find all legal values.
     for (int i = 1; i < 10; i++) {
-        if (safeMove(gameState, row, col, i, SOLUTION)) {
+        if (safeMove(solutionBoardCopy, row, col, i, gameState->size)) {
             possibleVals[k] = i;
             k++;
         }
     }
-    // No solution for current state - need to backtrack.
+    // No solution for current state - backtrack.
     if (k == 0) {
         return false;
     }
-
-
+    // Pick a value (randomly or deterministically) and move to the next cell.
     valuesLeft = k;
     switch (type) {
         case (DETERMINISTIC):
@@ -40,6 +43,7 @@ bool isSolvableRecursion(GameState *gameState, int **solutionBoardCopy, int row,
                     return true;
                 }
             }
+            break;
         case (RANDOM):
             for (int i = 0; i < k; i++) {
                 rand = getRandom(0, valuesLeft - 1);
@@ -51,20 +55,26 @@ bool isSolvableRecursion(GameState *gameState, int **solutionBoardCopy, int row,
                     return true;
                 }
             }
+            break;
     }
 
-    // No legal value led to a valid solution.
+    // No legal values left to pick - backtrack.
     solutionBoardCopy[row][col] = 0;
     return false;
 } /* EOF */
 
-bool isSolvable(GameState *gameState, SOLUTION_TYPE type){
-    int** solutionBoardCopy[gameState->size][gameState->size];
-    copyFromBoardToBoard(gameState->solution, solutionBoardCopy, gameState->size);
-    if (isSolvableRecursion(gameState,solutionBoardCopy,0,0,type)) {
-        gameState->solution = solutionBoardCopy;
+bool isSolvable(GameState *gameState) {
+    int** solutionBoardCopy = (int**) malloc(gameState->size * sizeof(int*));
+    for (int i = 0; i < gameState->size; i++){
+        solutionBoardCopy[i] =  calloc(gameState->size, sizeof(int));
+    }
+    copyFromBoardToBoard(gameState->board, solutionBoardCopy, gameState->size);
+    if (isSolvableRecursion(gameState,solutionBoardCopy,0,0,DETERMINISTIC)) {
+        copyFromBoardToBoard(solutionBoardCopy, gameState->solution, gameState->size);
+        destroyMatrix(solutionBoardCopy, gameState->size);
         return true;
     }
+    destroyMatrix(solutionBoardCopy, gameState->size);
     return false;
 
 }

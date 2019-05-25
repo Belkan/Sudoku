@@ -33,23 +33,19 @@ void printBoard(GameState *gameState, BOARD_TYPE type);
 /* destroys game board and frees allocated resources */
 void destroyGameState(GameState* gameState);
 
+void destroyMatrix(int** matrix, int size);
+
 /* initializes board */
 GameState* createGameState(int size);
 
 /* checks if cell is fixed */
-bool isFixedCell(int row, int col, GameState *gameState);
 
 /* fixes alignment of matrices */
 int transform(int val);
 
-/* check if given fixed value is in range */
-bool legalFixed(int fixed);
-
 bool isSeparatorRow(int row);
 
 bool isSeparatorCol(int row);
-
-bool inBounds(int row, int col);
 
 void restart();
 

@@ -11,7 +11,7 @@ typedef enum solution_type {
 
 bool isSolvableRecursion(GameState *gameState, int **solutionBoardCopy, int row, int col, SOLUTION_TYPE type);
 
-bool isSolvable(GameState *gameState, SOLUTION_TYPE type);
+bool isSolvable(GameState *gameState);
 
 void generateRandomSolution(GameState *gameState);
 

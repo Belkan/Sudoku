@@ -13,7 +13,6 @@ void hint(GameState *gameState, int row, int col);
 
 bool validate(GameState *gameState);
 
-
 /* checks if this set is a legal set (assuming input is valid) */
 bool isUserLegalMove(GameState *gameState, int row, int col, int value);
 
@@ -21,7 +20,7 @@ bool isUserLegalMove(GameState *gameState, int row, int col, int value);
 bool isUserBoardFull(GameState *gameState);
 
 /* checks if placement is legal */
-bool safeMove(GameState *gameState, int row, int col, int val, BOARD_TYPE type);
+bool safeMove(int **board, int row, int col, int val, int size);
 
 /* Util subfunctions used for safeMove */
 bool safeMoveRow(int** board, int row, int val, int size);

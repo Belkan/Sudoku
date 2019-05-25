@@ -6,7 +6,7 @@
 /* tries to set value in (row, col) in board, and returns the status of the request */
 SET_STATUS set(GameState *gameState, int row, int col, int value) {
     SET_STATUS Status;
-    if (isFixedCell(row, col, gameState)) {
+    if (gameState->fixed[row][col]) {
         Status = CELL_FIXED;
         return Status;
     }
@@ -32,7 +32,7 @@ void hint(GameState *gameState, int row, int col) {
 
 // validates if board is solvable and updates the solution if so.
 bool validate(GameState *gameState) {
-    if (isSolvable(gameState,DETERMINISTIC)) {
+    if (isSolvable(gameState)) {
         printf("Validation passed: board is solvable\n");
         return true;
     }
@@ -43,7 +43,7 @@ bool validate(GameState *gameState) {
 
 /* checks if this set is a legal set (assuming input is valid) */
 bool isUserLegalMove(GameState *gameState, int row, int col, int value) {
-    if (safeMove(gameState, row, col, value, BOARD)) {
+    if (safeMove(gameState->board, row, col, value, gameState->size)) {
         return true;
     }
     return false;
@@ -81,19 +81,11 @@ int countBlanks(GameState *gameState, BOARD_TYPE type) {
 } /* EOF */
 
 /* checks if placement is legal */
-bool safeMove(GameState *gameState, int row, int col, int val, BOARD_TYPE type) {
+bool safeMove(int **board, int row, int col, int val, int size) {
     int block = findBlock(row, col);
-    int** board;
-    switch(type){
-        case BOARD:
-            board = gameState->board;
-            break;
-        case SOLUTION:
-            board = gameState->solution;
-            break;
-    }
-    return safeMoveRow(board, row, val, gameState->size) &&
-           safeMoveCol(board, col, val, gameState->size) &&
+
+    return safeMoveRow(board, row, val, size) &&
+           safeMoveCol(board, col, val, size) &&
            safeMoveBlock(board, block, val);
 } /* EOF */
 
