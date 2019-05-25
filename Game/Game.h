@@ -34,4 +34,7 @@ void copyFromBoardToBoard(int** board1, int** board2, int size);
 /* return number of empty cells in board */
 int countBlanks(GameState *gameState,  BOARD_TYPE type);
 
+void setHandler (SET_STATUS status, GameState *gameState);
+
+
 #endif

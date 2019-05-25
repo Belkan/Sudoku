@@ -1,5 +1,6 @@
 #include "MainAux.h"
 #include "../Solver/Solver.h"
+#include "../Parser/Parser.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -56,7 +57,7 @@ GameState *createGameState(int size) {
 void destroyGameState(GameState *gameState) {
     destroyMatrix(gameState->board, gameState->size);
     destroyMatrix(gameState->solution, gameState->size);
-    destroyMatrix(gameState->fixed, gameState->size);
+    destroyMatrix((int**) gameState->fixed, gameState->size);
     free(gameState);
 }
 
@@ -143,7 +144,6 @@ void START_GAME() {
     generateRandomSolution(gameState);
     copyFromBoardToBoard(gameState->solution, gameState->board, gameState->size);
     setFixedCellsRand(gameState, getNumberOfFixedCells());
-
 
     destroyGameState(gameState);
 }

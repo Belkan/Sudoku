@@ -40,7 +40,7 @@ static char * verify_getRandom() {
 
 static char * run_all_tests() {
     RUN_TEST(verify_getRandom);
-    RUN_TEST(verify_printBoard);
+//    RUN_TEST(verify_printBoard);
     return 0;
 }
 

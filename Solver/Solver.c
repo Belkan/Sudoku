@@ -63,6 +63,7 @@ bool isSolvableRecursion(GameState *gameState, int** solutionBoardCopy, int row,
     return false;
 } /* EOF */
 
+// Checks if current state is solvable using deterministic algorithm. If solvable, updates solution.
 bool isSolvable(GameState *gameState) {
     int** solutionBoardCopy = (int**) malloc(gameState->size * sizeof(int*));
     for (int i = 0; i < gameState->size; i++){
@@ -79,6 +80,7 @@ bool isSolvable(GameState *gameState) {
 
 }
 
+// Should only be called after gameState->solution is initialized.
 void generateRandomSolution(GameState *gameState) {
     isSolvableRecursion(gameState, gameState->solution, 0, 0, RANDOM);
 }

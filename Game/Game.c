@@ -33,10 +33,8 @@ void hint(GameState *gameState, int row, int col) {
 // validates if board is solvable and updates the solution if so.
 bool validate(GameState *gameState) {
     if (isSolvable(gameState)) {
-        printf("Validation passed: board is solvable\n");
         return true;
     }
-    printf("Validation failed: board is unsolvable\n");
     return false;
     }
 
@@ -218,3 +216,16 @@ int findBlock(int row, int col) {
     return ((row / 3)*3 + (col / 3));
 } /* EOF */
 
+void setHandler (SET_STATUS status, GameState *gameState) {
+    switch (status) {
+        case (SUCCESS):
+            printBoard(gameState, BOARD);
+            break;
+        case (ILLEGAL_MOVE):
+            printf("Error: value is invalid\n");
+            break;
+        case (CELL_FIXED):
+            printf("Error: cell is fixed\n");
+            break;
+    }
+}
