@@ -12,11 +12,23 @@ typedef struct GameState{
     bool **fixed;
 } GameState;
 
+typedef enum set_status {
+    SUCCESS,
+    CELL_FIXED,
+    ILLEGAL_MOVE,
+    GAME_OVER
+} SET_STATUS;
+
+typedef enum board_type {
+    BOARD,
+    SOLUTION
+} BOARD_TYPE;
+
 /* generate random number in given range */
 int getRandom(int upper, int lower);
 
 /* prints the current board */
-void printBoard(GameState *gameState);
+void printBoard(GameState *gameState, BOARD_TYPE type);
 
 /* destroys game board and frees allocated resources */
 void destroyGameState(GameState* gameState);
@@ -38,5 +50,7 @@ bool isSeparatorRow(int row);
 bool isSeparatorCol(int row);
 
 bool inBounds(int row, int col);
+
+void INITIALIZE_GAME();
 
 #endif //SUDOKU_MAINAUX_H

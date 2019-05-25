@@ -8,38 +8,33 @@
 
 /* checks if user input matches given regular expressions */
 bool matchesFormat(char* str, USER_CHOICE choice) {
-    bool format = false;
 
     switch (choice) {
         case SET:
             if(str[0] == 's' && str[1] == 'e' && str[2] == 't' &&
                 isdigit(str[3]) && isdigit(str[4]) && isdigit(str[5])) {
-                format = true;
-                break;
+                return true;
             }
         case HINT:
             if(str[0] == 'h' && str[1] == 'i' && str[2] == 'n' && str[3] == 't' &&
                isdigit(str[4]) && isdigit(str[5])) {
-                format = true;
-                break;
+                return true;
             }
         case VALIDATE:
             if (strcmp(str, "validate") == 0) {
-                format = true;
-                break;
+                return true;
             }
         case RESTART:
             if(strcmp(str, "restart") == 0) {
-                format = true;
-                break;
+                return true;
             }
         case EXIT:
             if(strcmp(str, "exit") == 0) {
-                format = true;
-                break;
+                return true;
             }
+        default:
+            return false;
     }
-    return format;
 } /* EOF */
 
 /* scan user input and return it as String format */

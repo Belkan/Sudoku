@@ -31,7 +31,6 @@ void validate(GameState *gameState) {}
 
 void restart(GameState *gameState) {}
 
-/* TODO: check if it's in the same box (currently only checks row and col */
 /* checks if this set is a legal set (assuming input is valid) */
 bool isUserLegalMove(GameState *gameState, int row, int col, int value) {
     if (safeMove(gameState, row, col, value, BOARD)) {

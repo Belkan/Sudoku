@@ -5,17 +5,7 @@
 #include "../MainAux/MainAux.h"
 #include <string.h>
 
-typedef enum set_status {
-    SUCCESS,
-    CELL_FIXED,
-    ILLEGAL_MOVE,
-    GAME_OVER
-} SET_STATUS;
 
-typedef enum board_type {
-    BOARD,
-    SOLUTION
-} BOARD_TYPE;
 
 SET_STATUS set(GameState *gameState, int row, int col, int value);
 

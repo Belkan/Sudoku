@@ -75,9 +75,18 @@ void destroyGameState(GameState* gameState){
 
 /* prints the current board */
 /* TODO test this method */
-void printBoard(GameState *gameState) {
+void printBoard(GameState *gameState, BOARD_TYPE type) {
     int row;
     int col;
+    int** board;
+    switch (type) {
+        case(BOARD):
+            board = gameState->board;
+            break;
+        case(SOLUTION):
+            board = gameState->solution;
+            break;
+    }
     for (row = 1; row <= 13; row++) {
         for (col = 1; col <= 13; col++) {
             if (isSeparatorRow(row)) {
@@ -97,10 +106,10 @@ void printBoard(GameState *gameState) {
             }
             else {
                 if (isFixedCell(transform(row), transform(col), gameState)){
-                    printf(".%d ", gameState->board[transform(row)][transform(col)]);
+                    printf(".%d ", board[transform(row)][transform(col)]);
                 }
                 else {
-                    printf(" %d ", gameState->board[transform(row)][transform(col)]);
+                    printf(" %d ", board[transform(row)][transform(col)]);
                 }
             }
         }
@@ -134,3 +143,7 @@ bool inBounds(int row, int col) {
     }
     return true;
 } /* EOF */
+
+void INITIALIZE_GAME(){
+
+}
