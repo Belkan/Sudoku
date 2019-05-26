@@ -25,7 +25,7 @@ bool safeMove(int **board, int row, int col, int val, int size);
 /* Util subfunctions used for safeMove */
 bool safeMoveRow(int** board, int row, int val, int size);
 bool safeMoveCol(int** board, int col, int val, int size);
-bool safeMoveBlock(int** board, int block, int val);
+bool safeMoveBlock(int** board, int block, int val, int size);
 int findBlock(int row, int col);
 
 void setFixedCellsRand(GameState *gameState, int fixed);

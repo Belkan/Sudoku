@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <math.h>
 #include "Game.h"
 #include "../Solver/Solver.h"
 
@@ -84,7 +85,7 @@ bool safeMove(int **board, int row, int col, int val, int size) {
 
     return safeMoveRow(board, row, val, size) &&
            safeMoveCol(board, col, val, size) &&
-           safeMoveBlock(board, block, val);
+           safeMoveBlock(board, block, val, size);
 } /* EOF */
 
 /* Util subfunctions used for safeMove */
@@ -107,74 +108,13 @@ bool safeMoveCol(int** board, int col, int val, int size) {
     return true;
 }
 
-/* TODO make this work for any size */
-/// WORKS ONLY FOR SIZE 9
-bool safeMoveBlock(int** board, int block, int val) {
-    int fromRow, fromCol, toRow, toCol, i, j;
-
-    switch (block) {
-        case 0:
-            fromRow = 0;
-            fromCol = 0;
-            toRow = BLOCK - 1;
-            toCol = BLOCK - 1;
-            break;
-        case 1:
-            fromRow = 0;
-            fromCol = BLOCK;
-            toRow = BLOCK - 1;
-            toCol = 2 * BLOCK - 1;
-            break;
-        case 2:
-            fromRow = 0;
-            fromCol = 2 * BLOCK;
-            toRow = BLOCK - 1;
-            toCol = 3 * BLOCK - 1;
-            break;
-        case 3:
-            fromRow = BLOCK;
-            fromCol = 0;
-            toRow = 2 * BLOCK - 1;
-            toCol = BLOCK - 1;
-            break;
-        case 4:
-            fromRow = BLOCK;
-            fromCol = BLOCK;
-            toRow = 2 * BLOCK - 1;
-            toCol = 2 * BLOCK - 1;
-            break;
-        case 5:
-            fromRow = BLOCK;
-            fromCol = 2 * BLOCK;
-            toRow = 2 * BLOCK - 1;
-            toCol = 3 * BLOCK - 1;
-            break;
-        case 6:
-            fromRow = 2 * BLOCK;
-            fromCol = 0;
-            toRow = 3 * BLOCK - 1;
-            toCol = BLOCK - 1;
-            break;
-        case 7:
-            fromRow = 2 * BLOCK;
-            fromCol = BLOCK;
-            toRow = 3 * BLOCK - 1;
-            toCol = 2 * BLOCK - 1;
-            break;
-        case 8:
-            fromRow = 2 * BLOCK;
-            fromCol = 2 * BLOCK;
-            toRow = 3 * BLOCK - 1;
-            toCol = 3 * BLOCK - 1;
-            break;
-        default:
-            printf("Error: safeMoveBlock has failed\n");
-            fromRow = fromCol = toRow = toCol = 0;
-            break;
-    }
-
-    for (i = fromRow; i <= toRow; i++) {
-        for (j = fromCol; j <= toCol; j++) {
+bool safeMoveBlock(int** board, int block, int val, int size) {
+    int fromRow = (block / BLOCK) * BLOCK;
+    int fromCol = (block % BLOCK) * BLOCK;
+    int toRow = fromRow + 2;
+    int toCol = fromCol + 2;
+    for (int i = fromRow; i <= toRow; i++) {
+        for (int j = fromCol; j <= toCol; j++) {
             if (board[i][j] == val) { /* val exists in block */
                 return false;
             }
