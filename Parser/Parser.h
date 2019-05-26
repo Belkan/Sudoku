@@ -20,4 +20,5 @@ USER_CHOICE parseCommand(GameState *gameState, char *input);
 /* check if user input in legal format */
 bool matchesFormat(char* str, USER_CHOICE choice);
 
-#endif //SUDOKU_PARSER_H
+#endif
+

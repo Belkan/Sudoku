@@ -6,67 +6,76 @@
 /* checks if there is a solution to the board */
 
 bool isSolvableRecursion(GameState *gameState, int** solutionBoardCopy, int row, int col, SOLUTION_TYPE type) {
-    int rand, valuesLeft;
+    int rand, valuesLeft, j, i;
     int k = 0;
-    int possibleVals[gameState->size];
+    int* possibleVals = malloc(gameState->size * sizeof(int));
     int nextRow = getNextRow(gameState->size, row, col);
     int nextCol = getNextCol(gameState->size, col);
 
 
-    // Stopping condition - filled the entire board.
+     /* Stopping condition - filled the entire board.*/
     if (row == gameState->size) {
+        free(possibleVals);
         return true;
     }
-    // If empty cell - move to next cell.
+    /* If empty cell - move to next cell. */
     if (solutionBoardCopy[row][col] != 0) {
+        free(possibleVals);
         return (isSolvableRecursion(gameState, solutionBoardCopy, nextRow, nextCol, type));
     }
-    // Find all legal values.
-    for (int i = 1; i < 10; i++) {
+    /* Find all legal values. */
+    for (i = 1; i < 10; i++) {
         if (safeMove(solutionBoardCopy, row, col, i, gameState->size)) {
             possibleVals[k] = i;
             k++;
         }
     }
-    // No solution for current state - backtrack.
+    /* No solution for current state - backtrack.*/
     if (k == 0) {
+        free(possibleVals);
         return false;
     }
-    // Pick a value (randomly or deterministically) and move to the next cell.
+     /* Pick a value (randomly or deterministically) and move to the next cell.*/
     valuesLeft = k;
     switch (type) {
         case (DETERMINISTIC):
-            for (int i = 0; i < k; i++) {
+            for (i = 0; i < k; i++) {
                 solutionBoardCopy[row][col] = possibleVals[i];
-                // Remove the randomly selected value from possibleVals.
                 if (isSolvableRecursion(gameState, solutionBoardCopy, nextRow, nextCol, DETERMINISTIC)) {
+                    free(possibleVals);
                     return true;
                 }
             }
             break;
         case (RANDOM):
-            for (int i = 0; i < k; i++) {
-                rand = getRandom(0, valuesLeft - 1);
+            for (i = 0; i < k; i++) {
+                rand = getRandom(0, --valuesLeft);
                 solutionBoardCopy[row][col] = possibleVals[rand];
-                // Remove the randomly selected value from possibleVals.
-                possibleVals[rand] = possibleVals[valuesLeft - 1];
-                valuesLeft--;
+                 /*Remove the randomly selected value from possibleVals.*/
+                possibleVals[rand] = possibleVals[valuesLeft];
+                /*Sort the array bubblesortish (requested by HW3 instructions)*/
+                for (j = rand; j < valuesLeft - 1; j++) {
+                    swap(&possibleVals[j],&possibleVals[j+1]);
+                }
                 if (isSolvableRecursion(gameState, solutionBoardCopy, nextRow, nextCol, RANDOM)) {
+                    free(possibleVals);
                     return true;
                 }
             }
             break;
     }
 
-    // No legal values left to pick - backtrack.
+     /*No legal values left to pick - backtrack.*/
     solutionBoardCopy[row][col] = 0;
+    free(possibleVals);
     return false;
-} /* EOF */
+}
 
-// Checks if current state is solvable using deterministic algorithm. If solvable, updates solution.
+/* Checks if current state is solvable using deterministic algorithm. If solvable, updates solution.*/
 bool isSolvable(GameState *gameState) {
+    int i;
     int** solutionBoardCopy = (int**) malloc(gameState->size * sizeof(int*));
-    for (int i = 0; i < gameState->size; i++){
+    for (i = 0; i < gameState->size; i++){
         solutionBoardCopy[i] =  calloc(gameState->size, sizeof(int));
     }
 
@@ -81,7 +90,7 @@ bool isSolvable(GameState *gameState) {
 
 }
 
-// Should only be called after gameState->solution is initialized.
+/* Should only be called after gameState->solution is initialized.*/
 void generateRandomSolution(GameState *gameState) {
     isSolvableRecursion(gameState, gameState->solution, 0, 0, RANDOM);
 }
@@ -102,4 +111,10 @@ int getNextCol(int size, int col) {
         return 0;
     }
 
+}
+
+void swap(int *x, int *y){
+    int tmp = *x;
+    *x = *y;
+    *y = tmp;
 }

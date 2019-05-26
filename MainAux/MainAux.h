@@ -51,4 +51,4 @@ void restart();
 
 void START_GAME();
 
-#endif //SUDOKU_MAINAUX_H
+#endif

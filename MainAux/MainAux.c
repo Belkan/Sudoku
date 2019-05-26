@@ -8,11 +8,12 @@
 
 /* generates pseudorandom number in given range */
 int getRandom(int lower, int upper) {
+    int res;
     if (lower == upper) {
         return lower;
     }
     /* randomize result */
-    int res = (rand() % (upper - lower + 1)) + lower;
+    res = (rand() % (upper - lower + 1)) + lower;
     return res;
 } /* EOF */
 
@@ -33,21 +34,22 @@ int transform(int val) {
 
 /* creates a new GameState of Sudoku with Size rows/columns*/
 GameState *createGameState(int size) {
+    int i;
     GameState *gameState = malloc(sizeof(GameState));
     gameState->size = size;
 
     gameState->board = (int **) malloc(size * sizeof(int *));
-    for (int i = 0; i < size; i++) {
+    for (i = 0; i < size; i++) {
         gameState->board[i] = calloc(size, sizeof(int));
     }
 
     gameState->solution = (int **) malloc(size * sizeof(int *));
-    for (int i = 0; i < size; i++) {
+    for (i = 0; i < size; i++) {
         gameState->solution[i] = calloc(size, sizeof(int));
     }
 
     gameState->fixed = (bool **) malloc(size * sizeof(bool *));
-    for (int i = 0; i < size; i++) {
+    for (i = 0; i < size; i++) {
         gameState->fixed[i] = (bool *) calloc(size, sizeof(bool));
     }
 
@@ -63,7 +65,8 @@ void destroyGameState(GameState *gameState) {
 }
 
 void destroyMatrix(int **matrix, int size) {
-    for (int i = 0; i < size; i++) {
+    int i;
+    for (i = 0; i < size; i++) {
         free(matrix[i]);
     }
     free(matrix);
@@ -151,7 +154,7 @@ GameState* initializeGame(){
 }
 
 void START_GAME() {
-    // Initialize
+     /*Initialize*/
 
     char input[MAX] = "";
     USER_CHOICE choice;
@@ -160,7 +163,7 @@ void START_GAME() {
 
     printBoard(gameState, BOARD);
 
-    // Start game
+     /*Start game */
     while (fgets(input, MAX, stdin)){
         choice = parseCommand(gameState, strtok(input,"\n"));
         if (choice == EXIT) {

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 project(Sudoku C)
 
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD 90)
 set(GCC_COVERAGE_COMPILE_FLAGS "-fmessage-length=0 -ansi -Wall -Wextra -Werror -pedantic-errors")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}" )
 

@@ -19,5 +19,7 @@ int getNextRow(int size, int row, int col);
 
 int getNextCol(int size, int col);
 
+void swap(int *x, int *y);
 
-#endif //SUDOKU_SOLVER_H
+#endif
+

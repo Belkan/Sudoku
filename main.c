@@ -13,10 +13,11 @@
 int main(int argc, char *argv[]) {
     assert(argc == 1);
     srand((unsigned) atoi(argv[1]));
-//    MainAuxUnitTest();
-//    tests_run = 0;
-//    GameUnitTest();
-//    tests_run = 0;
-//    SolverUnitTest();
+/*    MainAuxUnitTest();
+    tests_run = 0;
+    GameUnitTest();
+    tests_run = 0;
+    SolverUnitTest();*/
     START_GAME();
+    return 0;
 }

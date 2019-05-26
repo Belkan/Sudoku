@@ -31,7 +31,7 @@ void hint(GameState *gameState, int row, int col) {
     printf("Hint: set cell to %d\n", gameState->solution[row][col]);
 }
 
-// validates if board is solvable and updates the solution if so.
+/* validates if board is solvable and updates the solution if so. */
 bool validate(GameState *gameState) {
     if (isSolvable(gameState)) {
         printf("Validation passed: board is solvable\n");
@@ -79,7 +79,7 @@ int countBlanks(GameState *gameState, BOARD_TYPE type) {
         }
     }
     return count;
-} /* EOF */
+}
 
 /* checks if placement is legal */
 bool safeMove(int **board, int row, int col, int val, int size) {
@@ -88,7 +88,7 @@ bool safeMove(int **board, int row, int col, int val, int size) {
     return safeMoveRow(board, row, val, size) &&
            safeMoveCol(board, col, val, size) &&
            safeMoveBlock(board, block, val, size);
-} /* EOF */
+}
 
 /* Util subfunctions used for safeMove */
 bool safeMoveRow(int** board, int row, int val, int size) {
@@ -111,23 +111,21 @@ bool safeMoveCol(int** board, int col, int val, int size) {
 }
 
 bool safeMoveBlock(int** board, int block, int val, int size) {
-    int blockSize = (int)sqrt(size);
+    int blockSize = (int)sqrt(size), i, j;
     int fromRow = (block / blockSize) * blockSize;
     int fromCol = (block % blockSize) * blockSize;
-    int toRow = fromRow + 2;
-    int toCol = fromCol + 2;
-    for (int i = fromRow; i <= toRow; i++) {
-        for (int j = fromCol; j <= toCol; j++) {
+    for (i = fromRow; i <= fromRow + 2; i++) {
+        for (j = fromCol; j <= fromCol + 2; j++) {
             if (board[i][j] == val) { /* val exists in block */
                 return false;
             }
         }
     }
     return true;
-} /* EOF */
+}
 
 void setFixedCellsRand(GameState *gameState, int fixed) {
-    int row, col, counter;
+    int row, col, counter, i, j;
     counter = 0;
 
     while (counter < fixed) {
@@ -138,8 +136,8 @@ void setFixedCellsRand(GameState *gameState, int fixed) {
             counter++;
         }
     }
-    for (int i = 0; i < gameState->size; i++) {
-        for (int j = 0; j < gameState->size; j++) {
+    for (i = 0; i < gameState->size; i++) {
+        for (j = 0; j < gameState->size; j++) {
             if (!gameState->fixed[i][j]) {
                 gameState->board[i][j] = 0;
             }
@@ -148,8 +146,9 @@ void setFixedCellsRand(GameState *gameState, int fixed) {
 }
 
 void copyFromBoardToBoard(int** board1, int** board2, int size) {
-    for (int i = 0; i < size; i++){
-        for (int j = 0; j < size; j++) {
+    int i, j;
+    for (i = 0; i < size; i++){
+        for (j = 0; j < size; j++) {
             board2[i][j] = board1[i][j];
         }
     }
@@ -157,7 +156,7 @@ void copyFromBoardToBoard(int** board1, int** board2, int size) {
 
 int findBlock(int row, int col) {
     return ((row / 3)*3 + (col / 3));
-} /* EOF */
+}
 
 void setHandler (SET_STATUS status, GameState *gameState) {
     switch (status) {

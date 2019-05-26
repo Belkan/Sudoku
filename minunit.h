@@ -1,6 +1,3 @@
-//
-// Created by User on 23/05/2019.
-//
 
 #define ASSERT_THAT(test, message) do { if (!(test)) return message; } while (0)
 #define RUN_TEST(test) do { char *message = test(); tests_run++; \

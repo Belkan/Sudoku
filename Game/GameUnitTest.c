@@ -66,12 +66,6 @@ static char * verify_safeMove() {
 
 }
 
-
-// TODO - add this when we finish Solver.
-//void verify_gameOver() {
-//
-//}
-
 static char * run_all_tests() {
     RUN_TEST(verify_setSuccessful);
     RUN_TEST(verify_setIllegal);
