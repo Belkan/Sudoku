@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 #include "MainAux/MainAux.h"
 #include "Game/Game.h"
 #include "Solver/Solver.h"
@@ -10,11 +11,12 @@
 #include "Solver/SolverUnitTest.h"
 
 int main(int argc, char *argv[]) {
+    assert(argc == 1);
     srand((unsigned) atoi(argv[1]));
-    MainAuxUnitTest();
-    tests_run = 0;
-    GameUnitTest();
-    tests_run = 0;
-    SolverUnitTest();
-//    START_GAME();
+//    MainAuxUnitTest();
+//    tests_run = 0;
+//    GameUnitTest();
+//    tests_run = 0;
+//    SolverUnitTest();
+    START_GAME();
 }

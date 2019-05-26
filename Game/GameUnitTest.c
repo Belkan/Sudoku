@@ -9,7 +9,7 @@ static char *verify_setSuccessful() {
     GameState *gameState = createGameState(SIZE);
     SET_STATUS status;
     status = set(gameState, 1, 2, 3);
-    ASSERT_THAT(status == SUCCESS & gameState->board[1][2] == 3, "ERROR: verify_setSuccessful");
+    ASSERT_THAT(status == SUCCESS && gameState->board[1][2] == 3, "ERROR: verify_setSuccessful");
     return 0;
 }
 

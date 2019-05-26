@@ -5,13 +5,6 @@
 
 int tests_run;
 
-static char * verify_printBoard() {
-    GameState *gameState = createGameState(SIZE);
-    printBoard(gameState, BOARD);
-    destroyGameState(gameState);
-    return 0;
-}
-
 static char * verify_getRandom() {
     int lower, upper, res;
     lower = 4;
@@ -40,7 +33,6 @@ static char * verify_getRandom() {
 
 static char * run_all_tests() {
     RUN_TEST(verify_getRandom);
-//    RUN_TEST(verify_printBoard);
     return 0;
 }
 

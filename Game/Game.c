@@ -34,15 +34,17 @@ void hint(GameState *gameState, int row, int col) {
 // validates if board is solvable and updates the solution if so.
 bool validate(GameState *gameState) {
     if (isSolvable(gameState)) {
+        printf("Validation passed: board is solvable\n");
         return true;
     }
+    printf("Validation failed: board is unsolvable\n");
     return false;
     }
 
 
 /* checks if this set is a legal set (assuming input is valid) */
 bool isUserLegalMove(GameState *gameState, int row, int col, int value) {
-    if (safeMove(gameState->board, row, col, value, gameState->size)) {
+    if (value == 0 || safeMove(gameState->board, row, col, value, gameState->size)) {
         return true;
     }
     return false;
@@ -58,7 +60,7 @@ bool isUserBoardFull(GameState *gameState) {
 
 /* return number of empty cells in board */
 int countBlanks(GameState *gameState, BOARD_TYPE type) {
-    int row, col, count;
+    int row, col, count = 0;
     int **board;
     switch(type){
         case BOARD:
@@ -109,8 +111,9 @@ bool safeMoveCol(int** board, int col, int val, int size) {
 }
 
 bool safeMoveBlock(int** board, int block, int val, int size) {
-    int fromRow = (block / BLOCK) * BLOCK;
-    int fromCol = (block % BLOCK) * BLOCK;
+    int blockSize = (int)sqrt(size);
+    int fromRow = (block / blockSize) * blockSize;
+    int fromCol = (block % blockSize) * blockSize;
     int toRow = fromRow + 2;
     int toCol = fromCol + 2;
     for (int i = fromRow; i <= toRow; i++) {
@@ -166,6 +169,11 @@ void setHandler (SET_STATUS status, GameState *gameState) {
             break;
         case (CELL_FIXED):
             printf("Error: cell is fixed\n");
+            break;
+        case (GAME_OVER):
+            printf("Puzzle solved successfully\n");
+            break;
+        default:
             break;
     }
 }

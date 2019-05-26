@@ -69,6 +69,7 @@ bool isSolvable(GameState *gameState) {
     for (int i = 0; i < gameState->size; i++){
         solutionBoardCopy[i] =  calloc(gameState->size, sizeof(int));
     }
+
     copyFromBoardToBoard(gameState->board, solutionBoardCopy, gameState->size);
     if (isSolvableRecursion(gameState,solutionBoardCopy,0,0,DETERMINISTIC)) {
         copyFromBoardToBoard(solutionBoardCopy, gameState->solution, gameState->size);

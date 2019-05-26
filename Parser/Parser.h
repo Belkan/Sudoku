@@ -3,6 +3,8 @@
 
 #include <stdbool.h>
 #include "../Game/Game.h"
+#define MAX 1024
+
 
 typedef enum user_choice {
     SET,

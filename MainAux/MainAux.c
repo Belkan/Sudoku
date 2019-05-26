@@ -27,7 +27,8 @@ int transform(int val) {
     if (val >= 10 && val <= 12) {
         return val - 4;
     }
-} /* EOF */
+    return 0;
+}/* EOF */
 
 
 /* creates a new GameState of Sudoku with Size rows/columns*/
@@ -132,18 +133,46 @@ int getNumberOfFixedCells() {
     int fixed;
     printf("Please enter the number of cells to fill [0-80]:\n");
     scanf("%d", &fixed);
+    while (fixed < 0 || fixed > 80) {
+        printf("Error: invalid number of cells to fill (should be between 0 and 80)\n");
+        printf("Please enter the number of cells to fill [0-80]:\n");
+        scanf("%d", &fixed);
+    }
+    fseek(stdin, 0, SEEK_END);
     return fixed;
 }
 
-void restart() {}
-
-
-void START_GAME() {
-    // Initialize
+GameState* initializeGame(){
     GameState *gameState = createGameState(SIZE);
     generateRandomSolution(gameState);
     copyFromBoardToBoard(gameState->solution, gameState->board, gameState->size);
     setFixedCellsRand(gameState, getNumberOfFixedCells());
+    return gameState;
+}
+
+void START_GAME() {
+    // Initialize
+
+    char input[MAX] = "";
+    USER_CHOICE choice;
+
+    GameState *gameState = initializeGame();
+
+    printBoard(gameState, BOARD);
+
+    // Start game
+    while (fgets(input, MAX, stdin)){
+        choice = parseCommand(gameState, strtok(input,"\n"));
+        if (choice == EXIT) {
+            break;
+        }
+        if (choice == RESTART){
+            destroyGameState(gameState);
+            gameState = initializeGame();
+            printBoard(gameState, BOARD);
+        }
+
+    }
 
     destroyGameState(gameState);
 }

@@ -4,34 +4,36 @@
 #include <ctype.h>
 #include "Parser.h"
 #include "../Game/Game.h"
-#define MAX 1024
 
 /* checks if user input matches given regular expressions */
-bool matchesFormat(char* str, USER_CHOICE choice) {
+bool matchesFormat(char *str, USER_CHOICE choice) {
 
     switch (choice) {
         case SET:
-            if(str[0] == 's' && str[1] == 'e' && str[2] == 't' &&
-                isdigit(str[3]) && isdigit(str[4]) && isdigit(str[5])) {
+            if (strcmp(str, "set") == 0) {
                 return true;
             }
+            return false;
         case HINT:
-            if(str[0] == 'h' && str[1] == 'i' && str[2] == 'n' && str[3] == 't' &&
-               isdigit(str[4]) && isdigit(str[5])) {
+            if (strcmp(str, "hint") == 0) {
                 return true;
             }
+            return false;
         case VALIDATE:
             if (strcmp(str, "validate") == 0) {
                 return true;
             }
+            return false;
         case RESTART:
-            if(strcmp(str, "restart") == 0) {
+            if (strcmp(str, "restart") == 0) {
                 return true;
             }
+            return false;
         case EXIT:
-            if(strcmp(str, "exit") == 0) {
+            if (strcmp(str, "exit") == 0) {
                 return true;
             }
+            return false;
         default:
             return false;
     }
@@ -40,20 +42,32 @@ bool matchesFormat(char* str, USER_CHOICE choice) {
 /* scan user input and return it as String format */
 USER_CHOICE parseCommand(GameState *gameState, char *input) {
     int k = 0;
-    char* str[MAX];
-    char* token = strtok(input, " ");
+    SET_STATUS set_status;
+    char *str[MAX];
+    char *endPtr;
+    char *token = strtok(input, " ");
 
     while (token != 0) {
         str[k] = token;
         token = strtok(0, " ");
+        k++;
     }
 
     if (matchesFormat(str[0], SET)) {
-        setHandler(set(gameState, str[1][0], str[2][0], str[3][0]),gameState);
+        set_status = set(gameState,
+                          strtol(str[2], &endPtr, 10) - 1,
+                          strtol(str[1], &endPtr, 10) - 1,
+                          strtol(str[3], &endPtr, 10));
+        setHandler(set_status, gameState);
+        if (set_status == GAME_OVER) {
+            return EXIT;
+        }
         return SET;
     }
     if (matchesFormat(str[0], HINT)) {
-        hint(gameState, str[1][0], str[1][0]);
+        hint(gameState,
+             strtol(str[2], &endPtr, 10) - 1,
+             strtol(str[1], &endPtr, 10) - 1);
         return HINT;
     }
     if (matchesFormat(str[0], VALIDATE)) {
@@ -61,12 +75,14 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
         return VALIDATE;
     }
     if (matchesFormat(str[0], EXIT)) {
-        printf("Exiting…\n");
+        printf("Exiting...\n");
         return EXIT;
     }
     if (matchesFormat(str[0], RESTART)) {
         return RESTART;
     }
+    printf("UNKNOWN COMMAND");
+    return EXIT;
 
 
 } /* EOF */
