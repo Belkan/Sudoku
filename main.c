@@ -11,7 +11,7 @@
 #include "SolverUnitTest.h"
 
 int main(int argc, char *argv[]) {
-    assert(argc == 1);
+    assert(argc == 2);
     srand((unsigned) atoi(argv[1]));
 /*    MainAuxUnitTest();
     tests_run = 0;
