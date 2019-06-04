@@ -11,7 +11,8 @@ typedef enum user_choice {
     HINT,
     VALIDATE,
     RESTART,
-    EXIT
+    EXIT,
+    INVALID
 } USER_CHOICE;
 
 /* scan input from user */

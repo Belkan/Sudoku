@@ -53,18 +53,15 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
         k++;
     }
 
-    if (matchesFormat(str[0], SET)) {
+    if (matchesFormat(str[0], SET) && isdigit(*str[1]) && isdigit(*str[2]) && isdigit(*str[3])) {
         set_status = set(gameState,
                           strtol(str[2], &endPtr, 10) - 1,
                           strtol(str[1], &endPtr, 10) - 1,
                           strtol(str[3], &endPtr, 10));
         setHandler(set_status, gameState);
-        if (set_status == GAME_OVER) {
-            return EXIT;
-        }
         return SET;
     }
-    if (matchesFormat(str[0], HINT)) {
+    if (matchesFormat(str[0], HINT) && isdigit(*str[1]) && isdigit(*str[2])) {
         hint(gameState,
              strtol(str[2], &endPtr, 10) - 1,
              strtol(str[1], &endPtr, 10) - 1);
@@ -81,8 +78,7 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
     if (matchesFormat(str[0], RESTART)) {
         return RESTART;
     }
-    printf("UNKNOWN COMMAND");
-    return EXIT;
+    return INVALID;
 
 
 } /* EOF */

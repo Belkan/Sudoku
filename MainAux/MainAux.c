@@ -74,7 +74,6 @@ void destroyMatrix(int **matrix, int size) {
 
 
 /* prints the current board */
-/* TODO test this method */
 void printBoard(GameState *gameState, BOARD_TYPE type) {
     int row;
     int col;
@@ -167,7 +166,10 @@ void START_GAME() {
     while (fgets(input, MAX, stdin)){
         choice = parseCommand(gameState, strtok(input,"\n"));
         if (choice == EXIT) {
-            break;
+            exit(EXIT_SUCCESS);
+        }
+        if (choice == INVALID) {
+            printf("Error: invalid command\n");
         }
         if (choice == RESTART){
             destroyGameState(gameState);
@@ -176,6 +178,6 @@ void START_GAME() {
         }
 
     }
-
+    printf("Exiting...\n");
     destroyGameState(gameState);
 }
