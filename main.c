@@ -11,8 +11,11 @@
 #include "SolverUnitTest.h"
 
 int main(int argc, char *argv[]) {
-    assert(argc == 2);
-    srand((unsigned) atoi(argv[1]));
+    if (argc == 2) {
+        srand((unsigned) atoi(argv[1]));
+    } else {
+        srand(0);
+    }
 /*    MainAuxUnitTest();
     tests_run = 0;
     GameUnitTest();

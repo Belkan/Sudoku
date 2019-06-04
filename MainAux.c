@@ -78,6 +78,7 @@ void printBoard(GameState *gameState, BOARD_TYPE type) {
     int row;
     int col;
     int **board;
+
     switch (type) {
         case (BOARD):
             board = gameState->board;
@@ -133,12 +134,16 @@ bool isSeparatorCol(int col) {
 
 int getNumberOfFixedCells() {
     int fixed;
+    char input[MAX];
+    char* endPtr;
     printf("Please enter the number of cells to fill [0-80]:\n");
-    scanf("%d", &fixed);
+    fgets(input, MAX, stdin);
+    fixed = strtol(input, &endPtr, 10);
     while (fixed < 0 || fixed > 80) {
-        printf("Error: invalid number of cells to fill (should be between 0 and 80)\n");
-        printf("Please enter the number of cells to fill [0-80]:\n");
-        scanf("%d", &fixed);
+        printf("Error: invalid number of cells to fill (should be between 0 and 80)\n"
+               "Please enter the number of cells to fill [0-80]:\n");
+        fgets(input,MAX,stdin);
+        fixed = strtol(input, &endPtr, 10);
     }
     fseek(stdin, 0, SEEK_END);
     return fixed;
@@ -154,29 +159,32 @@ GameState* initializeGame(){
 
 void START_GAME() {
      /*Initialize*/
-
-    char input[MAX] = "";
-    USER_CHOICE choice;
+    char input[MAX];
+    USER_CHOICE status;
+    bool gameOver = false;
 
     GameState *gameState = initializeGame();
 
     printBoard(gameState, BOARD);
 
-     /*Start game */
+/* Start game */
     while (fgets(input, MAX, stdin)){
-        choice = parseCommand(gameState, strtok(input,"\n"));
-        if (choice == EXIT) {
+        status = parseCommand(gameState, strtok(input,"\n"), gameOver);
+        if (status == EXIT) {
             exit(EXIT_SUCCESS);
         }
-        if (choice == INVALID) {
+        if (status == INVALID) {
             printf("Error: invalid command\n");
         }
-        if (choice == RESTART){
+        if (status == RESTART){
             destroyGameState(gameState);
             gameState = initializeGame();
             printBoard(gameState, BOARD);
+            gameOver = false;
         }
-
+        if (status == GAME_OVER_STATE) {
+            gameOver = true;
+        }
     }
     printf("Exiting...\n");
     destroyGameState(gameState);

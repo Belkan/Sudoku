@@ -40,34 +40,36 @@ bool matchesFormat(char *str, USER_CHOICE choice) {
 } /* EOF */
 
 /* scan user input and return it as String format */
-USER_CHOICE parseCommand(GameState *gameState, char *input) {
+USER_CHOICE parseCommand(GameState *gameState, char *input, bool GameOver) {
     int k = 0;
     SET_STATUS set_status;
     char *str[MAX];
     char *endPtr;
     char *token = strtok(input, " ");
 
-    while (token != 0) {
-        str[k] = token;
+    do {
+        str[k++] = token;
         token = strtok(0, " ");
-        k++;
-    }
+    } while (token != 0);
 
-    if (matchesFormat(str[0], SET) && isdigit(*str[1]) && isdigit(*str[2]) && isdigit(*str[3])) {
+    if (matchesFormat(str[0], SET) && isdigit(*str[1]) && isdigit(*str[2]) && isdigit(*str[3]) && !GameOver) {
         set_status = set(gameState,
                           strtol(str[2], &endPtr, 10) - 1,
                           strtol(str[1], &endPtr, 10) - 1,
                           strtol(str[3], &endPtr, 10));
         setHandler(set_status, gameState);
+        if (set_status == GAME_OVER){
+            return GAME_OVER_STATE;
+        }
         return SET;
     }
-    if (matchesFormat(str[0], HINT) && isdigit(*str[1]) && isdigit(*str[2])) {
+    if (matchesFormat(str[0], HINT) && isdigit(*str[1]) && isdigit(*str[2]) && !GameOver) {
         hint(gameState,
              strtol(str[2], &endPtr, 10) - 1,
              strtol(str[1], &endPtr, 10) - 1);
         return HINT;
     }
-    if (matchesFormat(str[0], VALIDATE)) {
+    if (matchesFormat(str[0], VALIDATE) && !GameOver) {
         validate(gameState);
         return VALIDATE;
     }

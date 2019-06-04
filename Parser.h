@@ -12,11 +12,12 @@ typedef enum user_choice {
     VALIDATE,
     RESTART,
     EXIT,
-    INVALID
+    INVALID,
+    GAME_OVER_STATE
 } USER_CHOICE;
 
 /* scan input from user */
-USER_CHOICE parseCommand(GameState *gameState, char *input);
+USER_CHOICE parseCommand(GameState *gameState, char *input, bool GameOver);
 
 /* check if user input in legal format */
 bool matchesFormat(char* str, USER_CHOICE choice);
