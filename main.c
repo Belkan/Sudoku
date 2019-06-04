@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "MainAux/MainAux.h"
-#include "Game/Game.h"
-#include "Solver/Solver.h"
-#include "Parser/Parser.h"
-#include "Game/GameUnitTest.h"
-#include "MainAux/MainAuxUnitTest.h"
+#include "MainAux.h"
+#include "Game.h"
+#include "Solver.h"
+#include "Parser.h"
+#include "GameUnitTest.h"
+#include "MainAuxUnitTest.h"
 #include "minunit.h"
-#include "Solver/SolverUnitTest.h"
+#include "SolverUnitTest.h"
 
 int main(int argc, char *argv[]) {
     assert(argc == 1);

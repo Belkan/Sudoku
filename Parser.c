@@ -3,7 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "Parser.h"
-#include "../Game/Game.h"
+#include "Game.h"
 
 /* checks if user input matches given regular expressions */
 bool matchesFormat(char *str, USER_CHOICE choice) {

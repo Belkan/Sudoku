@@ -74,49 +74,49 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/Game/Game.c">
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/Game.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/Game/Game.h">
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/Game.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/Game/GameUnitTest.c">
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/GameUnitTest.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/Game/GameUnitTest.h">
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/GameUnitTest.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/MainAux/MainAux.c">
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/MainAux.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/MainAux/MainAux.h">
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/MainAux.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/MainAux/MainAuxUnitTest.c">
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/MainAuxUnitTest.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/MainAux/MainAuxUnitTest.h">
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/MainAuxUnitTest.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/Parser/Parser.c">
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/Parser.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/Parser/Parser.h">
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/Parser.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/Parser/ParserUnitTest.c">
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/ParserUnitTest.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/Solver/Solver.c">
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/Solver.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/Solver/Solver.h">
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/Solver.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/Solver/SolverUnitTest.c">
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/SolverUnitTest.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/Solver/SolverUnitTest.h">
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/SolverUnitTest.h">
 			<Option target="Sudoku"/>
 		</Unit>
 		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoko/main.c">

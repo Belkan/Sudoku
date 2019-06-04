@@ -2,7 +2,7 @@
 #define SUDOKU_GAME_H
 #define BLOCK 3
 
-#include "../MainAux/MainAux.h"
+#include "MainAux.h"
 #include <string.h>
 
 

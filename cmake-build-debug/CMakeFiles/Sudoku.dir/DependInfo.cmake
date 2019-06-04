@@ -4,14 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "C:/Users/Adar/CLionProjects/Github/Sudoko/Game/Game.c" "C:/Users/Adar/CLionProjects/Github/Sudoko/cmake-build-debug/CMakeFiles/Sudoku.dir/Game/Game.c.obj"
-  "C:/Users/Adar/CLionProjects/Github/Sudoko/Game/GameUnitTest.c" "C:/Users/Adar/CLionProjects/Github/Sudoko/cmake-build-debug/CMakeFiles/Sudoku.dir/Game/GameUnitTest.c.obj"
-  "C:/Users/Adar/CLionProjects/Github/Sudoko/MainAux/MainAux.c" "C:/Users/Adar/CLionProjects/Github/Sudoko/cmake-build-debug/CMakeFiles/Sudoku.dir/MainAux/MainAux.c.obj"
-  "C:/Users/Adar/CLionProjects/Github/Sudoko/MainAux/MainAuxUnitTest.c" "C:/Users/Adar/CLionProjects/Github/Sudoko/cmake-build-debug/CMakeFiles/Sudoku.dir/MainAux/MainAuxUnitTest.c.obj"
-  "C:/Users/Adar/CLionProjects/Github/Sudoko/Parser/Parser.c" "C:/Users/Adar/CLionProjects/Github/Sudoko/cmake-build-debug/CMakeFiles/Sudoku.dir/Parser/Parser.c.obj"
-  "C:/Users/Adar/CLionProjects/Github/Sudoko/Parser/ParserUnitTest.c" "C:/Users/Adar/CLionProjects/Github/Sudoko/cmake-build-debug/CMakeFiles/Sudoku.dir/Parser/ParserUnitTest.c.obj"
-  "C:/Users/Adar/CLionProjects/Github/Sudoko/Solver/Solver.c" "C:/Users/Adar/CLionProjects/Github/Sudoko/cmake-build-debug/CMakeFiles/Sudoku.dir/Solver/Solver.c.obj"
-  "C:/Users/Adar/CLionProjects/Github/Sudoko/Solver/SolverUnitTest.c" "C:/Users/Adar/CLionProjects/Github/Sudoko/cmake-build-debug/CMakeFiles/Sudoku.dir/Solver/SolverUnitTest.c.obj"
+  "C:/Users/Adar/CLionProjects/Github/Sudoko/Game.c" "C:/Users/Adar/CLionProjects/Github/Sudoko/cmake-build-debug/CMakeFiles/Sudoku.dir/Game.c.obj"
+  "C:/Users/Adar/CLionProjects/Github/Sudoko/GameUnitTest.c" "C:/Users/Adar/CLionProjects/Github/Sudoko/cmake-build-debug/CMakeFiles/Sudoku.dir/GameUnitTest.c.obj"
+  "C:/Users/Adar/CLionProjects/Github/Sudoko/MainAux.c" "C:/Users/Adar/CLionProjects/Github/Sudoko/cmake-build-debug/CMakeFiles/Sudoku.dir/MainAux.c.obj"
+  "C:/Users/Adar/CLionProjects/Github/Sudoko/MainAuxUnitTest.c" "C:/Users/Adar/CLionProjects/Github/Sudoko/cmake-build-debug/CMakeFiles/Sudoku.dir/MainAuxUnitTest.c.obj"
+  "C:/Users/Adar/CLionProjects/Github/Sudoko/Parser.c" "C:/Users/Adar/CLionProjects/Github/Sudoko/cmake-build-debug/CMakeFiles/Sudoku.dir/Parser.c.obj"
+  "C:/Users/Adar/CLionProjects/Github/Sudoko/ParserUnitTest.c" "C:/Users/Adar/CLionProjects/Github/Sudoko/cmake-build-debug/CMakeFiles/Sudoku.dir/ParserUnitTest.c.obj"
+  "C:/Users/Adar/CLionProjects/Github/Sudoko/Solver.c" "C:/Users/Adar/CLionProjects/Github/Sudoko/cmake-build-debug/CMakeFiles/Sudoku.dir/Solver.c.obj"
+  "C:/Users/Adar/CLionProjects/Github/Sudoko/SolverUnitTest.c" "C:/Users/Adar/CLionProjects/Github/Sudoko/cmake-build-debug/CMakeFiles/Sudoku.dir/SolverUnitTest.c.obj"
   "C:/Users/Adar/CLionProjects/Github/Sudoko/main.c" "C:/Users/Adar/CLionProjects/Github/Sudoko/cmake-build-debug/CMakeFiles/Sudoku.dir/main.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

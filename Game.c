@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "Game.h"
-#include "../Solver/Solver.h"
+#include "Solver.h"
 
 /* tries to set value in (row, col) in board, and returns the status of the request */
 SET_STATUS set(GameState *gameState, int row, int col, int value) {

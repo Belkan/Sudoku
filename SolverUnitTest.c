@@ -1,5 +1,5 @@
-#include "../MainAux/MainAux.h"
-#include "../minunit.h"
+#include "MainAux.h"
+#include "minunit.h"
 #include "SolverUnitTest.h"
 #include "Solver.h"
 #include <stdlib.h>

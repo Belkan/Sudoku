@@ -2,7 +2,7 @@
 #define SUDOKU_PARSER_H
 
 #include <stdbool.h>
-#include "../Game/Game.h"
+#include "Game.h"
 #define MAX 1024
 
 

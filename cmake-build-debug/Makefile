@@ -122,221 +122,221 @@ Sudoku/fast:
 	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/build
 .PHONY : Sudoku/fast
 
-Game/Game.obj: Game/Game.c.obj
+Game.obj: Game.c.obj
 
-.PHONY : Game/Game.obj
-
-# target to build an object file
-Game/Game.c.obj:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Game/Game.c.obj
-.PHONY : Game/Game.c.obj
-
-Game/Game.i: Game/Game.c.i
-
-.PHONY : Game/Game.i
-
-# target to preprocess a source file
-Game/Game.c.i:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Game/Game.c.i
-.PHONY : Game/Game.c.i
-
-Game/Game.s: Game/Game.c.s
-
-.PHONY : Game/Game.s
-
-# target to generate assembly for a file
-Game/Game.c.s:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Game/Game.c.s
-.PHONY : Game/Game.c.s
-
-Game/GameUnitTest.obj: Game/GameUnitTest.c.obj
-
-.PHONY : Game/GameUnitTest.obj
+.PHONY : Game.obj
 
 # target to build an object file
-Game/GameUnitTest.c.obj:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Game/GameUnitTest.c.obj
-.PHONY : Game/GameUnitTest.c.obj
+Game.c.obj:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Game.c.obj
+.PHONY : Game.c.obj
 
-Game/GameUnitTest.i: Game/GameUnitTest.c.i
+Game.i: Game.c.i
 
-.PHONY : Game/GameUnitTest.i
+.PHONY : Game.i
 
 # target to preprocess a source file
-Game/GameUnitTest.c.i:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Game/GameUnitTest.c.i
-.PHONY : Game/GameUnitTest.c.i
+Game.c.i:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Game.c.i
+.PHONY : Game.c.i
 
-Game/GameUnitTest.s: Game/GameUnitTest.c.s
+Game.s: Game.c.s
 
-.PHONY : Game/GameUnitTest.s
+.PHONY : Game.s
 
 # target to generate assembly for a file
-Game/GameUnitTest.c.s:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Game/GameUnitTest.c.s
-.PHONY : Game/GameUnitTest.c.s
+Game.c.s:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Game.c.s
+.PHONY : Game.c.s
 
-MainAux/MainAux.obj: MainAux/MainAux.c.obj
+GameUnitTest.obj: GameUnitTest.c.obj
 
-.PHONY : MainAux/MainAux.obj
+.PHONY : GameUnitTest.obj
 
 # target to build an object file
-MainAux/MainAux.c.obj:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAux/MainAux.c.obj
-.PHONY : MainAux/MainAux.c.obj
+GameUnitTest.c.obj:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/GameUnitTest.c.obj
+.PHONY : GameUnitTest.c.obj
 
-MainAux/MainAux.i: MainAux/MainAux.c.i
+GameUnitTest.i: GameUnitTest.c.i
 
-.PHONY : MainAux/MainAux.i
+.PHONY : GameUnitTest.i
 
 # target to preprocess a source file
-MainAux/MainAux.c.i:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAux/MainAux.c.i
-.PHONY : MainAux/MainAux.c.i
+GameUnitTest.c.i:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/GameUnitTest.c.i
+.PHONY : GameUnitTest.c.i
 
-MainAux/MainAux.s: MainAux/MainAux.c.s
+GameUnitTest.s: GameUnitTest.c.s
 
-.PHONY : MainAux/MainAux.s
+.PHONY : GameUnitTest.s
 
 # target to generate assembly for a file
-MainAux/MainAux.c.s:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAux/MainAux.c.s
-.PHONY : MainAux/MainAux.c.s
+GameUnitTest.c.s:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/GameUnitTest.c.s
+.PHONY : GameUnitTest.c.s
 
-MainAux/MainAuxUnitTest.obj: MainAux/MainAuxUnitTest.c.obj
+MainAux.obj: MainAux.c.obj
 
-.PHONY : MainAux/MainAuxUnitTest.obj
+.PHONY : MainAux.obj
 
 # target to build an object file
-MainAux/MainAuxUnitTest.c.obj:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAux/MainAuxUnitTest.c.obj
-.PHONY : MainAux/MainAuxUnitTest.c.obj
+MainAux.c.obj:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAux.c.obj
+.PHONY : MainAux.c.obj
 
-MainAux/MainAuxUnitTest.i: MainAux/MainAuxUnitTest.c.i
+MainAux.i: MainAux.c.i
 
-.PHONY : MainAux/MainAuxUnitTest.i
+.PHONY : MainAux.i
 
 # target to preprocess a source file
-MainAux/MainAuxUnitTest.c.i:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAux/MainAuxUnitTest.c.i
-.PHONY : MainAux/MainAuxUnitTest.c.i
+MainAux.c.i:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAux.c.i
+.PHONY : MainAux.c.i
 
-MainAux/MainAuxUnitTest.s: MainAux/MainAuxUnitTest.c.s
+MainAux.s: MainAux.c.s
 
-.PHONY : MainAux/MainAuxUnitTest.s
+.PHONY : MainAux.s
 
 # target to generate assembly for a file
-MainAux/MainAuxUnitTest.c.s:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAux/MainAuxUnitTest.c.s
-.PHONY : MainAux/MainAuxUnitTest.c.s
+MainAux.c.s:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAux.c.s
+.PHONY : MainAux.c.s
 
-Parser/Parser.obj: Parser/Parser.c.obj
+MainAuxUnitTest.obj: MainAuxUnitTest.c.obj
 
-.PHONY : Parser/Parser.obj
+.PHONY : MainAuxUnitTest.obj
 
 # target to build an object file
-Parser/Parser.c.obj:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Parser/Parser.c.obj
-.PHONY : Parser/Parser.c.obj
+MainAuxUnitTest.c.obj:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAuxUnitTest.c.obj
+.PHONY : MainAuxUnitTest.c.obj
 
-Parser/Parser.i: Parser/Parser.c.i
+MainAuxUnitTest.i: MainAuxUnitTest.c.i
 
-.PHONY : Parser/Parser.i
+.PHONY : MainAuxUnitTest.i
 
 # target to preprocess a source file
-Parser/Parser.c.i:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Parser/Parser.c.i
-.PHONY : Parser/Parser.c.i
+MainAuxUnitTest.c.i:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAuxUnitTest.c.i
+.PHONY : MainAuxUnitTest.c.i
 
-Parser/Parser.s: Parser/Parser.c.s
+MainAuxUnitTest.s: MainAuxUnitTest.c.s
 
-.PHONY : Parser/Parser.s
+.PHONY : MainAuxUnitTest.s
 
 # target to generate assembly for a file
-Parser/Parser.c.s:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Parser/Parser.c.s
-.PHONY : Parser/Parser.c.s
+MainAuxUnitTest.c.s:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAuxUnitTest.c.s
+.PHONY : MainAuxUnitTest.c.s
 
-Parser/ParserUnitTest.obj: Parser/ParserUnitTest.c.obj
+Parser.obj: Parser.c.obj
 
-.PHONY : Parser/ParserUnitTest.obj
+.PHONY : Parser.obj
 
 # target to build an object file
-Parser/ParserUnitTest.c.obj:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Parser/ParserUnitTest.c.obj
-.PHONY : Parser/ParserUnitTest.c.obj
+Parser.c.obj:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Parser.c.obj
+.PHONY : Parser.c.obj
 
-Parser/ParserUnitTest.i: Parser/ParserUnitTest.c.i
+Parser.i: Parser.c.i
 
-.PHONY : Parser/ParserUnitTest.i
+.PHONY : Parser.i
 
 # target to preprocess a source file
-Parser/ParserUnitTest.c.i:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Parser/ParserUnitTest.c.i
-.PHONY : Parser/ParserUnitTest.c.i
+Parser.c.i:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Parser.c.i
+.PHONY : Parser.c.i
 
-Parser/ParserUnitTest.s: Parser/ParserUnitTest.c.s
+Parser.s: Parser.c.s
 
-.PHONY : Parser/ParserUnitTest.s
+.PHONY : Parser.s
 
 # target to generate assembly for a file
-Parser/ParserUnitTest.c.s:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Parser/ParserUnitTest.c.s
-.PHONY : Parser/ParserUnitTest.c.s
+Parser.c.s:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Parser.c.s
+.PHONY : Parser.c.s
 
-Solver/Solver.obj: Solver/Solver.c.obj
+ParserUnitTest.obj: ParserUnitTest.c.obj
 
-.PHONY : Solver/Solver.obj
+.PHONY : ParserUnitTest.obj
 
 # target to build an object file
-Solver/Solver.c.obj:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Solver/Solver.c.obj
-.PHONY : Solver/Solver.c.obj
+ParserUnitTest.c.obj:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/ParserUnitTest.c.obj
+.PHONY : ParserUnitTest.c.obj
 
-Solver/Solver.i: Solver/Solver.c.i
+ParserUnitTest.i: ParserUnitTest.c.i
 
-.PHONY : Solver/Solver.i
+.PHONY : ParserUnitTest.i
 
 # target to preprocess a source file
-Solver/Solver.c.i:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Solver/Solver.c.i
-.PHONY : Solver/Solver.c.i
+ParserUnitTest.c.i:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/ParserUnitTest.c.i
+.PHONY : ParserUnitTest.c.i
 
-Solver/Solver.s: Solver/Solver.c.s
+ParserUnitTest.s: ParserUnitTest.c.s
 
-.PHONY : Solver/Solver.s
+.PHONY : ParserUnitTest.s
 
 # target to generate assembly for a file
-Solver/Solver.c.s:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Solver/Solver.c.s
-.PHONY : Solver/Solver.c.s
+ParserUnitTest.c.s:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/ParserUnitTest.c.s
+.PHONY : ParserUnitTest.c.s
 
-Solver/SolverUnitTest.obj: Solver/SolverUnitTest.c.obj
+Solver.obj: Solver.c.obj
 
-.PHONY : Solver/SolverUnitTest.obj
+.PHONY : Solver.obj
 
 # target to build an object file
-Solver/SolverUnitTest.c.obj:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Solver/SolverUnitTest.c.obj
-.PHONY : Solver/SolverUnitTest.c.obj
+Solver.c.obj:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Solver.c.obj
+.PHONY : Solver.c.obj
 
-Solver/SolverUnitTest.i: Solver/SolverUnitTest.c.i
+Solver.i: Solver.c.i
 
-.PHONY : Solver/SolverUnitTest.i
+.PHONY : Solver.i
 
 # target to preprocess a source file
-Solver/SolverUnitTest.c.i:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Solver/SolverUnitTest.c.i
-.PHONY : Solver/SolverUnitTest.c.i
+Solver.c.i:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Solver.c.i
+.PHONY : Solver.c.i
 
-Solver/SolverUnitTest.s: Solver/SolverUnitTest.c.s
+Solver.s: Solver.c.s
 
-.PHONY : Solver/SolverUnitTest.s
+.PHONY : Solver.s
 
 # target to generate assembly for a file
-Solver/SolverUnitTest.c.s:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Solver/SolverUnitTest.c.s
-.PHONY : Solver/SolverUnitTest.c.s
+Solver.c.s:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Solver.c.s
+.PHONY : Solver.c.s
+
+SolverUnitTest.obj: SolverUnitTest.c.obj
+
+.PHONY : SolverUnitTest.obj
+
+# target to build an object file
+SolverUnitTest.c.obj:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/SolverUnitTest.c.obj
+.PHONY : SolverUnitTest.c.obj
+
+SolverUnitTest.i: SolverUnitTest.c.i
+
+.PHONY : SolverUnitTest.i
+
+# target to preprocess a source file
+SolverUnitTest.c.i:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/SolverUnitTest.c.i
+.PHONY : SolverUnitTest.c.i
+
+SolverUnitTest.s: SolverUnitTest.c.s
+
+.PHONY : SolverUnitTest.s
+
+# target to generate assembly for a file
+SolverUnitTest.c.s:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/SolverUnitTest.c.s
+.PHONY : SolverUnitTest.c.s
 
 main.obj: main.c.obj
 
@@ -374,30 +374,30 @@ help:
 	@echo ... edit_cache
 	@echo ... Sudoku
 	@echo ... rebuild_cache
-	@echo ... Game/Game.obj
-	@echo ... Game/Game.i
-	@echo ... Game/Game.s
-	@echo ... Game/GameUnitTest.obj
-	@echo ... Game/GameUnitTest.i
-	@echo ... Game/GameUnitTest.s
-	@echo ... MainAux/MainAux.obj
-	@echo ... MainAux/MainAux.i
-	@echo ... MainAux/MainAux.s
-	@echo ... MainAux/MainAuxUnitTest.obj
-	@echo ... MainAux/MainAuxUnitTest.i
-	@echo ... MainAux/MainAuxUnitTest.s
-	@echo ... Parser/Parser.obj
-	@echo ... Parser/Parser.i
-	@echo ... Parser/Parser.s
-	@echo ... Parser/ParserUnitTest.obj
-	@echo ... Parser/ParserUnitTest.i
-	@echo ... Parser/ParserUnitTest.s
-	@echo ... Solver/Solver.obj
-	@echo ... Solver/Solver.i
-	@echo ... Solver/Solver.s
-	@echo ... Solver/SolverUnitTest.obj
-	@echo ... Solver/SolverUnitTest.i
-	@echo ... Solver/SolverUnitTest.s
+	@echo ... Game.obj
+	@echo ... Game.i
+	@echo ... Game.s
+	@echo ... GameUnitTest.obj
+	@echo ... GameUnitTest.i
+	@echo ... GameUnitTest.s
+	@echo ... MainAux.obj
+	@echo ... MainAux.i
+	@echo ... MainAux.s
+	@echo ... MainAuxUnitTest.obj
+	@echo ... MainAuxUnitTest.i
+	@echo ... MainAuxUnitTest.s
+	@echo ... Parser.obj
+	@echo ... Parser.i
+	@echo ... Parser.s
+	@echo ... ParserUnitTest.obj
+	@echo ... ParserUnitTest.i
+	@echo ... ParserUnitTest.s
+	@echo ... Solver.obj
+	@echo ... Solver.i
+	@echo ... Solver.s
+	@echo ... SolverUnitTest.obj
+	@echo ... SolverUnitTest.i
+	@echo ... SolverUnitTest.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

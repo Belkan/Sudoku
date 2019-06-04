@@ -1,6 +1,6 @@
 #include "MainAux.h"
-#include "../Solver/Solver.h"
-#include "../Parser/Parser.h"
+#include "Solver.h"
+#include "Parser.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>

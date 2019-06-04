@@ -1,7 +1,8 @@
 #include "MainAux.h"
-#include "../minunit.h"
+#include "minunit.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <limits.h>
 
 int tests_run;
 

@@ -1,7 +1,7 @@
 #ifndef SUDOKU_SOLVER_H
 #define SUDOKU_SOLVER_H
 #include <stdbool.h>
-#include "../Game/Game.h"
+#include "Game.h"
 
 typedef enum solution_type {
     DETERMINISTIC,

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "Game.h"
-#include "../minunit.h"
-#include "../MainAux/MainAux.h"
+#include "minunit.h"
+#include "MainAux.h"
 
 int tests_run;
 
