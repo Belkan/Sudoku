@@ -4,7 +4,7 @@ FLAGS = -Wall -ansi -Wextra -Werror -pedantic-errors
 
 
 sudokumake: 
-	$(info	Making file...)
+	@$(info	Making file...)
 	@$(CC) $(FLAGS) -o sudoku $(SudokuMake) -lm
 	$(info Done!)
 
