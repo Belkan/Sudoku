@@ -129,8 +129,8 @@ void setFixedCellsRand(GameState *gameState, int fixed) {
     counter = 0;
 
     while (counter < fixed) {
-        row = getRandom(0,8);
         col = getRandom(0,8);
+        row = getRandom(0,8);
         if (!gameState->fixed[row][col]) {
             gameState->fixed[row][col] = true;
             counter++;
