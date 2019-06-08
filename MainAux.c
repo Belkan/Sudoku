@@ -145,7 +145,6 @@ int getNumberOfFixedCells() {
         fgets(input,MAX,stdin);
         fixed = strtol(input, &endPtr, 10);
     }
-    fseek(stdin, 0, SEEK_END);
     return fixed;
 }
 
