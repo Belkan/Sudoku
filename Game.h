@@ -4,6 +4,7 @@
 
 #include "MainAux.h"
 #include <string.h>
+#include <stdlib.h>
 
 
 

@@ -136,16 +136,31 @@ int getNumberOfFixedCells() {
     int fixed;
     char input[MAX];
     char* endPtr;
+    int i = 0;
+
     printf("Please enter the number of cells to fill [0-80]:\n");
-    fgets(input, MAX, stdin);
-    fixed = strtol(input, &endPtr, 10);
-    while (fixed < 0 || fixed > 80) {
-        printf("Error: invalid number of cells to fill (should be between 0 and 80)\n"
-               "Please enter the number of cells to fill [0-80]:\n");
-        fgets(input,MAX,stdin);
+
+    while (fgets(input, MAX, stdin)) {
+        i = 0;
+        while (input[i] == ' ' || input[i] == '\t' || input[i] == '\r' || input[i] == '\n') {
+            if (input[i] == '\n') {
+                break;
+            }
+            i++;
+        }
+        if (input[i] == '\n') {
+            continue;
+        }
         fixed = strtol(input, &endPtr, 10);
-    }
+        if (fixed < 0 || fixed > 80) {
+            printf("Error: invalid number of cells to fill (should be between 0 and 80)\n"
+                   "Please enter the number of cells to fill [0-80]:\n");
+            continue;
+        }
     return fixed;
+
+    }
+    return -1;
 }
 
 GameState* initializeGame(){
@@ -161,6 +176,7 @@ void START_GAME() {
     char input[MAX];
     USER_CHOICE status;
     bool gameOver = false;
+    int i = 0;
 
     GameState *gameState = initializeGame();
 
@@ -168,6 +184,16 @@ void START_GAME() {
 
 /* Start game */
     while (fgets(input, MAX, stdin)){
+        i = 0;
+        while (input[i] == ' ' || input[i] == '\t' || input[i] == '\r' || input[i] == '\n') {
+            if (input[i] == '\n') {
+                break;
+            }
+            i++;
+        }
+        if (input[i] == '\n') {
+            continue;
+        }
         status = parseCommand(gameState, strtok(input,"\n"), gameOver);
         if (status == EXIT) {
             exit(EXIT_SUCCESS);

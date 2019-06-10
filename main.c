@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
     if (argc == 2) {
         srand((unsigned) atoi(argv[1]));
     } else {
-        srand(0);
+        srand(5);
     }
 /*    MainAuxUnitTest();
     tests_run = 0;

@@ -45,14 +45,14 @@ USER_CHOICE parseCommand(GameState *gameState, char *input, bool GameOver) {
     SET_STATUS set_status;
     char *str[MAX];
     char *endPtr;
-    char *token = strtok(input, " ");
+    char *token = strtok(input, " \t\r\n");
 
-    do {
+    while (token != 0){
         str[k++] = token;
-        token = strtok(0, " ");
-    } while (token != 0);
+        token = strtok(0, " \t\r\n");
+    }
 
-    if (matchesFormat(str[0], SET) && isdigit(*str[1]) && isdigit(*str[2]) && isdigit(*str[3]) && !GameOver) {
+    if (matchesFormat(str[0], SET) && k >=3 && isdigit(*str[1]) && isdigit(*str[2]) && isdigit(*str[3]) && !GameOver) {
         set_status = set(gameState,
                           strtol(str[2], &endPtr, 10) - 1,
                           strtol(str[1], &endPtr, 10) - 1,
@@ -63,7 +63,7 @@ USER_CHOICE parseCommand(GameState *gameState, char *input, bool GameOver) {
         }
         return SET;
     }
-    if (matchesFormat(str[0], HINT) && isdigit(*str[1]) && isdigit(*str[2]) && !GameOver) {
+    if (matchesFormat(str[0], HINT) && k>=2 && isdigit(*str[1]) && isdigit(*str[2]) && !GameOver) {
         hint(gameState,
              strtol(str[2], &endPtr, 10) - 1,
              strtol(str[1], &endPtr, 10) - 1);

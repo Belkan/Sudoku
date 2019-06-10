@@ -127,7 +127,11 @@ bool safeMoveBlock(int** board, int block, int val, int size) {
 void setFixedCellsRand(GameState *gameState, int fixed) {
     int row, col, counter, i, j;
     counter = 0;
-
+    if (fixed == -1){
+        printf("Exiting...\n");
+        destroyGameState(gameState);
+        exit(0);
+    }
     while (counter < fixed) {
         col = getRandom(0,8);
         row = getRandom(0,8);
@@ -170,6 +174,7 @@ void setHandler (SET_STATUS status, GameState *gameState) {
             printf("Error: cell is fixed\n");
             break;
         case (GAME_OVER):
+            printBoard(gameState,BOARD);
             printf("Puzzle solved successfully\n");
             break;
         default:
