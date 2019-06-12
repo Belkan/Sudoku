@@ -64,6 +64,7 @@ void destroyGameState(GameState *gameState) {
     free(gameState);
 }
 
+/* util function to free resources allocated for a matrix */
 void destroyMatrix(int **matrix, int size) {
     int i;
     for (i = 0; i < size; i++) {
@@ -131,7 +132,7 @@ bool isSeparatorCol(int col) {
     return false;
 } /* EOF */
 
-
+/* scan number of fixed cells from user */
 int getNumberOfFixedCells() {
     int fixed;
     char input[MAX];
@@ -163,6 +164,7 @@ int getNumberOfFixedCells() {
     return -1;
 }
 
+/* initialize the struct for the game */
 GameState* initializeGame(){
     GameState *gameState = createGameState(SIZE);
     generateRandomSolution(gameState);
@@ -171,6 +173,7 @@ GameState* initializeGame(){
     return gameState;
 }
 
+/* start the game */
 void START_GAME() {
      /*Initialize*/
     char input[MAX];

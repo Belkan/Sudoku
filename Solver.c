@@ -95,7 +95,7 @@ void generateRandomSolution(GameState *gameState) {
     isSolvableRecursion(gameState, gameState->solution, 0, 0, RANDOM);
 }
 
-
+/* get next row to traverse to */
 int getNextRow(int size, int row, int col) {
     if (col < size - 1) {
         return row;
@@ -104,6 +104,7 @@ int getNextRow(int size, int row, int col) {
     }
 }
 
+/* get next col to traverse to */
 int getNextCol(int size, int col) {
     if (col < size - 1) {
         return col + 1;
@@ -113,6 +114,7 @@ int getNextCol(int size, int col) {
 
 }
 
+/* util function to swap values of pointers */
 void swap(int *x, int *y){
     int tmp = *x;
     *x = *y;

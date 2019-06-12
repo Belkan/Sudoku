@@ -27,6 +27,7 @@ SET_STATUS set(GameState *gameState, int row, int col, int value) {
 
 }
 
+/* give user hint for next move */
 void hint(GameState *gameState, int row, int col) {
     printf("Hint: set cell to %d\n", gameState->solution[row][col]);
 }
@@ -100,6 +101,7 @@ bool safeMoveRow(int** board, int row, int val, int size) {
     return true;
 }
 
+/* checks if move is safe for columns */
 bool safeMoveCol(int** board, int col, int val, int size) {
     int row;
 
@@ -110,6 +112,7 @@ bool safeMoveCol(int** board, int col, int val, int size) {
     return true;
 }
 
+/* check if move is safe for block */
 bool safeMoveBlock(int** board, int block, int val, int size) {
     int blockSize = (int)sqrt(size), i, j;
     int fromRow = (block / blockSize) * blockSize;
@@ -124,6 +127,7 @@ bool safeMoveBlock(int** board, int block, int val, int size) {
     return true;
 }
 
+/* set the amount of initial fixed cells for board */
 void setFixedCellsRand(GameState *gameState, int fixed) {
     int row, col, counter, i, j;
     counter = 0;
@@ -149,6 +153,7 @@ void setFixedCellsRand(GameState *gameState, int fixed) {
     }
 }
 
+/* util function to copy boards */
 void copyFromBoardToBoard(int** board1, int** board2, int size) {
     int i, j;
     for (i = 0; i < size; i++){
@@ -158,10 +163,12 @@ void copyFromBoardToBoard(int** board1, int** board2, int size) {
     }
 }
 
+/* given row and col, returns what block they are in */
 int findBlock(int row, int col) {
     return ((row / 3)*3 + (col / 3));
 }
 
+/* handle set status */
 void setHandler (SET_STATUS status, GameState *gameState) {
     switch (status) {
         case (SUCCESS):

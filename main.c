@@ -16,11 +16,8 @@ int main(int argc, char *argv[]) {
     } else {
         srand(5);
     }
-/*    MainAuxUnitTest();
-    tests_run = 0;
-    GameUnitTest();
-    tests_run = 0;
-    SolverUnitTest();*/
+
+    /* start playing... */
     START_GAME();
     return 0;
 }
