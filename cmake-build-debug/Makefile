@@ -47,10 +47,10 @@ RM = "C:\Program Files\JetBrains\CLion 2018.3.4\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Adar\CLionProjects\Sudoku
+CMAKE_SOURCE_DIR = C:\Users\User\Documents\GitHub\Sudoku
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Adar\CLionProjects\Sudoku\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\User\Documents\GitHub\Sudoku\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Adar\CLionProjects\Sudoku\cmake-build-debug\CMakeFiles C:\Users\Adar\CLionProjects\Sudoku\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\User\Documents\GitHub\Sudoku\cmake-build-debug\CMakeFiles C:\Users\User\Documents\GitHub\Sudoku\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Adar\CLionProjects\Sudoku\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\User\Documents\GitHub\Sudoku\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -149,33 +149,6 @@ Game.c.s:
 	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Game.c.s
 .PHONY : Game.c.s
 
-GameUnitTest.obj: GameUnitTest.c.obj
-
-.PHONY : GameUnitTest.obj
-
-# target to build an object file
-GameUnitTest.c.obj:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/GameUnitTest.c.obj
-.PHONY : GameUnitTest.c.obj
-
-GameUnitTest.i: GameUnitTest.c.i
-
-.PHONY : GameUnitTest.i
-
-# target to preprocess a source file
-GameUnitTest.c.i:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/GameUnitTest.c.i
-.PHONY : GameUnitTest.c.i
-
-GameUnitTest.s: GameUnitTest.c.s
-
-.PHONY : GameUnitTest.s
-
-# target to generate assembly for a file
-GameUnitTest.c.s:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/GameUnitTest.c.s
-.PHONY : GameUnitTest.c.s
-
 MainAux.obj: MainAux.c.obj
 
 .PHONY : MainAux.obj
@@ -202,33 +175,6 @@ MainAux.s: MainAux.c.s
 MainAux.c.s:
 	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAux.c.s
 .PHONY : MainAux.c.s
-
-MainAuxUnitTest.obj: MainAuxUnitTest.c.obj
-
-.PHONY : MainAuxUnitTest.obj
-
-# target to build an object file
-MainAuxUnitTest.c.obj:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAuxUnitTest.c.obj
-.PHONY : MainAuxUnitTest.c.obj
-
-MainAuxUnitTest.i: MainAuxUnitTest.c.i
-
-.PHONY : MainAuxUnitTest.i
-
-# target to preprocess a source file
-MainAuxUnitTest.c.i:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAuxUnitTest.c.i
-.PHONY : MainAuxUnitTest.c.i
-
-MainAuxUnitTest.s: MainAuxUnitTest.c.s
-
-.PHONY : MainAuxUnitTest.s
-
-# target to generate assembly for a file
-MainAuxUnitTest.c.s:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/MainAuxUnitTest.c.s
-.PHONY : MainAuxUnitTest.c.s
 
 Parser.obj: Parser.c.obj
 
@@ -257,33 +203,6 @@ Parser.c.s:
 	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Parser.c.s
 .PHONY : Parser.c.s
 
-ParserUnitTest.obj: ParserUnitTest.c.obj
-
-.PHONY : ParserUnitTest.obj
-
-# target to build an object file
-ParserUnitTest.c.obj:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/ParserUnitTest.c.obj
-.PHONY : ParserUnitTest.c.obj
-
-ParserUnitTest.i: ParserUnitTest.c.i
-
-.PHONY : ParserUnitTest.i
-
-# target to preprocess a source file
-ParserUnitTest.c.i:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/ParserUnitTest.c.i
-.PHONY : ParserUnitTest.c.i
-
-ParserUnitTest.s: ParserUnitTest.c.s
-
-.PHONY : ParserUnitTest.s
-
-# target to generate assembly for a file
-ParserUnitTest.c.s:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/ParserUnitTest.c.s
-.PHONY : ParserUnitTest.c.s
-
 Solver.obj: Solver.c.obj
 
 .PHONY : Solver.obj
@@ -310,33 +229,6 @@ Solver.s: Solver.c.s
 Solver.c.s:
 	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Solver.c.s
 .PHONY : Solver.c.s
-
-SolverUnitTest.obj: SolverUnitTest.c.obj
-
-.PHONY : SolverUnitTest.obj
-
-# target to build an object file
-SolverUnitTest.c.obj:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/SolverUnitTest.c.obj
-.PHONY : SolverUnitTest.c.obj
-
-SolverUnitTest.i: SolverUnitTest.c.i
-
-.PHONY : SolverUnitTest.i
-
-# target to preprocess a source file
-SolverUnitTest.c.i:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/SolverUnitTest.c.i
-.PHONY : SolverUnitTest.c.i
-
-SolverUnitTest.s: SolverUnitTest.c.s
-
-.PHONY : SolverUnitTest.s
-
-# target to generate assembly for a file
-SolverUnitTest.c.s:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/SolverUnitTest.c.s
-.PHONY : SolverUnitTest.c.s
 
 main.obj: main.c.obj
 
@@ -377,27 +269,15 @@ help:
 	@echo ... Game.obj
 	@echo ... Game.i
 	@echo ... Game.s
-	@echo ... GameUnitTest.obj
-	@echo ... GameUnitTest.i
-	@echo ... GameUnitTest.s
 	@echo ... MainAux.obj
 	@echo ... MainAux.i
 	@echo ... MainAux.s
-	@echo ... MainAuxUnitTest.obj
-	@echo ... MainAuxUnitTest.i
-	@echo ... MainAuxUnitTest.s
 	@echo ... Parser.obj
 	@echo ... Parser.i
 	@echo ... Parser.s
-	@echo ... ParserUnitTest.obj
-	@echo ... ParserUnitTest.i
-	@echo ... ParserUnitTest.s
 	@echo ... Solver.obj
 	@echo ... Solver.i
 	@echo ... Solver.s
-	@echo ... SolverUnitTest.obj
-	@echo ... SolverUnitTest.i
-	@echo ... SolverUnitTest.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

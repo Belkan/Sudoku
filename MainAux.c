@@ -6,7 +6,7 @@
 #include <stdbool.h>
 #include <time.h>
 
-/* generates pseudorandom number in given range */
+/* Generates pseudorandom number in given range */
 int getRandom(int lower, int upper) {
     int res;
     if (lower == upper) {
@@ -15,9 +15,9 @@ int getRandom(int lower, int upper) {
     /* randomize result */
     res = (rand() % (upper - lower + 1)) + lower;
     return res;
-} /* EOF */
+}
 
-/* fixes alignment of matrices */
+/* Fixes alignment of matrices */
 int transform(int val) {
     if (val >= 1 && val <= 4) {
         return val - 2;
@@ -29,42 +29,9 @@ int transform(int val) {
         return val - 4;
     }
     return 0;
-}/* EOF */
-
-
-/* creates a new GameState of Sudoku with Size rows/columns*/
-GameState *createGameState(int size) {
-    int i;
-    GameState *gameState = malloc(sizeof(GameState));
-    gameState->size = size;
-
-    gameState->board = (int **) malloc(size * sizeof(int *));
-    for (i = 0; i < size; i++) {
-        gameState->board[i] = calloc(size, sizeof(int));
-    }
-
-    gameState->solution = (int **) malloc(size * sizeof(int *));
-    for (i = 0; i < size; i++) {
-        gameState->solution[i] = calloc(size, sizeof(int));
-    }
-
-    gameState->fixed = (bool **) malloc(size * sizeof(bool *));
-    for (i = 0; i < size; i++) {
-        gameState->fixed[i] = (bool *) calloc(size, sizeof(bool));
-    }
-
-    return gameState;
 }
 
-/* frees all allocated memory */
-void destroyGameState(GameState *gameState) {
-    destroyMatrix(gameState->board, gameState->size);
-    destroyMatrix(gameState->solution, gameState->size);
-    destroyMatrix((int**) gameState->fixed, gameState->size);
-    free(gameState);
-}
-
-/* util function to free resources allocated for a matrix */
+/* Util function to free resources allocated for a matrix */
 void destroyMatrix(int **matrix, int size) {
     int i;
     for (i = 0; i < size; i++) {
@@ -74,20 +41,10 @@ void destroyMatrix(int **matrix, int size) {
 }
 
 
-/* prints the current board */
+/* Prints the current board */
 void printBoard(GameState *gameState, BOARD_TYPE type) {
     int row;
     int col;
-    int **board;
-
-    switch (type) {
-        case (BOARD):
-            board = gameState->board;
-            break;
-        case (SOLUTION):
-            board = gameState->solution;
-            break;
-    }
     for (row = 1; row <= 13; row++) {
         for (col = 1; col <= 13; col++) {
             if (isSeparatorRow(row)) {
@@ -104,35 +61,34 @@ void printBoard(GameState *gameState, BOARD_TYPE type) {
                 else
                     printf("| ");
             } else {
-                if (gameState->fixed[transform(row)][transform(col)]) {
-                    printf(".%d ", board[transform(row)][transform(col)]);
-                } else if (board[transform(row)][transform(col)] == 0) {
+                if (isFixed(transform(row),transform(col),gameState)) {
+                    printf(".%d ", getCellValue(transform(row), transform(col), gameState, type));
+                } else if (getCellValue(transform(row), transform(col), gameState, type) == 0) {
                     printf("   ");
                 } else {
-                    printf(" %d ", board[transform(row)][transform(col)]);
+                    printf(" %d ", getCellValue(transform(row), transform(col), gameState, type));
                 }
             }
         }
     }
-} /* EOF */
+}
 
-/* checks if row is a separator row */
+/* Subfunctions for printBoard */
 bool isSeparatorRow(int row) {
     if (row == 1 || row == 5 || row == 9 || row == 13) {
         return true;
     }
     return false;
-} /* EOF */
-
-/* checks if column is a separator columns */
+}
 bool isSeparatorCol(int col) {
     if (col == 1 || col == 5 || col == 9 || col == 13) {
         return true;
     }
     return false;
-} /* EOF */
+}
 
-/* scan number of fixed cells from user */
+
+/* Scans number of fixed cells from the user */
 int getNumberOfFixedCells() {
     int fixed;
     char input[MAX];
@@ -164,16 +120,9 @@ int getNumberOfFixedCells() {
     return -1;
 }
 
-/* initialize the struct for the game */
-GameState* initializeGame(){
-    GameState *gameState = createGameState(SIZE);
-    generateRandomSolution(gameState);
-    copyFromBoardToBoard(gameState->solution, gameState->board, gameState->size);
-    setFixedCellsRand(gameState, getNumberOfFixedCells());
-    return gameState;
-}
 
-/* start the game */
+
+/* Start the game. This is the sole function that should be called from main. */
 void START_GAME() {
      /*Initialize*/
     char input[MAX];
@@ -216,4 +165,13 @@ void START_GAME() {
     }
     printf("Exiting...\n");
     destroyGameState(gameState);
+}
+
+/* Initializes the struct for the game */
+GameState* initializeGame(){
+    GameState *gameState = createGameState(SIZE);
+    generateRandomSolution(gameState);
+    copyFromBoardToBoard(gameState, SOLUTION, gameState, BOARD);
+    setFixedCellsRand(gameState, getNumberOfFixedCells());
+    return gameState;
 }

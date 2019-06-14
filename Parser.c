@@ -3,9 +3,8 @@
 #include <string.h>
 #include <ctype.h>
 #include "Parser.h"
-#include "Game.h"
 
-/* checks if user input matches given regular expressions */
+/* Checks if user input matches given regular expressions */
 bool matchesFormat(char *str, USER_CHOICE choice) {
 
     switch (choice) {
@@ -37,9 +36,9 @@ bool matchesFormat(char *str, USER_CHOICE choice) {
         default:
             return false;
     }
-} /* EOF */
+}
 
-/* scan user input and return it as String format */
+/* Scans user's input and returns it as String format */
 USER_CHOICE parseCommand(GameState *gameState, char *input, bool GameOver) {
     int k = 0;
     SET_STATUS set_status;
@@ -83,5 +82,5 @@ USER_CHOICE parseCommand(GameState *gameState, char *input, bool GameOver) {
     return INVALID;
 
 
-} /* EOF */
+}
 

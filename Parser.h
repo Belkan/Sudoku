@@ -5,7 +5,7 @@
 #include "Game.h"
 #define MAX 1024
 
-
+/* Enum for the return status of the user's request */
 typedef enum user_choice {
     SET,
     HINT,
@@ -16,11 +16,12 @@ typedef enum user_choice {
     GAME_OVER_STATE
 } USER_CHOICE;
 
-/* scan input from user */
+/* Checks if user input matches given regular expressions */
+bool matchesFormat(char* str, USER_CHOICE choice);
+
+/* Scans user's input and returns it as String format */
 USER_CHOICE parseCommand(GameState *gameState, char *input, bool GameOver);
 
-/* check if user input in legal format */
-bool matchesFormat(char* str, USER_CHOICE choice);
 
 #endif
 

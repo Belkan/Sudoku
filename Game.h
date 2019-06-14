@@ -2,40 +2,73 @@
 #define SUDOKU_GAME_H
 #define BLOCK 3
 
-#include "MainAux.h"
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
+typedef struct GameState{
+    int size;
+    int **board;
+    int **solution;
+    bool **fixed;
+} GameState;
 
+typedef enum set_status {
+    SUCCESS,
+    CELL_FIXED,
+    ILLEGAL_MOVE,
+    GAME_OVER
+} SET_STATUS;
 
+typedef enum board_type {
+    BOARD,
+    SOLUTION
+} BOARD_TYPE;
+
+/* Tries to set value in (row, col) in board, and returns the status of the request */
 SET_STATUS set(GameState *gameState, int row, int col, int value);
 
+/* Gives user hint for next move */
 void hint(GameState *gameState, int row, int col);
 
+/* Validates if board is solvable and updates the solution if so. */
 bool validate(GameState *gameState);
 
-/* checks if this set is a legal set (assuming input is valid) */
+/* Checks if this set is a legal set (assuming input is valid i.e. not fixed cell) */
 bool isUserLegalMove(GameState *gameState, int row, int col, int value);
 
-/* check if the board is full */
+/* Checks if the board is full */
 bool isUserBoardFull(GameState *gameState);
 
-/* checks if placement is legal */
-bool safeMove(int **board, int row, int col, int val, int size);
-
-/* Util subfunctions used for safeMove */
-bool safeMoveRow(int** board, int row, int val, int size);
-bool safeMoveCol(int** board, int col, int val, int size);
-bool safeMoveBlock(int** board, int block, int val, int size);
-int findBlock(int row, int col);
-
-void setFixedCellsRand(GameState *gameState, int fixed);
-void copyFromBoardToBoard(int** board1, int** board2, int size);
-
-/* return number of empty cells in board */
+/* Returns number of empty cells in board */
 int countBlanks(GameState *gameState,  BOARD_TYPE type);
 
+/* Checks if placement is legal */
+bool safeMove(int row, int col, int val, GameState* gameState, BOARD_TYPE type);
+
+/* Util subfunctions used for safeMove */
+bool safeMoveRow(int row, int val, GameState* gameState, BOARD_TYPE type);
+bool safeMoveCol(int col, int val, GameState* gameState, BOARD_TYPE type);
+bool safeMoveBlock(int block, int val, GameState* gameState, BOARD_TYPE type);
+int findBlock(int row, int col);
+
+/* Sets the amount of initial fixed cells for board */
+void setFixedCellsRand(GameState *gameState, int fixed);
+
+/* Util function to copy boards */
+void copyFromBoardToBoard(GameState* gameStateFrom, BOARD_TYPE fromType, GameState* gameStateTo, BOARD_TYPE toType);
+
+/* Handles set status */
 void setHandler (SET_STATUS status, GameState *gameState);
+
+/* Getters, setters and general util for GameState */
+GameState *createGameState(int size);
+void destroyGameState(GameState *gameState);
+void setCellValue (int row, int col, int value, GameState* gameState, BOARD_TYPE type);
+int getCellValue (int row, int col, GameState* gameState, BOARD_TYPE type);
+void setFixed (int row, int col, bool value, GameState* gameState);
+bool isFixed (int row, int col, GameState* gameState);
+int getSize (GameState* gameState);
 
 
 #endif

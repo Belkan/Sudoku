@@ -5,10 +5,6 @@
 #include "Game.h"
 #include "Solver.h"
 #include "Parser.h"
-#include "GameUnitTest.h"
-#include "MainAuxUnitTest.h"
-#include "minunit.h"
-#include "SolverUnitTest.h"
 
 int main(int argc, char *argv[]) {
     if (argc == 2) {
