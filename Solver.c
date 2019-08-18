@@ -8,10 +8,10 @@
 bool isSolvableRecursion(GameState *gameState, int row, int col, SOLUTION_TYPE type) {
     int rand, valuesLeft, j, i;
     int k = 0;
-    int* possibleVals = malloc(getSize(gameState) * sizeof(int));
+    int size = getSize(gameState);
+    int* possibleVals = malloc(size * sizeof(int));
     int nextRow = getNextRow(getSize(gameState), row, col);
     int nextCol = getNextCol(getSize(gameState), col);
-
 
      /* Stopping condition - filled the entire board.*/
     if (row == getSize(gameState)) {
@@ -24,7 +24,7 @@ bool isSolvableRecursion(GameState *gameState, int row, int col, SOLUTION_TYPE t
         return (isSolvableRecursion(gameState, nextRow, nextCol, type));
     }
     /* Find all legal values. */
-    for (i = 1; i < 10; i++) {
+    for (i = 1; i <= size; i++) {
         if (safeMove(row, col, i, gameState, SOLUTION)) {
             possibleVals[k] = i;
             k++;
@@ -98,7 +98,7 @@ void swap(int *x, int *y){
 
 /* Checks if current state is solvable using deterministic algorithm. If solvable, updates solution.*/
 bool isSolvable(GameState *gameState) {
-    GameState* tempGameState = createGameState(getSize(gameState));
+    GameState* tempGameState = createGameState(getRowsInBlock(gameState), getColsInBlock(gameState));
 
     copyFromBoardToBoard(gameState, BOARD, tempGameState, SOLUTION);
     if (isSolvableRecursion(tempGameState,0,0,DETERMINISTIC)) {

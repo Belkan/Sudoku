@@ -1,6 +1,5 @@
 #ifndef SUDOKU_GAME_H
 #define SUDOKU_GAME_H
-#define BLOCK 3
 
 #include <string.h>
 #include <stdlib.h>
@@ -8,6 +7,8 @@
 
 typedef struct GameState{
     int size;
+    int rowsInBlock;
+    int colsInBlock;
     int **board;
     int **solution;
     bool **fixed;
@@ -62,13 +63,15 @@ void copyFromBoardToBoard(GameState* gameStateFrom, BOARD_TYPE fromType, GameSta
 void setHandler (SET_STATUS status, GameState *gameState);
 
 /* Getters, setters and general util for GameState */
-GameState *createGameState(int size);
+GameState *createGameState(int row, int col);
 void destroyGameState(GameState *gameState);
 void setCellValue (int row, int col, int value, GameState* gameState, BOARD_TYPE type);
 int getCellValue (int row, int col, GameState* gameState, BOARD_TYPE type);
 void setFixed (int row, int col, bool value, GameState* gameState);
 bool isFixed (int row, int col, GameState* gameState);
 int getSize (GameState* gameState);
+int getRowsInBlock (GameState* gameState);
+int getColsInBlock (GameState* gameState) ;
 
 
 #endif

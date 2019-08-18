@@ -184,10 +184,13 @@ void setHandler (SET_STATUS status, GameState *gameState) {
 
 /* Getters, setters and general util for GameState */
 
-GameState *createGameState(int size) {
+GameState *createGameState(int rowsInBlock, int colsInBlock) {
     int i;
     GameState *gameState = malloc(sizeof(GameState));
+    int size = rowsInBlock * colsInBlock;
     gameState->size = size;
+    gameState->rowsInBlock = rowsInBlock;
+    gameState->colsInBlock = colsInBlock;
 
     gameState->board = (int **) malloc(size * sizeof(int *));
     for (i = 0; i < size; i++) {
@@ -243,4 +246,12 @@ bool isFixed (int row, int col, GameState* gameState) {
 
 int getSize (GameState* gameState) {
     return gameState->size;
+}
+
+int getRowsInBlock (GameState* gameState) {
+    return gameState->rowsInBlock;
+}
+
+int getColsInBlock (GameState* gameState) {
+    return gameState->colsInBlock;
 }

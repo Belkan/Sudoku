@@ -17,20 +17,6 @@ int getRandom(int lower, int upper) {
     return res;
 }
 
-/* Fixes alignment of matrices */
-int transform(int val) {
-    if (val >= 1 && val <= 4) {
-        return val - 2;
-    }
-    if (val >= 6 && val <= 8) {
-        return val - 3;
-    }
-    if (val >= 10 && val <= 12) {
-        return val - 4;
-    }
-    return 0;
-}
-
 /* Util function to free resources allocated for a matrix */
 void destroyMatrix(int **matrix, int size) {
     int i;
@@ -45,54 +31,45 @@ void destroyMatrix(int **matrix, int size) {
 void printBoard(GameState *gameState, BOARD_TYPE type) {
     int row;
     int col;
-    for (row = 1; row <= 13; row++) {
-        for (col = 1; col <= 13; col++) {
-            if (isSeparatorRow(row)) {
-                col = 1;
-                row++;
-                printf("----------------------------------\n");
-                if (row == 14) {
-                    return;
-                }
+    int counter;
+    int value;
+    int size = getSize(gameState);
+    int rowsInBlock = getRowsInBlock(gameState);
+    int colsInBlock = getColsInBlock(gameState);
+
+    for (row = 0; row < size; row++) {
+        if (row % rowsInBlock == 0) {
+            for (counter = 0; counter < (2 * (rowsInBlock) + 1 + size * 3); counter++) {
+                printf("-");
+            }
+            printf("\n");
+        }
+        for (col = 0; col < size; col++) {
+            if (col % colsInBlock == 0) {
                 printf("| ");
-            } else if (isSeparatorCol(col)) {
-                if (col == 13)
-                    printf("|\n"); /* we have reached end of columns, go down one line */
-                else
-                    printf("| ");
+            }
+            value = getCellValue(row, col, gameState, type);
+            if (isFixed(row, col, gameState)) {
+                printf(".%d ", value);
+            } else if (value == 0) {
+                printf("   ");
             } else {
-                if (isFixed(transform(row),transform(col),gameState)) {
-                    printf(".%d ", getCellValue(transform(row), transform(col), gameState, type));
-                } else if (getCellValue(transform(row), transform(col), gameState, type) == 0) {
-                    printf("   ");
-                } else {
-                    printf(" %d ", getCellValue(transform(row), transform(col), gameState, type));
-                }
+                printf(" %d ", value);
             }
         }
+        printf("|\n");
     }
-}
-
-/* Subfunctions for printBoard */
-bool isSeparatorRow(int row) {
-    if (row == 1 || row == 5 || row == 9 || row == 13) {
-        return true;
+    for (counter = 0; counter < (2 * (rowsInBlock) + 1 + size * 3); counter++) {
+        printf("-");
     }
-    return false;
+    printf("\n");
 }
-bool isSeparatorCol(int col) {
-    if (col == 1 || col == 5 || col == 9 || col == 13) {
-        return true;
-    }
-    return false;
-}
-
 
 /* Scans number of fixed cells from the user */
 int getNumberOfFixedCells() {
     int fixed;
     char input[MAX];
-    char* endPtr;
+    char *endPtr;
     int i = 0;
 
     printf("Please enter the number of cells to fill [0-80]:\n");
@@ -114,17 +91,15 @@ int getNumberOfFixedCells() {
                    "Please enter the number of cells to fill [0-80]:\n");
             continue;
         }
-    return fixed;
-
+        return fixed;
     }
     return -1;
 }
 
 
-
 /* Start the game. This is the sole function that should be called from main. */
 void START_GAME() {
-     /*Initialize*/
+    /*Initialize*/
     char input[MAX];
     USER_CHOICE status;
     bool gameOver = false;
@@ -135,7 +110,7 @@ void START_GAME() {
     printBoard(gameState, BOARD);
 
 /* Start game */
-    while (fgets(input, MAX, stdin)){
+    while (fgets(input, MAX, stdin)) {
         i = 0;
         while (input[i] == ' ' || input[i] == '\t' || input[i] == '\r' || input[i] == '\n') {
             if (input[i] == '\n') {
@@ -146,14 +121,14 @@ void START_GAME() {
         if (input[i] == '\n') {
             continue;
         }
-        status = parseCommand(gameState, strtok(input,"\n"), gameOver);
+        status = parseCommand(gameState, strtok(input, "\n"), gameOver);
         if (status == EXIT) {
             exit(EXIT_SUCCESS);
         }
         if (status == INVALID) {
             printf("Error: invalid command\n");
         }
-        if (status == RESTART){
+        if (status == RESTART) {
             destroyGameState(gameState);
             gameState = initializeGame();
             printBoard(gameState, BOARD);
@@ -168,8 +143,8 @@ void START_GAME() {
 }
 
 /* Initializes the struct for the game */
-GameState* initializeGame(){
-    GameState *gameState = createGameState(SIZE);
+GameState *initializeGame() {
+    GameState *gameState = createGameState(3, 3);
     generateRandomSolution(gameState);
     copyFromBoardToBoard(gameState, SOLUTION, gameState, BOARD);
     setFixedCellsRand(gameState, getNumberOfFixedCells());

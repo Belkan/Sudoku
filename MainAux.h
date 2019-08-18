@@ -3,7 +3,6 @@
 #ifndef SUDOKU_MAINAUX_H
 #define SUDOKU_MAINAUX_H
 #include <stdbool.h>
-#define SIZE 9
 
 #include "Game.h"
 
@@ -19,9 +18,6 @@ void destroyMatrix(int** matrix, int size);
 
 /* Prints the current board */
 void printBoard(GameState *gameState, BOARD_TYPE type);
-/* Subfunctions for printBoard */
-bool isSeparatorRow(int row);
-bool isSeparatorCol(int row);
 
 /* Scans number of fixed cells from the user */
 int getNumberOfFixedCells();
