@@ -47,10 +47,10 @@ RM = "C:\Program Files\JetBrains\CLion 2018.3.4\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\User\Documents\GitHub\Sudoku
+CMAKE_SOURCE_DIR = C:\Users\Adar\CLionProjects\Github\Sudoku
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\User\Documents\GitHub\Sudoku\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\Adar\CLionProjects\Github\Sudoku\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\User\Documents\GitHub\Sudoku\cmake-build-debug\CMakeFiles C:\Users\User\Documents\GitHub\Sudoku\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Adar\CLionProjects\Github\Sudoku\cmake-build-debug\CMakeFiles C:\Users\Adar\CLionProjects\Github\Sudoku\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\User\Documents\GitHub\Sudoku\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Adar\CLionProjects\Github\Sudoku\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -121,6 +121,60 @@ Sudoku: cmake_check_build_system
 Sudoku/fast:
 	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/build
 .PHONY : Sudoku/fast
+
+FileHandler.obj: FileHandler.c.obj
+
+.PHONY : FileHandler.obj
+
+# target to build an object file
+FileHandler.c.obj:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/FileHandler.c.obj
+.PHONY : FileHandler.c.obj
+
+FileHandler.i: FileHandler.c.i
+
+.PHONY : FileHandler.i
+
+# target to preprocess a source file
+FileHandler.c.i:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/FileHandler.c.i
+.PHONY : FileHandler.c.i
+
+FileHandler.s: FileHandler.c.s
+
+.PHONY : FileHandler.s
+
+# target to generate assembly for a file
+FileHandler.c.s:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/FileHandler.c.s
+.PHONY : FileHandler.c.s
+
+FileHandlerUnitTest.obj: FileHandlerUnitTest.c.obj
+
+.PHONY : FileHandlerUnitTest.obj
+
+# target to build an object file
+FileHandlerUnitTest.c.obj:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/FileHandlerUnitTest.c.obj
+.PHONY : FileHandlerUnitTest.c.obj
+
+FileHandlerUnitTest.i: FileHandlerUnitTest.c.i
+
+.PHONY : FileHandlerUnitTest.i
+
+# target to preprocess a source file
+FileHandlerUnitTest.c.i:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/FileHandlerUnitTest.c.i
+.PHONY : FileHandlerUnitTest.c.i
+
+FileHandlerUnitTest.s: FileHandlerUnitTest.c.s
+
+.PHONY : FileHandlerUnitTest.s
+
+# target to generate assembly for a file
+FileHandlerUnitTest.c.s:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/FileHandlerUnitTest.c.s
+.PHONY : FileHandlerUnitTest.c.s
 
 Game.obj: Game.c.obj
 
@@ -266,6 +320,12 @@ help:
 	@echo ... edit_cache
 	@echo ... Sudoku
 	@echo ... rebuild_cache
+	@echo ... FileHandler.obj
+	@echo ... FileHandler.i
+	@echo ... FileHandler.s
+	@echo ... FileHandlerUnitTest.obj
+	@echo ... FileHandlerUnitTest.i
+	@echo ... FileHandlerUnitTest.s
 	@echo ... Game.obj
 	@echo ... Game.i
 	@echo ... Game.s

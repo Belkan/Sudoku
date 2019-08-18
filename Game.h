@@ -14,6 +14,12 @@ typedef struct GameState{
     bool **fixed;
 } GameState;
 
+typedef enum game_status {
+    EDIT,
+    SOLVE,
+    INIT
+} GAME_STATUS;
+
 typedef enum set_status {
     SUCCESS,
     CELL_FIXED,
