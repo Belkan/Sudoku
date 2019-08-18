@@ -20,7 +20,7 @@ void saveToFile (FILE_PATH_TYPE pathType, char *filePath, GameState *gameState, 
 /* Function to load a board from a given path */
 void loadFromFile (FILE_PATH_TYPE pathType, char *filePath, GameState *gameState, GAME_STATUS gameStatus);
 
-/* TODO test this function! */
+/* TODO write this function! */
 /* Construct the full path from the given relative path. */
 const char * getFullPath (char *relativePath);
 
