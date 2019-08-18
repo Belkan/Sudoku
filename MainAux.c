@@ -39,7 +39,7 @@ void printBoard(GameState *gameState, BOARD_TYPE type) {
 
     for (row = 0; row < size; row++) {
         if (row % rowsInBlock == 0) {
-            for (counter = 0; counter < (2 * (rowsInBlock) + 1 + size * 3); counter++) {
+            for (counter = 0; counter < (2 * (rowsInBlock) + 1 + size * 4); counter++) {
                 printf("-");
             }
             printf("\n");
@@ -49,17 +49,23 @@ void printBoard(GameState *gameState, BOARD_TYPE type) {
                 printf("| ");
             }
             value = getCellValue(row, col, gameState, type);
-            if (isFixed(row, col, gameState)) {
-                printf(".%d ", value);
-            } else if (value == 0) {
-                printf("   ");
+            if (value == 0) {
+                printf("    ");
             } else {
-                printf(" %d ", value);
+                if (value < 10) {
+                    printf(" ");
+                }
+                if (isFixed(row, col, gameState)) {
+                    printf(".");
+                } else {
+                    printf(" ");
+                }
+                printf("%d ", value);
             }
         }
         printf("|\n");
     }
-    for (counter = 0; counter < (2 * (rowsInBlock) + 1 + size * 3); counter++) {
+    for (counter = 0; counter < (2 * (rowsInBlock) + 1 + size * 4); counter++) {
         printf("-");
     }
     printf("\n");
@@ -144,7 +150,7 @@ void START_GAME() {
 
 /* Initializes the struct for the game */
 GameState *initializeGame() {
-    GameState *gameState = createGameState(3, 3);
+    GameState *gameState = createGameState(4, 3);
     generateRandomSolution(gameState);
     copyFromBoardToBoard(gameState, SOLUTION, gameState, BOARD);
     setFixedCellsRand(gameState, getNumberOfFixedCells());

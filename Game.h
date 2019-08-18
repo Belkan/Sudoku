@@ -51,7 +51,7 @@ bool safeMove(int row, int col, int val, GameState* gameState, BOARD_TYPE type);
 bool safeMoveRow(int row, int val, GameState* gameState, BOARD_TYPE type);
 bool safeMoveCol(int col, int val, GameState* gameState, BOARD_TYPE type);
 bool safeMoveBlock(int block, int val, GameState* gameState, BOARD_TYPE type);
-int findBlock(int row, int col);
+int findBlock(int row, int col, GameState* gameState);
 
 /* Sets the amount of initial fixed cells for board */
 void setFixedCellsRand(GameState *gameState, int fixed);

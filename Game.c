@@ -77,7 +77,7 @@ int countBlanks(GameState *gameState, BOARD_TYPE type) {
 
 /* Checks if placement is legal */
 bool safeMove(int row, int col, int val, GameState* gameState, BOARD_TYPE type) {
-    int block = findBlock(row, col);
+    int block = findBlock(row, col, gameState);
 
     return safeMoveRow(row, val, gameState, type) &&
            safeMoveCol(col, val, gameState, type) &&
@@ -106,11 +106,11 @@ bool safeMoveCol(int col, int val, GameState* gameState, BOARD_TYPE type) {
 }
 
 bool safeMoveBlock(int block, int val, GameState* gameState, BOARD_TYPE type) {
-    int blockSize = (int)sqrt(getSize(gameState)), row, col;
-    int fromRow = (block / blockSize) * blockSize;
-    int fromCol = (block % blockSize) * blockSize;
-    for (row = fromRow; row <= fromRow + 2; row++) {
-        for (col = fromCol; col <= fromCol + 2; col++) {
+    int row, col;
+    int fromRow = (block / getRowsInBlock(gameState)) * getRowsInBlock(gameState);
+    int fromCol = (block % getRowsInBlock(gameState)) * getColsInBlock(gameState);
+    for (row = fromRow; row < fromRow + getRowsInBlock(gameState) ; row++) {
+        for (col = fromCol; col < fromCol + getColsInBlock(gameState); col++) {
             if (getCellValue(row, col, gameState, type) == val) { /* val exists in block */
                 return false;
             }
@@ -119,14 +119,17 @@ bool safeMoveBlock(int block, int val, GameState* gameState, BOARD_TYPE type) {
     return true;
 }
 
-int findBlock(int row, int col) {
-    return ((row / 3)*3 + (col / 3));
+int findBlock(int row, int col, GameState* gameState) {
+    int rows = getRowsInBlock(gameState);
+    int cols = getColsInBlock(gameState);
+    return (row / rows)*rows + (col / cols);
 }
 
 
 /* Sets the amount of initial fixed cells for board */
 void setFixedCellsRand(GameState *gameState, int fixed) {
     int row, col, counter;
+    int size = getSize(gameState);
     counter = 0;
     if (fixed == -1){
         printf("Exiting...\n");
@@ -134,15 +137,15 @@ void setFixedCellsRand(GameState *gameState, int fixed) {
         exit(0);
     }
     while (counter < fixed) {
-        col = getRandom(0,8);
-        row = getRandom(0,8);
+        col = getRandom(0,size-1);
+        row = getRandom(0,size-1);
         if (!isFixed(row, col, gameState)) {
             setFixed(row, col, true, gameState);
             counter++;
         }
     }
-    for (row = 0; row < getSize(gameState); row++) {
-        for (col = 0; col < getSize(gameState); col++) {
+    for (row = 0; row < size; row++) {
+        for (col = 0; col < size; col++) {
             if (!isFixed(row, col, gameState)) {
                 setCellValue(row, col, 0, gameState, BOARD);
             }
