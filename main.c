@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "Solver.h"
 #include "Parser.h"
+#include "FileHandlerUnitTest.h"
 
 int main(int argc, char *argv[]) {
     if (argc == 2) {
@@ -15,5 +16,7 @@ int main(int argc, char *argv[]) {
 
     /* start playing... */
     START_GAME();
+
+
     return 0;
 }

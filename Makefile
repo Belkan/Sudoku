@@ -1,4 +1,4 @@
-SudokuMake = Game.c MainAux.c Parser.c Solver.c main.c
+SudokuMake = Game.c MainAux.c Parser.c Solver.c main.c FileHandler.c
 CC = gcc
 FLAGS = -Wall -ansi -Wextra -Werror -pedantic-errors
 
