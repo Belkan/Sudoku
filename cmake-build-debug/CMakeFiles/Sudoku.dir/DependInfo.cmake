@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "C:/Users/Adar/CLionProjects/Github/Sudoku/ErrorHandler.c" "C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/ErrorHandler.c.obj"
   "C:/Users/Adar/CLionProjects/Github/Sudoku/FileHandler.c" "C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/FileHandler.c.obj"
   "C:/Users/Adar/CLionProjects/Github/Sudoku/FileHandlerUnitTest.c" "C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/FileHandlerUnitTest.c.obj"
   "C:/Users/Adar/CLionProjects/Github/Sudoku/Game.c" "C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/Game.c.obj"

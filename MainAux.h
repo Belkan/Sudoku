@@ -27,4 +27,7 @@ void START_GAME();
 
 /* Initializes the struct for the game */
 GameState* initializeGame();
+
+/* Aux function to convert size_t to int */
+int size_t2int(size_t val);
 #endif

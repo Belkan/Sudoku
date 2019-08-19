@@ -122,6 +122,33 @@ Sudoku/fast:
 	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/build
 .PHONY : Sudoku/fast
 
+ErrorHandler.obj: ErrorHandler.c.obj
+
+.PHONY : ErrorHandler.obj
+
+# target to build an object file
+ErrorHandler.c.obj:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/ErrorHandler.c.obj
+.PHONY : ErrorHandler.c.obj
+
+ErrorHandler.i: ErrorHandler.c.i
+
+.PHONY : ErrorHandler.i
+
+# target to preprocess a source file
+ErrorHandler.c.i:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/ErrorHandler.c.i
+.PHONY : ErrorHandler.c.i
+
+ErrorHandler.s: ErrorHandler.c.s
+
+.PHONY : ErrorHandler.s
+
+# target to generate assembly for a file
+ErrorHandler.c.s:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/ErrorHandler.c.s
+.PHONY : ErrorHandler.c.s
+
 FileHandler.obj: FileHandler.c.obj
 
 .PHONY : FileHandler.obj
@@ -320,6 +347,9 @@ help:
 	@echo ... edit_cache
 	@echo ... Sudoku
 	@echo ... rebuild_cache
+	@echo ... ErrorHandler.obj
+	@echo ... ErrorHandler.i
+	@echo ... ErrorHandler.s
 	@echo ... FileHandler.obj
 	@echo ... FileHandler.i
 	@echo ... FileHandler.s

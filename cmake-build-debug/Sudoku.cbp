@@ -74,6 +74,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/ErrorHandler.c">
+			<Option target="Sudoku"/>
+		</Unit>
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/ErrorHandler.h">
+			<Option target="Sudoku"/>
+		</Unit>
 		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/FileHandler.c">
 			<Option target="Sudoku"/>
 		</Unit>

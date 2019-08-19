@@ -102,6 +102,10 @@ int getNumberOfFixedCells() {
     return -1;
 }
 
+/* convert size_t to int */
+int size_t2int(size_t val) {
+    return (val <= INT_MAX) ? (int)((ssize_t)val) : -1;
+}
 
 /* Start the game. This is the sole function that should be called from main. */
 void START_GAME() {

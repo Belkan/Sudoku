@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Sudoku.dir/Solver.c.obj"
   "CMakeFiles/Sudoku.dir/FileHandler.c.obj"
   "CMakeFiles/Sudoku.dir/FileHandlerUnitTest.c.obj"
+  "CMakeFiles/Sudoku.dir/ErrorHandler.c.obj"
   "Sudoku.pdb"
   "Sudoku.exe"
   "Sudoku.exe.manifest"
