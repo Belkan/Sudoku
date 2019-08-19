@@ -95,7 +95,7 @@ void loadFromFile (char *filePath, GameState *gameState, GAME_STATUS gameStatus)
         k++;
         /* Read fixed cells to board */
         if (currLine[j] == '.') {
-            gameState->fixed[i][k] = true;
+            gameState->fixed[i][k-1] = true;
         }
     }
 
