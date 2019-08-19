@@ -15,7 +15,7 @@ bool validLoadPath (char *filePath) {
 /* Function to load up a saved game board and update our game state with it */
 void loadFromFile (char *filePath, GameState *gameState, GAME_STATUS gameStatus) {
 
-    char *rowSize = (char*)malloc(CHAR_MAX), *colSize = (char *)malloc(CHAR_MAX);
+    char *rowSize = (char *)malloc(CHAR_MAX), *colSize = (char *)malloc(CHAR_MAX);
     int i = 0, k = 0, j = 0;
     char *currLine = "Read this from file";
     FILE *loadedGame;
