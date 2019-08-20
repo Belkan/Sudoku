@@ -108,14 +108,14 @@ int size_t2int(size_t val) {
 }
 
 /* Start the game. This is the sole function that should be called from main. */
-void START_GAME() {
+void START_GAME(int n, int m) {
     /*Initialize*/
     char input[MAX];
     USER_CHOICE status;
     bool gameOver = false;
     int i = 0;
 
-    GameState *gameState = initializeGame();
+    GameState *gameState = initializeGame(n, m);
 
     printBoard(gameState, BOARD);
 
@@ -140,7 +140,7 @@ void START_GAME() {
         }
         if (status == RESTART) {
             destroyGameState(gameState);
-            gameState = initializeGame();
+            gameState = initializeGame(n, m);
             printBoard(gameState, BOARD);
             gameOver = false;
         }
@@ -153,8 +153,8 @@ void START_GAME() {
 }
 
 /* Initializes the struct for the game */
-GameState *initializeGame() {
-    GameState *gameState = createGameState(4, 3);
+GameState *initializeGame(int n, int m) {
+    GameState *gameState = createGameState(n, m);
     generateRandomSolution(gameState);
     copyFromBoardToBoard(gameState, SOLUTION, gameState, BOARD);
     setFixedCellsRand(gameState, getNumberOfFixedCells());

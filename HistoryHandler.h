@@ -1,6 +1,3 @@
-//
-// Created by User on 20/08/2019.
-//
 
 #ifndef SUDOKU_HISTORYHANDLER_H
 #define SUDOKU_HISTORYHANDLER_H
@@ -26,4 +23,4 @@ HistoryState* getPrevState (HistoryState*);
 
 
 
-#endif //SUDOKU_HISTORYHANDLER_H
+#endif
