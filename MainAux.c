@@ -107,6 +107,7 @@ int size_t2int(size_t val) {
     return (val <= INT_MAX) ? (int)((ssize_t)val) : -1;
 }
 
+/* TODO make START_GAME generic for different statuses, edit/init/solve */
 /* Start the game. This is the sole function that should be called from main. */
 void START_GAME(int n, int m, GAME_STATUS gameStatus) {
     /*Initialize*/
