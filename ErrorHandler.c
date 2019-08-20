@@ -24,9 +24,9 @@ void throw_illegalParameterRangeError() {
 void throw_illegalParameterValueError() {
     printf("Error: parameters given have illegal values for current board state. Please try again.\n");
 }
-void throw_tooManyParamatersError() {
+void throw_tooManyParametersError() {
     printf("Error: too many parameters for given command. Please try again.\n");
 }
-void throw_tooFewParamatersError() {
+void throw_tooFewParametersError() {
     printf("Error: too few parameters for given command. Please try again.\n");
 }
