@@ -86,12 +86,6 @@
 		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/FileHandler.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/FileHandlerUnitTest.c">
-			<Option target="Sudoku"/>
-		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/FileHandlerUnitTest.h">
-			<Option target="Sudoku"/>
-		</Unit>
 		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/Game.c">
 			<Option target="Sudoku"/>
 		</Unit>

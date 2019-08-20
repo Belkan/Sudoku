@@ -6,7 +6,6 @@
 #include "Solver.h"
 #include "Parser.h"
 #include "FileHandler.h"
-#include "FileHandlerUnitTest.h"
 
 int main(int argc, char *argv[]) {
 

@@ -38,6 +38,11 @@ bool matchesFormat(char *str, USER_CHOICE choice) {
                 return true;
             }
             return false;
+        case PRINT_BOARD:
+            if(strcmp(str, "print_board") == 0) {
+                return true;
+            }
+            return false;
         default:
             return false;
     }
@@ -50,6 +55,9 @@ USER_CHOICE parseCommand(GameState *gameState, char *input, bool GameOver) {
     char *str[MAX];
     char *endPtr;
     char *token = strtok(input, " \t\r\n");
+
+    /* Reset contents of array */
+    str[1] = NULL;
 
     while (token != 0){
         str[k++] = token;
@@ -81,11 +89,15 @@ USER_CHOICE parseCommand(GameState *gameState, char *input, bool GameOver) {
         printf("Exiting...\n");
         return EXIT;
     }
+    if (matchesFormat(str[0], PRINT_BOARD)) {
+        printBoard(gameState, BOARD);
+        return PRINT_BOARD;
+    }
     if (matchesFormat(str[0], RESTART)) {
         return RESTART;
     }
     if (matchesFormat(str[0], EDIT)) {
-        if (str[1] != NULL) {
+        if (str[1]) {
             loadFromFile(str[1], gameState);
         }
         else {

@@ -117,7 +117,8 @@ void START_GAME(int n, int m) {
 
     GameState *gameState = initializeGame(n, m);
 
-    printBoard(gameState, BOARD);
+    printf("-----------TAUDOKU-----------\n");
+    printf("Enter a command of your choice:\n");
 
 /* Start game */
     while (fgets(input, MAX, stdin)) {
@@ -157,6 +158,5 @@ GameState *initializeGame(int n, int m) {
     GameState *gameState = createGameState(n, m);
     generateRandomSolution(gameState);
     copyFromBoardToBoard(gameState, SOLUTION, gameState, BOARD);
-    setFixedCellsRand(gameState, getNumberOfFixedCells());
     return gameState;
 }

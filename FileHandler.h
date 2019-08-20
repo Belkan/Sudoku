@@ -8,6 +8,7 @@
 #include "Game.h"
 #include "MainAux.h"
 #include "ErrorHandler.h"
+#include "Parser.h"
 
 
 #ifndef SUDOKU_FILEHANDLER_H

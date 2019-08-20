@@ -23,16 +23,18 @@ void loadEmptyBoard(GameState *gameState) {
 
 /* Function to load up a saved game board and update our game state with it */
 void loadFromFile (char *filePath, GameState *gameState) {
+    char *str[MAX];
+    char *token;
     char *rowSize = (char *)malloc(CHAR_MAX), *colSize = (char *)malloc(CHAR_MAX);
-    int i = 0, k = 0, j = 0;
+    int i = 0, k = 0, j = 0, idx = 0;
     char *currLine = "Read this from file";
     FILE *loadedGame;
+
     /* Test for validity of board */
     if (!validLoadPath(filePath)) {
         throw_loadPathError();
         return;
     }
-
     /* Make sure game status is either Edit or Solve */
     if (getStatus(gameState) == INITMODE) {
         throw_loadedInWrongModeError();
@@ -45,31 +47,20 @@ void loadFromFile (char *filePath, GameState *gameState) {
     /* Read first line of loaded game into board */
     fgets(currLine, CHAR_MAX, loadedGame);
 
-    /* Read row size */
-    for (i = 0; i < size_t2int(strlen(currLine)); i++) {
-        if (isdigit(currLine[i])) {
-            rowSize[k] = currLine[i];
-            k++;
-        }
-        else if (k > 0) {
-            break;
-        }
+    /* Break line using delimeter */
+    token = strtok(currLine, " \t\r\n");
+    while (token != 0){
+        str[idx++] = token;
+        token = strtok(0, " \t\r\n");
     }
+    str[0] = NULL, str[1] = NULL;
+
+    /* Read row & col sizes */
+    rowSize = str[0];
+    colSize = str[1];
     if (!rowSize) {
         throw_rowSizeNotFoundError();
         return;
-    }
-
-    k = 0;
-    /* Read column size */
-    for (; i < size_t2int(strlen(currLine)); i++) {
-        if (isdigit(currLine[i])) {
-            colSize[k] = currLine[i];
-            k++;
-        }
-        else if (k > 0) {
-            break;
-        }
     }
     if (!colSize) {
         throw_colSizeNotFoundError();
@@ -78,7 +69,7 @@ void loadFromFile (char *filePath, GameState *gameState) {
 
     /* Get rid of old board to load up new one */
     destroyGameState(gameState);
-    gameState = initializeGame(atoi(rowSize), atoi(colSize));
+    START_GAME(atoi(rowSize), atoi(colSize));
 
     /* Read board */
     for (i = 0; i < atoi(rowSize); i++) {

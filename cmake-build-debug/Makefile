@@ -176,33 +176,6 @@ FileHandler.c.s:
 	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/FileHandler.c.s
 .PHONY : FileHandler.c.s
 
-FileHandlerUnitTest.obj: FileHandlerUnitTest.c.obj
-
-.PHONY : FileHandlerUnitTest.obj
-
-# target to build an object file
-FileHandlerUnitTest.c.obj:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/FileHandlerUnitTest.c.obj
-.PHONY : FileHandlerUnitTest.c.obj
-
-FileHandlerUnitTest.i: FileHandlerUnitTest.c.i
-
-.PHONY : FileHandlerUnitTest.i
-
-# target to preprocess a source file
-FileHandlerUnitTest.c.i:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/FileHandlerUnitTest.c.i
-.PHONY : FileHandlerUnitTest.c.i
-
-FileHandlerUnitTest.s: FileHandlerUnitTest.c.s
-
-.PHONY : FileHandlerUnitTest.s
-
-# target to generate assembly for a file
-FileHandlerUnitTest.c.s:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/FileHandlerUnitTest.c.s
-.PHONY : FileHandlerUnitTest.c.s
-
 Game.obj: Game.c.obj
 
 .PHONY : Game.obj
@@ -380,9 +353,6 @@ help:
 	@echo ... FileHandler.obj
 	@echo ... FileHandler.i
 	@echo ... FileHandler.s
-	@echo ... FileHandlerUnitTest.obj
-	@echo ... FileHandlerUnitTest.i
-	@echo ... FileHandlerUnitTest.s
 	@echo ... Game.obj
 	@echo ... Game.i
 	@echo ... Game.s

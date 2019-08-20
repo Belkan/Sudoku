@@ -134,22 +134,9 @@ CMakeFiles/Sudoku.dir/FileHandler.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Sudoku.dir/FileHandler.c.s"
 	C:\mingw\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Adar\CLionProjects\Github\Sudoku\FileHandler.c -o CMakeFiles\Sudoku.dir\FileHandler.c.s
 
-CMakeFiles/Sudoku.dir/FileHandlerUnitTest.c.obj: CMakeFiles/Sudoku.dir/flags.make
-CMakeFiles/Sudoku.dir/FileHandlerUnitTest.c.obj: ../FileHandlerUnitTest.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Adar\CLionProjects\Github\Sudoku\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/Sudoku.dir/FileHandlerUnitTest.c.obj"
-	C:\mingw\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Sudoku.dir\FileHandlerUnitTest.c.obj   -c C:\Users\Adar\CLionProjects\Github\Sudoku\FileHandlerUnitTest.c
-
-CMakeFiles/Sudoku.dir/FileHandlerUnitTest.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Sudoku.dir/FileHandlerUnitTest.c.i"
-	C:\mingw\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Adar\CLionProjects\Github\Sudoku\FileHandlerUnitTest.c > CMakeFiles\Sudoku.dir\FileHandlerUnitTest.c.i
-
-CMakeFiles/Sudoku.dir/FileHandlerUnitTest.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Sudoku.dir/FileHandlerUnitTest.c.s"
-	C:\mingw\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Adar\CLionProjects\Github\Sudoku\FileHandlerUnitTest.c -o CMakeFiles\Sudoku.dir\FileHandlerUnitTest.c.s
-
 CMakeFiles/Sudoku.dir/ErrorHandler.c.obj: CMakeFiles/Sudoku.dir/flags.make
 CMakeFiles/Sudoku.dir/ErrorHandler.c.obj: ../ErrorHandler.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Adar\CLionProjects\Github\Sudoku\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/Sudoku.dir/ErrorHandler.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Adar\CLionProjects\Github\Sudoku\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/Sudoku.dir/ErrorHandler.c.obj"
 	C:\mingw\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Sudoku.dir\ErrorHandler.c.obj   -c C:\Users\Adar\CLionProjects\Github\Sudoku\ErrorHandler.c
 
 CMakeFiles/Sudoku.dir/ErrorHandler.c.i: cmake_force
@@ -162,7 +149,7 @@ CMakeFiles/Sudoku.dir/ErrorHandler.c.s: cmake_force
 
 CMakeFiles/Sudoku.dir/HistoryHandler.c.obj: CMakeFiles/Sudoku.dir/flags.make
 CMakeFiles/Sudoku.dir/HistoryHandler.c.obj: ../HistoryHandler.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Adar\CLionProjects\Github\Sudoku\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/Sudoku.dir/HistoryHandler.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Adar\CLionProjects\Github\Sudoku\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/Sudoku.dir/HistoryHandler.c.obj"
 	C:\mingw\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Sudoku.dir\HistoryHandler.c.obj   -c C:\Users\Adar\CLionProjects\Github\Sudoku\HistoryHandler.c
 
 CMakeFiles/Sudoku.dir/HistoryHandler.c.i: cmake_force
@@ -181,7 +168,6 @@ Sudoku_OBJECTS = \
 "CMakeFiles/Sudoku.dir/Parser.c.obj" \
 "CMakeFiles/Sudoku.dir/Solver.c.obj" \
 "CMakeFiles/Sudoku.dir/FileHandler.c.obj" \
-"CMakeFiles/Sudoku.dir/FileHandlerUnitTest.c.obj" \
 "CMakeFiles/Sudoku.dir/ErrorHandler.c.obj" \
 "CMakeFiles/Sudoku.dir/HistoryHandler.c.obj"
 
@@ -194,14 +180,13 @@ Sudoku.exe: CMakeFiles/Sudoku.dir/MainAux.c.obj
 Sudoku.exe: CMakeFiles/Sudoku.dir/Parser.c.obj
 Sudoku.exe: CMakeFiles/Sudoku.dir/Solver.c.obj
 Sudoku.exe: CMakeFiles/Sudoku.dir/FileHandler.c.obj
-Sudoku.exe: CMakeFiles/Sudoku.dir/FileHandlerUnitTest.c.obj
 Sudoku.exe: CMakeFiles/Sudoku.dir/ErrorHandler.c.obj
 Sudoku.exe: CMakeFiles/Sudoku.dir/HistoryHandler.c.obj
 Sudoku.exe: CMakeFiles/Sudoku.dir/build.make
 Sudoku.exe: CMakeFiles/Sudoku.dir/linklibs.rsp
 Sudoku.exe: CMakeFiles/Sudoku.dir/objects1.rsp
 Sudoku.exe: CMakeFiles/Sudoku.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Adar\CLionProjects\Github\Sudoku\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking C executable Sudoku.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Adar\CLionProjects\Github\Sudoku\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking C executable Sudoku.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Sudoku.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
