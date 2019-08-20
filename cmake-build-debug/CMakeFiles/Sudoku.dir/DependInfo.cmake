@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "C:/Users/User/Documents/GitHub/Sudoku/FileHandler.c" "C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/FileHandler.c.obj"
   "C:/Users/User/Documents/GitHub/Sudoku/FileHandlerUnitTest.c" "C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/FileHandlerUnitTest.c.obj"
   "C:/Users/User/Documents/GitHub/Sudoku/Game.c" "C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/Game.c.obj"
+  "C:/Users/User/Documents/GitHub/Sudoku/HistoryHandler.c" "C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/HistoryHandler.c.obj"
   "C:/Users/User/Documents/GitHub/Sudoku/MainAux.c" "C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/MainAux.c.obj"
   "C:/Users/User/Documents/GitHub/Sudoku/Parser.c" "C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/Parser.c.obj"
   "C:/Users/User/Documents/GitHub/Sudoku/Solver.c" "C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/Solver.c.obj"
