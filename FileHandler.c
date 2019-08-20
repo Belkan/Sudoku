@@ -30,6 +30,10 @@ void loadFromFile (char *filePath, GameState *gameState) {
         return;
     }
 
+    /* Get rid of old board to load up new one */
+    destroyGameState(gameState);
+    gameState = initializeGame();
+
     /* Load up the game */
     loadedGame = fopen(filePath, "r");
 
