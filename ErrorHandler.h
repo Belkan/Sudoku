@@ -9,4 +9,11 @@ extern void throw_colSizeNotFoundError();
 extern void throw_loadedInWrongModeError();
 extern void throw_loadPathError();
 
+/* Below are errors regarding the command that was given as input */
+extern void throw_illegalCommandNameError();
+extern void throw_illegalParameterRangeError();
+extern void throw_illegalParameterValueError();
+extern void throw_tooManyParamatersError();
+extern void throw_tooFewParamatersError();
+
 #endif
