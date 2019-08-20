@@ -41,5 +41,3 @@ HistoryState* advanceHistoryByGameState (HistoryState* historyState, GameState* 
     historyState->next = newHistoryState;
     return newHistoryState;
 }
-
-HistoryState*
