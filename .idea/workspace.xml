@@ -14,8 +14,6 @@
     <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HistoryHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryHandler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryHandler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/depend.make" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="C:\Users\User\Documents\GitHub\Sudoku\.idea\shelf/" />
@@ -81,8 +79,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FileHandler.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="34" column="31" lean-forward="true" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+            <state relative-caret-position="510">
+              <caret line="33" column="31" lean-forward="true" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -90,8 +88,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HistoryHandler.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="35" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+            <state relative-caret-position="535">
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
             </state>
           </provider>
         </entry>
@@ -99,8 +97,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HistoryHandler.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+            <state relative-caret-position="187">
+              <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -279,13 +277,6 @@
       <workItem from="1565954817706" duration="10209000" />
       <workItem from="1566160309549" duration="10716000" />
       <workItem from="1566224235799" duration="7471000" />
-    </task>
-    <task id="LOCAL-00001" summary="Ignore shit">
-      <created>1558276181836</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1558276181836</updated>
     </task>
     <task id="LOCAL-00002" summary="Ignore shit">
       <created>1558276218339</created>
@@ -616,11 +607,25 @@
       <option name="project" value="LOCAL" />
       <updated>1566315515487</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Add basic API to HistoryState">
+      <created>1566316184593</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1566316184593</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Add deleteAllHistory function to HistoryHandler.">
+      <created>1566322677706</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1566322677706</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97109000" />
+    <option name="totallyTimeSpent" value="99573000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -696,7 +701,9 @@
     <MESSAGE value="Make GAME_STATUS a field in GameState" />
     <MESSAGE value="Add HistoryHandler.c/.h and HistoryState data structure" />
     <MESSAGE value="Inject board size to InitializeGame &amp; StartGame" />
-    <option name="LAST_COMMIT_MESSAGE" value="Inject board size to InitializeGame &amp; StartGame" />
+    <MESSAGE value="Add basic API to HistoryState" />
+    <MESSAGE value="Add deleteAllHistory function to HistoryHandler." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add deleteAllHistory function to HistoryHandler." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
@@ -835,8 +842,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FileHandler.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="34" column="31" lean-forward="true" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+        <state relative-caret-position="510">
+          <caret line="33" column="31" lean-forward="true" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -870,15 +877,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HistoryHandler.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+        <state relative-caret-position="187">
+          <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HistoryHandler.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="35" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+        <state relative-caret-position="535">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
         </state>
       </provider>
     </entry>

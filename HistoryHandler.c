@@ -9,29 +9,35 @@ HistoryState* createHistoryState (GameState* gameState) {
     return historyState;
 }
 
-void destoryHistoryState (HistoryState* historyState) {
-    free(historyState);
-}
-
-void setNextState (HistoryState* historyState, HistoryState* nextState) {
-    if (getNextState(historyState) != NULL) {
-        destoryHistoryState(getNextState(historyState));
+void deleteAllHistory (HistoryState* historyState) {
+    HistoryState* tmpState;
+    while (historyState->next != NULL) {
+        historyState = historyState->next;
     }
-    historyState->next = nextState;
+    tmpState = historyState;
+    while (tmpState->prev != NULL) {
+        tmpState = tmpState->prev;
+        free(historyState);
+        historyState = tmpState;
+    }
+    free(tmpState);
 }
 
-HistoryState* getNextState (HistoryState* historyState) {
+HistoryState* getNextHistoryState(HistoryState* historyState) {
     return historyState->next;
 }
 
-void setPrevState (HistoryState* historyState, HistoryState* prevState) {
-    if (getPrevState(historyState) != NULL) {
-        destoryHistoryState(getPrevState(historyState));
-    }
-    historyState->prev = prevState;
-}
-
-HistoryState* getPrevState (HistoryState* historyState) {
+HistoryState* getPreviousHistoryState(HistoryState* historyState) {
     return historyState->prev;
 }
 
+GameState* getGameStateFromHistory(HistoryState* historyState) {
+    return historyState->gameState;
+}
+
+HistoryState* advanceHistoryByGameState (HistoryState* historyState, GameState* gameState) {
+    HistoryState* newHistoryState = createHistoryState(gameState);
+    newHistoryState->prev = historyState;
+    historyState->next = newHistoryState;
+    return newHistoryState;
+}

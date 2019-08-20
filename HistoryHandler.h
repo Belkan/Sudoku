@@ -11,18 +11,18 @@ typedef struct HistoryState {
 
 HistoryState* createHistoryState (GameState* gameState);
 
-void destoryHistoryState (HistoryState* historyState);
+HistoryState* getNextHistoryState(HistoryState* historyState);
 
-void setNextState (HistoryState* historyState, HistoryState* nextState);
+HistoryState* getPreviousHistoryState(HistoryState* historyState);
 
-HistoryState* getNextState (HistoryState*);
+GameState* getGameStateFromHistory(HistoryState* historyState);
 
-void setPrevState (HistoryState* historyState, HistoryState* prevState);
+/* Will delete all HistoryStates in this historyState's doubly-linked list. */
+void deleteAllHistory (HistoryState* historyState);
 
-HistoryState* getPrevState (HistoryState*);
-
-
-
+/* Returns a new HistoryState of gameState that succeeds historyState. */
+/* @pre: historyState.next != NULL */
+HistoryState* advanceHistoryByGameState (HistoryState* historyState, GameState* gameState);
 
 
 #endif
