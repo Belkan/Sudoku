@@ -108,7 +108,7 @@ int size_t2int(size_t val) {
 }
 
 /* Start the game. This is the sole function that should be called from main. */
-void START_GAME(int n, int m) {
+void START_GAME(int n, int m, GAME_STATUS gameStatus) {
     /*Initialize*/
     char input[MAX];
     USER_CHOICE status;
@@ -116,6 +116,9 @@ void START_GAME(int n, int m) {
     int i = 0;
 
     GameState *gameState = initializeGame(n, m);
+    if (gameStatus == EDITMODE) {
+        setMarkErrors(gameState, true);
+    }
 
     printf("-----------TAUDOKU-----------\n");
     printf("Enter a command of your choice:\n");

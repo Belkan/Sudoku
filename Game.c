@@ -255,6 +255,10 @@ int getRowsInBlock (GameState* gameState) {
     return gameState->rowsInBlock;
 }
 
+void setMarkErrors(GameState *gameState, bool val) {
+    gameState->markErrors = val;
+}
+
 int getColsInBlock (GameState* gameState) {
     return gameState->colsInBlock;
 }

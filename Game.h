@@ -21,6 +21,7 @@ typedef struct GameState{
     int **board;
     int **solution;
     bool **fixed;
+    bool markErrors;
     GAME_STATUS status;
 } GameState;
 
@@ -38,6 +39,8 @@ typedef enum board_type {
 
 /* Tries to set value in (row, col) in board, and returns the status of the request */
 SET_STATUS set(GameState *gameState, int row, int col, int value);
+
+void setMarkErrors(GameState *gameState, bool val);
 
 /* Gives user hint for next move */
 void hint(GameState *gameState, int row, int col);

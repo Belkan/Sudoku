@@ -69,7 +69,7 @@ void loadFromFile (char *filePath, GameState *gameState) {
 
     /* Get rid of old board to load up new one */
     destroyGameState(gameState);
-    START_GAME(atoi(rowSize), atoi(colSize));
+    START_GAME(atoi(rowSize), atoi(colSize), EDITMODE);
 
     /* Read board */
     for (i = 0; i < atoi(rowSize); i++) {
