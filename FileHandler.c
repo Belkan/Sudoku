@@ -48,12 +48,12 @@ void loadFromFile (char *filePath, GameState *gameState) {
     fgets(currLine, CHAR_MAX, loadedGame);
 
     /* Break line using delimeter */
+    str[0] = NULL, str[1] = NULL;
     token = strtok(currLine, " \t\r\n");
     while (token != 0){
         str[idx++] = token;
         token = strtok(0, " \t\r\n");
     }
-    str[0] = NULL, str[1] = NULL;
 
     /* Read row & col sizes */
     rowSize = str[0];
