@@ -21,11 +21,11 @@ typedef enum file_path_type {
 
 /* TODO write this function! */
 /* Function to save a board to a file at a given path. Paths can be relative or absolute. */
-void saveToFile (FILE_PATH_TYPE pathType, char *filePath, GameState *gameState, GAME_STATUS gameStatus);
+void saveToFile (FILE_PATH_TYPE pathType, char *filePath, GameState *gameState);
 
 /* TODO test this function! */
 /* Function to load a board from a given path */
-void loadFromFile (char *filePath, GameState *gameState, GAME_STATUS gameStatus);
+void loadFromFile (char *filePath, GameState *gameState);
 
 /* TODO write this function! */
 /* Check if given path is valid for saving a file. */

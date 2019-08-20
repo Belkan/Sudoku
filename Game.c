@@ -258,3 +258,11 @@ int getRowsInBlock (GameState* gameState) {
 int getColsInBlock (GameState* gameState) {
     return gameState->colsInBlock;
 }
+
+void setStatus(GameState* gameState, GAME_STATUS status) {
+    gameState->status = status;
+}
+
+GAME_STATUS getStatus(GameState* gameState) {
+    return gameState->status;
+}

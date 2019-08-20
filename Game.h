@@ -6,6 +6,14 @@
 #include <stdbool.h>
 #include "ErrorHandler.h"
 
+
+
+typedef enum game_status {
+    EDIT,
+    SOLVE,
+    INIT
+} GAME_STATUS;
+
 typedef struct GameState{
     int size;
     int rowsInBlock;
@@ -13,13 +21,8 @@ typedef struct GameState{
     int **board;
     int **solution;
     bool **fixed;
+    GAME_STATUS status;
 } GameState;
-
-typedef enum game_status {
-    EDIT,
-    SOLVE,
-    INIT
-} GAME_STATUS;
 
 typedef enum set_status {
     SUCCESS,
@@ -79,6 +82,6 @@ bool isFixed (int row, int col, GameState* gameState);
 int getSize (GameState* gameState);
 int getRowsInBlock (GameState* gameState);
 int getColsInBlock (GameState* gameState) ;
-
-
+void setStatus(GameState* gameState, GAME_STATUS status);
+GAME_STATUS getStatus(GameState* gameState);
 #endif

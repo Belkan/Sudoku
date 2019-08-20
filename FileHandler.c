@@ -13,8 +13,7 @@ bool validLoadPath (char *filePath) {
 } /* EOF */
 
 /* Function to load up a saved game board and update our game state with it */
-void loadFromFile (char *filePath, GameState *gameState, GAME_STATUS gameStatus) {
-
+void loadFromFile (char *filePath, GameState *gameState) {
     char *rowSize = (char *)malloc(CHAR_MAX), *colSize = (char *)malloc(CHAR_MAX);
     int i = 0, k = 0, j = 0;
     char *currLine = "Read this from file";
@@ -27,7 +26,7 @@ void loadFromFile (char *filePath, GameState *gameState, GAME_STATUS gameStatus)
     }
 
     /* Make sure game status is either Edit or Solve */
-    if (gameStatus == INIT) {
+    if (getStatus(gameState) == INIT) {
         throw_loadedInWrongModeError();
         return;
     }

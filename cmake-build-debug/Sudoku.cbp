@@ -8,121 +8,123 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug"/>
+				<Option working_dir="C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug"/>
+				<Option working_dir="C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Sudoku">
-				<Option output="C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Sudoku.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug"/>
+				<Option output="C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Sudoku.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="C:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
-					<Add directory="C:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
-					<Add directory="C:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/5.1.0/include"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/5.1.0/../../../../include"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/5.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/5.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 Sudoku"/>
-					<CompileFile command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 Sudoku"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Sudoku/fast">
-				<Option output="C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Sudoku.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug"/>
+				<Option output="C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Sudoku.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="C:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
-					<Add directory="C:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
-					<Add directory="C:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/5.1.0/include"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/5.1.0/../../../../include"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/5.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/5.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 Sudoku/fast"/>
-					<CompileFile command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 Sudoku/fast"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug"/>
+				<Option working_dir="C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/mingw/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/User/Documents/GitHub/Sudoku/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/ErrorHandler.c">
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/ErrorHandler.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/ErrorHandler.h">
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/ErrorHandler.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/FileHandler.c">
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/FileHandler.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/FileHandler.h">
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/FileHandler.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/FileHandlerUnitTest.c">
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/FileHandlerUnitTest.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/FileHandlerUnitTest.h">
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/FileHandlerUnitTest.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/Game.c">
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/Game.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/Game.h">
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/Game.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/MainAux.c">
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/MainAux.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/MainAux.h">
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/MainAux.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/Parser.c">
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/Parser.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/Parser.h">
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/Parser.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/Solver.c">
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/Solver.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/Solver.h">
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/Solver.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/main.c">
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/main.c">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/minunit.h">
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/minunit.h">
 			<Option target="Sudoku"/>
 		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/CMakeLists.txt">
+		<Unit filename="C:/Users/User/Documents/GitHub/Sudoku/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
