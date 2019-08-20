@@ -10,7 +10,7 @@ bool validLoadPath (char *filePath) {
         return true;
     }
     return false;
-} /* EOF */
+}
 
 /* Function to load up a saved game board and update our game state with it */
 void loadFromFile (char *filePath, GameState *gameState) {
@@ -19,8 +19,7 @@ void loadFromFile (char *filePath, GameState *gameState) {
     char *currLine = "Read this from file";
     FILE *loadedGame;
     /* Test for validity of board */
-    bool validLoad = validLoadPath(filePath);
-    if (!validLoad) {
+    if (!validLoadPath(filePath)) {
         throw_loadPathError();
         return;
     }
@@ -109,4 +108,4 @@ void loadFromFile (char *filePath, GameState *gameState) {
     free(rowSize);
     free(colSize);
 
-} /* EOF */
+}
