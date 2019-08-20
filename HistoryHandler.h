@@ -9,13 +9,15 @@ typedef struct HistoryState {
     struct HistoryState* prev;
 } HistoryState;
 
-GameState* createHistoryState (GameState* gameState);
+HistoryState* createHistoryState (GameState* gameState);
 
-HistoryState* setNextState (HistoryState*, HistoryState*);
+void destoryHistoryState (HistoryState* historyState);
+
+void setNextState (HistoryState* historyState, HistoryState* nextState);
 
 HistoryState* getNextState (HistoryState*);
 
-HistoryState* setPrevState (HistoryState*, HistoryState*);
+void setPrevState (HistoryState* historyState, HistoryState* prevState);
 
 HistoryState* getPrevState (HistoryState*);
 
