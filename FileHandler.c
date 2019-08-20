@@ -12,6 +12,13 @@ bool validLoadPath (char *filePath) {
     return false;
 }
 
+void loadEmptyBoard(GameState *gameState) {
+    if (gameState->status == INITMODE) {
+        throw_loadedInWrongModeError();
+    }
+    /* TODO finish write this code! */
+}
+
 /* Function to load up a saved game board and update our game state with it */
 void loadFromFile (char *filePath, GameState *gameState) {
     char *rowSize = (char *)malloc(CHAR_MAX), *colSize = (char *)malloc(CHAR_MAX);
@@ -25,7 +32,7 @@ void loadFromFile (char *filePath, GameState *gameState) {
     }
 
     /* Make sure game status is either Edit or Solve */
-    if (getStatus(gameState) == INIT) {
+    if (getStatus(gameState) == INITMODE) {
         throw_loadedInWrongModeError();
         return;
     }

@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 #include "Game.h"
+#include "FileHandler.h"
 #define MAX 1024
 
 /* Enum for the return status of the user's request */
@@ -13,7 +14,19 @@ typedef enum user_choice {
     RESTART,
     EXIT,
     INVALID,
-    GAME_OVER_STATE
+    GAME_OVER_STATE,
+    SOLVE,
+    EDIT,
+    MARK_ERRORS,
+    PRINT_BOARD,
+    GUESS,
+    GENERATE,
+    UNDO,
+    REDO,
+    SAVE,
+    GUESS_HINT,
+    NUM_SOLUTIONS,
+    AUTOFILL
 } USER_CHOICE;
 
 /* Checks if user input matches given regular expressions */

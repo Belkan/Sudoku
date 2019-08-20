@@ -9,9 +9,9 @@
 
 
 typedef enum game_status {
-    EDIT,
-    SOLVE,
-    INIT
+    EDITMODE,
+    SOLVEMODE,
+    INITMODE
 } GAME_STATUS;
 
 typedef struct GameState{

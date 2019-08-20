@@ -33,6 +33,11 @@ bool matchesFormat(char *str, USER_CHOICE choice) {
                 return true;
             }
             return false;
+        case EDIT:
+            if(strcmp(str, "edit") == 0) {
+                return true;
+            }
+            return false;
         default:
             return false;
     }
@@ -78,6 +83,15 @@ USER_CHOICE parseCommand(GameState *gameState, char *input, bool GameOver) {
     }
     if (matchesFormat(str[0], RESTART)) {
         return RESTART;
+    }
+    if (matchesFormat(str[0], EDIT)) {
+        if (str[1] != NULL) {
+            loadFromFile(str[1], gameState);
+        }
+        else {
+            loadEmptyBoard(gameState);
+        }
+        return EDIT;
     }
     return INVALID;
 

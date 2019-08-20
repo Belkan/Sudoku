@@ -27,6 +27,10 @@ void saveToFile (FILE_PATH_TYPE pathType, char *filePath, GameState *gameState);
 /* Function to load a board from a given path */
 void loadFromFile (char *filePath, GameState *gameState);
 
+/* TODO Write this function! */
+/* Function to load an empty default board */
+void loadEmptyBoard (GameState *gameState);
+
 /* TODO write this function! */
 /* Check if given path is valid for saving a file. */
 bool validSavePath (char *filePath);
