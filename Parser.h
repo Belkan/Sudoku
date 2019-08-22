@@ -33,7 +33,7 @@ typedef enum user_choice {
 bool matchesFormat(char* str, USER_CHOICE choice);
 
 /* Scans user's input and returns it as String format */
-USER_CHOICE parseCommand(GameState *gameState, char *input, bool GameOver);
+USER_CHOICE parseCommand(GameState *gameState, char *input);
 
 
 #endif

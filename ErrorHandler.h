@@ -15,5 +15,6 @@ extern void throw_illegalParameterRangeError();
 extern void throw_illegalParameterValueError();
 extern void throw_tooManyParamatersError();
 extern void throw_tooFewParamatersError();
+extern void throw_illegalCommandForCurrentMode();
 
 #endif
