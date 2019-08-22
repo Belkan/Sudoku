@@ -30,7 +30,6 @@ void throw_tooManyParametersError() {
 void throw_tooFewParametersError() {
     printf("Error: too few parameters for given command. Please try again.\n");
 }
-
 void throw_illegalCommandForCurrentMode() {
     printf("Error: command is illegal for current board mode. Please try again.\n");
 }
