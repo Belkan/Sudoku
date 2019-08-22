@@ -14,15 +14,9 @@
 #ifndef SUDOKU_FILEHANDLER_H
 #define SUDOKU_FILEHANDLER_H
 
-/* Enum to help us differentiate between relative path case and absolute path case. */
-typedef enum file_path_type {
-    RELATIVE,
-    ABSOLUTE
-} FILE_PATH_TYPE;
-
-/* TODO write this function! */
+/* TODO test this function! */
 /* Function to save a board to a file at a given path. Paths can be relative or absolute. */
-void saveToFile (FILE_PATH_TYPE pathType, char *filePath, GameState *gameState);
+void saveToFile (char *filePath, GameState *gameState);
 
 /* TODO test this function! */
 /* Function to load a board from a given path */
