@@ -23,8 +23,8 @@ bool matchesFormat(char *str, USER_CHOICE choice) {
                 return true;
             }
             return false;
-        case RESTART:
-            if (strcmp(str, "restart") == 0) {
+        case RESET:
+            if (strcmp(str, "reset") == 0) {
                 return true;
             }
             return false;
@@ -93,8 +93,8 @@ USER_CHOICE parseCommand(GameState *gameState, char *input, bool GameOver) {
         printBoard(gameState, BOARD);
         return PRINT_BOARD;
     }
-    if (matchesFormat(str[0], RESTART)) {
-        return RESTART;
+    if (matchesFormat(str[0], RESET)) {
+        return RESET;
     }
     if (matchesFormat(str[0], EDIT)) {
         if (str[1]) {
@@ -108,4 +108,3 @@ USER_CHOICE parseCommand(GameState *gameState, char *input, bool GameOver) {
     return INVALID;
 
 }
-

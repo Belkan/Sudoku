@@ -109,17 +109,15 @@ int size_t2int(size_t val) {
 
 /* TODO make START_GAME generic for different statuses, edit/init/solve */
 /* Start the game. This is the sole function that should be called from main. */
-void START_GAME(int n, int m, GAME_STATUS gameStatus) {
+void START_GAME() {
     /*Initialize*/
     char input[MAX];
     USER_CHOICE status;
     bool gameOver = false;
     int i = 0;
 
-    GameState *gameState = initializeGame(n, m);
-    if (gameStatus == EDITMODE) {
-        setMarkErrors(gameState, true);
-    }
+    /* Empty gamestate in initmode, represents the beginning of the game */
+    GameState *gameState = createGameState(1,1);
 
     printf("-----------TAUDOKU-----------\n");
     printf("Enter a command of your choice:\n");
@@ -143,12 +141,7 @@ void START_GAME(int n, int m, GAME_STATUS gameStatus) {
         if (status == INVALID) {
             printf("Error: invalid command\n");
         }
-        if (status == RESTART) {
-            destroyGameState(gameState);
-            gameState = initializeGame(n, m);
-            printBoard(gameState, BOARD);
-            gameOver = false;
-        }
+
         if (status == GAME_OVER_STATE) {
             gameOver = true;
         }
@@ -157,10 +150,3 @@ void START_GAME(int n, int m, GAME_STATUS gameStatus) {
     destroyGameState(gameState);
 }
 
-/* Initializes the struct for the game */
-GameState *initializeGame(int n, int m) {
-    GameState *gameState = createGameState(n, m);
-    generateRandomSolution(gameState);
-    copyFromBoardToBoard(gameState, SOLUTION, gameState, BOARD);
-    return gameState;
-}
