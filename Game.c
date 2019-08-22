@@ -194,6 +194,8 @@ GameState *createGameState(int rowsInBlock, int colsInBlock) {
     gameState->size = size;
     gameState->rowsInBlock = rowsInBlock;
     gameState->colsInBlock = colsInBlock;
+    gameState->markErrors = false;
+    gameState->status = INITMODE;
 
     gameState->board = (int **) malloc(size * sizeof(int *));
     for (i = 0; i < size; i++) {

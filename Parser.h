@@ -11,7 +11,7 @@ typedef enum user_choice {
     SET,
     HINT,
     VALIDATE,
-    RESTART,
+    RESET,
     EXIT,
     INVALID,
     GAME_OVER_STATE,
