@@ -3,39 +3,54 @@
 /* Function to check for validity of loading a file: returns true if file can be loaded */
 bool validLoadPath (char *filePath) {
     FILE *file;
+    char *rowSize = (char *)malloc(CHAR_MAX), *colSize = (char *)malloc(CHAR_MAX);
+    char *str[MAX];
+    char *token;
+    char *currLine = "First line of the file";
+    int idx = 0;
+
     /* File exists and can be loaded */
     if ((file = fopen(filePath, "r")) != NULL) {
-        /* Close file prior to returning */
-        fclose(file);
-        return true;
+        /* Break line using delimeter */
+        str[0] = NULL, str[1] = NULL;
+        token = strtok(currLine, " \t\r\n");
+        while (token != 0){
+            str[idx++] = token;
+            token = strtok(0, " \t\r\n");
+        }
+
+        /* Read row & col sizes */
+        rowSize = str[0];
+        colSize = str[1];
+
+        if (!rowSize) {
+            throw_rowSizeNotFoundError();
+            /* Return old game */
+            return false;
+        }
+        if (!colSize) {
+            throw_colSizeNotFoundError();
+            /* Return old game */
+            return false;
+        }
     }
     return false;
 }
 
 GameState *loadEmptyBoard() {
-    GameState *gameState = initializeGame(3, 3);
+    GameState *gameState = createGameState(3, 3);
     return gameState;
 }
 
 /* Function to load up a saved game board and update our game state with it */
-void loadFromFile (char *filePath, GameState *gameState) {
+GameState *loadFromFile (char *filePath) {
     char *str[MAX];
     char *token;
     char *rowSize = (char *)malloc(CHAR_MAX), *colSize = (char *)malloc(CHAR_MAX);
     int i = 0, k = 0, j = 0, idx = 0;
     char *currLine = "Read this from file";
     FILE *loadedGame;
-
-    /* Test for validity of board */
-    if (!validLoadPath(filePath)) {
-        throw_loadPathError();
-        return;
-    }
-    /* Make sure game status is either Edit or Solve */
-    if (getStatus(gameState) == INITMODE) {
-        throw_loadedInWrongModeError();
-        return;
-    }
+    GameState *newGame;
 
     /* Load up the game */
     loadedGame = fopen(filePath, "r");
@@ -54,18 +69,9 @@ void loadFromFile (char *filePath, GameState *gameState) {
     /* Read row & col sizes */
     rowSize = str[0];
     colSize = str[1];
-    if (!rowSize) {
-        throw_rowSizeNotFoundError();
-        return;
-    }
-    if (!colSize) {
-        throw_colSizeNotFoundError();
-        return;
-    }
 
     /* Get rid of old board to load up new one */
-    destroyGameState(gameState);
-    START_GAME(atoi(rowSize), atoi(colSize), EDITMODE);
+    newGame = createGameState(atoi(rowSize), atoi(colSize));
 
     /* Read board */
     for (i = 0; i < atoi(rowSize); i++) {
@@ -88,12 +94,14 @@ void loadFromFile (char *filePath, GameState *gameState) {
 
         /* Read digits to board */
         if (isdigit(currLine[j])) {
-            gameState->board[i][k] = currLine[j];
+            setCellValue(i, k, currLine[j], newGame, BOARD);
+            newGame->board[i][k] = currLine[j];
         }
         k++;
         /* Read fixed cells to board */
         if (currLine[j] == '.') {
-            gameState->fixed[i][k-1] = true;
+            setFixed(i, k, true, newGame);
+            newGame->fixed[i][k-1] = true;
         }
     }
 
@@ -104,4 +112,5 @@ void loadFromFile (char *filePath, GameState *gameState) {
     free(rowSize);
     free(colSize);
 
+    return newGame;
 }
