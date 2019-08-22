@@ -12,13 +12,9 @@ bool validLoadPath (char *filePath) {
     return false;
 }
 
-void loadEmptyBoard(GameState *gameState) {
-    if (gameState->status == INITMODE) {
-        throw_loadedInWrongModeError();
-    }
-    /* initialize default empty game 9x9 */
-    destroyGameState(gameState);
-    gameState = initializeGame(3, 3);
+GameState *loadEmptyBoard() {
+    GameState *gameState = initializeGame(3, 3);
+    return gameState;
 }
 
 /* Function to load up a saved game board and update our game state with it */

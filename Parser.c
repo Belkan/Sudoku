@@ -106,7 +106,5 @@ USER_CHOICE parseCommand(GameState *gameState, char *input, bool GameOver) {
         return EDIT;
     }
     return INVALID;
-
-
 }
 

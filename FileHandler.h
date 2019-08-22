@@ -30,7 +30,7 @@ void loadFromFile (char *filePath, GameState *gameState);
 
 /* TODO Write this function! */
 /* Function to load an empty default board */
-void loadEmptyBoard (GameState *gameState);
+GameState *loadEmptyBoard ();
 
 /* TODO write this function! */
 /* Check if given path is valid for saving a file. */
