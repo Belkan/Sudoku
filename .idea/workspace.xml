@@ -13,12 +13,8 @@
   <component name="ChangeListManager">
     <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErrorHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/ErrorHandler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game.c" beforeDir="false" afterPath="$PROJECT_DIR$/Game.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainAux.h" beforeDir="false" afterPath="$PROJECT_DIR$/MainAux.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainAux.c" beforeDir="false" afterPath="$PROJECT_DIR$/MainAux.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parser.c" beforeDir="false" afterPath="$PROJECT_DIR$/Parser.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parser.h" beforeDir="false" afterPath="$PROJECT_DIR$/Parser.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="C:\Users\User\Documents\GitHub\Sudoku\.idea\shelf/" />
@@ -72,8 +68,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Parser.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="674">
-              <caret line="163" column="36" selection-start-line="163" selection-start-column="36" selection-end-line="163" selection-end-column="36" />
+            <state relative-caret-position="442">
+              <caret line="186" column="29" lean-forward="true" selection-start-line="186" selection-start-column="29" selection-end-line="186" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -81,8 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FileHandler.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="45" column="11" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="11" />
+            <state relative-caret-position="60">
+              <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -90,8 +86,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ErrorHandler.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+            <state relative-caret-position="272">
+              <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -99,8 +95,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ErrorHandler.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="33" column="107" selection-start-line="33" selection-start-column="107" selection-end-line="33" selection-end-column="107" />
+            <state relative-caret-position="459">
+              <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -132,8 +128,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MainAux.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="772">
-              <caret line="138" column="31" selection-start-line="138" selection-start-column="31" selection-end-line="138" selection-end-column="31" />
+            <state relative-caret-position="738">
+              <caret line="136" column="60" selection-start-line="136" selection-start-column="60" selection-end-line="136" selection-end-column="60" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -211,7 +207,6 @@
         <option value="$PROJECT_DIR$/HistoryHandler.h" />
         <option value="$PROJECT_DIR$/HistoryHandler.c" />
         <option value="$PROJECT_DIR$/MainAux.h" />
-        <option value="$PROJECT_DIR$/MainAux.c" />
         <option value="$PROJECT_DIR$/FileHandler.h" />
         <option value="$PROJECT_DIR$/main.c" />
         <option value="$PROJECT_DIR$/FileHandler.c" />
@@ -220,6 +215,7 @@
         <option value="$PROJECT_DIR$/Game.h" />
         <option value="$PROJECT_DIR$/Game.c" />
         <option value="$PROJECT_DIR$/ErrorHandler.c" />
+        <option value="$PROJECT_DIR$/MainAux.c" />
         <option value="$PROJECT_DIR$/Parser.c" />
       </list>
     </option>
@@ -319,13 +315,6 @@
       <workItem from="1566160309549" duration="10716000" />
       <workItem from="1566224235799" duration="7471000" />
       <workItem from="1566500094792" duration="2091000" />
-    </task>
-    <task id="LOCAL-00012" summary="Added initializer func">
-      <created>1558460986020</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1558460986020</updated>
     </task>
     <task id="LOCAL-00013" summary="Added funcs to parser module">
       <created>1558473188738</created>
@@ -663,11 +652,18 @@
       <option name="project" value="LOCAL" />
       <updated>1566561718619</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Add more to set and edit">
+      <created>1566564478846</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1566564478846</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120499000" />
+    <option name="totallyTimeSpent" value="123552000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -724,7 +720,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Ignore shit" />
     <MESSAGE value="Minor Changes" />
     <MESSAGE value="Added initializer func" />
     <MESSAGE value="Added funcs to parser module" />
@@ -749,7 +744,8 @@
     <MESSAGE value="Fixed typos in errors" />
     <MESSAGE value="Add set to parser and add executeCommand" />
     <MESSAGE value="Add more to set" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add more to set" />
+    <MESSAGE value="Add more to set and edit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add more to set and edit" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
@@ -858,16 +854,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MainAux.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="772">
-          <caret line="138" column="31" selection-start-line="138" selection-start-column="31" selection-end-line="138" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Parser.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="568">
@@ -898,10 +884,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ErrorHandler.h">
+    <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+        <state relative-caret-position="187">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -915,31 +901,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ErrorHandler.c">
+    <entry file="file://$PROJECT_DIR$/MainAux.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="107" selection-start-line="33" selection-start-column="107" selection-end-line="33" selection-end-column="107" />
+        <state relative-caret-position="738">
+          <caret line="136" column="60" selection-start-line="136" selection-start-column="60" selection-end-line="136" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.c">
+    <entry file="file://$PROJECT_DIR$/ErrorHandler.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        <state relative-caret-position="272">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ErrorHandler.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FileHandler.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="45" column="11" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="11" />
+        <state relative-caret-position="60">
+          <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Parser.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="674">
-          <caret line="163" column="36" selection-start-line="163" selection-start-column="36" selection-end-line="163" selection-end-column="36" />
+        <state relative-caret-position="442">
+          <caret line="186" column="29" lean-forward="true" selection-start-line="186" selection-start-column="29" selection-end-line="186" selection-end-column="29" />
         </state>
       </provider>
     </entry>

@@ -43,10 +43,16 @@ bool matchesFormat(char *str, USER_CHOICE choice) {
                 return true;
             }
             return false;
+        case SOLVE:
+            if (strcmp(str, "solve") == 0) {
+                return true;
+            }
+            return false;
         default:
             return false;
     }
 }
+/*TODO: Make more useful INVALIDs */
 
 /* Scans user's input and returns it as String format */
 USER_CHOICE parseCommand(GameState *gameState, char *input) {
@@ -95,78 +101,101 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
         }
         return SET;
     }
-
     if (matchesFormat(str[0], HINT) && k == 3 && isdigit(*str[1]) && isdigit(*str[2])) {
         hint(gameState,
              strtol(str[2],
                     &endPtr, 10) - 1,
              strtol(str[1],
                     &endPtr, 10) - 1);
-        return
-                HINT;
+        return HINT;
     }
     if (matchesFormat(str[0], VALIDATE)) {
         validate(gameState);
-        return
-                VALIDATE;
+        return VALIDATE;
     }
-    if (
-            matchesFormat(str[0], EXIT
-            )) {
+    if (matchesFormat(str[0], EXIT)) {
         printf("Exiting...\n");
-        return
-                EXIT;
+        return EXIT;
     }
-    if (
-            matchesFormat(str[0], PRINT_BOARD
-            )) {
-        printBoard(gameState, BOARD
-        );
-        return
-                PRINT_BOARD;
+    if (matchesFormat(str[0], PRINT_BOARD)) {
+        if (k > 0) {
+            throw_tooManyParamatersError();
+            printf("DETAILS: print_board accepts no additional parameters!");
+            return INVALID;
+        }
+        return PRINT_BOARD;
     }
-    if (
-            matchesFormat(str[0], RESET
-            )) {
-        return
-                RESET;
+    if (matchesFormat(str[0], RESET)) {
+        return RESET;
     }
     if (matchesFormat(str[0], EDIT)) {
         if (k > 1) {
             throw_tooManyParamatersError();
             printf("DETAILS: <edit [X]> may include at most ONE parameter of the file path.\n");
+            return INVALID;
         }
-        if (str[1]) {
-            loadFromFile(str[1]);
-        } else {
-            loadEmptyBoard(gameState);
+        if (!validLoadPath(str[1])) {
+            throw_loadPathError();
+            return INVALID;
         }
-        return
-                EDIT;
+        return EDIT;
     }
-    return
-            INVALID;
+
+    if (matchesFormat(str[0], SOLVE)) {
+        if (k > 1) {
+            throw_tooManyParamatersError();
+            printf("DETAILS: <solve X> must include exactly ONE parameter of the file path.\n");
+            return INVALID;
+        }
+        if (k == 0) {
+            throw_tooFewParamatersError();
+            printf("DETAILS: <solve X> must include exactly ONE parameter of the file path.\n");
+            return INVALID;
+        }
+        if (!validLoadPath(str[1])) {
+            throw_loadPathError();
+            return INVALID;
+        }
+        return SOLVE;
+    }
+
+    return INVALID;
 }
 
-GameState *executeCommand(GameState *gameState, USER_CHOICE commandType, char **input) {
+GameState *executeCommand(GameState *gameState, USER_CHOICE commandType, char *input) {
+    int k = 0;
+    char *str[MAX];
     char *endPtr;
+    char *token = strtok(input, " \t\r\n");
     SET_STATUS status;
+    /* Reset contents of array */
+    str[1] = NULL;
+
+    while (token != 0) {
+        str[k++] = token;
+        token = strtok(0, " \t\r\n");
+    }
 
     switch (commandType) {
         case (EDIT):
-            if (input[1]) {
-                if (!validLoadPath(input[1])) {
-                    throw_loadPathError();
-                    return gameState;
-                }
-                return loadFromFile(input[1]);
+            if (k == 1) {
+                gameState = loadFromFile(str[1]);
+            } else {
+                gameState = loadEmptyBoard();
             }
+            setGameMode(gameState, EDITMODE);
+            return gameState;
+
             return loadEmptyBoard();
+        case (SOLVE):
+            gameState = loadFromFile(str[1]);
+            setGameMode(gameState, SOLVEMODE);
+
         case (SET):
             status = set(gameState,
-                         strtol(input[2], &endPtr, 10) - 1,
-                         strtol(input[1], &endPtr, 10) - 1,
-                         strtol(input[3], &endPtr, 10));
+                         strtol(str[2], &endPtr, 10) - 1,
+                         strtol(str[1], &endPtr, 10) - 1,
+                         strtol(str[3], &endPtr, 10));
             if (status == GAME_OVER) {
                 printf("Congratulations, you successfully solved the board!");
                 setGameMode(gameState, INITMODE);
@@ -175,6 +204,10 @@ GameState *executeCommand(GameState *gameState, USER_CHOICE commandType, char **
             } else if (status == CELL_FIXED) {
                 printf("This cell is fixed, please try again.");
             }
+            return gameState;
+
+        case (PRINT_BOARD):
+            printBoard(gameState, BOARD);
             return gameState;
 
         default:

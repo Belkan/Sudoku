@@ -134,7 +134,7 @@ void START_GAME() {
         if (input[i] == '\n') {
             continue;
         }
-        status = parseCommand(gameState, strtok(input, "\n"), gameOver);
+        status = parseCommand(gameState, strtok(input, "\n"));
         if (status == EXIT) {
             exit(EXIT_SUCCESS);
         }
