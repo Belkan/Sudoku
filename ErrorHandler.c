@@ -19,17 +19,17 @@ void throw_illegalCommandNameError() {
     printf("Error: invalid command given! Please try again.\n");
 }
 void throw_illegalParameterRangeError() {
-    printf("Error: parameters given are not in range for this command! Please try again.\n");
+    printf("Error: parameters given are not in range for this command! Please try again.\n------------------------\n");
 }
 void throw_illegalParameterValueError() {
-    printf("Error: parameters given have illegal values for current board state. Please try again.\n");
+    printf("Error: parameters given have illegal values for current board state. Please try again.\n------------------------\n");
 }
 void throw_tooManyParametersError() {
-    printf("Error: too many parameters for given command. Please try again.\n");
+    printf("Error: too many parameters for given command. Please try again.\n------------------------\n");
 }
 void throw_tooFewParametersError() {
-    printf("Error: too few parameters for given command. Please try again.\n");
+    printf("Error: too few parameters for given command. Please try again.\n------------------------\n");
 }
 void throw_illegalCommandForCurrentMode() {
-    printf("Error: command is illegal for current board mode. Please try again.\n");
+    printf("Error: command is illegal for current board mode. Please try again.\n------------------------\n");
 }

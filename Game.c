@@ -7,29 +7,35 @@
 
 /* Tries to set value in (row, col) in board, and returns the status of the request */
 SET_STATUS set(GameState *gameState, int row, int col, int value) {
-    SET_STATUS Status;
-    if (isFixed(row,col,gameState)) {
-        Status = CELL_FIXED;
-        return Status;
+    SET_STATUS status;
+    if (getGameMode(gameState) == EDITMODE) {
+        setCellValue(row, col, value, gameState, BOARD);
+        status = SUCCESS;
+        return status;
     }
-    if (!isUserLegalMove(gameState, row, col, value)) {
-        Status = ILLEGAL_MOVE;
-        return Status;
+
+    if (isFixed(row, col, gameState)) {
+        status = CELL_FIXED;
+        return status;
     }
-    setCellValue(row,col,value,gameState,BOARD);
+    setCellValue(row, col, value, gameState, BOARD);
+    printBoard(gameState, BOARD);
     if (isUserBoardFull(gameState)) {
-        Status = GAME_OVER;
-        return Status;
+        if (isBoardLegal(gameState)) {
+            status = GAME_OVER;
+            return status;
+        } else {
+            status = SOLUTION_INCORRECT;
+            return status;
+        }
     }
-
-    Status = SUCCESS;
-    return Status;
-
+    status = SUCCESS;
+    return status;
 }
 
 /* Gives user hint for next move */
 void hint(GameState *gameState, int row, int col) {
-    printf("Hint: set cell to %d\n", getCellValue(row,col,gameState,SOLUTION));
+    printf("Hint: set cell to %d\n", getCellValue(row, col, gameState, SOLUTION));
 }
 
 /* Validates if board is solvable and updates the solution if so. */
@@ -40,7 +46,22 @@ bool validate(GameState *gameState) {
     }
     printf("Validation failed: board is unsolvable\n");
     return false;
+}
+
+bool isBoardLegal(GameState *gameState) {
+    int row, col;
+    for (row = 0; row < getSize(gameState); row++) {
+        for (col = 0; col < getSize(gameState); col++) {
+            if (getCellValue(row, col, gameState, BOARD) != 0 &&
+                !isUserLegalMove(gameState, row, col, getCellValue(row, col, gameState, BOARD))) {
+                return false;
+
+            }
+        }
     }
+    return true;
+}
+
 
 /* Checks if this set is a legal set (assuming input is valid i.e. not fixed cell) */
 bool isUserLegalMove(GameState *gameState, int row, int col, int value) {
@@ -76,7 +97,7 @@ int countBlanks(GameState *gameState, BOARD_TYPE type) {
 }
 
 /* Checks if placement is legal */
-bool safeMove(int row, int col, int val, GameState* gameState, BOARD_TYPE type) {
+bool safeMove(int row, int col, int val, GameState *gameState, BOARD_TYPE type) {
     int block = findBlock(row, col, gameState);
 
     return safeMoveRow(row, val, gameState, type) &&
@@ -86,7 +107,7 @@ bool safeMove(int row, int col, int val, GameState* gameState, BOARD_TYPE type) 
 
 /* Util subfunctions used for safeMove */
 
-bool safeMoveRow(int row, int val, GameState* gameState, BOARD_TYPE type) {
+bool safeMoveRow(int row, int val, GameState *gameState, BOARD_TYPE type) {
     int col;
     for (col = 0; col < getSize(gameState); col++) {
         if (getCellValue(row, col, gameState, type) == val)
@@ -95,7 +116,7 @@ bool safeMoveRow(int row, int val, GameState* gameState, BOARD_TYPE type) {
     return true;
 }
 
-bool safeMoveCol(int col, int val, GameState* gameState, BOARD_TYPE type) {
+bool safeMoveCol(int col, int val, GameState *gameState, BOARD_TYPE type) {
     int row;
 
     for (row = 0; row < getSize(gameState); row++) {
@@ -105,11 +126,11 @@ bool safeMoveCol(int col, int val, GameState* gameState, BOARD_TYPE type) {
     return true;
 }
 
-bool safeMoveBlock(int block, int val, GameState* gameState, BOARD_TYPE type) {
+bool safeMoveBlock(int block, int val, GameState *gameState, BOARD_TYPE type) {
     int row, col;
     int fromRow = (block / getRowsInBlock(gameState)) * getRowsInBlock(gameState);
     int fromCol = (block % getRowsInBlock(gameState)) * getColsInBlock(gameState);
-    for (row = fromRow; row < fromRow + getRowsInBlock(gameState) ; row++) {
+    for (row = fromRow; row < fromRow + getRowsInBlock(gameState); row++) {
         for (col = fromCol; col < fromCol + getColsInBlock(gameState); col++) {
             if (getCellValue(row, col, gameState, type) == val) { /* val exists in block */
                 return false;
@@ -119,10 +140,10 @@ bool safeMoveBlock(int block, int val, GameState* gameState, BOARD_TYPE type) {
     return true;
 }
 
-int findBlock(int row, int col, GameState* gameState) {
+int findBlock(int row, int col, GameState *gameState) {
     int rows = getRowsInBlock(gameState);
     int cols = getColsInBlock(gameState);
-    return (row / rows)*rows + (col / cols);
+    return (row / rows) * rows + (col / cols);
 }
 
 
@@ -131,14 +152,14 @@ void setFixedCellsRand(GameState *gameState, int fixed) {
     int row, col, counter;
     int size = getSize(gameState);
     counter = 0;
-    if (fixed == -1){
+    if (fixed == -1) {
         printf("Exiting...\n");
         destroyGameState(gameState);
         exit(0);
     }
     while (counter < fixed) {
-        col = getRandom(0,size-1);
-        row = getRandom(0,size-1);
+        col = getRandom(0, size - 1);
+        row = getRandom(0, size - 1);
         if (!isFixed(row, col, gameState)) {
             setFixed(row, col, true, gameState);
             counter++;
@@ -154,34 +175,12 @@ void setFixedCellsRand(GameState *gameState, int fixed) {
 }
 
 /* Util function to copy boards */
-void copyFromBoardToBoard(GameState* gameStateFrom, BOARD_TYPE fromType, GameState* gameStateTo, BOARD_TYPE toType) {
+void copyFromBoardToBoard(GameState *gameStateFrom, BOARD_TYPE fromType, GameState *gameStateTo, BOARD_TYPE toType) {
     int row, col;
-    for (row = 0; row < getSize(gameStateFrom); row++){
+    for (row = 0; row < getSize(gameStateFrom); row++) {
         for (col = 0; col < getSize(gameStateFrom); col++) {
             setCellValue(row, col, getCellValue(row, col, gameStateFrom, fromType), gameStateTo, toType);
         }
-    }
-}
-
-
-/* Handles set status */
-void setHandler (SET_STATUS status, GameState *gameState) {
-    switch (status) {
-        case (SUCCESS):
-            printBoard(gameState, BOARD);
-            break;
-        case (ILLEGAL_MOVE):
-            printf("Error: value is invalid\n");
-            break;
-        case (CELL_FIXED):
-            printf("Error: cell is fixed\n");
-            break;
-        case (GAME_OVER):
-            printBoard(gameState,BOARD);
-            printf("Puzzle solved successfully\n");
-            break;
-        default:
-            break;
     }
 }
 
@@ -195,7 +194,7 @@ GameState *createGameState(int rowsInBlock, int colsInBlock) {
     gameState->rowsInBlock = rowsInBlock;
     gameState->colsInBlock = colsInBlock;
     gameState->markErrors = false;
-    gameState->status = INITMODE;
+    gameState->mode = INITMODE;
 
     gameState->board = (int **) malloc(size * sizeof(int *));
     for (i = 0; i < size; i++) {
@@ -218,11 +217,11 @@ GameState *createGameState(int rowsInBlock, int colsInBlock) {
 void destroyGameState(GameState *gameState) {
     destroyMatrix(gameState->board, gameState->size);
     destroyMatrix(gameState->solution, gameState->size);
-    destroyMatrix((int**) gameState->fixed, gameState->size);
+    destroyMatrix((int **) gameState->fixed, gameState->size);
     free(gameState);
 }
 
-void setCellValue (int row, int col, int value, GameState* gameState, BOARD_TYPE type) {
+void setCellValue(int row, int col, int value, GameState *gameState, BOARD_TYPE type) {
     switch (type) {
         case SOLUTION:
             gameState->solution[row][col] = value;
@@ -232,7 +231,7 @@ void setCellValue (int row, int col, int value, GameState* gameState, BOARD_TYPE
     }
 }
 
-int getCellValue (int row, int col, GameState* gameState, BOARD_TYPE type) {
+int getCellValue(int row, int col, GameState *gameState, BOARD_TYPE type) {
     switch (type) {
         case SOLUTION:
             return gameState->solution[row][col];
@@ -241,19 +240,19 @@ int getCellValue (int row, int col, GameState* gameState, BOARD_TYPE type) {
     }
 }
 
-void setFixed (int row, int col, bool value, GameState* gameState) {
+void setFixed(int row, int col, bool value, GameState *gameState) {
     gameState->fixed[row][col] = value;
 }
 
-bool isFixed (int row, int col, GameState* gameState) {
+bool isFixed(int row, int col, GameState *gameState) {
     return gameState->fixed[row][col];
 }
 
-int getSize (GameState* gameState) {
+int getSize(GameState *gameState) {
     return gameState->size;
 }
 
-int getRowsInBlock (GameState* gameState) {
+int getRowsInBlock(GameState *gameState) {
     return gameState->rowsInBlock;
 }
 
@@ -261,14 +260,14 @@ void setMarkErrors(GameState *gameState, bool val) {
     gameState->markErrors = val;
 }
 
-int getColsInBlock (GameState* gameState) {
+int getColsInBlock(GameState *gameState) {
     return gameState->colsInBlock;
 }
 
-void setStatus(GameState* gameState, GAME_STATUS status) {
-    gameState->status = status;
+void setGameMode(GameState *gameState, GAME_MODE status) {
+    gameState->mode = status;
 }
 
-GAME_STATUS getStatus(GameState* gameState) {
-    return gameState->status;
+GAME_MODE getGameMode(GameState *gameState) {
+    return gameState->mode;
 }

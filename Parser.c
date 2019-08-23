@@ -64,30 +64,32 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
     }
 
     if (matchesFormat(str[0], SET)) {
-        if (getStatus(gameState) == INITMODE) {
+        if (getGameMode(gameState) == INITMODE) {
             throw_illegalCommandForCurrentMode();
-            printf("------------------------\nDETAILS: <SET X Y Z> may only be used in EDIT or SOLVE modes.\n");
+            printf("DETAILS: <set X Y Z> may only be used in EDIT or SOLVE modes.\n");
             return INVALID;
         }
         if (k > 4) {
             throw_tooManyParamatersError();
+            printf("DETAILS: <set X Y Z> accepts 3 parameters.\n");
             return INVALID;
         }
         if (k < 4) {
             throw_tooFewParamatersError();
+            printf("DETAILS: <set X Y Z> accepts 3 parameters.\n");
             return INVALID;
         }
         for (i = 1; i <= 3; i++) {
             if (!isdigit(*str[i])) {
                 throw_illegalParameterValueError();
-                printf("Parameter number %d is not a digit.\n------------------------\n", i);
-                printf("DETAILS:\n<SET X Y Z> - sets cell <X,Y> to value Z.\nX,Y,Z must be non-negative integers.\n");
+                printf("DETAILS: Parameter number %d is not a digit.\n", i);
+                printf("<set X Y Z> - sets cell <X,Y> to value Z.\nX,Y,Z must be non-negative integers.\n");
                 return INVALID;
             }
             if (*str[i] < 0 || *str[i] > getSize(gameState)) {
                 throw_illegalParameterRangeError();
-                printf("Parameter number %d is not in the correct range.\n------------------------\n", i);
-                printf("DETAILS:\n<SET X Y Z> - sets cell <X,Y> to value Z.\nX,Y,Z must be within the board's range!\n");
+                printf("DETAILS: Parameter number %d is not in the correct range.\n------------------------\n", i);
+                printf("<set X Y Z> - sets cell <X,Y> to value Z.\nX,Y,Z must be within the board's range!\n");
                 return INVALID;
             }
         }
@@ -103,9 +105,7 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
         return
                 HINT;
     }
-    if (
-            matchesFormat(str[0], VALIDATE
-            )) {
+    if (matchesFormat(str[0], VALIDATE)) {
         validate(gameState);
         return
                 VALIDATE;
@@ -131,9 +131,11 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
         return
                 RESET;
     }
-    if (
-            matchesFormat(str[0], EDIT
-            )) {
+    if (matchesFormat(str[0], EDIT)) {
+        if (k > 1) {
+            throw_tooManyParamatersError();
+            printf("DETAILS: <edit [X]> may include at most ONE parameter of the file path.\n");
+        }
         if (str[1]) {
             loadFromFile(str[1]);
         } else {
@@ -147,22 +149,33 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
 }
 
 GameState *executeCommand(GameState *gameState, USER_CHOICE commandType, char **input) {
-    switch (commandType) {
-        char *endPtr;
-        SET_STATUS status;
-        case (EDIT):
-            if (!validLoadPath(input[1])) {
-                throw_loadPathError();
-                return gameState;
-            }
+    char *endPtr;
+    SET_STATUS status;
 
+    switch (commandType) {
+        case (EDIT):
+            if (input[1]) {
+                if (!validLoadPath(input[1])) {
+                    throw_loadPathError();
+                    return gameState;
+                }
+                return loadFromFile(input[1]);
+            }
+            return loadEmptyBoard();
         case (SET):
             status = set(gameState,
                          strtol(input[2], &endPtr, 10) - 1,
                          strtol(input[1], &endPtr, 10) - 1,
                          strtol(input[3], &endPtr, 10));
-            setHandler(status, gameState);
-            break;
+            if (status == GAME_OVER) {
+                printf("Congratulations, you successfully solved the board!");
+                setGameMode(gameState, INITMODE);
+            } else if (status == SOLUTION_INCORRECT) {
+                printf("Unfortunately, this solution is incorrect!");
+            } else if (status == CELL_FIXED) {
+                printf("This cell is fixed, please try again.");
+            }
+            return gameState;
 
         default:
             break;

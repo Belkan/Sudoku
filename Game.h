@@ -8,11 +8,11 @@
 
 
 
-typedef enum game_status {
+typedef enum game_mode {
     EDITMODE,
     SOLVEMODE,
     INITMODE
-} GAME_STATUS;
+} GAME_MODE;
 
 typedef struct GameState{
     int size;
@@ -22,13 +22,13 @@ typedef struct GameState{
     int **solution;
     bool **fixed;
     bool markErrors;
-    GAME_STATUS status;
+    GAME_MODE mode;
 } GameState;
 
 typedef enum set_status {
     SUCCESS,
     CELL_FIXED,
-    ILLEGAL_MOVE,
+    SOLUTION_INCORRECT,
     GAME_OVER
 } SET_STATUS;
 
@@ -37,7 +37,7 @@ typedef enum board_type {
     SOLUTION
 } BOARD_TYPE;
 
-/* Tries to set value in (row, col) in board, and returns the status of the request */
+/* Tries to set value in (row, col) in board, and returns the mode of the request */
 SET_STATUS set(GameState *gameState, int row, int col, int value);
 
 void setMarkErrors(GameState *gameState, bool val);
@@ -47,6 +47,9 @@ void hint(GameState *gameState, int row, int col);
 
 /* Validates if board is solvable and updates the solution if so. */
 bool validate(GameState *gameState);
+
+/* Validates if the current board is in a legal sudoku state. */
+bool isBoardLegal(GameState *gameState);
 
 /* Checks if this set is a legal set (assuming input is valid i.e. not fixed cell) */
 bool isUserLegalMove(GameState *gameState, int row, int col, int value);
@@ -72,9 +75,6 @@ void setFixedCellsRand(GameState *gameState, int fixed);
 /* Util function to copy boards */
 void copyFromBoardToBoard(GameState* gameStateFrom, BOARD_TYPE fromType, GameState* gameStateTo, BOARD_TYPE toType);
 
-/* Handles set status */
-void setHandler (SET_STATUS status, GameState *gameState);
-
 /* Getters, setters and general util for GameState */
 GameState *createGameState(int row, int col);
 void destroyGameState(GameState *gameState);
@@ -85,6 +85,6 @@ bool isFixed (int row, int col, GameState* gameState);
 int getSize (GameState* gameState);
 int getRowsInBlock (GameState* gameState);
 int getColsInBlock (GameState* gameState) ;
-void setStatus(GameState* gameState, GAME_STATUS status);
-GAME_STATUS getStatus(GameState* gameState);
+void setGameMode(GameState *gameState, GAME_MODE status);
+GAME_MODE getGameMode(GameState *gameState);
 #endif

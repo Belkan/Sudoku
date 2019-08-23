@@ -6,7 +6,7 @@
 #include "FileHandler.h"
 #define MAX 1024
 
-/* Enum for the return status of the user's request */
+/* Enum for the return mode of the user's request */
 typedef enum user_choice {
     SET,
     HINT,
