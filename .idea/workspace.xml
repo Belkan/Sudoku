@@ -67,8 +67,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Parser.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="107" column="20" lean-forward="true" selection-start-line="107" selection-start-column="20" selection-end-line="107" selection-end-column="20" />
+            <state relative-caret-position="663">
+              <caret line="214" selection-start-line="214" selection-end-line="214" />
             </state>
           </provider>
         </entry>
@@ -314,13 +314,6 @@
       <workItem from="1566160309549" duration="10716000" />
       <workItem from="1566224235799" duration="7471000" />
       <workItem from="1566500094792" duration="2091000" />
-    </task>
-    <task id="LOCAL-00014" summary="Added funcs to parser module">
-      <created>1558473390958</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1558473390958</updated>
     </task>
     <task id="LOCAL-00015" summary="Added funcs to parser module">
       <created>1558474832162</created>
@@ -658,11 +651,18 @@
       <option name="project" value="LOCAL" />
       <updated>1566570520057</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Add solve and print to parser">
+      <created>1566571460637</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1566571460637</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124239000" />
+    <option name="totallyTimeSpent" value="124871000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -675,6 +675,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="2062" height="1126" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13736264" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -932,8 +933,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Parser.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="107" column="20" lean-forward="true" selection-start-line="107" selection-start-column="20" selection-end-line="107" selection-end-column="20" />
+        <state relative-caret-position="663">
+          <caret line="214" selection-start-line="214" selection-end-line="214" />
         </state>
       </provider>
     </entry>

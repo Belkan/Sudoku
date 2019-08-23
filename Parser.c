@@ -118,7 +118,7 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
     if (matchesFormat(str[0], PRINT_BOARD)) {
         if (k > 0) {
             throw_tooManyParamatersError();
-            printf("DETAILS: print_board accepts no additional parameters!");
+            printf("DETAILS: print_board accepts no additional parameters!\n");
             return INVALID;
         }
         return PRINT_BOARD;
@@ -195,12 +195,12 @@ GameState *executeCommand(GameState *gameState, USER_CHOICE commandType, char *i
                          strtol(str[1], &endPtr, 10) - 1,
                          strtol(str[3], &endPtr, 10));
             if (status == GAME_OVER) {
-                printf("Congratulations, you successfully solved the board!");
+                printf("Congratulations, you successfully solved the board!\n");
                 setGameMode(gameState, INITMODE);
             } else if (status == SOLUTION_INCORRECT) {
-                printf("Unfortunately, this solution is incorrect!");
+                printf("Unfortunately, this solution is incorrect!\n");
             } else if (status == CELL_FIXED) {
-                printf("This cell is fixed, please try again.");
+                printf("This cell is fixed, please try again.\n");
             }
             return gameState;
 
@@ -212,3 +212,4 @@ GameState *executeCommand(GameState *gameState, USER_CHOICE commandType, char *i
             break;
     }
 }
+
