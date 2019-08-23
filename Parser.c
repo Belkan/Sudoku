@@ -64,6 +64,11 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
     }
 
     if (matchesFormat(str[0], SET)) {
+        if (getStatus(gameState) == INITMODE) {
+            throw_illegalCommandForCurrentMode();
+            printf("------------------------\nDETAILS: <SET X Y Z> may only be used in EDIT or SOLVE modes.\n");
+            return INVALID;
+        }
         if (k > 4) {
             throw_tooManyParamatersError();
             return INVALID;
@@ -75,18 +80,18 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
         for (i = 1; i <= 3; i++) {
             if (!isdigit(*str[i])) {
                 throw_illegalParameterValueError();
-                printf("<SET X Y Z> - sets cell <X,Y> to value Z.\nX,Y,Z must be non-negative integers within the board's range!");
+                printf("Parameter number %d is not a digit.\n------------------------\n", i);
+                printf("DETAILS:\n<SET X Y Z> - sets cell <X,Y> to value Z.\nX,Y,Z must be non-negative integers.\n");
                 return INVALID;
             }
             if (*str[i] < 0 || *str[i] > getSize(gameState)) {
                 throw_illegalParameterRangeError();
-                printf("\"<SET X Y Z> - sets cell <X,Y> to value Z.\nX,Y,Z must be non-negative integers within the board's range!");
+                printf("Parameter number %d is not in the correct range.\n------------------------\n", i);
+                printf("DETAILS:\n<SET X Y Z> - sets cell <X,Y> to value Z.\nX,Y,Z must be within the board's range!\n");
                 return INVALID;
             }
         }
-        if (getStatus(gameState) == INITMODE) {
-            throw_illegal
-        }
+        return SET;
     }
 
     if (matchesFormat(str[0], HINT) && k == 3 && isdigit(*str[1]) && isdigit(*str[2])) {
