@@ -4,25 +4,25 @@
 #include "Game.h"
 
 typedef struct HistoryState {
-    GameState* gameState;
-    struct HistoryState* next;
-    struct HistoryState* prev;
+    struct HistoryChange* changes;
+    struct HistoryState* nextState;
+    struct HistoryState* prevState;
 } HistoryState;
+
+typedef struct HistoryChange {
+    int row;
+    int col;
+    int oldCellValue;
+    int newCellValue;
+    struct HistoryChange* nextChange;
+} HistoryChange;
 
 HistoryState* createHistoryState (GameState* gameState);
 
-HistoryState* getNextHistoryState(HistoryState* historyState);
+HistoryState* getNextState(HistoryState* historyState);
 
-HistoryState* getPreviousHistoryState(HistoryState* historyState);
+HistoryState* getPreviousState(HistoryState* historyState);
 
-GameState* getGameStateFromHistory(HistoryState* historyState);
-
-/* Will delete all HistoryStates in this historyState's doubly-linked list. */
-void deleteAllHistory (HistoryState* historyState);
-
-/* Returns a new HistoryState of gameState that succeeds historyState. */
-/* @pre: historyState.next != NULL */
-HistoryState* advanceHistoryByGameState (HistoryState* historyState, GameState* gameState);
-
+HistoryChange* getChanges(HistoryState* historyState);
 
 #endif

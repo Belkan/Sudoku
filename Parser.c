@@ -178,11 +178,12 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
 }
 
 /* Assumes parseCommand has determined input is correct */
-GameState *executeCommand(GameState *gameState, USER_CHOICE commandType, char *input) {
+EXECUTE_STATUS executeCommand(GameState *gameState, USER_CHOICE commandType, char *input) {
     int k = 0;
     char *str[MAX];
     char *endPtr;
     char *token = strtok(input, " \t\r\n");
+    bool unchanged = true;
     SET_STATUS status;
     /* Reset contents of array */
     str[1] = NULL;
@@ -200,30 +201,38 @@ GameState *executeCommand(GameState *gameState, USER_CHOICE commandType, char *i
                 gameState = loadEmptyBoard();
             }
             setGameMode(gameState, EDITMODE);
-            return gameState;
+            return SUCCESS_CHANGED;
 
         case (SOLVE):
             gameState = loadFromFile(str[1]);
             setGameMode(gameState, SOLVEMODE);
 
         case (SET):
+            if (getCellValue(strtol(str[2], &endPtr, 10) - 1, strtol(str[1], &endPtr, 10) - 1, gameState, BOARD) != strtol(str[3], &endPtr, 10)) {
+                unchanged = false;
+            }
             status = set(gameState,
                          strtol(str[2], &endPtr, 10) - 1,
                          strtol(str[1], &endPtr, 10) - 1,
                          strtol(str[3], &endPtr, 10));
             if (status == GAME_OVER) {
                 printf("Congratulations, you successfully solved the board!\n");
-                setGameMode(gameState, INITMODE);
+                return GAME_OVER_STATUS;
             } else if (status == SOLUTION_INCORRECT) {
                 printf("Unfortunately, this solution is incorrect!\n");
             } else if (status == CELL_FIXED) {
                 printf("This cell is fixed, please try again.\n");
             }
-            return gameState;
+            if (unchanged) {
+                return SUCCESS_UNCHANGED;
+            } else {
+                return SUCCESS_CHANGED;
+            }
+
 
         case (PRINT_BOARD):
             printBoard(gameState, BOARD);
-            return gameState;
+            return SUCCESS_UNCHANGED;
 
         case (MARK_ERRORS):
             if (strcmp(str[1], "0")) {
@@ -231,8 +240,8 @@ GameState *executeCommand(GameState *gameState, USER_CHOICE commandType, char *i
             } else {
                 setMarkErrors(gameState, true);
             }
-            return gameState;
+            return SUCCESS_UNCHANGED;
         default:
-            return gameState;
+            return SUCCESS_UNCHANGED;
     }
 }

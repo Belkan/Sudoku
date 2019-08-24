@@ -113,7 +113,6 @@ void START_GAME() {
     /*Initialize*/
     char input[MAX];
     USER_CHOICE status;
-    bool gameOver = false;
     int i = 0;
 
     /* Empty gamestate in initmode, represents the beginning of the game */
@@ -136,6 +135,7 @@ void START_GAME() {
         }
         status = parseCommand(gameState, strtok(input, "\n"));
         if (status == EXIT) {
+            destroyGameState(gameState);
             exit(EXIT_SUCCESS);
         }
         if (status == INVALID) {
@@ -143,7 +143,6 @@ void START_GAME() {
         }
 
         if (status == GAME_OVER_STATE) {
-            gameOver = true;
         }
     }
     printf("Exiting...\n");

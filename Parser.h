@@ -29,6 +29,14 @@ typedef enum user_choice {
     AUTOFILL
 } USER_CHOICE;
 
+typedef enum execute_status {
+    SUCCESS_CHANGED,
+    SUCCESS_UNCHANGED,
+    CELL_FIXED,
+    SOLUTION_INCORRECT,
+    GAME_OVER_STATUS,
+} EXECUTE_STATUS;
+
 /* Checks if user input matches given regular expressions */
 bool matchesFormat(char* str, USER_CHOICE choice);
 
