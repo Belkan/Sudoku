@@ -19,9 +19,6 @@ void destroyMatrix(int** matrix, int size);
 /* Prints the current board */
 void printBoard(GameState *gameState, BOARD_TYPE type);
 
-/* Scans number of fixed cells from the user */
-int getNumberOfFixedCells();
-
 /* Start the game. This is the sole function that should be called from main. */
 void START_GAME(int n, int m, GAME_MODE gameStatus);
 

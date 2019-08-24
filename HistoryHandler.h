@@ -1,10 +1,16 @@
 
 #ifndef SUDOKU_HISTORYHANDLER_H
 #define SUDOKU_HISTORYHANDLER_H
-#include "Game.h"
+#include <stdlib.h>
+typedef enum change_status {
+    SUCCESS_CHANGED,
+    SUCCESS_UNCHANGED,
+    FAILED
+} CHANGE_STATUS ;
 
 typedef struct HistoryState {
     struct HistoryChange* changes;
+    CHANGE_STATUS changeStatus;
     struct HistoryState* nextState;
     struct HistoryState* prevState;
 } HistoryState;
@@ -17,7 +23,9 @@ typedef struct HistoryChange {
     struct HistoryChange* nextChange;
 } HistoryChange;
 
-HistoryState* createHistoryState (GameState* gameState);
+
+
+HistoryState* createHistoryState ();
 
 HistoryState* getNextState(HistoryState* historyState);
 

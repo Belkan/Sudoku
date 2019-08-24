@@ -71,36 +71,6 @@ void printBoard(GameState *gameState, BOARD_TYPE type) {
     printf("\n");
 }
 
-/* Scans number of fixed cells from the user */
-int getNumberOfFixedCells() {
-    int fixed;
-    char input[MAX];
-    char *endPtr;
-    int i = 0;
-
-    printf("Please enter the number of cells to fill [0-80]:\n");
-
-    while (fgets(input, MAX, stdin)) {
-        i = 0;
-        while (input[i] == ' ' || input[i] == '\t' || input[i] == '\r' || input[i] == '\n') {
-            if (input[i] == '\n') {
-                break;
-            }
-            i++;
-        }
-        if (input[i] == '\n') {
-            continue;
-        }
-        fixed = strtol(input, &endPtr, 10);
-        if (fixed < 0 || fixed > 80) {
-            printf("Error: invalid number of cells to fill (should be between 0 and 80)\n"
-                   "Please enter the number of cells to fill [0-80]:\n");
-            continue;
-        }
-        return fixed;
-    }
-    return -1;
-}
 
 /* convert size_t to int */
 int size_t2int(size_t val) {

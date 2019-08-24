@@ -7,13 +7,11 @@
 
 /* Tries to set value in (row, col) in board, and returns the status of the request */
 SET_STATUS set(GameState *gameState, int row, int col, int value) {
-    SET_STATUS status;
+    SET_STATUS status = SUCCESS;
     if (getGameMode(gameState) == EDITMODE) {
         setCellValue(row, col, value, gameState, BOARD);
-        status = SUCCESS;
         return status;
     }
-
     if (isFixed(row, col, gameState)) {
         status = CELL_FIXED;
         return status;
@@ -21,15 +19,8 @@ SET_STATUS set(GameState *gameState, int row, int col, int value) {
     setCellValue(row, col, value, gameState, BOARD);
     printBoard(gameState, BOARD);
     if (isUserBoardFull(gameState)) {
-        if (isBoardLegal(gameState)) {
-            status = GAME_OVER;
-            return status;
-        } else {
-            status = SOLUTION_INCORRECT;
-            return status;
-        }
+        status = BOARD_FULL;
     }
-    status = SUCCESS;
     return status;
 }
 

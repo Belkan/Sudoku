@@ -28,8 +28,7 @@ typedef struct GameState{
 typedef enum set_status {
     SUCCESS,
     CELL_FIXED,
-    SOLUTION_INCORRECT,
-    GAME_OVER
+    BOARD_FULL
 } SET_STATUS;
 
 typedef enum board_type {

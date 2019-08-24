@@ -1,9 +1,10 @@
 
 #include "HistoryHandler.h"
 
-HistoryState* createHistoryState() {
+HistoryState* createHistoryState(CHANGE_STATUS status) {
     HistoryState *historyList = malloc(sizeof(HistoryState));
     historyList->changes = NULL;
+    historyList->changeStatus = status;
     historyList->nextState = NULL;
     historyList->prevState = NULL;
     return historyList;

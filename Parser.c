@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "Parser.h"
+#include "HistoryHandler.h"
 
 /* Checks if user input matches given regular expressions */
 bool matchesFormat(char *str, USER_CHOICE choice) {
@@ -178,12 +179,11 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
 }
 
 /* Assumes parseCommand has determined input is correct */
-EXECUTE_STATUS executeCommand(GameState *gameState, USER_CHOICE commandType, char *input) {
+HistoryState* executeCommand(GameState *gameState, USER_CHOICE commandType, char *input) {
     int k = 0;
     char *str[MAX];
     char *endPtr;
     char *token = strtok(input, " \t\r\n");
-    bool unchanged = true;
     SET_STATUS status;
     /* Reset contents of array */
     str[1] = NULL;
@@ -208,9 +208,6 @@ EXECUTE_STATUS executeCommand(GameState *gameState, USER_CHOICE commandType, cha
             setGameMode(gameState, SOLVEMODE);
 
         case (SET):
-            if (getCellValue(strtol(str[2], &endPtr, 10) - 1, strtol(str[1], &endPtr, 10) - 1, gameState, BOARD) != strtol(str[3], &endPtr, 10)) {
-                unchanged = false;
-            }
             status = set(gameState,
                          strtol(str[2], &endPtr, 10) - 1,
                          strtol(str[1], &endPtr, 10) - 1,
@@ -223,23 +220,15 @@ EXECUTE_STATUS executeCommand(GameState *gameState, USER_CHOICE commandType, cha
             } else if (status == CELL_FIXED) {
                 printf("This cell is fixed, please try again.\n");
             }
-            if (unchanged) {
-                return SUCCESS_UNCHANGED;
-            } else {
-                return SUCCESS_CHANGED;
+            if (getCellValue(strtol(str[2], &endPtr, 10) - 1, strtol(str[1], &endPtr, 10) - 1, gameState, BOARD) != strtol(str[3], &endPtr, 10)) {
+
             }
-
-
         case (PRINT_BOARD):
             printBoard(gameState, BOARD);
             return SUCCESS_UNCHANGED;
 
         case (MARK_ERRORS):
-            if (strcmp(str[1], "0")) {
-                setMarkErrors(gameState, false);
-            } else {
-                setMarkErrors(gameState, true);
-            }
+            strcmp(str[1], "0") == 0 ?  setMarkErrors(gameState, false) :  setMarkErrors(gameState, true);
             return SUCCESS_UNCHANGED;
         default:
             return SUCCESS_UNCHANGED;
