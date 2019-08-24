@@ -17,10 +17,6 @@ SET_STATUS set(GameState *gameState, int row, int col, int value) {
         return status;
     }
     setCellValue(row, col, value, gameState, BOARD);
-    printBoard(gameState, BOARD);
-    if (isUserBoardFull(gameState)) {
-        status = BOARD_FULL;
-    }
     return status;
 }
 

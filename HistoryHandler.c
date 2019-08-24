@@ -31,3 +31,7 @@ HistoryState* getPreviousState(HistoryState* historyState) {
 HistoryChange* getChanges(HistoryState* historyState) {
     return historyState->changes;
 }
+
+void setChanges(HistoryState* historyState, HistoryChange* historyChange) {
+    historyState->changes = historyChange;
+}
