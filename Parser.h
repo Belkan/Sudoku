@@ -31,6 +31,15 @@ typedef enum user_choice {
     AUTOFILL
 } USER_CHOICE;
 
+/* TODO where is this used? Gave this prefix of EXEC_ to avoid conflicts in names */
+typedef enum execute_status {
+    EXEC_SUCCESS_CHANGED,
+    EXEC_SUCCESS_UNCHANGED,
+    EXEC_CELL_FIXED,
+    EXEC_SOLUTION_INCORRECT,
+    EXEC_GAME_OVER_STATUS
+} EXECUTE_STATUS;
+
 /* Checks if user input matches given regular expressions */
 bool matchesFormat(char* str, USER_CHOICE choice);
 

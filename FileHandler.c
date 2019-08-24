@@ -25,16 +25,20 @@ bool validLoadPath (char *filePath) {
 
         if (!rowSize) {
             throw_rowSizeNotFoundError();
-            /* Return old game */
+            free(rowSize);
+            free(colSize);
             return false;
         }
         if (!colSize) {
             throw_colSizeNotFoundError();
-            /* Return old game */
+            free(rowSize);
+            free(colSize);
             return false;
         }
     }
-    return false;
+    free(rowSize);
+    free(colSize);
+    return true;
 }
 
 GameState *loadEmptyBoard() {
@@ -47,8 +51,8 @@ GameState *loadFromFile (char *filePath) {
     char *str[MAX];
     char *token;
     char *rowSize = (char *)malloc(CHAR_MAX), *colSize = (char *)malloc(CHAR_MAX);
-    int i = 0, k = 0, j = 0, idx = 0;
-    char *currLine = "Read this from file";
+    int rowIdx = 0, colIdx = 0, lineIdx = 0, idx = 0, cell = 0;
+    char *currLine = (char *)malloc(CHAR_MAX);
     FILE *loadedGame;
     GameState *newGame;
 
@@ -57,6 +61,8 @@ GameState *loadFromFile (char *filePath) {
 
     /* Read first line of loaded game into board */
     fgets(currLine, CHAR_MAX, loadedGame);
+
+    printf("got line: %s\n", currLine);
 
     /* Break line using delimeter */
     str[0] = NULL, str[1] = NULL;
@@ -74,34 +80,20 @@ GameState *loadFromFile (char *filePath) {
     newGame = createGameState(atoi(rowSize), atoi(colSize));
 
     /* Read board */
-    for (i = 0; i < atoi(rowSize); i++) {
-        k = 0;
-        /* Grab line to read */
+    for (rowIdx = 0; rowIdx < atoi(rowSize); rowIdx++) {
         fgets(currLine, CHAR_MAX, loadedGame);
-
-        /* Iterate over line's whitespaces */
-        while (currLine[j] == ' ' || currLine[j] == '\t' || currLine[j] == '\r' || currLine[j] == '\n') {
-            if (currLine[j] == '\n') {
-                break;
+        for (colIdx = 0; colIdx < atoi(colSize); colIdx++) {
+            /* Get current cell */
+            cell = currLine[lineIdx] - '0';
+            if (isdigit(currLine[lineIdx])) {
+                setCellValue(rowIdx, colIdx, cell, newGame, BOARD);
+                lineIdx++;
             }
-            j++;
-        }
-
-        /* Reached end of the line */
-        if (currLine[j] == '\n') {
-            continue;
-        }
-
-        /* Read digits to board */
-        if (isdigit(currLine[j])) {
-            setCellValue(i, k, currLine[j], newGame, BOARD);
-            newGame->board[i][k] = currLine[j];
-        }
-        k++;
-        /* Read fixed cells to board */
-        if (currLine[j] == '.') {
-            setFixed(i, k, true, newGame);
-            newGame->fixed[i][k-1] = true;
+            /* Check if saving dot for fixed cell is required */
+            else if (currLine[lineIdx + 1] == '.') {
+                setFixed(rowIdx, colIdx, true, newGame);
+                lineIdx++;
+            }
         }
     }
 
@@ -111,6 +103,45 @@ GameState *loadFromFile (char *filePath) {
     /* Free resources */
     free(rowSize);
     free(colSize);
+    free(currLine);
 
     return newGame;
+}
+
+/* Function to save a board to a file at a given path. Paths can be relative or absolute. */
+void saveToFile (char *filePath, GameState *currGame) {
+    int rowsInBlock = getRowsInBlock(currGame);
+    int colInBlock = getColsInBlock(currGame);
+    int rowIdx = 0, colIdx = 0;
+    int cell = 0;
+    FILE *saveGame = fopen(filePath, "w");
+
+    /* Write rows in block and cols in block to head of saved text file */
+    fprintf(saveGame, "%d %d\n", rowsInBlock, colInBlock);
+
+    /* Iterate current game state to load unto file */
+    for (rowIdx = 0; rowIdx < getSize(currGame); rowIdx++) {
+        for (colIdx = 0; colIdx < getSize(currGame); colIdx++) {
+            /* Get current cell */
+            cell = getCellValue(rowIdx, colIdx, currGame, BOARD);
+            fprintf(saveGame, "%d", cell);
+
+            /* Check if saving dot for fixed cell is required */
+            if (isFixed(rowIdx, colIdx, currGame)) {
+                fprintf(saveGame, ". ");
+            }
+            else {
+                fprintf(saveGame, " ");
+            }
+
+            /* Reached end of the line */
+            if (colIdx == getSize(currGame) - 1) {
+                fprintf(saveGame, "\n");
+            }
+        }
+    }
+
+    /* Close the saved game */
+    fclose(saveGame);
+
 }
