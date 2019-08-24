@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include "Game.h"
 #include "FileHandler.h"
+#include "ErrorHandler.h"
+#include "HistoryHandler.h"
 #define MAX 1024
 
 /* Enum for the return mode of the user's request */

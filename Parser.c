@@ -3,7 +3,6 @@
 #include <string.h>
 #include <ctype.h>
 #include "Parser.h"
-#include "HistoryHandler.h"
 
 /* Checks if user input matches given regular expressions */
 bool matchesFormat(char *str, USER_CHOICE choice) {
@@ -83,12 +82,12 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
             return INVALID;
         }
         if (k > 4) {
-            throw_tooManyParamatersError();
+            throw_tooManyParametersError();
             printf("DETAILS: <set X Y Z> accepts 3 parameters.\n");
             return INVALID;
         }
         if (k < 4) {
-            throw_tooFewParamatersError();
+            throw_tooFewParametersError();
             printf("DETAILS: <set X Y Z> accepts 3 parameters.\n");
             return INVALID;
         }
@@ -124,7 +123,7 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
 
     if (matchesFormat(str[0], UNDO)) {
         if (k > 0) {
-            throw_tooManyParamatersError();
+            throw_tooManyParametersError();
             printf("DETAILS: undo acceps NO parameters.\n");
             return INVALID;
         }
@@ -133,12 +132,12 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
 
     if (matchesFormat(str[0], MARK_ERRORS)) {
         if (k > 1) {
-            throw_tooManyParamatersError();
+            throw_tooManyParametersError();
             printf("DETAILS: mark_errors accepts exactly ONE parameter - 1 or 0.\n");
             return INVALID;
         }
         if (k == 0) {
-            throw_tooFewParamatersError();
+            throw_tooFewParametersError();
             printf("DETAILS: mark_errors accepts exactly ONE parameter - 1 or 0.\n");
             return INVALID;
         }
@@ -156,7 +155,7 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
 
     if (matchesFormat(str[0], PRINT_BOARD)) {
         if (k > 0) {
-            throw_tooManyParamatersError();
+            throw_tooManyParametersError();
             printf("DETAILS: print_board accepts no additional parameters!\n");
             return INVALID;
         }
@@ -169,7 +168,7 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
 
     if (matchesFormat(str[0], EDIT)) {
         if (k > 1) {
-            throw_tooManyParamatersError();
+            throw_tooManyParametersError();
             printf("DETAILS: <edit [X]> may include at most ONE parameter of the file path.\n");
             return INVALID;
         }
@@ -182,12 +181,12 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
 
     if (matchesFormat(str[0], SOLVE)) {
         if (k > 1) {
-            throw_tooManyParamatersError();
+            throw_tooManyParametersError();
             printf("DETAILS: <solve X> must include exactly ONE parameter of the file path.\n");
             return INVALID;
         }
         if (k == 0) {
-            throw_tooFewParamatersError();
+            throw_tooFewParametersError();
             printf("DETAILS: <solve X> must include exactly ONE parameter of the file path.\n");
             return INVALID;
         }

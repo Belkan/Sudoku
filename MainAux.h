@@ -20,7 +20,7 @@ void destroyMatrix(int** matrix, int size);
 void printBoard(GameState *gameState, BOARD_TYPE type);
 
 /* Start the game. This is the sole function that should be called from main. */
-void START_GAME(int n, int m, GAME_MODE gameStatus);
+void START_GAME();
 
 /* Aux function to convert size_t to int */
 int size_t2int(size_t val);
