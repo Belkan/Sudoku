@@ -111,6 +111,23 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
         validate(gameState);
         return VALIDATE;
     }
+    if (matchesFormat(str[0], MARK_ERRORS)) {
+        if (k > 1) {
+            throw_tooManyParamatersError();
+            printf("DETAILS: mark_errors accepts exactly ONE parameter - 1 or 0.\n");
+            return INVALID;
+        }
+        if (k == 0) {
+            throw_tooFewParamatersError();
+            printf("DETAILS: mark_errors accepts exactly ONE parameter - 1 or 0.\n");
+            return INVALID;
+        }
+        if (strcmp(str[1], "0") != 0 && strcmp(str[1], "1") != 0) {
+            throw_illegalParameterRangeError();
+            printf("DETAILS: mark_errors accepts exactly ONE parameter - 1 or 0.\n");
+        }
+        return MARK_ERRORS;
+    }
     if (matchesFormat(str[0], EXIT)) {
         printf("Exiting...\n");
         return EXIT;
@@ -160,6 +177,7 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
     return INVALID;
 }
 
+/* Assumes parseCommand has determined input is correct */
 GameState *executeCommand(GameState *gameState, USER_CHOICE commandType, char *input) {
     int k = 0;
     char *str[MAX];
@@ -184,7 +202,6 @@ GameState *executeCommand(GameState *gameState, USER_CHOICE commandType, char *i
             setGameMode(gameState, EDITMODE);
             return gameState;
 
-            return loadEmptyBoard();
         case (SOLVE):
             gameState = loadFromFile(str[1]);
             setGameMode(gameState, SOLVEMODE);
@@ -208,8 +225,14 @@ GameState *executeCommand(GameState *gameState, USER_CHOICE commandType, char *i
             printBoard(gameState, BOARD);
             return gameState;
 
+        case (MARK_ERRORS):
+            if (strcmp(str[1], "0")) {
+                setMarkErrors(gameState, false);
+            } else {
+                setMarkErrors(gameState, true);
+            }
+            return gameState;
         default:
-            break;
+            return gameState;
     }
 }
-
