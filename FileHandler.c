@@ -82,10 +82,12 @@ GameState *loadFromFile (char *filePath) {
     /* Read board */
     for (rowIdx = 0; rowIdx < atoi(rowSize); rowIdx++) {
         fgets(currLine, CHAR_MAX, loadedGame);
+        printf("reading line: %s\n", currLine);
+
         for (colIdx = 0; colIdx < atoi(colSize); colIdx++) {
             /* Get current cell */
-            cell = currLine[lineIdx] - '0';
             if (isdigit(currLine[lineIdx])) {
+                cell = currLine[lineIdx] - '0';
                 setCellValue(rowIdx, colIdx, cell, newGame, BOARD);
                 lineIdx++;
             }

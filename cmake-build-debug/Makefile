@@ -47,10 +47,10 @@ RM = "C:\Program Files\JetBrains\CLion 2018.3.4\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\User\Documents\GitHub\Sudoku
+CMAKE_SOURCE_DIR = C:\Users\Adar\CLionProjects\Github\Sudoku
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\User\Documents\GitHub\Sudoku\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\Adar\CLionProjects\Github\Sudoku\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\User\Documents\GitHub\Sudoku\cmake-build-debug\CMakeFiles C:\Users\User\Documents\GitHub\Sudoku\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Adar\CLionProjects\Github\Sudoku\cmake-build-debug\CMakeFiles C:\Users\Adar\CLionProjects\Github\Sudoku\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\User\Documents\GitHub\Sudoku\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Adar\CLionProjects\Github\Sudoku\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -311,6 +311,33 @@ Solver.c.s:
 	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Solver.c.s
 .PHONY : Solver.c.s
 
+UnitTester.obj: UnitTester.c.obj
+
+.PHONY : UnitTester.obj
+
+# target to build an object file
+UnitTester.c.obj:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/UnitTester.c.obj
+.PHONY : UnitTester.c.obj
+
+UnitTester.i: UnitTester.c.i
+
+.PHONY : UnitTester.i
+
+# target to preprocess a source file
+UnitTester.c.i:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/UnitTester.c.i
+.PHONY : UnitTester.c.i
+
+UnitTester.s: UnitTester.c.s
+
+.PHONY : UnitTester.s
+
+# target to generate assembly for a file
+UnitTester.c.s:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/UnitTester.c.s
+.PHONY : UnitTester.c.s
+
 main.obj: main.c.obj
 
 .PHONY : main.obj
@@ -368,6 +395,9 @@ help:
 	@echo ... Solver.obj
 	@echo ... Solver.i
 	@echo ... Solver.s
+	@echo ... UnitTester.obj
+	@echo ... UnitTester.i
+	@echo ... UnitTester.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
