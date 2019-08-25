@@ -20,12 +20,50 @@ HistoryChange* createHistoryChange(int row, int col, int oldCellValue, int newCe
     return historyChange;
 }
 
+void destroyHistoryState(HistoryState* historyState) {
+    if (historyState->changes != NULL) {
+        destroyAllChanges(historyState->changes);
+    }
+    free(historyState);
+}
+
+void destroyAllHistory(HistoryState* historyState) {
+    HistoryState* tmp = historyState;
+    while (historyState->nextState != NULL) {
+        historyState = historyState->nextState;
+    }
+    while (historyState->prevState != NULL) {
+        tmp = historyState->prevState;
+        destroyHistoryState(historyState);
+        historyState = tmp;
+    }
+    destroyHistoryState(historyState);
+}
+
+void destroyAllChanges(HistoryChange* historyChange){
+    HistoryChange* tmp = historyChange;
+    while (historyChange->nextChange != NULL) {
+        tmp = historyChange->nextChange;
+        free(historyChange);
+        historyChange = tmp;
+    }
+    free(historyChange);
+}
+
 HistoryState* getNextState(HistoryState* historyState) {
     return historyState->nextState;
 }
 
+void setNextState(HistoryState* historyState, HistoryState* nextState) {
+    historyState->nextState = nextState;
+}
+
 HistoryState* getPreviousState(HistoryState* historyState) {
     return historyState->prevState;
+}
+
+void setPrevState(HistoryState* historyState, HistoryState* prevState) {
+    historyState->prevState = prevState;
 }
 
 HistoryChange* getChanges(HistoryState* historyState) {
@@ -34,4 +72,14 @@ HistoryChange* getChanges(HistoryState* historyState) {
 
 void setChanges(HistoryState* historyState, HistoryChange* historyChange) {
     historyState->changes = historyChange;
+}
+
+void clearForwardHistory(HistoryState* historyState) {
+    HistoryState* tmp = historyState;
+    while (historyState->nextState != NULL) {
+        tmp = historyState->nextState;
+        destroyHistoryState(historyState);
+        historyState = tmp;
+    }
+    destroyHistoryState(historyState);
 }

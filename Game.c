@@ -161,6 +161,16 @@ void setFixedCellsRand(GameState *gameState, int fixed) {
     }
 }
 
+void checkFullBoard(GameState* gameState) {
+    if (isUserBoardFull(gameState)) {
+        if (isBoardLegal(gameState)) {
+            printf("Congratulations! You successfully completed this puzzle!\n");
+        } else {
+            printf("Unfortunately, there is a mistake in your solution. You can still try to correct it!\n");
+        }
+    }
+}
+
 /* Util function to copy boards */
 void copyFromBoardToBoard(GameState *gameStateFrom, BOARD_TYPE fromType, GameState *gameStateTo, BOARD_TYPE toType) {
     int row, col;

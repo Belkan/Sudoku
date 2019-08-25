@@ -79,30 +79,30 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
         if (getGameMode(gameState) == INITMODE) {
             throw_illegalCommandForCurrentMode();
             printf("DETAILS: <set X Y Z> may only be used in EDIT or SOLVE modes.\n");
-            return INVALID;
+            return INVALID_COMMAND;
         }
         if (k > 4) {
             throw_tooManyParametersError();
             printf("DETAILS: <set X Y Z> accepts 3 parameters.\n");
-            return INVALID;
+            return INVALID_COMMAND;
         }
         if (k < 4) {
             throw_tooFewParametersError();
             printf("DETAILS: <set X Y Z> accepts 3 parameters.\n");
-            return INVALID;
+            return INVALID_COMMAND;
         }
         for (i = 1; i <= 3; i++) {
             if (!isdigit(*str[i])) {
                 throw_illegalParameterValueError();
                 printf("DETAILS: Parameter number %d is not a digit.\n", i);
                 printf("<set X Y Z> - sets cell <X,Y> to value Z.\nX,Y,Z must be non-negative integers.\n");
-                return INVALID;
+                return INVALID_COMMAND;
             }
             if (*str[i] < 0 || *str[i] > getSize(gameState)) {
                 throw_illegalParameterRangeError();
                 printf("DETAILS: Parameter number %d is not in the correct range.\n------------------------\n", i);
                 printf("<set X Y Z> - sets cell <X,Y> to value Z.\nX,Y,Z must be within the board's range!\n");
-                return INVALID;
+                return INVALID_COMMAND;
             }
         }
         return SET;
@@ -125,7 +125,7 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
         if (k > 0) {
             throw_tooManyParametersError();
             printf("DETAILS: undo acceps NO parameters.\n");
-            return INVALID;
+            return INVALID_COMMAND;
         }
         return UNDO;
     }
@@ -134,12 +134,12 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
         if (k > 1) {
             throw_tooManyParametersError();
             printf("DETAILS: mark_errors accepts exactly ONE parameter - 1 or 0.\n");
-            return INVALID;
+            return INVALID_COMMAND;
         }
         if (k == 0) {
             throw_tooFewParametersError();
             printf("DETAILS: mark_errors accepts exactly ONE parameter - 1 or 0.\n");
-            return INVALID;
+            return INVALID_COMMAND;
         }
         if (strcmp(str[1], "0") != 0 && strcmp(str[1], "1") != 0) {
             throw_illegalParameterRangeError();
@@ -157,7 +157,7 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
         if (k > 0) {
             throw_tooManyParametersError();
             printf("DETAILS: print_board accepts no additional parameters!\n");
-            return INVALID;
+            return INVALID_COMMAND;
         }
         return PRINT_BOARD;
     }
@@ -170,11 +170,11 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
         if (k > 1) {
             throw_tooManyParametersError();
             printf("DETAILS: <edit [X]> may include at most ONE parameter of the file path.\n");
-            return INVALID;
+            return INVALID_COMMAND;
         }
         if (!validLoadPath(str[1])) {
             throw_loadPathError();
-            return INVALID;
+            return INVALID_COMMAND;
         }
         return EDIT;
     }
@@ -183,21 +183,21 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
         if (k > 1) {
             throw_tooManyParametersError();
             printf("DETAILS: <solve X> must include exactly ONE parameter of the file path.\n");
-            return INVALID;
+            return INVALID_COMMAND;
         }
         if (k == 0) {
             throw_tooFewParametersError();
             printf("DETAILS: <solve X> must include exactly ONE parameter of the file path.\n");
-            return INVALID;
+            return INVALID_COMMAND;
         }
         if (!validLoadPath(str[1])) {
             throw_loadPathError();
-            return INVALID;
+            return INVALID_COMMAND;
         }
         return SOLVE;
     }
-
-    return INVALID;
+    throw_unknownCommand();
+    return INVALID_COMMAND;
 }
 
 /* Assumes parseCommand has determined input is correct.

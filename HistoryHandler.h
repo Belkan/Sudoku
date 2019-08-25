@@ -7,7 +7,7 @@ typedef enum change_status {
     DO_NOT_SAVE
 } CHANGE_STATUS ;
 
-typedef struct history_change {
+typedef struct HistoryChange {
     int row;
     int col;
     int oldCellValue;
@@ -24,16 +24,29 @@ typedef struct HistoryState {
 
 HistoryState* createHistoryState ();
 
+void destroyHistoryState(HistoryState* historyState);
+
+void destroyAllHistory(HistoryState* historyState);
+
+void destroyAllChanges(HistoryChange* historyChange);
+
 HistoryChange* createHistoryChange(int row, int col, int oldCellValue, int newCellValue);
 
 HistoryState* getNextState(HistoryState* historyState);
 
+void setNextState(HistoryState* historyState, HistoryState* nextState);
+
 HistoryState* getPreviousState(HistoryState* historyState);
+
+void setPrevState(HistoryState* historyState, HistoryState* prevState);
+
 
 HistoryChange* getChanges(HistoryState* historyState);
 
 CHANGE_STATUS getChangeStatus(HistoryState* historyState);
 
 void setChanges(HistoryState* historyState, HistoryChange* historyChange);
+
+void clearForwardHistory(HistoryState* historyState);
 
 #endif

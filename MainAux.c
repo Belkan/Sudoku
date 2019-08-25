@@ -74,7 +74,7 @@ void printBoard(GameState *gameState, BOARD_TYPE type) {
 
 /* convert size_t to int */
 int size_t2int(size_t val) {
-    return (val <= INT_MAX) ? (int)((ssize_t)val) : -1;
+    return (val <= INT_MAX) ? (int) ((ssize_t) val) : -1;
 }
 
 /* TODO make START_GAME generic for different statuses, edit/init/solve */
@@ -83,10 +83,12 @@ void START_GAME() {
     /*Initialize*/
     char input[MAX];
     USER_CHOICE status;
+    HistoryState *oldHistoryState = createHistoryState();
+    HistoryState *newHistoryState;
     int i = 0;
 
     /* Empty gamestate in initmode, represents the beginning of the game */
-    GameState *gameState = createGameState(1,1);
+    GameState *gameState = createGameState(1, 1);
 
     printf("-----------TAUDOKU-----------\n");
     printf("Enter a command of your choice:\n");
@@ -105,17 +107,24 @@ void START_GAME() {
         }
         status = parseCommand(gameState, strtok(input, "\n"));
         if (status == EXIT) {
-            destroyGameState(gameState);
-            exit(EXIT_SUCCESS);
+            break;
         }
-        if (status == INVALID) {
-            printf("Error: invalid command\n");
+        if (status != INVALID_COMMAND) {
+            newHistoryState = executeCommand(gameState, status, strtok(input, "\n"));
+            if (getChanges(newHistoryState) == NULL) {
+                destroyHistoryState(newHistoryState);
+            } else {
+                clearForwardHistory(oldHistoryState);
+                setNextState(oldHistoryState, newHistoryState);
+                setPrevState(newHistoryState, oldHistoryState);
+            }
         }
 
-        if (status == GAME_OVER_STATE) {
-        }
+        checkFullBoard(gameState);
     }
     printf("Exiting...\n");
     destroyGameState(gameState);
+    destroyHistoryState(oldHistoryState);
+    exit(EXIT_SUCCESS);
 }
 

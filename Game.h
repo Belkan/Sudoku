@@ -55,6 +55,8 @@ bool isUserLegalMove(GameState *gameState, int row, int col, int value);
 /* Checks if the board is full */
 bool isUserBoardFull(GameState *gameState);
 
+void checkFullBoard(GameState* gameState);
+
 /* Returns number of empty cells in board */
 int countBlanks(GameState *gameState,  BOARD_TYPE type);
 

@@ -27,4 +27,6 @@ void throw_illegalCommandForCurrentMode();
 
 void throw_illegalCommandForCurrentMode();
 
+void throw_unknownCommand();
+
 #endif
