@@ -23,9 +23,9 @@ void throw_tooManyParametersError();
 
 void throw_tooFewParametersError();
 
-void throw_illegalCommandForCurrentMode();
+void throw_illegalCommandForInit();
 
-void throw_illegalCommandForCurrentMode();
+void throw_illegalCommandForInit();
 
 void throw_unknownCommand();
 

@@ -165,6 +165,7 @@ void checkFullBoard(GameState* gameState) {
     if (isUserBoardFull(gameState)) {
         if (isBoardLegal(gameState)) {
             printf("Congratulations! You successfully completed this puzzle!\n");
+            setGameMode(gameState, INITMODE);
         } else {
             printf("Unfortunately, there is a mistake in your solution. You can still try to correct it!\n");
         }

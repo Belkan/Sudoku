@@ -109,23 +109,28 @@ void START_GAME() {
 
         if (status == EXIT) {
             break;
-        }
-        else if (status == UNDO) {
+        } else if (status == UNDO) {
             if (getPreviousState(currHistoryState) == NULL) {
                 throw_nothingToUndo();
                 break;
             }
-            undoMove(currHistoryState, gameState);
+            undoMove(currHistoryState, gameState, /* printEnabled= */ true);
             currHistoryState = getPreviousState(currHistoryState);
-        }
-        else if (status == REDO) {
+        } else if (status == REDO) {
             if (getNextState(currHistoryState) == NULL) {
                 throw_nothingToRedo();
                 break;
             }
             redoMove(currHistoryState, gameState);
             currHistoryState = getNextState(currHistoryState);
+        } else if (status == RESET) {
+            while (getPreviousState(currHistoryState) != NULL) {
+                undoMove(currHistoryState, gameState, /* printEnabled= */ false);
+                currHistoryState = getPreviousState(currHistoryState);
+            }
+            printBoard(gameState, BOARD);
         }
+            /* Handles all commands other than EXIT or history related. */
         else if (status != INVALID_COMMAND) {
             tmpHistoryState = executeCommand(gameState, status, strtok(input, "\n"));
             if (getChanges(tmpHistoryState) == NULL) {
@@ -137,9 +142,9 @@ void START_GAME() {
                 currHistoryState = tmpHistoryState;
             }
         }
-
         checkFullBoard(gameState);
     }
+
     printf("Exiting...\n");
     destroyGameState(gameState);
     destroyHistoryState(currHistoryState);

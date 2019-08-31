@@ -84,7 +84,7 @@ void clearForwardHistory(HistoryState *historyState) {
     destroyHistoryState(historyState);
 }
 
-void undoMove(HistoryState *historyState, GameState *gameState) {
+void undoMove(HistoryState *historyState, GameState *gameState, bool printEnabled) {
     HistoryChange *changes = getChanges(historyState);
     int row, col, oldVal, newVal;
     while (changes != NULL) {
@@ -93,7 +93,9 @@ void undoMove(HistoryState *historyState, GameState *gameState) {
         newVal = changes->oldCellValue;
         oldVal = changes->newCellValue;
         setCellValue(row, col, newVal, gameState, BOARD);
-        printf("Cell [%d,%d] has been changed back from %d to %d", row + 1, col + 1, oldVal, newVal);
+        if (printEnabled) {
+            printf("Cell [%d,%d] has been changed back from %d to %d", row + 1, col + 1, oldVal, newVal);
+        }
         changes = changes->nextChange;
     }
 }
@@ -107,6 +109,6 @@ void redoMove(HistoryState *historyState, GameState *gameState) {
         newVal = changes->newCellValue;
         oldVal = changes->oldCellValue;
         setCellValue(row, col, newVal, gameState, BOARD);
-        printf("Cell [%d,%d] has been changed back from %d to %d", row+1, col+1, oldVal, newVal);
+        printf("Cell [%d,%d] has been changed back from %d to %d", row + 1, col + 1, oldVal, newVal);
     }
 }

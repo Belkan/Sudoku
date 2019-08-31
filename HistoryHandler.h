@@ -49,7 +49,7 @@ void setChanges(HistoryState* historyState, HistoryChange* historyChange);
 
 void clearForwardHistory(HistoryState* historyState);
 
-void undoMove(HistoryState* historyState, GameState* gameState);
+void undoMove(HistoryState *historyState, GameState *gameState, bool printEnabled);
 
 void redoMove(HistoryState* historyState, GameState* gameState);
 

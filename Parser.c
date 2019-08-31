@@ -77,30 +77,30 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
 
     if (matchesFormat(str[0], SET)) {
         if (getGameMode(gameState) == INITMODE) {
-            throw_illegalCommandForCurrentMode();
-            printf("DETAILS: <set X Y Z> may only be used in EDIT or SOLVE modes.\n");
+            throw_illegalCommandForInit();
+            printf("Details: <set X Y Z> may only be used in EDIT or SOLVE modes.\n");
             return INVALID_COMMAND;
         }
         if (k > 4) {
             throw_tooManyParametersError();
-            printf("DETAILS: <set X Y Z> accepts 3 parameters.\n");
+            printf("Details: <set X Y Z> accepts 3 parameters.\n");
             return INVALID_COMMAND;
         }
         if (k < 4) {
             throw_tooFewParametersError();
-            printf("DETAILS: <set X Y Z> accepts 3 parameters.\n");
+            printf("Details: <set X Y Z> accepts 3 parameters.\n");
             return INVALID_COMMAND;
         }
         for (i = 1; i <= 3; i++) {
             if (!isdigit(*str[i])) {
                 throw_illegalParameterValueError();
-                printf("DETAILS: Parameter number %d is not a digit.\n", i);
+                printf("Details: Parameter number %d is not a digit.\n", i);
                 printf("<set X Y Z> - sets cell <X,Y> to value Z.\nX,Y,Z must be non-negative integers.\n");
                 return INVALID_COMMAND;
             }
             if (*str[i] < 0 || *str[i] > getSize(gameState)) {
                 throw_illegalParameterRangeError();
-                printf("DETAILS: Parameter number %d is not in the correct range.\n------------------------\n", i);
+                printf("Details: Parameter number %d is not in the correct range.\n------------------------\n", i);
                 printf("<set X Y Z> - sets cell <X,Y> to value Z.\nX,Y,Z must be within the board's range!\n");
                 return INVALID_COMMAND;
             }
@@ -124,7 +124,12 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
     if (matchesFormat(str[0], UNDO)) {
         if (k > 0) {
             throw_tooManyParametersError();
-            printf("DETAILS: undo accepts NO parameters.\n");
+            printf("Details: undo accepts NO parameters.\n");
+            return INVALID_COMMAND;
+        }
+        if (getGameMode(gameState) == INITMODE) {
+            throw_illegalCommandForInit();
+            printf("Details: <undo> may only be used in EDIT or SOLVE modes.\n");
             return INVALID_COMMAND;
         }
         return UNDO;
@@ -133,17 +138,17 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
     if (matchesFormat(str[0], MARK_ERRORS)) {
         if (k > 1) {
             throw_tooManyParametersError();
-            printf("DETAILS: mark_errors accepts exactly ONE parameter - 1 or 0.\n");
+            printf("Details: mark_errors accepts exactly ONE parameter - 1 or 0.\n");
             return INVALID_COMMAND;
         }
         if (k == 0) {
             throw_tooFewParametersError();
-            printf("DETAILS: mark_errors accepts exactly ONE parameter - 1 or 0.\n");
+            printf("Details: mark_errors accepts exactly ONE parameter - 1 or 0.\n");
             return INVALID_COMMAND;
         }
         if (strcmp(str[1], "0") != 0 && strcmp(str[1], "1") != 0) {
             throw_illegalParameterRangeError();
-            printf("DETAILS: mark_errors accepts exactly ONE parameter - 1 or 0.\n");
+            printf("Details: mark_errors accepts exactly ONE parameter - 1 or 0.\n");
         }
         return MARK_ERRORS;
     }
@@ -156,7 +161,7 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
     if (matchesFormat(str[0], PRINT_BOARD)) {
         if (k > 0) {
             throw_tooManyParametersError();
-            printf("DETAILS: print_board accepts no additional parameters!\n");
+            printf("Details: print_board accepts no additional parameters!\n");
             return INVALID_COMMAND;
         }
         return PRINT_BOARD;
@@ -169,7 +174,7 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
     if (matchesFormat(str[0], EDIT)) {
         if (k > 1) {
             throw_tooManyParametersError();
-            printf("DETAILS: <edit [X]> may include at most ONE parameter of the file path.\n");
+            printf("Details: <edit [X]> may include at most ONE parameter of the file path.\n");
             return INVALID_COMMAND;
         }
         if (!validLoadPath(str[1])) {
@@ -182,12 +187,12 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
     if (matchesFormat(str[0], SOLVE)) {
         if (k > 1) {
             throw_tooManyParametersError();
-            printf("DETAILS: <solve X> must include exactly ONE parameter of the file path.\n");
+            printf("Details: <solve X> must include exactly ONE parameter of the file path.\n");
             return INVALID_COMMAND;
         }
         if (k == 0) {
             throw_tooFewParametersError();
-            printf("DETAILS: <solve X> must include exactly ONE parameter of the file path.\n");
+            printf("Details: <solve X> must include exactly ONE parameter of the file path.\n");
             return INVALID_COMMAND;
         }
         if (!validLoadPath(str[1])) {

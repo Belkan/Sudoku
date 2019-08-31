@@ -38,8 +38,8 @@ void throw_tooFewParametersError() {
     printf("Error: too few parameters for given command. Please try again.\n------------------------\n");
 }
 
-void throw_illegalCommandForCurrentMode() {
-    printf("Error: command is illegal for current board mode. Please try again.\n------------------------\n");
+void throw_illegalCommandForInit() {
+    printf("Error: command is illegal for INIT board mode. Only available commands are solve and edit. Please try again.\n------------------------\n");
 }
 
 void throw_unknownCommand() {
