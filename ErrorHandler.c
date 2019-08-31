@@ -46,3 +46,11 @@ void throw_unknownCommand() {
     printf("Error: this command doesn't exist. The available commands are:\n solve, edit, mark_errors, print_board, set,"
            " validate, guess, generate, undo, redo, save, hint, guess_hint, num_solutions, autofill, reset, exit.\n");
 }
+
+void throw_nothingToUndo() {
+    printf("Error: there is no move to undo.\n");
+}
+
+void throw_nothingToRedo() {
+    printf("Error: there is no move to redo.\n");
+}

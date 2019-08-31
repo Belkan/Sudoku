@@ -124,7 +124,7 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
     if (matchesFormat(str[0], UNDO)) {
         if (k > 0) {
             throw_tooManyParametersError();
-            printf("DETAILS: undo acceps NO parameters.\n");
+            printf("DETAILS: undo accepts NO parameters.\n");
             return INVALID_COMMAND;
         }
         return UNDO;

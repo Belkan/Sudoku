@@ -83,8 +83,8 @@ void START_GAME() {
     /*Initialize*/
     char input[MAX];
     USER_CHOICE status;
-    HistoryState *oldHistoryState = createHistoryState();
-    HistoryState *newHistoryState;
+    HistoryState *currHistoryState = createHistoryState();
+    HistoryState *tmpHistoryState;
     int i = 0;
 
     /* Empty gamestate in initmode, represents the beginning of the game */
@@ -106,17 +106,35 @@ void START_GAME() {
             continue;
         }
         status = parseCommand(gameState, strtok(input, "\n"));
+
         if (status == EXIT) {
             break;
         }
-        if (status != INVALID_COMMAND) {
-            newHistoryState = executeCommand(gameState, status, strtok(input, "\n"));
-            if (getChanges(newHistoryState) == NULL) {
-                destroyHistoryState(newHistoryState);
+        else if (status == UNDO) {
+            if (getPreviousState(currHistoryState) == NULL) {
+                throw_nothingToUndo();
+                break;
+            }
+            undoMove(currHistoryState, gameState);
+            currHistoryState = getPreviousState(currHistoryState);
+        }
+        else if (status == REDO) {
+            if (getNextState(currHistoryState) == NULL) {
+                throw_nothingToRedo();
+                break;
+            }
+            redoMove(currHistoryState, gameState);
+            currHistoryState = getNextState(currHistoryState);
+        }
+        else if (status != INVALID_COMMAND) {
+            tmpHistoryState = executeCommand(gameState, status, strtok(input, "\n"));
+            if (getChanges(tmpHistoryState) == NULL) {
+                destroyHistoryState(tmpHistoryState);
             } else {
-                clearForwardHistory(oldHistoryState);
-                setNextState(oldHistoryState, newHistoryState);
-                setPrevState(newHistoryState, oldHistoryState);
+                clearForwardHistory(currHistoryState);
+                setNextState(currHistoryState, tmpHistoryState);
+                setPrevState(tmpHistoryState, currHistoryState);
+                currHistoryState = tmpHistoryState;
             }
         }
 
@@ -124,7 +142,7 @@ void START_GAME() {
     }
     printf("Exiting...\n");
     destroyGameState(gameState);
-    destroyHistoryState(oldHistoryState);
+    destroyHistoryState(currHistoryState);
     exit(EXIT_SUCCESS);
 }
 

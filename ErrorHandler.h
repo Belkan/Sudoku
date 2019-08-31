@@ -29,4 +29,9 @@ void throw_illegalCommandForCurrentMode();
 
 void throw_unknownCommand();
 
+void throw_nothingToUndo();
+
+void throw_nothingToRedo();
+
+
 #endif

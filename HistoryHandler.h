@@ -2,6 +2,7 @@
 #ifndef SUDOKU_HISTORYHANDLER_H
 #define SUDOKU_HISTORYHANDLER_H
 #include <stdlib.h>
+#include "Game.h"
 typedef enum change_status {
     DO_SAVE,
     DO_NOT_SAVE
@@ -40,7 +41,6 @@ HistoryState* getPreviousState(HistoryState* historyState);
 
 void setPrevState(HistoryState* historyState, HistoryState* prevState);
 
-
 HistoryChange* getChanges(HistoryState* historyState);
 
 CHANGE_STATUS getChangeStatus(HistoryState* historyState);
@@ -48,5 +48,9 @@ CHANGE_STATUS getChangeStatus(HistoryState* historyState);
 void setChanges(HistoryState* historyState, HistoryChange* historyChange);
 
 void clearForwardHistory(HistoryState* historyState);
+
+void undoMove(HistoryState* historyState, GameState* gameState);
+
+void redoMove(HistoryState* historyState, GameState* gameState);
 
 #endif
