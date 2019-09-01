@@ -11,9 +11,9 @@ struct recursion_stack* createStack(int capacity) {
     stack->capacity = capacity;
     /* Start with cell [1,1] and set it to value 1, the least value. */
     stack->rows = (int *) malloc(capacity * sizeof(int));
-    stack->rows[0] = 1;
+    stack->rows[0] = 0;
     stack->cols = (int *) malloc(capacity * sizeof(int));
-    stack->cols[0] = 1;
+    stack->cols[0] = 0;
     stack->vals= (int *) malloc(capacity * sizeof(int));
     stack->vals[0] = 1;
 
@@ -71,6 +71,39 @@ bool pop(struct recursion_stack *stack) {
 int peek(struct recursion_stack *stack) {
     if (isEmpty(stack)) return 0;
     return stack->vals[stack->top];
+}
+
+/* TODO debug */
+/* Use exhaustive backtracking algorithm (using stack) to count the number of solutions for the board. */
+int solutionCounter(GameState *gameState) {
+    bool foundMove = false;
+    int row = 0, col = 0, size = getSize(gameState), solutions = 0, idx = 0;
+    struct recursion_stack *stack = createStack(gameState->size);
+
+    /* Iterating until stack empties replaces recursion. */
+    while (!isEmpty(stack)) {
+        row = getNextRow(size, row, col);
+        col = getNextCol(size, col);
+        /* Avoid fixed cells. */
+        if (isFixed(row, col, gameState)) continue;
+        for (idx = peek(stack); idx < size; idx++) {
+            if (safeMove(row, col, idx, gameState, BOARD)) {
+                push(stack, row, col, idx);
+                /* Reached end of the board, therefore another valid solution was found. Time to backtrack. */
+                if (row == size - 1 && col == size - 1) {
+                    solutions++;
+                    pop(stack);
+                }
+                foundMove = true;
+                break;
+            }
+            /* No move found, time to backtrack. */
+            if (!foundMove) {
+                pop(stack);
+            }
+        }
+    }
+    return solutions;
 }
 
 /* Checks if there is a solution to the board. Assumes solution is empty. */

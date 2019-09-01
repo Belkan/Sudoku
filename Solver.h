@@ -16,6 +16,7 @@ typedef struct recursion_stack {
     int *vals;
 } RECURSION_STACK ;
 
+/* TODO test this */
 /* Use exhaustive backtracking algorithm (using stack) to count the number of solutions for the board. */
 int solutionCounter(GameState *gameState);
 
