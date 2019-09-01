@@ -13,13 +13,25 @@
   <component name="ChangeListManager">
     <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErrorHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/ErrorHandler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErrorHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/ErrorHandler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game.c" beforeDir="false" afterPath="$PROJECT_DIR$/Game.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryHandler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryHandler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainAux.c" beforeDir="false" afterPath="$PROJECT_DIR$/MainAux.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parser.c" beforeDir="false" afterPath="$PROJECT_DIR$/Parser.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Solver.c" beforeDir="false" afterPath="$PROJECT_DIR$/Solver.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Solver.h" beforeDir="false" afterPath="$PROJECT_DIR$/Solver.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Sudoku.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Sudoku.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,6 +57,27 @@
     <select />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>CMake</find>
+      <find>initializeGame</find>
+      <find>clone</find>
+      <find>command</find>
+      <find>Error</find>
+      <find>invalid</find>
+      <find>OVER</find>
+      <find>GAME</find>
+      <find>GAME_OVER</find>
+      <find>cmd.exe</find>
+      <find>MAX</find>
+      <find>_start</find>
+      <find>FileHa</find>
+      <find>Game</find>
+      <find>FileHan</find>
+      <find>RESTART</find>
+      <find>SET</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -55,7 +88,7 @@
     </option>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
-  <component name="ProjectId" id="1Q6g1b7k69C2GWv0nWFXhA32CYh" />
+  <component name="ProjectId" id="1Q6fVfwBaSOmKv9DCwA3VDbAALq" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -72,15 +105,15 @@
     <property name="settings.editor.selected.configurable" value="CLionExternalConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Adar\Sudoku\Tests" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Adar\CLionProjects\Github\Sudoko" />
       <recent name="C:\Users\Adar\Sudoku\Parser" />
       <recent name="C:\Users\Adar\Sudoku\Solver" />
       <recent name="C:\Users\Adar\Sudoku\MainAux" />
       <recent name="C:\Users\Adar\Sudoku\Game" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Adar\Sudoku\Tests" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -125,9 +158,25 @@
       <workItem from="1566160309549" duration="10716000" />
       <workItem from="1566224235799" duration="7471000" />
       <workItem from="1566500094792" duration="2091000" />
-      <workItem from="1567096036820" duration="43000" />
-      <workItem from="1567096250780" duration="592000" />
-      <workItem from="1567239537243" duration="5511000" />
+      <workItem from="1567095512818" duration="124000" />
+      <workItem from="1567096004393" duration="25000" />
+      <workItem from="1567177984071" duration="10000" />
+      <workItem from="1567186895394" duration="949000" />
+      <workItem from="1567290586305" duration="10794000" />
+    </task>
+    <task id="LOCAL-00022" summary="Added funcs to parser module">
+      <created>1558480957282</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1558480957282</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Minor changes">
+      <created>1558573799806</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1558573799806</updated>
     </task>
     <task id="LOCAL-00024" summary=" Added Main Aux UT + getRandom func">
       <created>1558575246026</created>
@@ -451,27 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566683731629</updated>
     </task>
-    <task id="LOCAL-00070" summary="leftover">
-      <created>1566707723848</created>
+    <task id="LOCAL-00070" summary="Created UnitTester module">
+      <created>1566725821691</created>
       <option name="number" value="00070" />
       <option name="presentableId" value="LOCAL-00070" />
       <option name="project" value="LOCAL" />
-      <updated>1566707723848</updated>
+      <updated>1566725821692</updated>
     </task>
-    <task id="LOCAL-00071" summary="Implement START_GAME (not over)">
-      <created>1566730123882</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1566730123882</updated>
-    </task>
-    <task id="LOCAL‎00072" summary="Implement undo and redo">
-      <created>1567244917547</created>
-      <option name="number" value="LOCAL‎00072" />
-      <option name="presentableId" value="LOCAL‎00072" />
-      <updated>1567244917548</updated>
-    </task>
-    <option name="localTasksCounter" value="73" />
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TodoView">
@@ -487,6 +523,17 @@
     <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="RECENT_FILTERS">
       <map>
         <entry key="Branch">
@@ -503,6 +550,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Reorganized folders" />
+    <MESSAGE value="Added random backtracker to generate a new board" />
     <MESSAGE value="Simply moved generateRand to Solver module" />
     <MESSAGE value="Handled edge cases" />
     <MESSAGE value="Changed makefile" />
@@ -525,9 +574,7 @@
     <MESSAGE value="Change history data structure" />
     <MESSAGE value="Some more history stuff, starting to implement undo." />
     <MESSAGE value="Fix build" />
-    <MESSAGE value="leftover" />
-    <MESSAGE value="Implement START_GAME (not over)" />
-    <MESSAGE value="Implement undo and redo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement undo and redo" />
+    <MESSAGE value="Created UnitTester module" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created UnitTester module" />
   </component>
 </project>

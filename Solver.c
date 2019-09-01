@@ -3,6 +3,75 @@
 #include "Solver.h"
 #include "MainAux.h"
 
+/* Initialize stack of given capacity. */
+struct recursion_stack* createStack(int capacity) {
+    struct recursion_stack *stack = malloc(sizeof(struct recursion_stack));
+    int idx = 0;
+
+    stack->capacity = capacity;
+    /* Start with cell [1,1] and set it to value 1, the least value. */
+    stack->rows = (int *) malloc(capacity * sizeof(int));
+    stack->rows[0] = 1;
+    stack->cols = (int *) malloc(capacity * sizeof(int));
+    stack->cols[0] = 1;
+    stack->vals= (int *) malloc(capacity * sizeof(int));
+    stack->vals[0] = 1;
+
+    /* Set other entries to 0. */
+    for (idx = 1; idx < capacity; idx++) {
+        stack->rows[idx] = 0;
+        stack->cols[idx] = 0;
+        stack->rows[idx] = 0;
+    }
+    return stack;
+}
+
+void destroyStack(struct recursion_stack *stack) {
+    free(stack->rows);
+    free(stack->cols);
+    free(stack->vals);
+    free(stack);
+}
+
+/* Check if stack is full (i.e. stack overflow). */
+bool isFull(struct recursion_stack *stack) {
+    if (stack->top == stack->capacity) return true;
+    return false;
+}
+
+/* Check if stack is empty. */
+bool isEmpty(struct recursion_stack *stack) {
+    if (stack->top == 0) return true;
+    return false;
+}
+
+/* Push new game state to top of the stack. */
+bool push(struct recursion_stack *stack, int row, int col, int val) {
+    /* Avoid stack overflow. */
+    if (isFull(stack)) {
+        return false;
+    }
+    stack->rows[++stack->top] = row;
+    stack->cols[stack->top] = col;
+    stack->vals[stack->top] = val;
+    return true;
+}
+
+/* Removes top element of stack. */
+bool pop(struct recursion_stack *stack) {
+    /* Avoid stack underflow. */
+    if (isEmpty(stack)) {
+        return false;
+    }
+    --stack->top;
+    return true;
+}
+
+/* Retrieves top val element of the stack. */
+int peek(struct recursion_stack *stack) {
+    if (isEmpty(stack)) return 0;
+    return stack->vals[stack->top];
+}
 
 /* Checks if there is a solution to the board. Assumes solution is empty. */
 bool isSolvableRecursion(GameState *gameState, int row, int col, SOLUTION_TYPE type) {
