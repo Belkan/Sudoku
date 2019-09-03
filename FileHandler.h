@@ -9,6 +9,7 @@
 #include "MainAux.h"
 #include "ErrorHandler.h"
 #include "Parser.h"
+#include "Solver.h"
 
 
 #ifndef SUDOKU_FILEHANDLER_H
@@ -22,7 +23,9 @@ void saveToFile (char *filePath, GameState *gameState);
 /* Function to load a board from a given path */
 GameState *loadFromFile (char *filePath);
 
-/* TODO Write this function! */
+/* Utility function for loader: finds next position in line to read cell from. */
+int getNextIdx(char *currLine, int currIdx);
+
 /* Function to load an empty default board */
 GameState *loadEmptyBoard ();
 

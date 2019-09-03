@@ -19,6 +19,5 @@ int main(int argc, char *argv[]) {
     /* start playing... */
     /* START_GAME(3, 3, INITMODE); */
     testFileHandler();
-
     return 0;
 }

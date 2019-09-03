@@ -188,7 +188,20 @@ int getNextCol(int size, int col) {
     } else {
         return 0;
     }
+}
 
+int getPrevRow(int row, int col) {
+    if (col == 0) {
+        return row - 1;
+    }
+    return row;
+}
+
+int getPrevCol(int size, int col) {
+    if (col == 0) {
+        return size - 1;
+    }
+    return col - 1;
 }
 
 void swap(int *x, int *y){

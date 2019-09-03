@@ -46,6 +46,8 @@ bool isSolvableRecursion(GameState *gameState, int row, int col, SOLUTION_TYPE t
 /* Subfunctions for isSolvableRecursion */
 int getNextRow(int size, int row, int col);
 int getNextCol(int size, int col);
+int getPrevRow(int row, int col);
+int getPrevCol(int size, int col);
 void swap(int *x, int *y);
 
 /* Checks if current state is solvable using deterministic algorithm. If solvable, updates solution.*/

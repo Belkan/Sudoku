@@ -11,6 +11,7 @@ CMakeFiles/Sudoku.dir/FileHandler.c.obj: ../Game.h
 CMakeFiles/Sudoku.dir/FileHandler.c.obj: ../HistoryHandler.h
 CMakeFiles/Sudoku.dir/FileHandler.c.obj: ../MainAux.h
 CMakeFiles/Sudoku.dir/FileHandler.c.obj: ../Parser.h
+CMakeFiles/Sudoku.dir/FileHandler.c.obj: ../Solver.h
 
 CMakeFiles/Sudoku.dir/Game.c.obj: ../ErrorHandler.h
 CMakeFiles/Sudoku.dir/Game.c.obj: ../Game.c
@@ -39,6 +40,7 @@ CMakeFiles/Sudoku.dir/Parser.c.obj: ../HistoryHandler.h
 CMakeFiles/Sudoku.dir/Parser.c.obj: ../MainAux.h
 CMakeFiles/Sudoku.dir/Parser.c.obj: ../Parser.c
 CMakeFiles/Sudoku.dir/Parser.c.obj: ../Parser.h
+CMakeFiles/Sudoku.dir/Parser.c.obj: ../Solver.h
 
 CMakeFiles/Sudoku.dir/Solver.c.obj: ../ErrorHandler.h
 CMakeFiles/Sudoku.dir/Solver.c.obj: ../Game.h
@@ -52,6 +54,7 @@ CMakeFiles/Sudoku.dir/UnitTester.c.obj: ../Game.h
 CMakeFiles/Sudoku.dir/UnitTester.c.obj: ../HistoryHandler.h
 CMakeFiles/Sudoku.dir/UnitTester.c.obj: ../MainAux.h
 CMakeFiles/Sudoku.dir/UnitTester.c.obj: ../Parser.h
+CMakeFiles/Sudoku.dir/UnitTester.c.obj: ../Solver.h
 CMakeFiles/Sudoku.dir/UnitTester.c.obj: ../UnitTester.c
 
 CMakeFiles/Sudoku.dir/main.c.obj: ../ErrorHandler.h

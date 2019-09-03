@@ -42,3 +42,8 @@ void testFileHandler() {
 
     printf("END OF TESTS\n");
 }
+
+void testJustLoad() {
+    GameState *gameState = loadFromFile("omri.txt");
+    destroyGameState(gameState);
+}
