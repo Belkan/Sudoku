@@ -3,5 +3,6 @@
 #define SUDOKU_UNITTESTER_H
 
 void testFileHandler();
+void testJustLoad();
 
 #endif

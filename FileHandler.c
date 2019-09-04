@@ -46,12 +46,25 @@ GameState *loadEmptyBoard() {
     return gameState;
 }
 
+/* Utility function for loader: finds next position in line to read cell from. */
+int getNextIdx(char *currLine, int currIdx) {
+    int i = currIdx + 1;
+
+    if (isdigit(currLine[currIdx]) || currLine[currIdx] == '.') {
+        return currIdx;
+    }
+
+    /* Find next digit or fixed cell markup or \n in the line. */
+    while (currLine[i] == ' ' || currLine[i] == '\t' || currLine[i] == '\r') {
+        i++;
+    }
+    return i;
+}
+
 /* Function to load up a saved game board and update our game state with it */
 GameState *loadFromFile (char *filePath) {
-    char *str[MAX];
-    char *token;
     char *rowSize = (char *)malloc(CHAR_MAX), *colSize = (char *)malloc(CHAR_MAX);
-    int rowIdx = 0, colIdx = 0, lineIdx = 0, idx = 0, cell = 0;
+    int idx = 0, rows = 0, cols = 0, rowIdx = 0, colIdx = 0, cell = 0, lineIdx = 0;
     char *currLine = (char *)malloc(CHAR_MAX);
     FILE *loadedGame;
     GameState *newGame;
@@ -62,39 +75,37 @@ GameState *loadFromFile (char *filePath) {
     /* Read first line of loaded game into board */
     fgets(currLine, CHAR_MAX, loadedGame);
 
-    printf("got line: %s\n", currLine);
-
-    /* Break line using delimeter */
-    str[0] = NULL, str[1] = NULL;
-    token = strtok(currLine, " \t\r\n");
-    while (token != 0){
-        str[idx++] = token;
-        token = strtok(0, " \t\r\n");
-    }
-
-    /* Read row & col sizes */
-    rowSize = str[0];
-    colSize = str[1];
+    /* Read col/row values from text file. */
+    rows = currLine[getNextIdx(currLine, idx++)] - '0';
+    cols = currLine[getNextIdx(currLine, idx)] - '0';
 
     /* Get rid of old board to load up new one */
-    newGame = createGameState(atoi(rowSize), atoi(colSize));
+    newGame = createGameState(rows, cols);
 
     /* Read board */
-    for (rowIdx = 0; rowIdx < atoi(rowSize); rowIdx++) {
-        fgets(currLine, CHAR_MAX, loadedGame);
-        printf("reading line: %s\n", currLine);
+    while (fgets(currLine, CHAR_MAX, loadedGame)) {
+        lineIdx = 0;
+        /* Iterate line retrieved to update board. */
+        for (idx = 0; idx < rows * cols; idx++) {
+            lineIdx = getNextIdx(currLine, lineIdx);
+            cell = currLine[lineIdx++];
 
-        for (colIdx = 0; colIdx < atoi(colSize); colIdx++) {
-            /* Get current cell */
-            if (isdigit(currLine[lineIdx])) {
-                cell = currLine[lineIdx] - '0';
-                setCellValue(rowIdx, colIdx, cell, newGame, BOARD);
-                lineIdx++;
+            /* Check if cell needs to be fixed. */
+            if ((cell - '0') == -2) {
+                setFixed(getPrevRow(rowIdx, colIdx), getPrevCol(rows * cols, colIdx), true, newGame);
+                idx--;
             }
-            /* Check if saving dot for fixed cell is required */
-            else if (currLine[lineIdx + 1] == '.') {
-                setFixed(rowIdx, colIdx, true, newGame);
-                lineIdx++;
+            else {
+                setCellValue(rowIdx, colIdx, cell - '0', newGame, BOARD);
+                /* Handle edge case of fixing last column. */
+                if (colIdx == rows * cols - 1) {
+                    if (currLine[getNextIdx(currLine, lineIdx)] - '0' == -2) {
+                        setFixed(rowIdx, colIdx, true, newGame);
+                    }
+                }
+                /* Update row/col indexes. */
+                rowIdx = getNextRow(rows * cols, rowIdx, colIdx);
+                colIdx = getNextCol(rows * cols, colIdx);
             }
         }
     }
@@ -105,7 +116,6 @@ GameState *loadFromFile (char *filePath) {
     /* Free resources */
     free(rowSize);
     free(colSize);
-    free(currLine);
 
     return newGame;
 }
