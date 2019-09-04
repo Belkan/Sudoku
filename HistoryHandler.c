@@ -100,7 +100,7 @@ void undoMove(HistoryState *historyState, GameState *gameState, bool printEnable
     }
 }
 
-void redoMove(HistoryState *historyState, GameState *gameState) {
+void redoMove(HistoryState *historyState, GameState *gameState, bool printEnabled) {
     HistoryChange *changes = getChanges(getNextState(historyState));
     int row, col, oldVal, newVal;
     while (changes != NULL) {

@@ -54,7 +54,7 @@ bool matchesFormat(char *str, USER_CHOICE choice) {
             }
             return false;
         case AUTOFILL:
-            if (strcmp(str,"autofill") == 0) {
+            if (strcmp(str, "autofill") == 0) {
                 return true;
             }
             return false;
@@ -69,7 +69,6 @@ bool matchesFormat(char *str, USER_CHOICE choice) {
 USER_CHOICE parseCommand(GameState *gameState, char *input) {
     int k = 0, i = 0;
     char *str[MAX];
-    char *endPtr;
     char *token = strtok(input, " \t\r\n");
 
     /* Reset contents of array */
@@ -139,7 +138,6 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
 
     if (matchesFormat(str[0], VALIDATE)) {
         validate(gameState);
-
         return VALIDATE;
     }
 
@@ -230,12 +228,14 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
 /* Assumes parseCommand has determined input is correct.
  * Returns a new HistorayState according to the action that was made. */
 HistoryState *executeCommand(GameState *gameState, USER_CHOICE commandType, char *input) {
-    int k = 0, row, col, newValue, oldValue;
+    int k = 0, row, col, newValue, oldValue, counter;
     char *str[MAX];
     char *endPtr;
     char *token = strtok(input, " \t\r\n");
-    HistoryState *historyState = createHistoryState();
-    HistoryChange *historyChange;
+    HistoryState *historyState;
+    HistoryState *tmpHistoryState;
+    HistoryChange *historyChange = NULL;
+    HistoryChange *tmpHistoryChange;
     SET_STATUS status;
     /* Reset contents of array */
     str[1] = NULL;
@@ -253,11 +253,13 @@ HistoryState *executeCommand(GameState *gameState, USER_CHOICE commandType, char
                 gameState = loadEmptyBoard();
             }
             setGameMode(gameState, EDITMODE);
+            historyState = createHistoryState();
             return historyState;
 
         case (SOLVE):
             gameState = loadFromFile(str[1]);
             setGameMode(gameState, SOLVEMODE);
+            historyState = createHistoryState();
             return historyState;
 
         case (SET):
@@ -266,24 +268,63 @@ HistoryState *executeCommand(GameState *gameState, USER_CHOICE commandType, char
             newValue = strtol(str[3], &endPtr, 10);
             oldValue = getCellValue(row, col, gameState, BOARD);
             status = set(gameState, row, col, newValue);
+            historyState = createHistoryState();
             if (status == CELL_FIXED) {
                 printf("This cell is fixed, please try again.\n");
                 return historyState;
             }
+            /* TODO: Check if this is the intended behavior. */
             if (getCellValue(row, col, gameState, BOARD) != newValue) {
                 historyChange = createHistoryChange(row, col, oldValue, newValue);
                 setChanges(historyState, historyChange);
             }
             return historyState;
 
+        case (AUTOFILL):
+            for (row = 0; row < getSize(gameState); row++) {
+                for (col = 0; col < getSize(gameState); col++) {
+                    if (getCellValue(row, col, gameState, BOARD) == 0) {
+                        counter = 0;
+                        for (k = 1; k <= getSize(gameState); k++) {
+                            if (safeMove(row, col, k, gameState, BOARD)) {
+                                counter++;
+                                newValue = k;
+                                /* More than 1 legal value. */
+                                if (counter == 2) {
+                                    continue;
+                                }
+                            }
+                        }
+                        /* Exactly 1 legal value */
+                        if (counter == 1) {
+                            tmpHistoryChange = createHistoryChange(row, col, 0, newValue);
+                            printf("Cell [%d,%d] was filled with the only legal value: %d.\n", row + 1, col + 1,
+                                   newValue);
+                            if (historyChange == NULL) {
+                                historyChange = tmpHistoryChange;
+                            } else {
+                                historyChange->nextChange = tmpHistoryChange;
+                            }
+                        }
+
+                    }
+                }
+            }
+            historyState = createHistoryState();
+            tmpHistoryState = createHistoryState();
+            setPrevState(historyState, tmpHistoryState);
+            setNextState(tmpHistoryState, historyState);
+            setChanges(historyState, historyChange);
+            redoMove(tmpHistoryState, gameState, false);
+            return historyState;
         case (PRINT_BOARD):
             printBoard(gameState, BOARD);
-            return historyState;
+            return createHistoryState();
 
         case (MARK_ERRORS):
             strcmp(str[1], "0") == 0 ? setMarkErrors(gameState, false) : setMarkErrors(gameState, true);
-            return historyState;
+            return createHistoryState();
         default:
-            return historyState;
+            return createHistoryState();
     }
 }

@@ -13,14 +13,9 @@
   <component name="ChangeListManager">
     <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="`Implement solution counter (beta)`">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Solver.c" beforeDir="false" afterPath="$PROJECT_DIR$/Solver.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Solver.h" beforeDir="false" afterPath="$PROJECT_DIR$/Solver.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UnitTester.c" beforeDir="false" afterPath="$PROJECT_DIR$/UnitTester.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UnitTester.h" beforeDir="false" afterPath="$PROJECT_DIR$/UnitTester.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HistoryHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryHandler.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HistoryHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryHandler.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parser.c" beforeDir="false" afterPath="$PROJECT_DIR$/Parser.c" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -131,13 +126,6 @@
       <workItem from="1567177984071" duration="10000" />
       <workItem from="1567186895394" duration="949000" />
       <workItem from="1567290586305" duration="28473000" />
-    </task>
-    <task id="LOCAL-00024" summary=" Added Main Aux UT + getRandom func">
-      <created>1558575246026</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1558575246026</updated>
     </task>
     <task id="LOCAL-00025" summary=" Added Main Aux UT + getRandom func">
       <created>1558575313671</created>
@@ -473,7 +461,14 @@
       <option name="presentableId" value="LOCAL‎00072" />
       <updated>1567380475874</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Implement autofill">
+      <created>1567613558849</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1567613558850</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TodoView">
@@ -516,7 +511,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Simply moved generateRand to Solver module" />
     <MESSAGE value="Handled edge cases" />
     <MESSAGE value="Changed makefile" />
     <MESSAGE value="Adjusting for n*m" />
@@ -541,6 +535,7 @@
     <MESSAGE value="Created UnitTester module" />
     <MESSAGE value="Added stack support to replace recursion" />
     <MESSAGE value="Implement solution counter (beta)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement solution counter (beta)" />
+    <MESSAGE value="Implement autofill" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement autofill" />
   </component>
 </project>
