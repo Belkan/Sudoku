@@ -53,6 +53,11 @@ bool matchesFormat(char *str, USER_CHOICE choice) {
                 return true;
             }
             return false;
+        case AUTOFILL:
+            if (strcmp(str,"autofill") == 0) {
+                return true;
+            }
+            return false;
         default:
             return false;
     }
@@ -108,11 +113,9 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
         return SET;
     }
 
-    if (matchesFormat(str[0], HINT) && k == 3 && isdigit(*str[1]) && isdigit(*str[2])) {
-        hint(gameState,
-             strtol(str[2], &endPtr, 10) - 1,
-             strtol(str[1], &endPtr, 10) - 1);
-        return HINT;
+    if (matchesFormat(str[0], AUTOFILL)) {
+        if (getGameMode(gameState) != SOLVEMODE) {
+        }
     }
 
     if (matchesFormat(str[0], VALIDATE)) {

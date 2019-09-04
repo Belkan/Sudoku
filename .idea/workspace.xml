@@ -13,12 +13,6 @@
   <component name="ChangeListManager">
     <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErrorHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/ErrorHandler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErrorHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/ErrorHandler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game.c" beforeDir="false" afterPath="$PROJECT_DIR$/Game.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryHandler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryHandler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainAux.c" beforeDir="false" afterPath="$PROJECT_DIR$/MainAux.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parser.c" beforeDir="false" afterPath="$PROJECT_DIR$/Parser.c" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -127,14 +121,7 @@
       <workItem from="1566500094792" duration="2091000" />
       <workItem from="1567096036820" duration="43000" />
       <workItem from="1567096250780" duration="592000" />
-      <workItem from="1567239537243" duration="5511000" />
-    </task>
-    <task id="LOCAL-00024" summary=" Added Main Aux UT + getRandom func">
-      <created>1558575246026</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1558575246026</updated>
+      <workItem from="1567239537243" duration="10360000" />
     </task>
     <task id="LOCAL-00025" summary=" Added Main Aux UT + getRandom func">
       <created>1558575313671</created>
@@ -471,7 +458,13 @@
       <option name="presentableId" value="LOCAL‎00072" />
       <updated>1567244917548</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL‎00073" summary="Implement undo and redo">
+      <created>1567246077502</created>
+      <option name="number" value="LOCAL‎00073" />
+      <option name="presentableId" value="LOCAL‎00073" />
+      <updated>1567246077502</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TodoView">
