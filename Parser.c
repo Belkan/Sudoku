@@ -114,8 +114,27 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
     }
 
     if (matchesFormat(str[0], AUTOFILL)) {
-        if (getGameMode(gameState) != SOLVEMODE) {
+        if (getGameMode(gameState) == INITMODE) {
+            throw_illegalCommandForInit();
+            printf("Details: <autofill> is available only in SOLVE mode.\n");
+            return INVALID_COMMAND;
         }
+        if (getGameMode(gameState) == EDITMODE) {
+            throw_illegalCommandForEdit();
+            printf("Details: <autofill> is available only in SOLVE mode.\n");
+            return INVALID_COMMAND;
+        }
+        if (k > 0) {
+            throw_tooManyParametersError();
+            printf("Details: <autofill> accepts no parameters.\n");
+            return INVALID_COMMAND;
+        }
+        if (!isBoardLegal(gameState)) {
+            throw_illegalCommandForCurrentBoard();
+            printf("Details: <autofill> cannot be used on an erroneous board.\n");
+            return INVALID_COMMAND;
+        }
+        return AUTOFILL;
     }
 
     if (matchesFormat(str[0], VALIDATE)) {

@@ -42,6 +42,14 @@ void throw_illegalCommandForInit() {
     printf("Error: command is illegal for INIT board mode. Only available commands are solve and edit. Please try again.\n------------------------\n");
 }
 
+void throw_illegalCommandForEdit() {
+    printf("Error: command is illegal for EDIT board mode. Please try again.\n");
+}
+
+void throw_illegalCommandForCurrentBoard() {
+    printf("Error: this command is illegal for the current state of the board.\n");
+}
+
 void throw_unknownCommand() {
     printf("Error: this command doesn't exist. The available commands are:\n solve, edit, mark_errors, print_board, set,"
            " validate, guess, generate, undo, redo, save, hint, guess_hint, num_solutions, autofill, reset, exit.\n");
@@ -54,3 +62,4 @@ void throw_nothingToUndo() {
 void throw_nothingToRedo() {
     printf("Error: there is no move to redo.\n");
 }
+

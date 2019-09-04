@@ -25,7 +25,9 @@ void throw_tooFewParametersError();
 
 void throw_illegalCommandForInit();
 
-void throw_illegalCommandForInit();
+void throw_illegalCommandForEdit();
+
+void throw_illegalCommandForCurrentBoard();
 
 void throw_unknownCommand();
 
