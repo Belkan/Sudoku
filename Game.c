@@ -233,7 +233,7 @@ int getCellValue(int row, int col, GameState *gameState, BOARD_TYPE type) {
     switch (type) {
         case SOLUTION:
             return gameState->solution[row][col];
-        case BOARD:
+        default:
             return gameState->board[row][col];
     }
 }

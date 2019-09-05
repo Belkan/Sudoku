@@ -82,6 +82,7 @@ int size_t2int(size_t val) {
 void START_GAME() {
     /*Initialize*/
     char input[MAX];
+    char* parsedInput;
     USER_CHOICE status;
     HistoryState *currHistoryState = createHistoryState();
     HistoryState *tmpHistoryState;
@@ -105,21 +106,24 @@ void START_GAME() {
         if (input[i] == '\n') {
             continue;
         }
-        status = parseCommand(gameState, strtok(input, "\n"));
+        parsedInput = strtok(input, "\n");
+        status = parseCommand(gameState, parsedInput);
 
         if (status == EXIT) {
             break;
-        } else if (status == UNDO) {
+        }
+        /* TODO: Maybe move history commands to executeCommand as well. */
+        else if (status == UNDO) {
             if (getPreviousState(currHistoryState) == NULL) {
                 throw_nothingToUndo();
-                break;
+                continue;
             }
             undoMove(currHistoryState, gameState, /* printEnabled= */ true);
             currHistoryState = getPreviousState(currHistoryState);
         } else if (status == REDO) {
             if (getNextState(currHistoryState) == NULL) {
                 throw_nothingToRedo();
-                break;
+                continue;
             }
             redoMove(currHistoryState, gameState, /* printEnabled= */ true);
             currHistoryState = getNextState(currHistoryState);
@@ -132,7 +136,7 @@ void START_GAME() {
         }
             /* Handles all commands other than EXIT or history related. */
         else if (status != INVALID_COMMAND) {
-            tmpHistoryState = executeCommand(gameState, status, strtok(input, "\n"));
+            tmpHistoryState = executeCommand(gameState, status, parsedInput);
             if (getChanges(tmpHistoryState) == NULL) {
                 destroyHistoryState(tmpHistoryState);
             } else {

@@ -69,15 +69,18 @@ bool matchesFormat(char *str, USER_CHOICE choice) {
 USER_CHOICE parseCommand(GameState *gameState, char *input) {
     int k = 0, i = 0;
     char *str[MAX];
+    char inputCopy[MAX];
     char *endPtr;
-    char *token = strtok(input, " \t\r\n");
+    char *token;
 
     /* Reset contents of array */
     str[1] = NULL;
+    strcpy(inputCopy, input);
+    token = strtok(inputCopy, " \t\r\n");
 
     while (token != 0) {
         str[k++] = token;
-        token = strtok(0, " \t\r\n");
+        token = strtok(NULL, " \t\r\n");
     }
     k--;
 
@@ -236,8 +239,9 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
 HistoryState *executeCommand(GameState *gameState, USER_CHOICE commandType, char *input) {
     int k = 0, row, col, newValue, oldValue, counter;
     char *str[MAX];
+    char inputCopy[MAX];
     char *endPtr;
-    char *token = strtok(input, " \t\r\n");
+    char *token;
     HistoryState *historyState;
     HistoryState *tmpHistoryState;
     HistoryChange *historyChange = NULL;
@@ -246,10 +250,12 @@ HistoryState *executeCommand(GameState *gameState, USER_CHOICE commandType, char
     GameState *tmpGameState;
     /* Reset contents of array */
     str[1] = NULL;
+    strcpy(inputCopy, input);
+    token = strtok(inputCopy, " \t\r\n");
 
     while (token != 0) {
         str[k++] = token;
-        token = strtok(0, " \t\r\n");
+        token = strtok(NULL, " \t\r\n");
     }
     k--;
 
@@ -263,6 +269,7 @@ HistoryState *executeCommand(GameState *gameState, USER_CHOICE commandType, char
                 copyGameStateToGameState(tmpGameState, gameState);
             }
             setGameMode(gameState, EDITMODE);
+            printBoard(gameState, BOARD);
             return createHistoryState();
 
         case (SOLVE):
@@ -272,14 +279,11 @@ HistoryState *executeCommand(GameState *gameState, USER_CHOICE commandType, char
             return historyState;
 
         case (SET):
-            row = strtol(str[2], &endPtr, 10) - 1;
             col = strtol(str[1], &endPtr, 10) - 1;
+            row = strtol(str[2], &endPtr, 10) - 1;
             newValue = strtol(str[3], &endPtr, 10);
             oldValue = getCellValue(row, col, gameState, BOARD);
-            printf("CHECK");
-
             status = set(gameState, row, col, newValue);
-            printf("CHECK");
 
             historyState = createHistoryState();
             if (status == CELL_FIXED) {
@@ -291,6 +295,7 @@ HistoryState *executeCommand(GameState *gameState, USER_CHOICE commandType, char
                 historyChange = createHistoryChange(row, col, oldValue, newValue);
                 setChanges(historyState, historyChange);
             }
+            printBoard(gameState, BOARD);
             return historyState;
 
         case (AUTOFILL):
