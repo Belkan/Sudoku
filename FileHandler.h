@@ -8,9 +8,8 @@
 #include "Game.h"
 #include "MainAux.h"
 #include "ErrorHandler.h"
-#include "Parser.h"
 #include "Solver.h"
-
+#define MAX 1024
 
 #ifndef SUDOKU_FILEHANDLER_H
 #define SUDOKU_FILEHANDLER_H

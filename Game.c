@@ -1,6 +1,5 @@
 
 #include <stdio.h>
-#include <math.h>
 #include "Game.h"
 #include "Solver.h"
 #include "MainAux.h"

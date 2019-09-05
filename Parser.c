@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "Parser.h"
+#include "CommandExecutioner.h"
 
 /* Checks if user input matches given regular expressions */
 bool matchesFormat(char *str, USER_CHOICE choice) {
@@ -63,6 +64,16 @@ bool matchesFormat(char *str, USER_CHOICE choice) {
                 return true;
             }
             return false;
+        case MARK_ERRORS:
+            if (strcmp(str, "mark_errors") == 0) {
+                return true;
+            }
+            return false;
+        case SAVE:
+            if (strcmp(str, "save") == 0) {
+                return true;
+            }
+            return false;
         default:
             return false;
     }
@@ -72,10 +83,9 @@ bool matchesFormat(char *str, USER_CHOICE choice) {
 
 /* Scans user's input and returns it as String format */
 USER_CHOICE parseCommand(GameState *gameState, char *input) {
-    int k = 0, i = 0;
+    int k = 0;
     char *str[MAX];
     char inputCopy[MAX];
-    char *endPtr;
     char *token;
 
     /* Reset contents of array */
@@ -90,183 +100,63 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
     k--;
 
     if (matchesFormat(str[0], SET)) {
-        if (getGameMode(gameState) == INITMODE) {
-            throw_illegalCommandForInit();
-            printf("Details: <set X Y Z> may only be used in EDIT or SOLVE modes.\n");
-            return INVALID_COMMAND;
-        }
-        if (k > 3) {
-            throw_tooManyParametersError();
-            printf("Details: <set X Y Z> accepts 3 parameters.\n");
-            return INVALID_COMMAND;
-        }
-        if (k < 3) {
-            throw_tooFewParametersError();
-            printf("Details: <set X Y Z> accepts 3 parameters.\n");
-            return INVALID_COMMAND;
-        }
-        for (i = 1; i <= 3; i++) {
-            if (!isdigit(*str[i])) {
-                throw_illegalParameterValueError();
-                printf("Details: Parameter number %d is not a digit.\n", i);
-                printf("<set X Y Z> - sets cell <X,Y> to value Z.\nX,Y,Z must be non-negative integers.\n");
-                return INVALID_COMMAND;
-            }
-            if (strtol(str[i], &endPtr, 10) < 1 || strtol(str[i], &endPtr, 10) > getSize(gameState)) {
-                throw_illegalParameterRangeError();
-                printf("Details: Parameter number %d is not in the correct range.\n------------------------\n", i);
-                printf("<set X Y Z> - sets cell <X,Y> to value Z.\nX,Y,Z must be within the board's range!\n");
-                return INVALID_COMMAND;
-            }
-        }
-        return SET;
+        return validateSet(gameState, k, str);
     }
 
     if (matchesFormat(str[0], AUTOFILL)) {
-        if (getGameMode(gameState) == INITMODE) {
-            throw_illegalCommandForInit();
-            printf("Details: <autofill> is available only in SOLVE mode.\n");
-            return INVALID_COMMAND;
-        }
-        if (getGameMode(gameState) == EDITMODE) {
-            throw_illegalCommandForEdit();
-            printf("Details: <autofill> is available only in SOLVE mode.\n");
-            return INVALID_COMMAND;
-        }
-        if (k > 0) {
-            throw_tooManyParametersError();
-            printf("Details: <autofill> accepts no parameters.\n");
-            return INVALID_COMMAND;
-        }
-        if (!isBoardLegal(gameState)) {
-            throw_illegalCommandForCurrentBoard();
-            printf("Details: <autofill> cannot be used on an erroneous board.\n");
-            return INVALID_COMMAND;
-        }
-        return AUTOFILL;
+        return validateAutofill(gameState, k);
     }
 
     if (matchesFormat(str[0], VALIDATE)) {
-        validate(gameState);
-        return VALIDATE;
     }
 
     if (matchesFormat(str[0], UNDO)) {
-        if (k > 0) {
-            throw_tooManyParametersError();
-            printf("Details: undo accepts NO parameters.\n");
-            return INVALID_COMMAND;
-        }
-        if (getGameMode(gameState) == INITMODE) {
-            throw_illegalCommandForInit();
-            printf("Details: <undo> may only be used in EDIT or SOLVE modes.\n");
-            return INVALID_COMMAND;
-        }
-        return UNDO;
+        return validateUndo(gameState, k);
     }
 
     if (matchesFormat(str[0], REDO)) {
-        if (k > 0) {
-            throw_tooManyParametersError();
-            printf("Details: redo accepts NO parameters.\n");
-            return INVALID_COMMAND;
-        }
-        if (getGameMode(gameState) == INITMODE) {
-            throw_illegalCommandForInit();
-            printf("Details: <redo> may only be used in EDIT or SOLVE modes.\n");
-            return INVALID_COMMAND;
-        }
-        return REDO;
-    }
-
-    if (matchesFormat(str[0], MARK_ERRORS)) {
-        if (k > 1) {
-            throw_tooManyParametersError();
-            printf("Details: mark_errors accepts exactly ONE parameter - 1 or 0.\n");
-            return INVALID_COMMAND;
-        }
-        if (k == 0) {
-            throw_tooFewParametersError();
-            printf("Details: mark_errors accepts exactly ONE parameter - 1 or 0.\n");
-            return INVALID_COMMAND;
-        }
-        if (strcmp(str[1], "0") != 0 && strcmp(str[1], "1") != 0) {
-            throw_illegalParameterRangeError();
-            printf("Details: mark_errors accepts exactly ONE parameter - 1 or 0.\n");
-        }
-        return MARK_ERRORS;
-    }
-
-    if (matchesFormat(str[0], EXIT)) {
-        return EXIT;
-    }
-
-    if (matchesFormat(str[0], PRINT_BOARD)) {
-        if (getGameMode(gameState) == INITMODE) {
-            throw_illegalCommandForInit();
-            printf("Details: print_board may only be used in SOLVE or EDIT modes.\n");
-            return INVALID_COMMAND;
-        }
-        if (k > 0) {
-            throw_tooManyParametersError();
-            printf("Details: print_board accepts no additional parameters!\n");
-            return INVALID_COMMAND;
-        }
-        return PRINT_BOARD;
+        return validateRedo(gameState, k);
     }
 
     if (matchesFormat(str[0], RESET)) {
-        return RESET;
+        return validateReset(gameState, k);
     }
 
+    if (matchesFormat(str[0], MARK_ERRORS)) {
+       return validateMarkErrors(gameState, k, str);
+    }
+
+    if (matchesFormat(str[0], EXIT)) {
+        return validateExit(k);
+    }
+
+    if (matchesFormat(str[0], PRINT_BOARD)) {
+        return validatePrintBoard(gameState, k);
+    }
+
+
     if (matchesFormat(str[0], EDIT)) {
-        if (k > 1) {
-            throw_tooManyParametersError();
-            printf("Details: <edit [X]> may include at most ONE parameter of the file path.\n");
-            return INVALID_COMMAND;
-        }
-        if (!validLoadPath(str[1])) {
-            throw_loadPathError();
-            return INVALID_COMMAND;
-        }
-        return EDIT;
+        return validateEdit(k, str);
     }
 
     if (matchesFormat(str[0], SOLVE)) {
-        if (k > 1) {
-            throw_tooManyParametersError();
-            printf("Details: <solve X> must include exactly ONE parameter of the file path.\n");
-            return INVALID_COMMAND;
-        }
-        if (k == 0) {
-            throw_tooFewParametersError();
-            printf("Details: <solve X> must include exactly ONE parameter of the file path.\n");
-            return INVALID_COMMAND;
-        }
-        if (!validLoadPath(str[1])) {
-            throw_loadPathError();
-            return INVALID_COMMAND;
-        }
-        return SOLVE;
+        return validateSolve(k, str);
+    }
+
+    if (matchesFormat(str[0], SAVE)) {
+        return validateSave(gameState, k, str);
     }
     throw_unknownCommand();
     return INVALID_COMMAND;
 }
 
-/* Assumes parseCommand has determined input is correct.
- * Returns a new HistorayState according to the action that was made. */
-HistoryState *executeCommand(GameState *gameState, USER_CHOICE commandType, char *input) {
-    int k = 0, row, col, newValue, oldValue, counter;
+/* Assumes parseCommand has determined input is correct. */
+void executeCommand(GameState *gameState, HistoryState** historyState, USER_CHOICE commandType, char *input) {
+    int k = 0, row, col, val;
     char *str[MAX];
     char inputCopy[MAX];
     char *endPtr;
     char *token;
-    HistoryState *historyState;
-    HistoryState *tmpHistoryState;
-    HistoryChange *historyChange = NULL;
-    HistoryChange *tmpHistoryChange;
-    SET_STATUS status;
-    GameState *tmpGameState;
     /* Reset contents of array */
     str[1] = NULL;
     strcpy(inputCopy, input);
@@ -281,86 +171,58 @@ HistoryState *executeCommand(GameState *gameState, USER_CHOICE commandType, char
     switch (commandType) {
         case (EDIT):
             if (k == 1) {
-                tmpGameState = loadFromFile(str[1]);
-                copyGameStateToGameState(tmpGameState, gameState);
+                executeEdit(gameState, historyState, str[1], /* hasPath = */ true);
             } else {
-                tmpGameState = loadEmptyBoard();
-                copyGameStateToGameState(tmpGameState, gameState);
+                executeEdit(gameState, historyState, "", /* hasPath= */ false);
             }
-            setGameMode(gameState, EDITMODE);
-            printBoard(gameState, BOARD);
-            return createHistoryState();
+            return;
 
         case (SOLVE):
-            gameState = loadFromFile(str[1]);
-            setGameMode(gameState, SOLVEMODE);
-            historyState = createHistoryState();
-            return historyState;
+            executeSolve(gameState, historyState, str[1]);
+            return;
+
+        case (SAVE):
+            executeSave(gameState, str[1]);
+            return;
 
         case (SET):
             col = strtol(str[1], &endPtr, 10) - 1;
             row = strtol(str[2], &endPtr, 10) - 1;
-            newValue = strtol(str[3], &endPtr, 10);
-            oldValue = getCellValue(row, col, gameState, BOARD);
-            status = set(gameState, row, col, newValue);
-            historyState = createHistoryState();
-            if (status == CELL_FIXED) {
-                printf("This cell is fixed, please try again.\n");
-                return historyState;
-            }
-            /*TODO: Check if this is the intended behavior.*/
-            if (oldValue != newValue) {
-                historyChange = createHistoryChange(row, col, oldValue, newValue);
-                setChanges(historyState, historyChange);
-            }
-            printBoard(gameState, BOARD);
-            return historyState;
+            val = strtol(str[3], &endPtr, 10);
+            executeSet(gameState, historyState, row, col, val);
+            return;
+
+        case (UNDO):
+            executeUndo(gameState, historyState);
+            return;
+
+        case (REDO):
+            executeRedo(gameState, historyState);
+            return;
+
+        case (RESET):
+            executeReset(gameState, historyState);
+            return;
 
         case (AUTOFILL):
-            for (row = 0; row < getSize(gameState); row++) {
-                for (col = 0; col < getSize(gameState); col++) {
-                    if (getCellValue(row, col, gameState, BOARD) == 0) {
-                        counter = 0;
-                        for (k = 1; k <= getSize(gameState); k++) {
-                            if (safeMove(row, col, k, gameState, BOARD)) {
-                                counter++;
-                                newValue = k;
-                                /* More than 1 legal value. */
-                                if (counter == 2) {
-                                    continue;
-                                }
-                            }
-                        }
-                        /* Exactly 1 legal value */
-                        if (counter == 1) {
-                            tmpHistoryChange = createHistoryChange(row, col, 0, newValue);
-                            printf("Cell [%d,%d] was filled with the only legal value: %d.\n", row + 1, col + 1,
-                                   newValue);
-                            if (historyChange == NULL) {
-                                historyChange = tmpHistoryChange;
-                            } else {
-                                historyChange->nextChange = tmpHistoryChange;
-                            }
-                        }
+            executeAutofill(gameState, historyState);
+            return;
 
-                    }
-                }
-            }
-            historyState = createHistoryState();
-            tmpHistoryState = createHistoryState();
-            setPrevState(historyState, tmpHistoryState);
-            setNextState(tmpHistoryState, historyState);
-            setChanges(historyState, historyChange);
-            redoMove(tmpHistoryState, gameState, false);
-            return historyState;
         case (PRINT_BOARD):
             printBoard(gameState, BOARD);
-            return createHistoryState();
+            return;
 
         case (MARK_ERRORS):
             strcmp(str[1], "0") == 0 ? setMarkErrors(gameState, false) : setMarkErrors(gameState, true);
-            return createHistoryState();
+            return;
+
+        case (EXIT):
+            printf("Exiting...\n");
+            destroyAllHistory(*historyState);
+            free(historyState);
+            destroyGameState(gameState);
+            exit(EXIT_SUCCESS);
         default:
-            return createHistoryState();
+            return;
     }
 }

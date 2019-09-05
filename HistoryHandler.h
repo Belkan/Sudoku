@@ -2,6 +2,7 @@
 #ifndef SUDOKU_HISTORYHANDLER_H
 #define SUDOKU_HISTORYHANDLER_H
 #include <stdlib.h>
+#include <stdio.h>
 #include "Game.h"
 
 

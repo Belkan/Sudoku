@@ -2,6 +2,7 @@
 #define SUDOKU_ERRORHANDLER_H
 
 #include <stdio.h>
+#include "Game.h"
 
 /* Below are errors regarding loading a board from a text file */
 void throw_rowSizeNotFoundError();
@@ -10,7 +11,7 @@ void throw_colSizeNotFoundError();
 
 void throw_loadedInWrongModeError();
 
-void throw_loadPathError();
+void throw_filePathError();
 
 /* Below are errors regarding the command that was given as input */
 void throw_illegalCommandNameError();
@@ -23,9 +24,7 @@ void throw_tooManyParametersError();
 
 void throw_tooFewParametersError();
 
-void throw_illegalCommandForInit();
-
-void throw_illegalCommandForEdit();
+void throw_illegalCommandForMode(GAME_MODE gameMode);
 
 void throw_illegalCommandForCurrentBoard();
 

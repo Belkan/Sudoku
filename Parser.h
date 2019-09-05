@@ -6,29 +6,10 @@
 #include "FileHandler.h"
 #include "ErrorHandler.h"
 #include "HistoryHandler.h"
+#include "ParserUtils.h"
 #define MAX 1024
 
-/* Enum for the return mode of the user's request */
-typedef enum user_choice {
-    SET,
-    HINT,
-    VALIDATE,
-    RESET,
-    EXIT,
-    INVALID_COMMAND,
-    SOLVE,
-    EDIT,
-    MARK_ERRORS,
-    PRINT_BOARD,
-    GUESS,
-    GENERATE,
-    UNDO,
-    REDO,
-    SAVE,
-    GUESS_HINT,
-    NUM_SOLUTIONS,
-    AUTOFILL
-} USER_CHOICE;
+
 
 /* Checks if user input matches given regular expressions */
 bool matchesFormat(char* str, USER_CHOICE choice);
@@ -36,7 +17,7 @@ bool matchesFormat(char* str, USER_CHOICE choice);
 /* Scans user's input and returns it as String format */
 USER_CHOICE parseCommand(GameState *gameState, char *input);
 
-HistoryState *executeCommand(GameState *gameState, USER_CHOICE commandType, char *input);
+void executeCommand(GameState *gameState, HistoryState** historyState, USER_CHOICE commandType, char *input);
 
 #endif
 

@@ -9,11 +9,7 @@ void throw_colSizeNotFoundError() {
     printf("Error: column size not found while loading file! Please specify another file!\n");
 }
 
-void throw_loadedInWrongModeError() {
-    printf("Error: files cannot be loaded in INIT mode!\n");
-}
-
-void throw_loadPathError() {
+void throw_filePathError() {
     printf("Error: incorrect file path given!\n");
 }
 
@@ -38,12 +34,21 @@ void throw_tooFewParametersError() {
     printf("Error: too few parameters for given command. Please try again.\n------------------------\n");
 }
 
-void throw_illegalCommandForInit() {
-    printf("Error: command is illegal for INIT board mode. Only available commands are solve and edit. Please try again.\n------------------------\n");
-}
-
-void throw_illegalCommandForEdit() {
-    printf("Error: command is illegal for EDIT board mode. Please try again.\n");
+/* TODO: maybe add which commands are available in each mode */
+void throw_illegalCommandForMode(GAME_MODE gameMode) {
+    switch (gameMode) {
+        case (INITMODE):
+            printf("Error: command is illegal for INIT board mode. Only available commands in this mode are solve and edit. Please try again.\n------------------------\n");
+            break;
+        case (EDITMODE):
+            printf("Error: command is illegal for EDIT board mode. Please try again.\n");
+            break;
+        case (SOLVEMODE):
+            printf("Error: command is illegal for EDIT board mode. Please try again.\n");
+            break;
+        default:
+            break;
+    }
 }
 
 void throw_illegalCommandForCurrentBoard() {

@@ -82,19 +82,19 @@ int size_t2int(size_t val) {
 void START_GAME() {
     /*Initialize*/
     char input[MAX];
-    char* parsedInput;
-    USER_CHOICE status;
-    HistoryState *currHistoryState = createHistoryState();
-    HistoryState *tmpHistoryState = NULL;
+    char *parsedInput;
+    USER_CHOICE command;
+    HistoryState **pHistoryState = malloc(sizeof(HistoryState *));
     int i = 0;
 
     /* Empty gamestate in initmode, represents the beginning of the game */
     GameState *gameState = createGameState(1, 1);
+    *pHistoryState = createHistoryState();
 
     printf("-----------TAUDOKU-----------\n");
     printf("Enter a command of your choice:\n");
 
-/* Start game */
+/* Start game. Each loop is a line fed by the user. */
     while (fgets(input, MAX, stdin)) {
         i = 0;
         while (input[i] == ' ' || input[i] == '\t' || input[i] == '\r' || input[i] == '\n') {
@@ -107,59 +107,11 @@ void START_GAME() {
             continue;
         }
         parsedInput = strtok(input, "\n");
-        status = parseCommand(gameState, parsedInput);
+        command = parseCommand(gameState, parsedInput);
 
-        if (status == EXIT) {
-            break;
-        }
-        if (status == EDIT || status == SOLVE) {
-            destroyAllHistory(currHistoryState);
-            currHistoryState = createHistoryState();
-        }
-        /* TODO: Maybe move history commands to executeCommand as well. */
-        if (status == UNDO) {
-            if (getPreviousState(currHistoryState) == NULL) {
-                throw_nothingToUndo();
-                continue;
-            }
-            undoMove(currHistoryState, gameState, /* printEnabled= */ true);
-            currHistoryState = getPreviousState(currHistoryState);
-            printBoard(gameState, BOARD);
-        } else if (status == REDO) {
-            if (getNextState(currHistoryState) == NULL) {
-                throw_nothingToRedo();
-                continue;
-            }
-            redoMove(currHistoryState, gameState, /* printEnabled= */ true);
-            currHistoryState = getNextState(currHistoryState);
-            printBoard(gameState, BOARD);
-        } else if (status == RESET) {
-            while (getPreviousState(currHistoryState) != NULL) {
-                undoMove(currHistoryState, gameState, /* printEnabled= */ false);
-                currHistoryState = getPreviousState(currHistoryState);
-            }
-            printBoard(gameState, BOARD);
-        }
-            /* Handles all commands other than EXIT or history related. */
-        else if (status != INVALID_COMMAND) {
-            tmpHistoryState = executeCommand(gameState, status, parsedInput);
-            if (getChanges(tmpHistoryState) == NULL) {
-                printf("if\n");
-                destroyHistoryState(tmpHistoryState);
-            } else {
-                printf("else\n");
-                clearForwardHistory(currHistoryState);
-                setNextState(currHistoryState, tmpHistoryState);
-                setPrevState(tmpHistoryState, currHistoryState);
-                currHistoryState = tmpHistoryState;
-            }
-        }
+        executeCommand(gameState, pHistoryState, command, input);
+
         checkFullBoard(gameState);
     }
-
-    printf("Exiting...\n");
-    destroyGameState(gameState);
-    destroyHistoryState(currHistoryState);
-    exit(EXIT_SUCCESS);
 }
 

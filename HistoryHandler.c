@@ -96,7 +96,7 @@ void undoMove(HistoryState *historyState, GameState *gameState, bool printEnable
         oldVal = changes->newCellValue;
         setCellValue(row, col, newVal, gameState, BOARD);
         if (printEnabled) {
-            printf("Cell [%d,%d] has been changed back from %d to %d.\n", row + 1, col + 1, oldVal, newVal);
+            printf("Cell [%d,%d] changed from %d to %d.\n", row + 1, col + 1, oldVal, newVal);
         }
         changes = changes->nextChange;
     }
@@ -113,7 +113,7 @@ void redoMove(HistoryState *historyState, GameState *gameState, __attribute__ ((
         oldVal = changes->oldCellValue;
         setCellValue(row, col, newVal, gameState, BOARD);
         if (printEnabled) {
-            printf("Cell [%d,%d] has been changed back from %d to %d.\n", row + 1, col + 1, oldVal, newVal);
+            printf("Cell [%d,%d] changed from %d to %d.\n", row + 1, col + 1, oldVal, newVal);
         }
         changes = changes->nextChange;
     }
