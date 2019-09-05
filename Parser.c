@@ -53,6 +53,11 @@ bool matchesFormat(char *str, USER_CHOICE choice) {
                 return true;
             }
             return false;
+        case REDO:
+            if(strcmp(str, "redo") == 0) {
+                return true;
+            }
+            return false;
         case AUTOFILL:
             if (strcmp(str, "autofill") == 0) {
                 return true;
@@ -158,6 +163,20 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
             return INVALID_COMMAND;
         }
         return UNDO;
+    }
+
+    if (matchesFormat(str[0], REDO)) {
+        if (k > 0) {
+            throw_tooManyParametersError();
+            printf("Details: redo accepts NO parameters.\n");
+            return INVALID_COMMAND;
+        }
+        if (getGameMode(gameState) == INITMODE) {
+            throw_illegalCommandForInit();
+            printf("Details: <redo> may only be used in EDIT or SOLVE modes.\n");
+            return INVALID_COMMAND;
+        }
+        return REDO;
     }
 
     if (matchesFormat(str[0], MARK_ERRORS)) {
@@ -284,14 +303,13 @@ HistoryState *executeCommand(GameState *gameState, USER_CHOICE commandType, char
             newValue = strtol(str[3], &endPtr, 10);
             oldValue = getCellValue(row, col, gameState, BOARD);
             status = set(gameState, row, col, newValue);
-
             historyState = createHistoryState();
             if (status == CELL_FIXED) {
                 printf("This cell is fixed, please try again.\n");
                 return historyState;
             }
             /*TODO: Check if this is the intended behavior.*/
-            if (getCellValue(row, col, gameState, BOARD) != newValue) {
+            if (oldValue != newValue) {
                 historyChange = createHistoryChange(row, col, oldValue, newValue);
                 setChanges(historyState, historyChange);
             }

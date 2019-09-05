@@ -3,10 +3,7 @@
 #define SUDOKU_HISTORYHANDLER_H
 #include <stdlib.h>
 #include "Game.h"
-typedef enum change_status {
-    DO_SAVE,
-    DO_NOT_SAVE
-} CHANGE_STATUS ;
+
 
 typedef struct HistoryChange {
     int row;
@@ -18,7 +15,6 @@ typedef struct HistoryChange {
 
 typedef struct HistoryState {
     HistoryChange* changes;
-    CHANGE_STATUS changeStatus;
     struct HistoryState* nextState;
     struct HistoryState* prevState;
 } HistoryState;
@@ -42,8 +38,6 @@ HistoryState* getPreviousState(HistoryState* historyState);
 void setPrevState(HistoryState* historyState, HistoryState* prevState);
 
 HistoryChange* getChanges(HistoryState* historyState);
-
-CHANGE_STATUS getChangeStatus(HistoryState* historyState);
 
 void setChanges(HistoryState* historyState, HistoryChange* historyChange);
 

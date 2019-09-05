@@ -1,10 +1,9 @@
 
 #include "HistoryHandler.h"
 
-HistoryState *createHistoryState(CHANGE_STATUS status) {
+HistoryState *createHistoryState() {
     HistoryState *historyList = malloc(sizeof(HistoryState));
     historyList->changes = NULL;
-    historyList->changeStatus = status;
     historyList->nextState = NULL;
     historyList->prevState = NULL;
     return historyList;
@@ -75,13 +74,16 @@ void setChanges(HistoryState *historyState, HistoryChange *historyChange) {
 }
 
 void clearForwardHistory(HistoryState *historyState) {
-    HistoryState *tmp = historyState;
+    HistoryState *tmp;
+    if (historyState->nextState == NULL) {
+        return;
+    }
     while (historyState->nextState != NULL) {
         tmp = historyState->nextState;
         destroyHistoryState(historyState);
         historyState = tmp;
     }
-    destroyHistoryState(historyState);
+
 }
 
 void undoMove(HistoryState *historyState, GameState *gameState, bool printEnabled) {
@@ -94,7 +96,7 @@ void undoMove(HistoryState *historyState, GameState *gameState, bool printEnable
         oldVal = changes->newCellValue;
         setCellValue(row, col, newVal, gameState, BOARD);
         if (printEnabled) {
-            printf("Cell [%d,%d] has been changed back from %d to %d", row + 1, col + 1, oldVal, newVal);
+            printf("Cell [%d,%d] has been changed back from %d to %d.\n", row + 1, col + 1, oldVal, newVal);
         }
         changes = changes->nextChange;
     }
@@ -111,8 +113,9 @@ void redoMove(HistoryState *historyState, GameState *gameState, __attribute__ ((
         oldVal = changes->oldCellValue;
         setCellValue(row, col, newVal, gameState, BOARD);
         if (printEnabled) {
-            printf("Cell [%d,%d] has been changed back from %d to %d", row + 1, col + 1, oldVal, newVal);
+            printf("Cell [%d,%d] has been changed back from %d to %d.\n", row + 1, col + 1, oldVal, newVal);
         }
+        changes = changes->nextChange;
     }
 }
 

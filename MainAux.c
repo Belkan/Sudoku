@@ -85,7 +85,7 @@ void START_GAME() {
     char* parsedInput;
     USER_CHOICE status;
     HistoryState *currHistoryState = createHistoryState();
-    HistoryState *tmpHistoryState;
+    HistoryState *tmpHistoryState = NULL;
     int i = 0;
 
     /* Empty gamestate in initmode, represents the beginning of the game */
@@ -120,6 +120,7 @@ void START_GAME() {
             }
             undoMove(currHistoryState, gameState, /* printEnabled= */ true);
             currHistoryState = getPreviousState(currHistoryState);
+            printBoard(gameState, BOARD);
         } else if (status == REDO) {
             if (getNextState(currHistoryState) == NULL) {
                 throw_nothingToRedo();
@@ -127,6 +128,7 @@ void START_GAME() {
             }
             redoMove(currHistoryState, gameState, /* printEnabled= */ true);
             currHistoryState = getNextState(currHistoryState);
+            printBoard(gameState, BOARD);
         } else if (status == RESET) {
             while (getPreviousState(currHistoryState) != NULL) {
                 undoMove(currHistoryState, gameState, /* printEnabled= */ false);
@@ -138,8 +140,10 @@ void START_GAME() {
         else if (status != INVALID_COMMAND) {
             tmpHistoryState = executeCommand(gameState, status, parsedInput);
             if (getChanges(tmpHistoryState) == NULL) {
+                printf("if\n");
                 destroyHistoryState(tmpHistoryState);
             } else {
+                printf("else\n");
                 clearForwardHistory(currHistoryState);
                 setNextState(currHistoryState, tmpHistoryState);
                 setPrevState(tmpHistoryState, currHistoryState);
