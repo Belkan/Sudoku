@@ -4,5 +4,6 @@
 
 void testFileHandler();
 void testJustLoad();
+void testSolutionCounter();
 
 #endif

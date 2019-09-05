@@ -33,7 +33,6 @@ void testFileHandler() {
     gameState = loadEmptyBoard();
     printBoard(gameState, BOARD);
 
-    /* TODO why doesn't this work? */
     printf("TEST 2\n");
     gameState = loadFromFile("omri.txt");
     printBoard(gameState, BOARD);
@@ -46,4 +45,13 @@ void testFileHandler() {
 void testJustLoad() {
     GameState *gameState = loadFromFile("omri.txt");
     destroyGameState(gameState);
+}
+
+void testSolutionCounter() {
+    int result;
+    GameState *myGame = createGameState(2, 1);
+    printBoard(myGame, BOARD);
+
+    result = solutionCounter(myGame);
+    printf("returned: %d\n", result);
 }

@@ -8,6 +8,7 @@ struct recursion_stack* createStack(int capacity) {
     struct recursion_stack *stack = malloc(sizeof(struct recursion_stack));
     int idx = 0;
 
+    stack->top = 1;
     stack->capacity = capacity;
     /* Start with cell [1,1] and set it to value 1, the least value. */
     stack->rows = (int *) malloc(capacity * sizeof(int));

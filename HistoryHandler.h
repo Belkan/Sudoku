@@ -51,6 +51,6 @@ void clearForwardHistory(HistoryState* historyState);
 
 void undoMove(HistoryState *historyState, GameState *gameState, bool printEnabled);
 
-void redoMove(HistoryState* historyState, GameState* gameState, bool printEnabled);
+void redoMove(HistoryState* historyState, GameState* gameState, __attribute__ ((unused)) bool printEnabled);
 
 #endif
