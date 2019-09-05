@@ -112,8 +112,12 @@ void START_GAME() {
         if (status == EXIT) {
             break;
         }
+        if (status == EDIT || status == SOLVE) {
+            destroyAllHistory(currHistoryState);
+            currHistoryState = createHistoryState();
+        }
         /* TODO: Maybe move history commands to executeCommand as well. */
-        else if (status == UNDO) {
+        if (status == UNDO) {
             if (getPreviousState(currHistoryState) == NULL) {
                 throw_nothingToUndo();
                 continue;
