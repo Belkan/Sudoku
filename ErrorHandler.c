@@ -51,8 +51,8 @@ void throw_illegalCommandForCurrentBoard() {
 }
 
 void throw_unknownCommand() {
-    printf("Error: this command doesn't exist. The available commands are:\n solve, edit, mark_errors, print_board, set,"
-           " validate, guess, generate, undo, redo, save, hint, guess_hint, num_solutions, autofill, reset, exit.\n");
+    printf("Error: this command doesn't exist. The available commands are:\n solve, edit, mark_errors,\n print_board, set,"
+           " validate,\n guess, generate, undo,\n redo, save, hint,\n guess_hint, num_solutions, autofill,\n reset, exit.\n");
 }
 
 void throw_nothingToUndo() {

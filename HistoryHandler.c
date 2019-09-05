@@ -109,6 +109,8 @@ void redoMove(HistoryState *historyState, GameState *gameState, bool printEnable
         newVal = changes->newCellValue;
         oldVal = changes->oldCellValue;
         setCellValue(row, col, newVal, gameState, BOARD);
-        printf("Cell [%d,%d] has been changed back from %d to %d", row + 1, col + 1, oldVal, newVal);
+        if (printEnabled) {
+            printf("Cell [%d,%d] has been changed back from %d to %d", row + 1, col + 1, oldVal, newVal);
+        }
     }
 }

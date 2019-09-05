@@ -69,6 +69,7 @@ bool matchesFormat(char *str, USER_CHOICE choice) {
 USER_CHOICE parseCommand(GameState *gameState, char *input) {
     int k = 0, i = 0;
     char *str[MAX];
+    char *endPtr;
     char *token = strtok(input, " \t\r\n");
 
     /* Reset contents of array */
@@ -78,6 +79,7 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
         str[k++] = token;
         token = strtok(0, " \t\r\n");
     }
+    k--;
 
     if (matchesFormat(str[0], SET)) {
         if (getGameMode(gameState) == INITMODE) {
@@ -85,12 +87,12 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
             printf("Details: <set X Y Z> may only be used in EDIT or SOLVE modes.\n");
             return INVALID_COMMAND;
         }
-        if (k > 4) {
+        if (k > 3) {
             throw_tooManyParametersError();
             printf("Details: <set X Y Z> accepts 3 parameters.\n");
             return INVALID_COMMAND;
         }
-        if (k < 4) {
+        if (k < 3) {
             throw_tooFewParametersError();
             printf("Details: <set X Y Z> accepts 3 parameters.\n");
             return INVALID_COMMAND;
@@ -102,7 +104,7 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
                 printf("<set X Y Z> - sets cell <X,Y> to value Z.\nX,Y,Z must be non-negative integers.\n");
                 return INVALID_COMMAND;
             }
-            if (*str[i] < 0 || *str[i] > getSize(gameState)) {
+            if (strtol(str[i], &endPtr, 10) < 1 || strtol(str[i], &endPtr, 10) > getSize(gameState)) {
                 throw_illegalParameterRangeError();
                 printf("Details: Parameter number %d is not in the correct range.\n------------------------\n", i);
                 printf("<set X Y Z> - sets cell <X,Y> to value Z.\nX,Y,Z must be within the board's range!\n");
@@ -174,11 +176,15 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
     }
 
     if (matchesFormat(str[0], EXIT)) {
-        printf("Exiting...\n");
         return EXIT;
     }
 
     if (matchesFormat(str[0], PRINT_BOARD)) {
+        if (getGameMode(gameState) == INITMODE) {
+            throw_illegalCommandForInit();
+            printf("Details: print_board may only be used in SOLVE or EDIT modes.\n");
+            return INVALID_COMMAND;
+        }
         if (k > 0) {
             throw_tooManyParametersError();
             printf("Details: print_board accepts no additional parameters!\n");
@@ -237,6 +243,7 @@ HistoryState *executeCommand(GameState *gameState, USER_CHOICE commandType, char
     HistoryChange *historyChange = NULL;
     HistoryChange *tmpHistoryChange;
     SET_STATUS status;
+    GameState *tmpGameState;
     /* Reset contents of array */
     str[1] = NULL;
 
@@ -244,17 +251,19 @@ HistoryState *executeCommand(GameState *gameState, USER_CHOICE commandType, char
         str[k++] = token;
         token = strtok(0, " \t\r\n");
     }
+    k--;
 
     switch (commandType) {
         case (EDIT):
             if (k == 1) {
-                gameState = loadFromFile(str[1]);
+                tmpGameState = loadFromFile(str[1]);
+                copyGameStateToGameState(tmpGameState, gameState);
             } else {
-                gameState = loadEmptyBoard();
+                tmpGameState = loadEmptyBoard();
+                copyGameStateToGameState(tmpGameState, gameState);
             }
             setGameMode(gameState, EDITMODE);
-            historyState = createHistoryState();
-            return historyState;
+            return createHistoryState();
 
         case (SOLVE):
             gameState = loadFromFile(str[1]);
@@ -267,13 +276,17 @@ HistoryState *executeCommand(GameState *gameState, USER_CHOICE commandType, char
             col = strtol(str[1], &endPtr, 10) - 1;
             newValue = strtol(str[3], &endPtr, 10);
             oldValue = getCellValue(row, col, gameState, BOARD);
+            printf("CHECK");
+
             status = set(gameState, row, col, newValue);
+            printf("CHECK");
+
             historyState = createHistoryState();
             if (status == CELL_FIXED) {
                 printf("This cell is fixed, please try again.\n");
                 return historyState;
             }
-            /* TODO: Check if this is the intended behavior. */
+            /*TODO: Check if this is the intended behavior.*/
             if (getCellValue(row, col, gameState, BOARD) != newValue) {
                 historyChange = createHistoryChange(row, col, oldValue, newValue);
                 setChanges(historyState, historyChange);

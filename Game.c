@@ -196,12 +196,12 @@ GameState *createGameState(int rowsInBlock, int colsInBlock) {
 
     gameState->board = (int **) malloc(size * sizeof(int *));
     for (i = 0; i < size; i++) {
-        gameState->board[i] = calloc(size, sizeof(int));
+        gameState->board[i] = (int *) calloc(size, sizeof(int));
     }
 
     gameState->solution = (int **) malloc(size * sizeof(int *));
     for (i = 0; i < size; i++) {
-        gameState->solution[i] = calloc(size, sizeof(int));
+        gameState->solution[i] = (int *) calloc(size, sizeof(int));
     }
 
     gameState->fixed = (bool **) malloc(size * sizeof(bool *));
@@ -233,7 +233,7 @@ int getCellValue(int row, int col, GameState *gameState, BOARD_TYPE type) {
     switch (type) {
         case SOLUTION:
             return gameState->solution[row][col];
-        default:
+        case BOARD:
             return gameState->board[row][col];
     }
 }
@@ -268,4 +268,15 @@ void setGameMode(GameState *gameState, GAME_MODE status) {
 
 GAME_MODE getGameMode(GameState *gameState) {
     return gameState->mode;
+}
+
+void copyGameStateToGameState(GameState *fromGameState, GameState *toGameState) {
+    toGameState->board = fromGameState->board;
+    toGameState->fixed = fromGameState->fixed;
+    toGameState->solution = fromGameState->solution;
+    toGameState->colsInBlock = fromGameState->colsInBlock;
+    toGameState->rowsInBlock = fromGameState->rowsInBlock;
+    toGameState->size = fromGameState->size;
+    toGameState->markErrors = fromGameState->markErrors;
+    free(fromGameState);
 }
