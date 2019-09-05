@@ -11,11 +11,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="`Implement solution counter (beta)`">
+    <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HistoryHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryHandler.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HistoryHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryHandler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parser.c" beforeDir="false" afterPath="$PROJECT_DIR$/Parser.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainAux.c" beforeDir="false" afterPath="$PROJECT_DIR$/MainAux.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Solver.c" beforeDir="false" afterPath="$PROJECT_DIR$/Solver.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UnitTester.c" beforeDir="false" afterPath="$PROJECT_DIR$/UnitTester.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UnitTester.h" beforeDir="false" afterPath="$PROJECT_DIR$/UnitTester.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +29,7 @@
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
+    <option name="clangWarnings" value="-Wno-unused-variable,-Werror=implicit-function-declaration,-Wshadow,-Wno-shadow-field-in-constructor-modified,-Wno-shadow-ivar,-Wno-unused-parameter" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -125,7 +130,8 @@
       <workItem from="1567096004393" duration="25000" />
       <workItem from="1567177984071" duration="10000" />
       <workItem from="1567186895394" duration="949000" />
-      <workItem from="1567290586305" duration="28473000" />
+      <workItem from="1567290586305" duration="29943000" />
+      <workItem from="1567663330315" duration="1193000" />
     </task>
     <task id="LOCAL-00025" summary=" Added Main Aux UT + getRandom func">
       <created>1558575313671</created>
@@ -461,12 +467,11 @@
       <option name="presentableId" value="LOCAL‎00072" />
       <updated>1567380475874</updated>
     </task>
-    <task id="LOCAL-00073" summary="Implement autofill">
-      <created>1567613558849</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1567613558850</updated>
+    <task id="LOCAL‎00073" summary="Debugged FileHandler (now working 100% yay)">
+      <created>1567545362719</created>
+      <option name="number" value="LOCAL‎00073" />
+      <option name="presentableId" value="LOCAL‎00073" />
+      <updated>1567545362719</updated>
     </task>
     <option name="localTasksCounter" value="74" />
     <servers />
@@ -535,7 +540,7 @@
     <MESSAGE value="Created UnitTester module" />
     <MESSAGE value="Added stack support to replace recursion" />
     <MESSAGE value="Implement solution counter (beta)" />
-    <MESSAGE value="Implement autofill" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement autofill" />
+    <MESSAGE value="Debugged FileHandler (now working 100% yay)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debugged FileHandler (now working 100% yay)" />
   </component>
 </project>

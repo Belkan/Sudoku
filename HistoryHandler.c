@@ -100,7 +100,8 @@ void undoMove(HistoryState *historyState, GameState *gameState, bool printEnable
     }
 }
 
-void redoMove(HistoryState *historyState, GameState *gameState, bool printEnabled) {
+/* TODO had to put unused attribute for printEnabled in order to build, remove in future release. */
+void redoMove(HistoryState *historyState, GameState *gameState, __attribute__ ((unused)) bool printEnabled) {
     HistoryChange *changes = getChanges(getNextState(historyState));
     int row, col, oldVal, newVal;
     while (changes != NULL) {
@@ -112,3 +113,4 @@ void redoMove(HistoryState *historyState, GameState *gameState, bool printEnable
         printf("Cell [%d,%d] has been changed back from %d to %d", row + 1, col + 1, oldVal, newVal);
     }
 }
+

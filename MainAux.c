@@ -121,7 +121,7 @@ void START_GAME() {
                 throw_nothingToRedo();
                 break;
             }
-            redoMove(currHistoryState, gameState);
+            redoMove(currHistoryState, gameState, true);
             currHistoryState = getNextState(currHistoryState);
         } else if (status == RESET) {
             while (getPreviousState(currHistoryState) != NULL) {
