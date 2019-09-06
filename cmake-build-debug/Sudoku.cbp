@@ -74,6 +74,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/CommandExecutioner.c">
+			<Option target="Sudoku"/>
+		</Unit>
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/CommandExecutioner.h">
+			<Option target="Sudoku"/>
+		</Unit>
 		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/ErrorHandler.c">
 			<Option target="Sudoku"/>
 		</Unit>
@@ -108,6 +114,12 @@
 			<Option target="Sudoku"/>
 		</Unit>
 		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/Parser.h">
+			<Option target="Sudoku"/>
+		</Unit>
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/ParserUtils.c">
+			<Option target="Sudoku"/>
+		</Unit>
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/ParserUtils.h">
 			<Option target="Sudoku"/>
 		</Unit>
 		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/Solver.c">

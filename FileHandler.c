@@ -36,6 +36,10 @@ bool validLoadPath (char *filePath) {
             return false;
         }
     }
+    else {
+        throw_filePathError();
+        return false;
+    }
     free(rowSize);
     free(colSize);
     return true;

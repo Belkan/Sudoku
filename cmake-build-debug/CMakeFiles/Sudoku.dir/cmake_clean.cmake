@@ -8,6 +8,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Sudoku.dir/ErrorHandler.c.obj"
   "CMakeFiles/Sudoku.dir/HistoryHandler.c.obj"
   "CMakeFiles/Sudoku.dir/UnitTester.c.obj"
+  "CMakeFiles/Sudoku.dir/CommandExecutioner.c.obj"
+  "CMakeFiles/Sudoku.dir/ParserUtils.c.obj"
   "Sudoku.pdb"
   "Sudoku.exe"
   "Sudoku.exe.manifest"

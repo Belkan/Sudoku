@@ -122,6 +122,33 @@ Sudoku/fast:
 	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/build
 .PHONY : Sudoku/fast
 
+CommandExecutioner.obj: CommandExecutioner.c.obj
+
+.PHONY : CommandExecutioner.obj
+
+# target to build an object file
+CommandExecutioner.c.obj:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/CommandExecutioner.c.obj
+.PHONY : CommandExecutioner.c.obj
+
+CommandExecutioner.i: CommandExecutioner.c.i
+
+.PHONY : CommandExecutioner.i
+
+# target to preprocess a source file
+CommandExecutioner.c.i:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/CommandExecutioner.c.i
+.PHONY : CommandExecutioner.c.i
+
+CommandExecutioner.s: CommandExecutioner.c.s
+
+.PHONY : CommandExecutioner.s
+
+# target to generate assembly for a file
+CommandExecutioner.c.s:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/CommandExecutioner.c.s
+.PHONY : CommandExecutioner.c.s
+
 ErrorHandler.obj: ErrorHandler.c.obj
 
 .PHONY : ErrorHandler.obj
@@ -284,6 +311,33 @@ Parser.c.s:
 	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Parser.c.s
 .PHONY : Parser.c.s
 
+ParserUtils.obj: ParserUtils.c.obj
+
+.PHONY : ParserUtils.obj
+
+# target to build an object file
+ParserUtils.c.obj:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/ParserUtils.c.obj
+.PHONY : ParserUtils.c.obj
+
+ParserUtils.i: ParserUtils.c.i
+
+.PHONY : ParserUtils.i
+
+# target to preprocess a source file
+ParserUtils.c.i:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/ParserUtils.c.i
+.PHONY : ParserUtils.c.i
+
+ParserUtils.s: ParserUtils.c.s
+
+.PHONY : ParserUtils.s
+
+# target to generate assembly for a file
+ParserUtils.c.s:
+	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/ParserUtils.c.s
+.PHONY : ParserUtils.c.s
+
 Solver.obj: Solver.c.obj
 
 .PHONY : Solver.obj
@@ -374,6 +428,9 @@ help:
 	@echo ... edit_cache
 	@echo ... Sudoku
 	@echo ... rebuild_cache
+	@echo ... CommandExecutioner.obj
+	@echo ... CommandExecutioner.i
+	@echo ... CommandExecutioner.s
 	@echo ... ErrorHandler.obj
 	@echo ... ErrorHandler.i
 	@echo ... ErrorHandler.s
@@ -392,6 +449,9 @@ help:
 	@echo ... Parser.obj
 	@echo ... Parser.i
 	@echo ... Parser.s
+	@echo ... ParserUtils.obj
+	@echo ... ParserUtils.i
+	@echo ... ParserUtils.s
 	@echo ... Solver.obj
 	@echo ... Solver.i
 	@echo ... Solver.s

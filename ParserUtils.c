@@ -147,7 +147,6 @@ USER_CHOICE validateEdit(int params, char** input) {
         return INVALID_COMMAND;
     }
     if (params == 1 && !validLoadPath(input[1])) {
-        throw_filePathError();
         return INVALID_COMMAND;
     }
     return EDIT;
