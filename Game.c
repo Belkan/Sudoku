@@ -270,6 +270,9 @@ GAME_MODE getGameMode(GameState *gameState) {
 }
 
 void copyGameStateToGameState(GameState *fromGameState, GameState *toGameState) {
+    destroyMatrix(toGameState->board, toGameState->size);
+    destroyMatrix(toGameState->solution, toGameState->size);
+    destroyMatrix((int **) toGameState->fixed, toGameState->size);
     toGameState->board = fromGameState->board;
     toGameState->fixed = fromGameState->fixed;
     toGameState->solution = fromGameState->solution;

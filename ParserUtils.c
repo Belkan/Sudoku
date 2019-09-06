@@ -173,10 +173,10 @@ USER_CHOICE validateSave(GameState* gameState, int params, char** input) {
         printf("Details: <save X> must include exactly ONE parameter of the file path.\n");
         return INVALID_COMMAND;
     }
-    if (!validLoadPath(input[1])) {
+    /*if (!validLoadPath(input[1])) {
         throw_filePathError();
         return INVALID_COMMAND;
-    }
+    }*/
     return SAVE;
 }
 
