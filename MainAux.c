@@ -85,10 +85,11 @@ void START_GAME() {
     char *parsedInput;
     USER_CHOICE command;
     HistoryState **pHistoryState = malloc(sizeof(HistoryState *));
+    GameState **pGameState = malloc(sizeof(GameState *));
     int i = 0;
 
     /* Empty gamestate in initmode, represents the beginning of the game */
-    GameState *gameState = createGameState(1, 1);
+    *pGameState = createGameState(1, 1);
     *pHistoryState = createHistoryState();
 
     printf("-----------TAUDOKU-----------\n");
@@ -107,11 +108,11 @@ void START_GAME() {
             continue;
         }
         parsedInput = strtok(input, "\n");
-        command = parseCommand(gameState, parsedInput);
+        command = parseCommand(pGameState, parsedInput);
 
-        executeCommand(gameState, pHistoryState, command, input);
+        executeCommand(pGameState, pHistoryState, command, input);
 
-        checkFullBoard(gameState);
+        checkFullBoard(*pGameState);
     }
 }
 

@@ -15,9 +15,9 @@
 bool matchesFormat(char* str, USER_CHOICE choice);
 
 /* Scans user's input and returns it as String format */
-USER_CHOICE parseCommand(GameState *gameState, char *input);
+USER_CHOICE parseCommand(GameState **gameState, char *input);
 
-void executeCommand(GameState *gameState, HistoryState** historyState, USER_CHOICE commandType, char *input);
+void executeCommand(GameState **pGameState, HistoryState** pHistoryState, USER_CHOICE commandType, char *input);
 
 #endif
 

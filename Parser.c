@@ -82,7 +82,7 @@ bool matchesFormat(char *str, USER_CHOICE choice) {
  * Also, maybe add a "help" command? Weird they didn't ask. */
 
 /* Scans user's input and returns it as String format */
-USER_CHOICE parseCommand(GameState *gameState, char *input) {
+USER_CHOICE parseCommand(GameState **gameState, char *input) {
     int k = 0;
     char *str[MAX];
     char inputCopy[MAX];
@@ -100,30 +100,30 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
     k--;
 
     if (matchesFormat(str[0], SET)) {
-        return validateSet(gameState, k, str);
+        return validateSet(*gameState, k, str);
     }
 
     if (matchesFormat(str[0], AUTOFILL)) {
-        return validateAutofill(gameState, k);
+        return validateAutofill(*gameState, k);
     }
 
     if (matchesFormat(str[0], VALIDATE)) {
     }
 
     if (matchesFormat(str[0], UNDO)) {
-        return validateUndo(gameState, k);
+        return validateUndo(*gameState, k);
     }
 
     if (matchesFormat(str[0], REDO)) {
-        return validateRedo(gameState, k);
+        return validateRedo(*gameState, k);
     }
 
     if (matchesFormat(str[0], RESET)) {
-        return validateReset(gameState, k);
+        return validateReset(*gameState, k);
     }
 
     if (matchesFormat(str[0], MARK_ERRORS)) {
-       return validateMarkErrors(gameState, k, str);
+       return validateMarkErrors(*gameState, k, str);
     }
 
     if (matchesFormat(str[0], EXIT)) {
@@ -131,9 +131,8 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
     }
 
     if (matchesFormat(str[0], PRINT_BOARD)) {
-        return validatePrintBoard(gameState, k);
+        return validatePrintBoard(*gameState, k);
     }
-
 
     if (matchesFormat(str[0], EDIT)) {
         return validateEdit(k, str);
@@ -144,14 +143,14 @@ USER_CHOICE parseCommand(GameState *gameState, char *input) {
     }
 
     if (matchesFormat(str[0], SAVE)) {
-        return validateSave(gameState, k, str);
+        return validateSave(*gameState, k, str);
     }
     throw_unknownCommand();
     return INVALID_COMMAND;
 }
 
 /* Assumes parseCommand has determined input is correct. */
-void executeCommand(GameState *gameState, HistoryState** historyState, USER_CHOICE commandType, char *input) {
+void executeCommand(GameState **pGameState, HistoryState** pHistoryState, USER_CHOICE commandType, char *input) {
     int k = 0, row, col, val;
     char *str[MAX];
     char inputCopy[MAX];
@@ -171,56 +170,58 @@ void executeCommand(GameState *gameState, HistoryState** historyState, USER_CHOI
     switch (commandType) {
         case (EDIT):
             if (k == 1) {
-                executeEdit(gameState, historyState, str[1], /* hasPath = */ true);
+                printf("CHECK\n");
+                executeEdit(pGameState, pHistoryState, str[1], /* hasPath = */ true);
             } else {
-                executeEdit(gameState, historyState, "", /* hasPath= */ false);
+                executeEdit(pGameState, pHistoryState, "", /* hasPath= */ false);
             }
             return;
 
         case (SOLVE):
-            executeSolve(gameState, historyState, str[1]);
+            executeSolve(pGameState, pHistoryState, str[1]);
             return;
 
         case (SAVE):
-            executeSave(gameState, str[1]);
+            executeSave(*pGameState, str[1]);
             return;
 
         case (SET):
             col = strtol(str[1], &endPtr, 10) - 1;
             row = strtol(str[2], &endPtr, 10) - 1;
             val = strtol(str[3], &endPtr, 10);
-            executeSet(gameState, historyState, row, col, val);
+            executeSet(*pGameState, pHistoryState, row, col, val);
             return;
 
         case (UNDO):
-            executeUndo(gameState, historyState);
+            executeUndo(*pGameState, pHistoryState);
             return;
 
         case (REDO):
-            executeRedo(gameState, historyState);
+            executeRedo(*pGameState, pHistoryState);
             return;
 
         case (RESET):
-            executeReset(gameState, historyState);
+            executeReset(*pGameState, pHistoryState);
             return;
 
         case (AUTOFILL):
-            executeAutofill(gameState, historyState);
+            executeAutofill(*pGameState, pHistoryState);
             return;
 
         case (PRINT_BOARD):
-            printBoard(gameState, BOARD);
+            printBoard(*pGameState, BOARD);
             return;
 
         case (MARK_ERRORS):
-            strcmp(str[1], "0") == 0 ? setMarkErrors(gameState, false) : setMarkErrors(gameState, true);
+            strcmp(str[1], "0") == 0 ? setMarkErrors(*pGameState, false) : setMarkErrors(*pGameState, true);
             return;
 
         case (EXIT):
             printf("Exiting...\n");
-            destroyAllHistory(*historyState);
-            free(historyState);
-            destroyGameState(gameState);
+            destroyAllHistory(*pHistoryState);
+            free(pHistoryState);
+            destroyGameState(*pGameState);
+            free(pGameState);
             exit(EXIT_SUCCESS);
         default:
             return;

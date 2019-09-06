@@ -11,42 +11,38 @@ void executeSet(GameState *gameState, HistoryState **pHistoryState, int row, int
         printf("This cell is fixed, please try again.\n");
         return;
     }
-    if (oldVal != val) {
-        tmpHistoryState = createHistoryState();
-        historyChange = createHistoryChange(row, col, oldVal, val);
-        setChanges(tmpHistoryState, historyChange);
-        setNextState(*pHistoryState, tmpHistoryState);
-        setPrevState(tmpHistoryState, *pHistoryState);
-        *pHistoryState = tmpHistoryState;
-    }
+    tmpHistoryState = createHistoryState();
+    historyChange = createHistoryChange(row, col, oldVal, val);
+    setChanges(tmpHistoryState, historyChange);
+    setNextState(*pHistoryState, tmpHistoryState);
+    setPrevState(tmpHistoryState, *pHistoryState);
+    *pHistoryState = tmpHistoryState;
     printBoard(gameState, BOARD);
 }
 
-void executeEdit(GameState *gameState, HistoryState **pHistoryState, char *filePath, bool hasPath) {
-    GameState *tmpGameState;
+void executeEdit(GameState **gameState, HistoryState **pHistoryState, char *filePath, bool hasPath) {
+    destroyGameState(*gameState);
     if (hasPath) {
-        tmpGameState = loadFromFile(filePath);
+        *gameState = loadFromFile(filePath);
     } else {
-        tmpGameState = loadEmptyBoard();
+        *gameState = loadEmptyBoard();
     }
-    copyGameStateToGameState(tmpGameState, gameState);
-    setGameMode(gameState, EDITMODE);
+    setGameMode(*gameState, EDITMODE);
     destroyAllHistory(*pHistoryState);
     *pHistoryState = createHistoryState();
-    printBoard(gameState, BOARD);
+    printBoard(*gameState, BOARD);
 }
 
-void executeSolve(GameState *gameState, HistoryState **pHistoryState, char *filePath) {
-    GameState *tmpGameState;
-    tmpGameState = loadFromFile(filePath);
-    copyGameStateToGameState(tmpGameState, gameState);
-    setGameMode(gameState, SOLVEMODE);
+void executeSolve(GameState **gameState, HistoryState **pHistoryState, char *filePath) {
+    destroyGameState(*gameState);
+    *gameState = loadFromFile(filePath);
+    setGameMode(*gameState, SOLVEMODE);
     destroyAllHistory(*pHistoryState);
     *pHistoryState = createHistoryState();
-    printBoard(gameState, BOARD);
+    printBoard(*gameState, BOARD);
 }
 
-void executeSave(GameState* gameState, char* filePath) {
+void executeSave(GameState *gameState, char *filePath) {
     saveToFile(filePath, gameState);
 }
 

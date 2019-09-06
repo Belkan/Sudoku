@@ -86,5 +86,4 @@ int getRowsInBlock (GameState* gameState);
 int getColsInBlock (GameState* gameState) ;
 void setGameMode(GameState *gameState, GAME_MODE status);
 GAME_MODE getGameMode(GameState *gameState);
-void copyGameStateToGameState(GameState *fromGameState, GameState *toGameState);
 #endif

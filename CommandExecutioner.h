@@ -27,9 +27,9 @@ typedef enum user_choice {
 
 void executeSet(GameState* gameState, HistoryState** historyState, int row, int col, int val);
 
-void executeEdit(GameState* gameState, HistoryState** historyState, char* filePath, bool hasPath);
+void executeEdit(GameState** gameState, HistoryState** historyState, char* filePath, bool hasPath);
 
-void executeSolve(GameState* gameState, HistoryState** historyState, char* filePath);
+void executeSolve(GameState** gameState, HistoryState** historyState, char* filePath);
 
 void executeSave(GameState* gameState, char* filePath);
 
