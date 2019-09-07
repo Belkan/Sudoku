@@ -27,5 +27,16 @@ USER_CHOICE validateSolve(int params, char** input);
 
 USER_CHOICE validateSave(GameState* gameState, int params, char** input);
 
+USER_CHOICE validateValidate (GameState* gameState, int params);
+
+USER_CHOICE validateGuess(GameState *gameState, int params);
+
+USER_CHOICE validateHint(GameState *gameState, int params, char **input);
+
+USER_CHOICE validateGuessHint(GameState *gameState, int params, char **input);
+
+USER_CHOICE validateNumSolutions(GameState *gameState, int params);
+
+USER_CHOICE validateGenerate(GameState *gameState, int params, char** input);
 
 #endif

@@ -14,16 +14,6 @@ bool matchesFormat(char *str, USER_CHOICE choice) {
                 return true;
             }
             return false;
-        case HINT:
-            if (strcmp(str, "hint") == 0) {
-                return true;
-            }
-            return false;
-        case VALIDATE:
-            if (strcmp(str, "validate") == 0) {
-                return true;
-            }
-            return false;
         case RESET:
             if (strcmp(str, "reset") == 0) {
                 return true;
@@ -55,7 +45,7 @@ bool matchesFormat(char *str, USER_CHOICE choice) {
             }
             return false;
         case REDO:
-            if(strcmp(str, "redo") == 0) {
+            if (strcmp(str, "redo") == 0) {
                 return true;
             }
             return false;
@@ -71,6 +61,37 @@ bool matchesFormat(char *str, USER_CHOICE choice) {
             return false;
         case SAVE:
             if (strcmp(str, "save") == 0) {
+                return true;
+            }
+            return false;
+        case NUM_SOLUTIONS:
+            if (strcmp(str, "num_solutions") == 0) {
+                return true;
+            }
+            return false;
+
+        case GUESS:
+            if (strcmp(str, "guess") == 0) {
+                return true;
+            }
+            return false;
+        case HINT:
+            if (strcmp(str, "hint") == 0) {
+                return true;
+            }
+            return false;
+        case GUESS_HINT:
+            if (strcmp(str, "guess_hint") == 0) {
+                return true;
+            }
+            return false;
+        case VALIDATE:
+            if (strcmp(str, "validate") == 0) {
+                return true;
+            }
+            return false;
+        case GENERATE:
+            if (strcmp(str, "generate") == 0) {
                 return true;
             }
             return false;
@@ -102,46 +123,51 @@ USER_CHOICE parseCommand(GameState **gameState, char *input) {
     if (matchesFormat(str[0], SET)) {
         return validateSet(*gameState, k, str);
     }
-
     if (matchesFormat(str[0], AUTOFILL)) {
         return validateAutofill(*gameState, k);
     }
-
-    if (matchesFormat(str[0], VALIDATE)) {
+    if (matchesFormat(str[0], HINT)) {
+        return validateHint(*gameState, k, str);
     }
-
+    if (matchesFormat(str[0], GUESS)) {
+        return validateGuess(*gameState, k);
+    }
+    if (matchesFormat(str[0], GUESS_HINT)) {
+        return validateGuessHint(*gameState, k, str);
+    }
+    if (matchesFormat(str[0], VALIDATE)) {
+        return validateValidate(*gameState, k);
+    }
+    if (matchesFormat(str[0], NUM_SOLUTIONS)) {
+        return validateNumSolutions(*gameState, k);
+    }
+    if (matchesFormat(str[0], GENERATE)) {
+        return validateGenerate(*gameState, k, str);
+    }
     if (matchesFormat(str[0], UNDO)) {
         return validateUndo(*gameState, k);
     }
-
     if (matchesFormat(str[0], REDO)) {
         return validateRedo(*gameState, k);
     }
-
     if (matchesFormat(str[0], RESET)) {
         return validateReset(*gameState, k);
     }
-
     if (matchesFormat(str[0], MARK_ERRORS)) {
-       return validateMarkErrors(*gameState, k, str);
+        return validateMarkErrors(*gameState, k, str);
     }
-
     if (matchesFormat(str[0], EXIT)) {
         return validateExit(k);
     }
-
     if (matchesFormat(str[0], PRINT_BOARD)) {
         return validatePrintBoard(*gameState, k);
     }
-
     if (matchesFormat(str[0], EDIT)) {
         return validateEdit(k, str);
     }
-
     if (matchesFormat(str[0], SOLVE)) {
         return validateSolve(k, str);
     }
-
     if (matchesFormat(str[0], SAVE)) {
         return validateSave(*gameState, k, str);
     }
@@ -150,7 +176,7 @@ USER_CHOICE parseCommand(GameState **gameState, char *input) {
 }
 
 /* Assumes parseCommand has determined input is correct. */
-void executeCommand(GameState **pGameState, HistoryState** pHistoryState, USER_CHOICE commandType, char *input) {
+void executeCommand(GameState **pGameState, HistoryState **pHistoryState, USER_CHOICE commandType, char *input) {
     int k = 0, row, col, val;
     char *str[MAX];
     char inputCopy[MAX];

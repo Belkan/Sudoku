@@ -4,6 +4,7 @@
 #include "Solver.h"
 #include "MainAux.h"
 
+/* TODO: Remove this entire thing by making the needed checks in ParserUtils or CommandExecutioner. */
 /* Tries to set value in (row, col) in board, and returns the status of the request */
 SET_STATUS set(GameState *gameState, int row, int col, int value) {
     SET_STATUS status = SUCCESS;
