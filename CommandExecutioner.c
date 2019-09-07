@@ -1,6 +1,6 @@
 #include "CommandExecutioner.h"
-#include "MainAux.h"
-#include "FileHandler.h"
+#include "ErrorHandler.h"
+
 
 void executeSet(GameState *gameState, HistoryState **pHistoryState, int row, int col, int val) {
     HistoryChange *historyChange;

@@ -1,12 +1,34 @@
-SudokuMake = Game.c MainAux.c Parser.c Solver.c main.c FileHandler.c
 CC = gcc
-FLAGS = -Wall -ansi -Wextra -Werror -pedantic-errors
+OBJS = main.o CommandExecutioner.o ErrorHandler.o FileHandler.o Game.o HistoryHandler.o MainAux.o Parser.o ParserUtils.o Solver.o UnitTester.o
+EXEC = sudoku
+COMP_FLAGS = -ansi -Wall -Wextra -Werror -pedantic-errors
+GUROBI_COMP = -I/usr/local/lib/gurobi563/include
+GUROBI_LIB = -L/usr/local/lib/gurobi563/lib -lgurobi56
 
+$(EXEC): $(OBJS)
+	$(CC) $(OBJS) $(GUROBI_LIB) -o $@ -lm
+main.o: main.c MainAux.h
+	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
+CommandExecutioner.o: CommandExecutioner.c HistoryHandler.h MainAux.h FileHandler.h ErrorHandler.h
+	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
+ErrorHandler.o: ErrorHandler.c Game.h
+	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
+FileHandler.o: FileHandler.c Game.h Solver.h
+	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
+Game.o: Game.c MainAux.h
+	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
+HistoryHandler.o: HistoryHandler.c Game.h
+	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
+MainAux.o: MainAux.c Parser.h Game.h
+	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
+Parser.o: Parser.c ParserUtils.h Game.h CommandExecutioner.h
+	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
+ParserUtils.o: ParserUtils.c CommandExecutioner.h ErrorHandler.h
+	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
+Solver.o: Solver.c MainAux.h Game.h
+	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
+UnitTester.o: UnitTester.c FileHandler.h Game.h MainAux.h
+	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
 
-sudokumake: 
-	@$(info	Making file...)
-	@$(CC) $(FLAGS) -o sudoku $(SudokuMake) -lm
-	$(info Done!)
-
-all:
-	sudoku clean
+clean:
+	rm -f *.o $(EXEC)

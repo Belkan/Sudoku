@@ -6,8 +6,6 @@
 #include <errno.h>
 #include <ctype.h>
 #include "Game.h"
-#include "MainAux.h"
-#include "ErrorHandler.h"
 #include "Solver.h"
 #define MAX 1024
 

@@ -1,6 +1,7 @@
 
 #include "FileHandler.h"
 #include "Game.h"
+#include "MainAux.h"
 
 void testFileHandler() {
 

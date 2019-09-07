@@ -2,7 +2,6 @@
 #define SUDOKU_PARSERUTILS_H
 #include "CommandExecutioner.h"
 #include "ErrorHandler.h"
-#include "FileHandler.h"
 
 
 USER_CHOICE validateSet (GameState *gameState, int params, char** input);

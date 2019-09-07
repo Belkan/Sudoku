@@ -1,10 +1,9 @@
-#include "MainAux.h"
-#include "Solver.h"
-#include "Parser.h"
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <time.h>
+#include "MainAux.h"
+#include "Parser.h"
 
 /* Generates pseudorandom number in given range */
 int getRandom(int lower, int upper) {

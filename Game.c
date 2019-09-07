@@ -1,7 +1,6 @@
 
 #include <stdio.h>
 #include "Game.h"
-#include "Solver.h"
 #include "MainAux.h"
 
 /* TODO: Remove this entire thing by making the needed checks in ParserUtils or CommandExecutioner. */
@@ -18,21 +17,6 @@ SET_STATUS set(GameState *gameState, int row, int col, int value) {
     }
     setCellValue(row, col, value, gameState, BOARD);
     return status;
-}
-
-/* Gives user hint for next move */
-void hint(GameState *gameState, int row, int col) {
-    printf("Hint: set cell to %d\n", getCellValue(row, col, gameState, SOLUTION));
-}
-
-/* Validates if board is solvable and updates the solution if so. */
-bool validate(GameState *gameState) {
-    if (isSolvable(gameState)) {
-        printf("Validation passed: board is solvable\n");
-        return true;
-    }
-    printf("Validation failed: board is unsolvable\n");
-    return false;
 }
 
 bool isBoardLegal(GameState *gameState) {
@@ -132,34 +116,6 @@ int findBlock(int row, int col, GameState *gameState) {
     int rows = getRowsInBlock(gameState);
     int cols = getColsInBlock(gameState);
     return (row / rows) * rows + (col / cols);
-}
-
-
-/* Sets the amount of initial fixed cells for board */
-void setFixedCellsRand(GameState *gameState, int fixed) {
-    int row, col, counter;
-    int size = getSize(gameState);
-    counter = 0;
-    if (fixed == -1) {
-        printf("Exiting...\n");
-        destroyGameState(gameState);
-        exit(0);
-    }
-    while (counter < fixed) {
-        col = getRandom(0, size - 1);
-        row = getRandom(0, size - 1);
-        if (!isFixed(row, col, gameState)) {
-            setFixed(row, col, true, gameState);
-            counter++;
-        }
-    }
-    for (row = 0; row < size; row++) {
-        for (col = 0; col < size; col++) {
-            if (!isFixed(row, col, gameState)) {
-                setCellValue(row, col, 0, gameState, BOARD);
-            }
-        }
-    }
 }
 
 void checkFullBoard(GameState* gameState) {

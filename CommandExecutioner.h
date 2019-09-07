@@ -2,6 +2,8 @@
 #define SUDOKU_COMMANDEXECUTIONER_H
 
 #include "HistoryHandler.h"
+#include "MainAux.h"
+#include "FileHandler.h"
 
 /* Enum to represent the available commands made by the user. */
 typedef enum user_choice {

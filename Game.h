@@ -5,8 +5,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-
-
 typedef enum game_mode {
     EDITMODE,
     SOLVEMODE,
@@ -38,12 +36,6 @@ typedef enum board_type {
 SET_STATUS set(GameState *gameState, int row, int col, int value);
 
 void setMarkErrors(GameState *gameState, bool val);
-
-/* Gives user hint for next move */
-void hint(GameState *gameState, int row, int col);
-
-/* Validates if board is solvable and updates the solution if so. */
-bool validate(GameState *gameState);
 
 /* Validates if the current board is in a legal sudoku state. */
 bool isBoardLegal(GameState *gameState);

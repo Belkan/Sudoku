@@ -3,9 +3,6 @@
 
 #include <stdbool.h>
 #include "Game.h"
-#include "FileHandler.h"
-#include "ErrorHandler.h"
-#include "HistoryHandler.h"
 #include "ParserUtils.h"
 #define MAX 1024
 

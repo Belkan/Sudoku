@@ -9,7 +9,6 @@ int getNumberEndPos(char *currLine, int start) {
 /* Function to check for validity of loading a file: returns true if file can be loaded */
 bool validLoadPath (char *filePath) {
     FILE *file;
-    char *currLine = "First line of the file";
 
     /* File exists and can be loaded */
     if ((file = fopen(filePath, "r")) == NULL) {
