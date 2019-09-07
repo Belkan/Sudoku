@@ -158,7 +158,7 @@ USER_CHOICE validateSolve(int params, char** input) {
         return INVALID_COMMAND;
     }
     if (!validLoadPath(input[1])) {
-        throw_filePathError();
+        /* validLoadPath throws the correct error. */
         return INVALID_COMMAND;
     }
     return SOLVE;

@@ -1,16 +1,12 @@
 #include "ErrorHandler.h"
 
 /* Errors regarding loading boards from given text file */
-void throw_rowSizeNotFoundError() {
-    printf("Error: row size not found while loading file! Please specify another file!\n");
-}
-
-void throw_colSizeNotFoundError() {
-    printf("Error: column size not found while loading file! Please specify another file!\n");
+void throw_invalidFileFormatError() {
+    printf("Error: file loaded has incorrect format! Please try again.\n");
 }
 
 void throw_filePathError() {
-    printf("Error: incorrect file path given!\n");
+    printf("Error: incorrect file path given! Please try again.\n");
 }
 
 /* Errors regarding parsing commands given as input */

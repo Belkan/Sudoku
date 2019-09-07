@@ -1,47 +1,21 @@
 #include "FileHandler.h"
 
+/* Utility function for valid load path. */
+int getNumberEndPos(char *currLine, int start) {
+    while (isdigit(currLine[++start]));
+    return start;
+}
+
 /* Function to check for validity of loading a file: returns true if file can be loaded */
 bool validLoadPath (char *filePath) {
     FILE *file;
-    char *rowSize = (char *)malloc(CHAR_MAX), *colSize = (char *)malloc(CHAR_MAX);
-    char *str[MAX];
-    char *token;
     char *currLine = "First line of the file";
-    int idx = 0;
 
     /* File exists and can be loaded */
-    if ((file = fopen(filePath, "r")) != NULL) {
-        /* Break line using delimeter */
-        str[0] = NULL, str[1] = NULL;
-        token = strtok(currLine, " \t\r\n");
-        while (token != 0){
-            str[idx++] = token;
-            token = strtok(0, " \t\r\n");
-        }
-
-        /* Read row & col sizes */
-        rowSize = str[0];
-        colSize = str[1];
-
-        if (!rowSize) {
-            throw_rowSizeNotFoundError();
-            free(rowSize);
-            free(colSize);
-            return false;
-        }
-        if (!colSize) {
-            throw_colSizeNotFoundError();
-            free(rowSize);
-            free(colSize);
-            return false;
-        }
-    }
-    else {
+    if ((file = fopen(filePath, "r")) == NULL) {
         throw_filePathError();
         return false;
     }
-    free(rowSize);
-    free(colSize);
     return true;
 }
 

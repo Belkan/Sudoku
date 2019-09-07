@@ -5,9 +5,7 @@
 #include "Game.h"
 
 /* Below are errors regarding loading a board from a text file */
-void throw_rowSizeNotFoundError();
-
-void throw_colSizeNotFoundError();
+void throw_invalidFileFormatError();
 
 void throw_loadedInWrongModeError();
 
