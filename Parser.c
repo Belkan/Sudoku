@@ -170,7 +170,6 @@ void executeCommand(GameState **pGameState, HistoryState** pHistoryState, USER_C
     switch (commandType) {
         case (EDIT):
             if (k == 1) {
-                printf("CHECK\n");
                 executeEdit(pGameState, pHistoryState, str[1], /* hasPath = */ true);
             } else {
                 executeEdit(pGameState, pHistoryState, "", /* hasPath= */ false);

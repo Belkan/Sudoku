@@ -101,8 +101,6 @@ void executeAutofill(GameState *gameState, HistoryState **pHistoryState) {
                         tmpHistoryChange->nextChange = createHistoryChange(row, col, 0, singleVal);
                         tmpHistoryChange = tmpHistoryChange->nextChange;
                     }
-                    printf("Cell [%d,%d] was filled with the only legal value: %d.\n", row + 1, col + 1,
-                           val);
                 }
             }
         }
@@ -113,7 +111,8 @@ void executeAutofill(GameState *gameState, HistoryState **pHistoryState) {
         setPrevState(historyState, *pHistoryState);
         setNextState(*pHistoryState, historyState);
         *pHistoryState = historyState;
+        printf("CHECK\n");
         /* This is the part that actually writes the filled values to the board */
-        redoMove(getPreviousState(*pHistoryState), gameState, /* printEnabled= */ false);
+        redoMove(getPreviousState(*pHistoryState), gameState, /* printEnabled= */ true);
     }
 }

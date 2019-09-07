@@ -49,11 +49,12 @@ bool isBoardLegal(GameState *gameState) {
 }
 
 
-/* Checks if this set is a legal set (assuming input is valid i.e. not fixed cell) */
+/* Checks if this set is a legal set  */
 bool isUserLegalMove(GameState *gameState, int row, int col, int value) {
     int oldValue = getCellValue(row, col, gameState, BOARD);
     setCellValue(row, col, 0, gameState, BOARD);
     if (value == 0 || safeMove(row, col, value, gameState, BOARD)) {
+        setCellValue(row, col, oldValue, gameState, BOARD);
         return true;
     }
     setCellValue(row, col, oldValue, gameState, BOARD);
