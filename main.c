@@ -16,7 +16,6 @@ int main(int argc, char *argv[]) {
     }
 
     /* start playing... */
-     START_GAME();
-   /*  testFileHandler();*/
+    START_GAME();
     return 0;
 }

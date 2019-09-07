@@ -13,10 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErrorHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/ErrorHandler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErrorHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/ErrorHandler.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ParserUtils.c" beforeDir="false" afterPath="$PROJECT_DIR$/ParserUtils.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
@@ -132,14 +129,7 @@
       <workItem from="1567290586305" duration="29943000" />
       <workItem from="1567663330315" duration="1314000" />
       <workItem from="1567714835320" duration="4975000" />
-      <workItem from="1567814967706" duration="3656000" />
-    </task>
-    <task id="LOCAL-00027" summary=" Added Main Aux UT + getRandom func">
-      <created>1558575600580</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1558575600580</updated>
+      <workItem from="1567814967706" duration="5106000" />
     </task>
     <task id="LOCAL-00028" summary=" Added Main Aux UT + getRandom func">
       <created>1558575913217</created>
@@ -472,7 +462,13 @@
       <option name="presentableId" value="LOCAL‎00075" />
       <updated>1567785930964</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL‎00076" summary="Typing in edit [file.txt] in console now works as expected.">
+      <created>1567819503627</created>
+      <option name="number" value="LOCAL‎00076" />
+      <option name="presentableId" value="LOCAL‎00076" />
+      <updated>1567819503628</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TodoView">
@@ -515,7 +511,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Adjusting for n*m" />
     <MESSAGE value="Added FileHandler" />
     <MESSAGE value="Added loader function to FileHandler alongside ErrorHandler module" />
     <MESSAGE value="Make GAME_STATUS a field in GameState" />
@@ -540,6 +535,7 @@
     <MESSAGE value="Debugged FileHandler (now working 100% yay)" />
     <MESSAGE value="Some debugging of solution counter function" />
     <MESSAGE value="invalid load path was repeated twice, now just once" />
-    <option name="LAST_COMMIT_MESSAGE" value="invalid load path was repeated twice, now just once" />
+    <MESSAGE value="Typing in edit [file.txt] in console now works as expected." />
+    <option name="LAST_COMMIT_MESSAGE" value="Typing in edit [file.txt] in console now works as expected." />
   </component>
 </project>

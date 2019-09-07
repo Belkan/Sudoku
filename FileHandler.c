@@ -13,7 +13,6 @@ bool validLoadPath (char *filePath) {
 
     /* File exists and can be loaded */
     if ((file = fopen(filePath, "r")) == NULL) {
-        throw_filePathError();
         return false;
     }
     return true;
