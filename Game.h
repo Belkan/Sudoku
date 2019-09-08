@@ -72,4 +72,7 @@ int getRowsInBlock (GameState* gameState);
 int getColsInBlock (GameState* gameState) ;
 void setGameMode(GameState *gameState, GAME_MODE status);
 GAME_MODE getGameMode(GameState *gameState);
+void setMarkErrors(GameState *gameState, bool val);
+bool getMarkErrors(GameState *gameState);
+
 #endif

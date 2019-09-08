@@ -186,6 +186,10 @@ void setMarkErrors(GameState *gameState, bool val) {
     gameState->markErrors = val;
 }
 
+bool getMarkErrors(GameState *gameState) {
+    return gameState->markErrors;
+}
+
 int getColsInBlock(GameState *gameState) {
     return gameState->colsInBlock;
 }

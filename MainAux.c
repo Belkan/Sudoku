@@ -54,12 +54,15 @@ void printBoard(GameState *gameState) {
                 if (value < 10) {
                     printf(" ");
                 }
-                if (isFixed(row, col, gameState)) {
-                    printf(".");
+                printf("%d", value);
+                if (isFixed(row, col, gameState) && getGameMode(gameState) == SOLVEMODE) {
+                    printf(". ");
+                } else if ((getMarkErrors(gameState) || getGameMode(gameState) == EDITMODE) &&
+                           !isUserLegalMove(gameState, row, col, value)) {
+                    printf("* ");
                 } else {
-                    printf(" ");
+                    printf("  ");
                 }
-                printf("%d ", value);
             }
         }
         printf("|\n");
