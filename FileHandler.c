@@ -72,7 +72,7 @@ GameState *loadFromFile (char *filePath) {
                 idx--;
             }
             else {
-                setCellValue(rowIdx, colIdx, cell - '0', newGame, BOARD);
+                setCellValue(rowIdx, colIdx, cell - '0', newGame);
                 /* Handle edge case of fixing last column. */
                 if (colIdx == rows * cols - 1) {
                     if (currLine[getNextIdx(currLine, lineIdx)] - '0' == -2) {
@@ -111,7 +111,7 @@ void saveToFile (char *filePath, GameState *currGame) {
     for (rowIdx = 0; rowIdx < getSize(currGame); rowIdx++) {
         for (colIdx = 0; colIdx < getSize(currGame); colIdx++) {
             /* Get current cell */
-            cell = getCellValue(rowIdx, colIdx, currGame, BOARD);
+            cell = getCellValue(rowIdx, colIdx, currGame);
             fprintf(saveGame, "%d", cell);
 
             /* Check if saving dot for fixed cell is required */

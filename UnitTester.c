@@ -15,7 +15,7 @@ void testFileHandler() {
     set(gameState, 2, 1, 6);
     setFixed(2, 2, true, gameState);
 
-    printBoard(gameState, BOARD);
+    printBoard(gameState);
 
     printf("TEST 1\n");
     saveToFile("adar.txt", gameState);
@@ -32,11 +32,11 @@ void testFileHandler() {
     /* Testing functionality of loading boards */
     printf("TEST 1\n");
     gameState = loadEmptyBoard();
-    printBoard(gameState, BOARD);
+    printBoard(gameState);
 
     printf("TEST 2\n");
     gameState = loadFromFile("omri.txt");
-    printBoard(gameState, BOARD);
+    printBoard(gameState);
 
     destroyGameState(gameState);
 
@@ -51,7 +51,7 @@ void testJustLoad() {
 void testSolutionCounter() {
     int result;
     GameState *myGame = createGameState(2, 1);
-    printBoard(myGame, BOARD);
+    printBoard(myGame);
 
     result = solutionCounter(myGame);
     printf("returned: %d\n", result);

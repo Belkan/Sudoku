@@ -27,7 +27,7 @@ void destroyMatrix(int **matrix, int size) {
 
 
 /* Prints the current board */
-void printBoard(GameState *gameState, BOARD_TYPE type) {
+void printBoard(GameState *gameState) {
     int row;
     int col;
     int counter;
@@ -47,7 +47,7 @@ void printBoard(GameState *gameState, BOARD_TYPE type) {
             if (col % colsInBlock == 0) {
                 printf("| ");
             }
-            value = getCellValue(row, col, gameState, type);
+            value = getCellValue(row, col, gameState);
             if (value == 0) {
                 printf("    ");
             } else {

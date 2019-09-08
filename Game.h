@@ -16,7 +16,6 @@ typedef struct GameState{
     int rowsInBlock;
     int colsInBlock;
     int **board;
-    int **solution;
     bool **fixed;
     bool markErrors;
     GAME_MODE mode;
@@ -26,11 +25,6 @@ typedef enum set_status {
     SUCCESS,
     CELL_FIXED
 } SET_STATUS;
-
-typedef enum board_type {
-    BOARD,
-    SOLUTION
-} BOARD_TYPE;
 
 /* Tries to set value in (row, col) in board, and returns the mode of the request */
 SET_STATUS set(GameState *gameState, int row, int col, int value);
@@ -49,28 +43,28 @@ bool isUserBoardFull(GameState *gameState);
 void checkFullBoard(GameState* gameState);
 
 /* Returns number of empty cells in board */
-int countBlanks(GameState *gameState,  BOARD_TYPE type);
+int countBlanks(GameState *gameState);
 
 /* Checks if placement is legal */
-bool safeMove(int row, int col, int val, GameState* gameState, BOARD_TYPE type);
+bool safeMove(int row, int col, int val, GameState* gameState);
 
 /* Util subfunctions used for safeMove */
-bool safeMoveRow(int row, int val, GameState* gameState, BOARD_TYPE type);
-bool safeMoveCol(int col, int val, GameState* gameState, BOARD_TYPE type);
-bool safeMoveBlock(int block, int val, GameState* gameState, BOARD_TYPE type);
+bool safeMoveRow(int row, int val, GameState* gameState);
+bool safeMoveCol(int col, int val, GameState* gameState);
+bool safeMoveBlock(int block, int val, GameState* gameState);
 int findBlock(int row, int col, GameState* gameState);
 
 /* Sets the amount of initial fixed cells for board */
 void setFixedCellsRand(GameState *gameState, int fixed);
 
 /* Util function to copy boards */
-void copyFromBoardToBoard(GameState* gameStateFrom, BOARD_TYPE fromType, GameState* gameStateTo, BOARD_TYPE toType);
+void copyFromBoardToBoard(GameState* gameStateFrom, GameState* gameStateTo);
 
 /* Getters, setters and general util for GameState */
 GameState *createGameState(int row, int col);
 void destroyGameState(GameState *gameState);
-void setCellValue (int row, int col, int value, GameState* gameState, BOARD_TYPE type);
-int getCellValue (int row, int col, GameState* gameState, BOARD_TYPE type);
+void setCellValue (int row, int col, int value, GameState* gameState);
+int getCellValue (int row, int col, GameState* gameState);
 void setFixed (int row, int col, bool value, GameState* gameState);
 bool isFixed (int row, int col, GameState* gameState);
 int getSize (GameState* gameState);

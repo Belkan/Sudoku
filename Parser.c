@@ -233,11 +233,15 @@ void executeCommand(GameState **pGameState, HistoryState **pHistoryState, USER_C
             return;
 
         case (PRINT_BOARD):
-            printBoard(*pGameState, BOARD);
+            printBoard(*pGameState);
             return;
 
         case (MARK_ERRORS):
             strcmp(str[1], "0") == 0 ? setMarkErrors(*pGameState, false) : setMarkErrors(*pGameState, true);
+            return;
+
+        case (NUM_SOLUTIONS):
+            executeNumSolutions(*pGameState);
             return;
 
         case (EXIT):

@@ -43,4 +43,6 @@ void executeReset(GameState* gameState, HistoryState** pHistoryState);
 
 void executeAutofill(GameState *gameState, HistoryState **pHistoryState);
 
+void executeNumSolutions (GameState* gameState);
+
 #endif

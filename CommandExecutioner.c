@@ -5,7 +5,7 @@
 void executeSet(GameState *gameState, HistoryState **pHistoryState, int row, int col, int val) {
     HistoryChange *historyChange;
     HistoryState *tmpHistoryState;
-    int oldVal = getCellValue(row, col, gameState, BOARD);
+    int oldVal = getCellValue(row, col, gameState);
     SET_STATUS status = set(gameState, row, col, val);
     if (status == CELL_FIXED) {
         printf("This cell is fixed, please try again.\n");
@@ -17,7 +17,7 @@ void executeSet(GameState *gameState, HistoryState **pHistoryState, int row, int
     setNextState(*pHistoryState, tmpHistoryState);
     setPrevState(tmpHistoryState, *pHistoryState);
     *pHistoryState = tmpHistoryState;
-    printBoard(gameState, BOARD);
+    printBoard(gameState);
 }
 
 void executeEdit(GameState **gameState, HistoryState **pHistoryState, char *filePath, bool hasPath) {
@@ -30,7 +30,7 @@ void executeEdit(GameState **gameState, HistoryState **pHistoryState, char *file
     setGameMode(*gameState, EDITMODE);
     destroyAllHistory(*pHistoryState);
     *pHistoryState = createHistoryState();
-    printBoard(*gameState, BOARD);
+    printBoard(*gameState);
 }
 
 void executeSolve(GameState **gameState, HistoryState **pHistoryState, char *filePath) {
@@ -39,7 +39,7 @@ void executeSolve(GameState **gameState, HistoryState **pHistoryState, char *fil
     setGameMode(*gameState, SOLVEMODE);
     destroyAllHistory(*pHistoryState);
     *pHistoryState = createHistoryState();
-    printBoard(*gameState, BOARD);
+    printBoard(*gameState);
 }
 
 void executeSave(GameState *gameState, char *filePath) {
@@ -53,7 +53,7 @@ void executeUndo(GameState *gameState, HistoryState **pHistoryState) {
     }
     undoMove(*pHistoryState, gameState, /* printEnabled= */ true);
     *pHistoryState = getPreviousState(*pHistoryState);
-    printBoard(gameState, BOARD);
+    printBoard(gameState);
 }
 
 void executeRedo(GameState *gameState, HistoryState **pHistoryState) {
@@ -63,7 +63,7 @@ void executeRedo(GameState *gameState, HistoryState **pHistoryState) {
     }
     redoMove(*pHistoryState, gameState, /* printEnabled= */ true);
     *pHistoryState = getNextState(*pHistoryState);
-    printBoard(gameState, BOARD);
+    printBoard(gameState);
 }
 
 void executeReset(GameState *gameState, HistoryState **pHistoryState) {
@@ -71,7 +71,7 @@ void executeReset(GameState *gameState, HistoryState **pHistoryState) {
         undoMove(*pHistoryState, gameState, /* printEnabled= */ false);
         *pHistoryState = getPreviousState(*pHistoryState);
     }
-    printBoard(gameState, BOARD);
+    printBoard(gameState);
 }
 
 void executeAutofill(GameState *gameState, HistoryState **pHistoryState) {
@@ -81,10 +81,10 @@ void executeAutofill(GameState *gameState, HistoryState **pHistoryState) {
     HistoryChange *historyChange = NULL;
     for (row = 0; row < getSize(gameState); row++) {
         for (col = 0; col < getSize(gameState); col++) {
-            if (getCellValue(row, col, gameState, BOARD) == 0) {
+            if (getCellValue(row, col, gameState) == 0) {
                 counter = 0;
                 for (val = 1; val <= getSize(gameState); val++) {
-                    if (safeMove(row, col, val, gameState, BOARD)) {
+                    if (safeMove(row, col, val, gameState)) {
                         counter++;
                         singleVal = val;
                         if (counter == 2) {
@@ -115,4 +115,8 @@ void executeAutofill(GameState *gameState, HistoryState **pHistoryState) {
         /* This is the part that actually writes the filled values to the board */
         redoMove(getPreviousState(*pHistoryState), gameState, /* printEnabled= */ true);
     }
+}
+
+void executeNumSolutions (GameState* gameState) {
+    printf("The number of possible solutions to this board is: %d.\n", solutionCounter(gameState));
 }

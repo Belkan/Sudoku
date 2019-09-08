@@ -10,14 +10,11 @@
 /* Generates pseudorandom number in given range */
 int getRandom(int upper, int lower);
 
-/* Fixes alignment of matrices */
-int transform(int val);
-
 /* Util function to free resources allocated for a matrix */
 void destroyMatrix(int** matrix, int size);
 
 /* Prints the current board */
-void printBoard(GameState *gameState, BOARD_TYPE type);
+void printBoard(GameState *gameState);
 
 /* Start the game. This is the sole function that should be called from main. */
 void START_GAME();
