@@ -13,7 +13,6 @@ typedef struct recursion_stack {
     int top;
     int *rows;
     int *cols;
-    int *vals;
 } RECURSION_STACK ;
 
 /* TODO test this */
@@ -33,7 +32,7 @@ bool isFull(struct recursion_stack *stack);
 bool isEmpty(struct recursion_stack *stack);
 
 /* Push new game state to top of the stack. */
-bool push(struct recursion_stack *stack, int row, int col, int val);
+bool push(struct recursion_stack *stack, int row, int col);
 
 /* Removes top element of stack and returns true on success, false otherwise. */
 bool pop(struct recursion_stack *stack);

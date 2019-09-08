@@ -1,5 +1,7 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "MainAux.h"
+#include "Solver.h"
 
 int main(int argc, char *argv[]) {
     if (argc == 2) {
@@ -10,5 +12,6 @@ int main(int argc, char *argv[]) {
 
     /* start playing... */
     START_GAME();
+
     return 0;
 }

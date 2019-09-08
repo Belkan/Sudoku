@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "Solver.h"
 #include "MainAux.h"
 
@@ -7,21 +8,19 @@ struct recursion_stack* createStack(int capacity) {
     struct recursion_stack *stack = malloc(sizeof(struct recursion_stack));
     int idx = 0;
 
-    stack->top = 1;
+    /* Initially, top index is 0. Index of -1 denotes empty stack. */
+    stack->top = 0;
     stack->capacity = capacity;
     /* Start with cell [1,1] and set it to value 1, the least value. */
     stack->rows = (int *) malloc(capacity * sizeof(int));
     stack->rows[0] = 0;
     stack->cols = (int *) malloc(capacity * sizeof(int));
     stack->cols[0] = 0;
-    stack->vals= (int *) malloc(capacity * sizeof(int));
-    stack->vals[0] = 1;
 
     /* Set other entries to 0. */
     for (idx = 1; idx < capacity; idx++) {
         stack->rows[idx] = 0;
         stack->cols[idx] = 0;
-        stack->rows[idx] = 0;
     }
     return stack;
 }
@@ -29,7 +28,6 @@ struct recursion_stack* createStack(int capacity) {
 void destroyStack(struct recursion_stack *stack) {
     free(stack->rows);
     free(stack->cols);
-    free(stack->vals);
     free(stack);
 }
 
@@ -41,19 +39,19 @@ bool isFull(struct recursion_stack *stack) {
 
 /* Check if stack is empty. */
 bool isEmpty(struct recursion_stack *stack) {
-    if (stack->top == 0) return true;
+    if (stack->top == -1) return true;
     return false;
 }
 
 /* Push new game state to top of the stack. */
-bool push(struct recursion_stack *stack, int row, int col, int val) {
+bool push(struct recursion_stack *stack, int row, int col) {
     /* Avoid stack overflow. */
     if (isFull(stack)) {
         return false;
     }
-    stack->rows[++stack->top] = row;
+    ++stack->top;
+    stack->rows[stack->top] = row;
     stack->cols[stack->top] = col;
-    stack->vals[stack->top] = val;
     return true;
 }
 
@@ -67,42 +65,76 @@ bool pop(struct recursion_stack *stack) {
     return true;
 }
 
-/* Retrieves top val element of the stack. */
-int peek(struct recursion_stack *stack) {
-    if (isEmpty(stack)) return 0;
-    return stack->vals[stack->top];
-}
-
-/* TODO debug */
+/* TODO compare with Ellie & Nofar num of solutions on various boards to ensure correctness. */
 /* Use exhaustive backtracking algorithm (using stack) to count the number of solutions for the board. */
 int solutionCounter(GameState *gameState) {
-    bool foundMove = false;
-    int row = 0, col = 0, size = getSize(gameState), solutions = 0, idx = 0;
-    struct recursion_stack *stack = createStack(gameState->size);
+    bool foundMove = false, reachedEnd = false;
+    int row = 0, col = 0, size = getSize(gameState), solutions = 0, idx = 0, move = -1;
+    struct recursion_stack *stack = createStack(gameState->size * gameState->size);
 
     /* Iterating until stack empties replaces recursion. */
     while (!isEmpty(stack)) {
-        row = getNextRow(size, row, col);
-        col = getNextCol(size, col);
+        foundMove = false;
+        reachedEnd = false;
+        row = stack->rows[stack->top];
+        col = stack->cols[stack->top];
+        move = -1;
+
+        /* Flag checks if we have reached the end of the board. */
+        reachedEnd = (row == size - 1 && col == size - 1);
+
         /* Avoid fixed cells. */
-        if (isFixed(row, col, gameState)) continue;
-        for (idx = peek(stack); idx < size; idx++) {
+        if (isFixed(row, col, gameState)) {
+            if (!reachedEnd) {
+                push(stack, getNextRow(size, row, col), getNextCol(size, col));
+                continue;
+            }
+            else {
+                solutions++;
+                pop(stack);
+                continue;
+            }
+        }
+
+        /* Attempt to find a legal move for current cell, starting from its current value + 1. */
+        for (idx = getCellValue(row, col, gameState, BOARD) + 1; idx <= size; idx++) {
             if (safeMove(row, col, idx, gameState, BOARD)) {
-                push(stack, row, col, idx);
-                /* Reached end of the board, therefore another valid solution was found. Time to backtrack. */
-                if (row == size - 1 && col == size - 1) {
-                    solutions++;
-                    pop(stack);
-                }
+                move = idx;
                 foundMove = true;
                 break;
             }
-            /* No move found, time to backtrack. */
-            if (!foundMove) {
+        }
+
+        /* Case we have reached the end: attempt all possible values and increment counter. */
+        if (reachedEnd) {
+            for (idx = 1; idx <= size; idx++) {
+                if (safeMove(row, col, idx, gameState, BOARD)) {
+                    solutions++;
+                }
+            }
+            /* Backtrack to node before last node. */
+            pop(stack);
+            continue;
+        }
+
+        /* Case we haven't reached the end yet. */
+        else {
+            /* Found a move and haven't finished yet. Set cell to move found and go to next stack call by pushing. */
+            if (foundMove) {
+                setCellValue(row, col, move, gameState, BOARD);
+                push(stack, getNextRow(size, row, col), getNextCol(size, col));
+                continue;
+            }
+            else {
+                /* Didn't find a move and didn't finish yet. Set cell to 0 and backtrack by popping. */
+                setCellValue(row, col, 0, gameState, BOARD);
                 pop(stack);
+                continue;
             }
         }
     }
+    printBoard(gameState, BOARD);
+    destroyStack(stack);
     return solutions;
 }
 

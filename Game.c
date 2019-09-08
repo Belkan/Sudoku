@@ -74,7 +74,8 @@ bool safeMove(int row, int col, int val, GameState *gameState, BOARD_TYPE type) 
 
     return safeMoveRow(row, val, gameState, type) &&
            safeMoveCol(col, val, gameState, type) &&
-           safeMoveBlock(block, val, gameState, type);
+           safeMoveBlock(block, val, gameState, type) &&
+           val > 0 && val <= gameState->size;
 }
 
 /* Util subfunctions used for safeMove */
