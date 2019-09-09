@@ -8,11 +8,13 @@ set(CMAKE_DEPENDS_CHECK_C
   "C:/Users/Adar/CLionProjects/Github/Sudoku/ErrorHandler.c" "C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/ErrorHandler.c.obj"
   "C:/Users/Adar/CLionProjects/Github/Sudoku/FileHandler.c" "C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/FileHandler.c.obj"
   "C:/Users/Adar/CLionProjects/Github/Sudoku/Game.c" "C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/Game.c.obj"
+  "C:/Users/Adar/CLionProjects/Github/Sudoku/GeneralUtils.c" "C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/GeneralUtils.c.obj"
   "C:/Users/Adar/CLionProjects/Github/Sudoku/HistoryHandler.c" "C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/HistoryHandler.c.obj"
   "C:/Users/Adar/CLionProjects/Github/Sudoku/MainAux.c" "C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/MainAux.c.obj"
   "C:/Users/Adar/CLionProjects/Github/Sudoku/Parser.c" "C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/Parser.c.obj"
   "C:/Users/Adar/CLionProjects/Github/Sudoku/ParserUtils.c" "C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/ParserUtils.c.obj"
   "C:/Users/Adar/CLionProjects/Github/Sudoku/Solver.c" "C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/Solver.c.obj"
+  "C:/Users/Adar/CLionProjects/Github/Sudoku/SolverUtils.c" "C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/SolverUtils.c.obj"
   "C:/Users/Adar/CLionProjects/Github/Sudoku/UnitTester.c" "C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/UnitTester.c.obj"
   "C:/Users/Adar/CLionProjects/Github/Sudoku/main.c" "C:/Users/Adar/CLionProjects/Github/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/main.c.obj"
   )

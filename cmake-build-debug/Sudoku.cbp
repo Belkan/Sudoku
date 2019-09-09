@@ -98,6 +98,12 @@
 		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/Game.h">
 			<Option target="Sudoku"/>
 		</Unit>
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/GeneralUtils.c">
+			<Option target="Sudoku"/>
+		</Unit>
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/GeneralUtils.h">
+			<Option target="Sudoku"/>
+		</Unit>
 		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/HistoryHandler.c">
 			<Option target="Sudoku"/>
 		</Unit>
@@ -128,6 +134,12 @@
 		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/Solver.h">
 			<Option target="Sudoku"/>
 		</Unit>
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/SolverUtils.c">
+			<Option target="Sudoku"/>
+		</Unit>
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/SolverUtils.h">
+			<Option target="Sudoku"/>
+		</Unit>
 		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/UnitTester.c">
 			<Option target="Sudoku"/>
 		</Unit>
@@ -135,9 +147,6 @@
 			<Option target="Sudoku"/>
 		</Unit>
 		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/main.c">
-			<Option target="Sudoku"/>
-		</Unit>
-		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/minunit.h">
 			<Option target="Sudoku"/>
 		</Unit>
 		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/CMakeLists.txt">

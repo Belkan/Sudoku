@@ -8,14 +8,12 @@ struct recursion_stack* createStack(int capacity) {
     /* Initially, top index is 0. Index of -1 denotes empty stack. */
     stack->top = 0;
     stack->capacity = capacity;
-    /* Start with cell [1,1] and set it to value 1, the least value. */
+    /* Initialize rows/columns arrays. */
     stack->rows = (int *) malloc(capacity * sizeof(int));
-    stack->rows[0] = 0;
     stack->cols = (int *) malloc(capacity * sizeof(int));
-    stack->cols[0] = 0;
 
-    /* Set other entries to 0. */
-    for (idx = 1; idx < capacity; idx++) {
+    /* Set entries to default values 0. */
+    for (idx = 0; idx < capacity; idx++) {
         stack->rows[idx] = 0;
         stack->cols[idx] = 0;
     }
@@ -34,7 +32,7 @@ bool isFull(struct recursion_stack *stack) {
     return false;
 }
 
-/* Check if stack is empty. */
+/* Check if stack is empty (i.e. stack underflow). */
 bool isEmpty(struct recursion_stack *stack) {
     if (stack->top == -1) return true;
     return false;
@@ -102,6 +100,18 @@ int getPrevCol(int size, int col) {
         return size - 1;
     }
     return col - 1;
+}
+
+bool solvedBoard(GameState *gameState) {
+    int rowIdx = 0, colIdx = 0, cell = 0;
+
+    for (; rowIdx < gameState->rowsInBlock; rowIdx++) {
+        for(; colIdx < gameState->colsInBlock; colIdx++) {
+            cell = getCellValue(rowIdx, colIdx, gameState);
+            if (!safeMove(rowIdx, colIdx, cell, gameState)) return false;
+        }
+    }
+    return true;
 }
 
 void swap(int *x, int *y){

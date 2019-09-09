@@ -11,10 +11,34 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="">
+    <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="Traversed forum to fix misunderstanding + other fixes">
+      <change afterPath="$PROJECT_DIR$/GeneralUtils.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GeneralUtils.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ErrorHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/ErrorHandler.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ErrorHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/ErrorHandler.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ParserUtils.c" beforeDir="false" afterPath="$PROJECT_DIR$/ParserUtils.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Solver.c" beforeDir="false" afterPath="$PROJECT_DIR$/Solver.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Solver.h" beforeDir="false" afterPath="$PROJECT_DIR$/Solver.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SolverUtils.c" beforeDir="false" afterPath="$PROJECT_DIR$/SolverUtils.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SolverUtils.h" beforeDir="false" afterPath="$PROJECT_DIR$/SolverUtils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/objects1.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/objects1.rsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Sudoku.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Sudoku.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -130,20 +154,9 @@
       <workItem from="1567663330315" duration="1314000" />
       <workItem from="1567714835320" duration="4975000" />
       <workItem from="1567814967706" duration="5106000" />
-    </task>
-    <task id="LOCAL-00028" summary=" Added Main Aux UT + getRandom func">
-      <created>1558575913217</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1558575913217</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Added testers">
-      <created>1558627646344</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1558627646345</updated>
+      <workItem from="1567893557724" duration="10754000" />
+      <workItem from="1567905513530" duration="27000" />
+      <workItem from="1567980961602" duration="15142000" />
     </task>
     <task id="LOCAL-00030" summary="Reorganized folders">
       <created>1558627998601</created>
@@ -468,17 +481,20 @@
       <option name="presentableId" value="LOCAL‎00076" />
       <updated>1567819503628</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL‎00077" summary="Fixed num_solutions (now working 100%)">
+      <created>1567903398500</created>
+      <option name="number" value="LOCAL‎00077" />
+      <option name="presentableId" value="LOCAL‎00077" />
+      <updated>1567903398500</updated>
+    </task>
+    <task id="LOCAL‎00078" summary="Refactoring of Solver module + code beautifying">
+      <created>1567904350829</created>
+      <option name="number" value="LOCAL‎00078" />
+      <option name="presentableId" value="LOCAL‎00078" />
+      <updated>1567904350829</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -511,8 +527,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added FileHandler" />
-    <MESSAGE value="Added loader function to FileHandler alongside ErrorHandler module" />
     <MESSAGE value="Make GAME_STATUS a field in GameState" />
     <MESSAGE value="Add HistoryHandler.c/.h and HistoryState data structure" />
     <MESSAGE value="Inject board size to InitializeGame &amp; StartGame" />
@@ -536,6 +550,8 @@
     <MESSAGE value="Some debugging of solution counter function" />
     <MESSAGE value="invalid load path was repeated twice, now just once" />
     <MESSAGE value="Typing in edit [file.txt] in console now works as expected." />
-    <option name="LAST_COMMIT_MESSAGE" value="Typing in edit [file.txt] in console now works as expected." />
+    <MESSAGE value="Fixed num_solutions (now working 100%)" />
+    <MESSAGE value="Refactoring of Solver module + code beautifying" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring of Solver module + code beautifying" />
   </component>
 </project>

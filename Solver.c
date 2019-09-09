@@ -73,3 +73,9 @@ int solutionCounter(GameState *gameState) {
     return solutions;
 }
 
+/* TODO Check if board is solvable: Gurobi to the rescue. */
+bool isSolvable(GameState *gameState) {
+    UNUSED(gameState);
+    return true;
+}
+

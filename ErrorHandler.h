@@ -4,12 +4,14 @@
 #include <stdio.h>
 #include "Game.h"
 
-/* Below are errors regarding loading a board from a text file */
+/* Below are errors regarding loading/saving a board from/to a text file */
 void throw_invalidFileFormatError();
 
 void throw_loadedInWrongModeError();
 
 void throw_filePathError();
+
+void throw_unsolvableFileErrror();
 
 /* Below are errors regarding the command that was given as input */
 void throw_illegalCommandNameError();

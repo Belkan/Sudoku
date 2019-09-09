@@ -151,6 +151,10 @@ USER_CHOICE validateEdit(int params, char **input) {
         throw_filePathError();
         return INVALID_COMMAND;
     }
+    if (params == 1 && !validFileFormat(input[1])) {
+        throw_invalidFileFormatError();
+        return INVALID_COMMAND;
+    }
     return EDIT;
 }
 
@@ -177,6 +181,11 @@ USER_CHOICE validateSave(GameState *gameState, int params, char **input) {
     if (!validLoadPath(input[1])) {
         throw_filePathError();
         return INVALID_COMMAND;
+    }
+    if (!isSolvable(gameState)) {
+        throw_unsolvableFileErrror();
+        return INVALID_COMMAND;
+
     }
     return SAVE;
 }

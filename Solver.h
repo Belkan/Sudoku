@@ -13,5 +13,8 @@ typedef enum solution_type {
 /* Use exhaustive backtracking algorithm (using stack) to count the number of solutions for the board. */
 int solutionCounter(GameState *gameState);
 
+/* TODO Gurobi needs to check if board is solvable */
+bool isSolvable(GameState *gameState);
+
 #endif
 

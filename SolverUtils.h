@@ -3,6 +3,11 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "Game.h"
+
+/* TODO remove this function for production, only needed for debugging/testing */
+/* Utility for unused variable */
+#define UNUSED(x) (void)(x)
 
 /* Stack to emulate recursion for exhaustive backtracking algorithm. */
 typedef struct recursion_stack {
@@ -41,6 +46,7 @@ int getNextRow(int size, int row, int col);
 int getNextCol(int size, int col);
 int getPrevRow(int row, int col);
 int getPrevCol(int size, int col);
+bool solvedBoard(GameState *gameState);
 void swap(int *x, int *y);
 
 #endif

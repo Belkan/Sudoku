@@ -7,6 +7,8 @@
 #include <ctype.h>
 #include "Game.h"
 #include "Solver.h"
+#include "MainAux.h"
+#include "GeneralUtils.h"
 #define MAX 1024
 
 #ifndef SUDOKU_FILEHANDLER_H
@@ -27,12 +29,13 @@ int getNumberEndPos(char *currLine, int start);
 /* Function to load an empty default board */
 GameState *loadEmptyBoard ();
 
-/* TODO write this function! */
 /* Check if given path is valid for saving a file. */
 bool validSavePath (char *filePath);
 
-/* TODO test this function! */
 /* Check if given path is valid for loading a file. */
 bool validLoadPath (char *filePath);
+
+/* Check if loaded file has correct format. */
+bool validFileFormat (char *filePath);
 
 #endif

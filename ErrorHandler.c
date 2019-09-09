@@ -1,12 +1,17 @@
 #include "ErrorHandler.h"
 
 /* Errors regarding loading boards from given text file */
-void throw_invalidFileFormatError() {
-    printf("Error: file loaded has incorrect format! Please try again.\n");
-}
 
 void throw_filePathError() {
     printf("Error: incorrect file path given! Please try again.\n");
+}
+
+void throw_unsolvableFileErrror() {
+    printf("Error: unsolvable boards may not be saved! Please try again.\n");
+}
+
+void throw_invalidFileFormatError() {
+    printf("Error: incorrect file format given! Please try again.\n");
 }
 
 /* Errors regarding parsing commands given as input */
