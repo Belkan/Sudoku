@@ -22,7 +22,7 @@ bool validLoadPath (char *filePath) {
 bool validFileFormat (char *filePath) {
     FILE *file = fopen(filePath, "r");
     char *currLine = (char *) malloc(CHAR_MAX);
-    int counter = 0, idx = 0, rowsInlbock = -1, colsInBlock = -1, size = 0, cell = 0;
+    int counter = 0, idx = 0, rowsInlbock = -1, colsInBlock = -1, size = 0, cell = 0, rowsAmount = 0;
 
     /* Make sure first line has correct format. */
     fgets(currLine, sizeof(currLine), file);
@@ -52,6 +52,7 @@ bool validFileFormat (char *filePath) {
     size = rowsInlbock * colsInBlock;
     /* Check all other lines don't contain illegal characters, or cells out of range. */
     while (fgets(currLine, CHAR_MAX, file)) {
+        rowsAmount++;
         counter = 0;
         idx = 0;
         while (currLine[idx] != '\n') {
@@ -74,6 +75,9 @@ bool validFileFormat (char *filePath) {
         /* A line cannot be too short or too long, e.g. if size is 9 we can't have a line with 4 integers. */
         if (counter != size) return false;
     }
+    /* We can't have too few lines in file. */
+    if (rowsAmount != size) return false;
+    
     return true;
 }
 
