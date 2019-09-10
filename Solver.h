@@ -1,14 +1,18 @@
 #ifndef SUDOKU_SOLVER_H
 #define SUDOKU_SOLVER_H
+
 #include <stdbool.h>
 #include "Game.h"
 #include "SolverUtils.h"
 
-typedef struct Gurobi {
-    double* solution;
+typedef struct SolutionContainer {
+    double *solution;
+    int ***variables;
+    int numOfVariables;
     int error;
+    bool solutionFound;
 
-} Gurobi ;
+} SolutionContainer;
 
 typedef enum LinearMethod {
     ILP,
@@ -19,16 +23,19 @@ typedef enum LinearMethod {
 /* Use exhaustive backtracking algorithm (using stack) to count the number of solutions for the board. */
 int solutionCounter(GameState *gameState);
 
-Gurobi* getSolution(GameState *gameState, LinearMethod linearMethod);
+SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod);
 
-/* TODO Gurobi needs to check if board is solvable */
+/* TODO SolutionContainer needs to check if board is solvable */
 bool isSolvable(GameState *gameState);
 
-Gurobi* createGurobi(int size) {
-    Gurobi* gurobi = malloc(sizeof(Gurobi));
-    gurobi->solution = (double*) malloc(size*sizeof(double));
-    return gurobi;
-}
+SolutionContainer *createSolutionContainer(int size);
+
+void destroySolutionContainer(SolutionContainer* solutionContainer);
+
+void destorySolution();
+
+void destroyGurobi(GRBenv* env, GRBmodel* model, double* obj, char* variableTypes, int* ind, double* val);
+
 
 #endif
 

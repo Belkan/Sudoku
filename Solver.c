@@ -72,65 +72,100 @@ int solutionCounter(GameState *gameState) {
     return solutions;
 }
 
-Gurobi* getSolution(GameState *gameState, LinearMethod linearMethod) {
+SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) {
     GRBenv *env = NULL;
     GRBmodel *model = NULL;
+    int size = getSize(gameState);
     int error = 0;
-    double* sol = NULL;
-    int* ind = malloc(getSize(gameState)* sizeof(int));
-    double* val = malloc(getSize(gameState)*sizeof(double));
-    double* obj = NULL;
-    char* vtype = NULL;
+    double *sol = NULL;
+    int *ind;
+    double *val;
+    double *obj;
+    char *variableTypes;
     int optimstatus;
     double objval;
-    Gurobi *gurobi = createGurobi(getSize(gameState));
+    SolutionContainer *solutionContainer = createSolutionContainer(size);
+    int row, firstRow, lastRow, col, firstCol, lastCol, value, totalVariableCount, i, variablesInConstraint, block;
+    int rowsInBlock = getRowsInBlock(gameState), colsInBlock = getColsInBlock(gameState);
 
 
-    /* Create environment - log file is gurobi.log */
+    /* Create environment - log file is solutionContainer.log */
     error = GRBloadenv(&env, "sudoku.log");
     if (error) {
         printf("ERROR %d GRBloadenv(): %s\n", error, GRBgeterrormsg(env));
-        gurobi->error = error;
-        return gurobi;
+        GRBfreeenv(env);
+        solutionContainer->error = error;
+        return solutionContainer;
     }
 
     error = GRBsetintparam(env, GRB_INT_PAR_LOGTOCONSOLE, 0);
     if (error) {
         printf("ERROR %d GRBsetintattr(): %s\n", error, GRBgeterrormsg(env));
-        gurobi->error = error;
-        return gurobi;
+        GRBfreeenv(env);
+        solutionContainer->error = error;
+        return solutionContainer;
     }
 
     /* Create an empty model named "sudoku" */
     error = GRBnewmodel(env, &model, "sudoku", 0, NULL, NULL, NULL, NULL, NULL);
     if (error) {
         printf("ERROR %d GRBnewmodel(): %s\n", error, GRBgeterrormsg(env));
-        gurobi->error = error;
-        return gurobi;
+        GRBfreemodel(model);
+        GRBfreeenv(env);
+        solutionContainer->error = error;
+        return solutionContainer;
     }
-    /* Add variables */
+    /* Add only variables that are legal for the current board state. */
+    totalVariableCount = 1;
+    for (row = 0; row < size; row++) {
+        for (col = 0; col < size; col++) {
+            /* Only add variables for empty cells */
+            if (getCellValue(row, col, gameState) == 0) {
+                for (value = 1; value <= size; value++) {
+                    /* Only add variable for valid values */
+                    if (isUserLegalMove(gameState, row, col, value)) {
+                        solutionContainer->variables[row][col][value] = totalVariableCount++;
+                    }
+                }
+            }
+        }
+    }
 
-    /* coefficients - for x,y,z (cells 0,1,2 in "obj") */
-    obj[0] = 1; obj[1] = 3; obj[2] = 2;
+    obj = malloc(totalVariableCount * sizeof(double));
+    variableTypes = malloc(totalVariableCount * sizeof(char));
+    ind = malloc(size * sizeof(int));
+    val = malloc(size * sizeof(double));
 
-    /* variable types - for x,y,z (cells 0,1,2 in "vtype") */
-    /* other options: GRB_INTEGER, GRB_CONTINUOUS */
-    vtype[0] = GRB_BINARY; vtype[1] = GRB_BINARY; vtype[2] = GRB_BINARY;
+    /* Set target function and variable types per linear method */
+    switch (linearMethod) {
+        case (ILP):
+            for (i = 0; i < totalVariableCount; i++) {
+                obj[i] = 0;
+                variableTypes[i] = GRB_BINARY;
+            }
+        case (LP) :
+            for (i = 0; i < totalVariableCount; i++) {
+                obj[i] = getRandom(1, 5);
+                variableTypes[i] = GRB_CONTINUOUS;
+            }
+    }
 
-    /* add variables to model */
-    error = GRBaddvars(model, 3, 0, NULL, NULL, NULL, obj, NULL, NULL, vtype, NULL);
+    /* Add variables to model */
+    error = GRBaddvars(model, totalVariableCount, 0, NULL, NULL, NULL, obj, NULL, NULL, variableTypes, NULL);
     if (error) {
         printf("ERROR %d GRBaddvars(): %s\n", error, GRBgeterrormsg(env));
-        gurobi->error = error;
-        return gurobi;
+        solutionContainer->error = error;
+        destroyGurobi(env, model, obj, variableTypes, ind, val);
+        return solutionContainer;
     }
 
     /* Change objective sense to maximization */
     error = GRBsetintattr(model, GRB_INT_ATTR_MODELSENSE, GRB_MAXIMIZE);
     if (error) {
         printf("ERROR %d GRBsetintattr(): %s\n", error, GRBgeterrormsg(env));
-        gurobi->error = error;
-        return gurobi;
+        solutionContainer->error = error;
+        destroyGurobi(env, model, obj, variableTypes, ind, val);
+        return solutionContainer;
     }
 
     /* update the model - to integrate new variables */
@@ -138,109 +173,204 @@ Gurobi* getSolution(GameState *gameState, LinearMethod linearMethod) {
     error = GRBupdatemodel(model);
     if (error) {
         printf("ERROR %d GRBupdatemodel(): %s\n", error, GRBgeterrormsg(env));
-        gurobi->error = error;
-        return gurobi;
+        solutionContainer->error = error;
+        destroyGurobi(env, model, obj, variableTypes, ind, val);
+        return solutionContainer;
     }
 
-
-    /* First constraint: x + 2 y + 3 z <= 5 */
-
-    /* variables x,y,z (0,1,2) */
-    ind[0] = 0; ind[1] = 1; ind[2] = 2;
-    /* coefficients (according to variables in "ind") */
-    val[0] = 1; val[1] = 2; val[2] = 3;
-
-    /* add constraint to model - note size 3 + operator GRB_LESS_EQUAL */
-    /* -- equation value (5.0) + unique constraint name */
-    error = GRBaddconstr(model, 3, ind, val, GRB_LESS_EQUAL, 5, "c0");
-    if (error) {
-        printf("ERROR %d 1st GRBaddconstr(): %s\n", error, GRBgeterrormsg(env));
-        gurobi->error = error;
-        return gurobi;
+    /* Set 1st constraint: each cell has exactly 1 value. */
+    for (row = 0; row < size; row++) {
+        for (col = 0; col < size; col++) {
+            variablesInConstraint = 0;
+            for (value = 1; value <= size; value++) {
+                if (solutionContainer->variables[row][col][value] > 0) {
+                    ind[variablesInConstraint] = solutionContainer->variables[row][col][value];
+                    val[variablesInConstraint] = 1;
+                    variablesInConstraint++;
+                }
+            }
+            /* x_[row, col, 1] + ... + x_[row, col, variablesInConstraint] = 1 */
+            error = GRBaddconstr(model, variablesInConstraint, ind, val, GRB_EQUAL, 1, NULL);
+            if (error) {
+                printf("ERROR %d 1st GRBaddconstr(): %s\n", error, GRBgeterrormsg(env));
+                solutionContainer->error = error;
+                destroyGurobi(env, model, obj, variableTypes, ind, val);
+                return solutionContainer;
+            }
+        }
     }
 
-    /* Second constraint: x + y >= 1 */
-    ind[0] = 0; ind[1] = 1;
-    val[0] = 1; val[1] = 1;
+    /* Set 2nd constraint: each row has exactly one of each value. */
+    for (row = 0; row < size; row++) {
+        for (value = 1; value <= size; value++) {
+            variablesInConstraint = 0;
+            for (col = 0; col < size; col++) {
+                if (solutionContainer->variables[row][col][value] > 0) {
+                    ind[variablesInConstraint] = solutionContainer->variables[row][col][value];
+                    val[variablesInConstraint] = 1;
+                    variablesInConstraint++;
+                }
+            }
+            error = GRBaddconstr(model, variablesInConstraint, ind, val, GRB_EQUAL, 1, NULL);
+            if (error) {
+                printf("ERROR %d 2nd GRBaddconstr(): %s\n", error, GRBgeterrormsg(env));
+                solutionContainer->error = error;
+                destroyGurobi(env, model, obj, variableTypes, ind, val);
+                return solutionContainer;
+            }
+        }
+    }
 
-    /* add constraint to model - note size 2 + operator GRB_GREATER_EQUAL */
-    /* -- equation value (1.0) + unique constraint name */
-    error = GRBaddconstr(model, 2, ind, val, GRB_GREATER_EQUAL, 1.0, "c1");
-    if (error) {
-        printf("ERROR %d 2nd GRBaddconstr(): %s\n", error, GRBgeterrormsg(env));
-        gurobi->error = error;
-        return gurobi;
+    /* Set 3rd constraint: each col has exactly one of each value. */
+    for (col = 0; col < size; col++) {
+        for (value = 1; value <= size; value++) {
+            variablesInConstraint = 0;
+            for (row = 0; row < size; row++) {
+                if (solutionContainer->variables[row][col][value] > 0) {
+                    ind[variablesInConstraint] = solutionContainer->variables[row][col][value];
+                    val[variablesInConstraint] = 1;
+                    variablesInConstraint++;
+                }
+            }
+            error = GRBaddconstr(model, variablesInConstraint, ind, val, GRB_EQUAL, 1, NULL);
+            if (error) {
+                printf("ERROR %d 3rd GRBaddconstr(): %s\n", error, GRBgeterrormsg(env));
+                solutionContainer->error = error;
+                destroyGurobi(env, model, obj, variableTypes, ind, val);
+                return solutionContainer;
+            }
+        }
+    }
+
+    /* Set 4th constraint: each block has exactly one of each value. */
+    for (block = 0; block < size; block++) {
+        for (value = 1; value <= size; value++) {
+            variablesInConstraint = 0;
+            firstRow = (block / rowsInBlock) * rowsInBlock;
+            lastRow = firstRow + rowsInBlock - 1;
+            for (row = firstRow; row <= lastRow; row++) {
+                firstCol = (block % rowsInBlock) * colsInBlock;
+                lastCol = firstCol + colsInBlock - 1;
+                for (col = firstCol; col <= lastCol; col++) {
+                    if (solutionContainer->variables[row][col][value] > 0) {
+                        ind[variablesInConstraint] = solutionContainer->variables[row][col][value];
+                        val[variablesInConstraint] = 1;
+                        variablesInConstraint++;
+                    }
+                }
+            }
+            error = GRBaddconstr(model, variablesInConstraint, ind, val, GRB_EQUAL, 1, NULL);
+            if (error) {
+                printf("ERROR %d 4th GRBaddconstr(): %s\n", error, GRBgeterrormsg(env));
+                solutionContainer->error = error;
+                destroyGurobi(env, model, obj, variableTypes, ind, val);
+                return solutionContainer;
+            }
+        }
     }
 
     /* Optimize model - need to call this before calculation */
     error = GRBoptimize(model);
     if (error) {
         printf("ERROR %d GRBoptimize(): %s\n", error, GRBgeterrormsg(env));
-        gurobi->error = error;
-        return gurobi;
+        solutionContainer->error = error;
+        destroyGurobi(env, model, obj, variableTypes, ind, val);
+        return solutionContainer;
     }
 
     /* Write model to 'mip1.lp' - this is not necessary but very helpful */
-    error = GRBwrite(model, "mip1.lp");
+    error = GRBwrite(model, "sudoku.lp");
     if (error) {
         printf("ERROR %d GRBwrite(): %s\n", error, GRBgeterrormsg(env));
-        gurobi->error = error;
-        return gurobi;
+        solutionContainer->error = error;
+        destroyGurobi(env, model, obj, variableTypes, ind, val);
+        return solutionContainer;
     }
 
     /* Get solution information */
-
     error = GRBgetintattr(model, GRB_INT_ATTR_STATUS, &optimstatus);
     if (error) {
         printf("ERROR %d GRBgetintattr(): %s\n", error, GRBgeterrormsg(env));
-        gurobi->error = error;
-        return gurobi;
+        solutionContainer->error = error;
+        destroyGurobi(env, model, obj, variableTypes, ind, val);
+        return solutionContainer;
     }
 
     /* get the objective -- the optimal result of the function */
     error = GRBgetdblattr(model, GRB_DBL_ATTR_OBJVAL, &objval);
     if (error) {
         printf("ERROR %d GRBgettdblattr(): %s\n", error, GRBgeterrormsg(env));
-        gurobi->error = error;
-        return gurobi;
+        solutionContainer->error = error;
+        destroyGurobi(env, model, obj, variableTypes, ind, val);
+        return solutionContainer;
     }
 
     /* get the solution - the assignment to each variable */
-    /* 3-- number of variables, the size of "sol" should match */
-    error = GRBgetdblattrarray(model, GRB_DBL_ATTR_X, 0, 3, sol);
+    error = GRBgetdblattrarray(model, GRB_DBL_ATTR_X, 0, totalVariableCount, sol);
     if (error) {
         printf("ERROR %d GRBgetdblattrarray(): %s\n", error, GRBgeterrormsg(env));
-        gurobi->error = error;
-        return gurobi;
+        solutionContainer->error = error;
+        destroyGurobi(env, model, obj, variableTypes, ind, val);
+        return solutionContainer;
     }
 
     /* print results */
     printf("\nOptimization complete\n");
+    solutionContainer->solution = sol;
 
     /* solution found */
     if (optimstatus == GRB_OPTIMAL) {
-        printf("Optimal objective: %.4e\n", objval);
-        printf("  x=%.2f, y=%.2f, z=%.2f\n", sol[0], sol[1], sol[2]);
+        solutionContainer->solutionFound = true;
     }
-        /* no solution found */
+    /* no solution found */
     else if (optimstatus == GRB_INF_OR_UNBD) {
-        printf("Model is infeasible or unbounded\n");
+        solutionContainer->solutionFound = false;
     }
-        /* error or calculation stopped */
+    /* error or calculation stopped */
     else {
         printf("Optimization was stopped early\n");
     }
 
-    /* IMPORTANT !!! - Free model and environment */
-    GRBfreemodel(model);
-    GRBfreeenv(env);
+    destroyGurobi(env, model, obj, variableTypes, ind, val);
 
-    return 0;
+    return solutionContainer;
 }
 
-/* TODO Check if board is solvable: Gurobi to the rescue. */
+/* TODO Check if board is solvable: SolutionContainer to the rescue. */
 bool isSolvable(GameState *gameState) {
     UNUSED(gameState);
     return true;
 }
 
+SolutionContainer *createSolutionContainer(int size) {
+    int i, j;
+    SolutionContainer *solutionContainer = malloc(sizeof(SolutionContainer));
+    solutionContainer->solution = (double *) malloc(size * sizeof(double));
+    solutionContainer->variables = (int ***) malloc(size * sizeof(int **));
+    for (i = 0; i < size; i++) {
+        solutionContainer->variables[i] = (int **) malloc(size * sizeof(int *));
+        for (j = 0; j < size; j++) {
+            solutionContainer->variables[i][j] = (int *) calloc(size, sizeof(int));
+        }
+    }
+    return solutionContainer;
+}
+
+void destorySolutionContainer(SolutionContainer *solutionContainer, int size) {
+    int i;
+    free(solutionContainer->solution);
+    for (i = 0; i < size; i++) {
+        destroyMatrix(solutionContainer->variables[i], size);
+    }
+    free(solutionContainer->variables);
+    free(solutionContainer);
+}
+
+void destoryGurobi(GRBenv *env, GRBmodel *model, double *obj, char *variableTypes, int *ind, double *val) {
+    free(obj);
+    free(variableTypes);
+    free(ind);
+    free(val);
+    GRBfreemodel(model);
+    GRBfreeenv(env);
+}

@@ -33,7 +33,6 @@ bool isBoardLegal(GameState *gameState) {
     return true;
 }
 
-
 /* Checks if this set is a legal set  */
 bool isUserLegalMove(GameState *gameState, int row, int col, int value) {
     int oldValue = getCellValue(row, col, gameState);

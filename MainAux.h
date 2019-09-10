@@ -8,7 +8,7 @@
 
 
 /* Generates pseudorandom number in given range */
-int getRandom(int upper, int lower);
+int getRandom(int lower, int upper);
 
 /* Util function to free resources allocated for a matrix */
 void destroyMatrix(int** matrix, int size);

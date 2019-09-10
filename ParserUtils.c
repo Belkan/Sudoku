@@ -182,10 +182,16 @@ USER_CHOICE validateSave(GameState *gameState, int params, char **input) {
         throw_filePathError();
         return INVALID_COMMAND;
     }
-    if (!isSolvable(gameState)) {
-        throw_unsolvableFileErrror();
-        return INVALID_COMMAND;
-
+    if (getGameMode(gameState) == EDITMODE) {
+        if (!isBoardLegal(gameState)) {
+            throw_illegalCommandForCurrentBoard();
+            printf("Details: Board is erroneous in EDIT mode, please fix the board before saving.\n");
+            return INVALID_COMMAND;
+        }
+        if (!isSolvable(gameState)) {
+            throw_unsolvableFileErrror();
+            return INVALID_COMMAND;
+        }
     }
     return SAVE;
 }
