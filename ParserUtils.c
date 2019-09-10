@@ -170,16 +170,12 @@ USER_CHOICE validateSolve(int params, char **input) {
     return SOLVE;
 }
 
-USER_CHOICE validateSave(GameState *gameState, int params, char **input) {
+USER_CHOICE validateSave(GameState *gameState, int params) {
     if (isMode(gameState, INITMODE)) {
         return INVALID_COMMAND;
     }
     if (!paramsCountCorrect(params, 1, 1)) {
         printf("Details: <save X> must include exactly ONE parameter of the file path.\n");
-        return INVALID_COMMAND;
-    }
-    if (!validLoadPath(input[1])) {
-        throw_filePathError();
         return INVALID_COMMAND;
     }
     if (getGameMode(gameState) == EDITMODE) {

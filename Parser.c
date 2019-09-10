@@ -168,7 +168,7 @@ USER_CHOICE parseCommand(GameState **gameState, char *input) {
         return validateSolve(k, str);
     }
     if (matchesFormat(str[0], SAVE)) {
-        return validateSave(*gameState, k, str);
+        return validateSave(*gameState, k);
     }
     throw_unknownCommand();
     return INVALID_COMMAND;
@@ -200,50 +200,42 @@ void executeCommand(GameState **pGameState, HistoryState **pHistoryState, USER_C
                 executeEdit(pGameState, pHistoryState, "", /* hasPath= */ false);
             }
             return;
-
         case (SOLVE):
             executeSolve(pGameState, pHistoryState, str[1]);
             return;
-
         case (SAVE):
             executeSave(*pGameState, str[1]);
             return;
-
         case (SET):
             col = strtol(str[1], &endPtr, 10) - 1;
             row = strtol(str[2], &endPtr, 10) - 1;
             val = strtol(str[3], &endPtr, 10);
             executeSet(*pGameState, pHistoryState, row, col, val);
             return;
-
         case (UNDO):
             executeUndo(*pGameState, pHistoryState);
             return;
-
         case (REDO):
             executeRedo(*pGameState, pHistoryState);
             return;
-
         case (RESET):
             executeReset(*pGameState, pHistoryState);
             return;
-
         case (AUTOFILL):
             executeAutofill(*pGameState, pHistoryState);
             return;
-
+        case (VALIDATE):
+            executeValidate(*pGameState);
+            return;
         case (PRINT_BOARD):
             printBoard(*pGameState);
             return;
-
         case (MARK_ERRORS):
             strcmp(str[1], "0") == 0 ? setMarkErrors(*pGameState, false) : setMarkErrors(*pGameState, true);
             return;
-
         case (NUM_SOLUTIONS):
             executeNumSolutions(*pGameState);
             return;
-
         case (EXIT):
             printf("Exiting...\n");
             destroyAllHistory(*pHistoryState);

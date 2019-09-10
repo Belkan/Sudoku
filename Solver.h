@@ -2,6 +2,7 @@
 #define SUDOKU_SOLVER_H
 
 #include <stdbool.h>
+#include "gurobi_c.h"
 #include "Game.h"
 #include "SolverUtils.h"
 
@@ -30,9 +31,7 @@ bool isSolvable(GameState *gameState);
 
 SolutionContainer *createSolutionContainer(int size);
 
-void destroySolutionContainer(SolutionContainer* solutionContainer);
-
-void destorySolution();
+void destroySolutionContainer(SolutionContainer* solutionContainer, int size);
 
 void destroyGurobi(GRBenv* env, GRBmodel* model, double* obj, char* variableTypes, int* ind, double* val);
 

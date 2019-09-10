@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include "gurobi_c.h"
 #include "Solver.h"
 #include "MainAux.h"
 
@@ -77,7 +76,7 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
     GRBmodel *model = NULL;
     int size = getSize(gameState);
     int error = 0;
-    double *sol = NULL;
+    double *sol;
     int *ind;
     double *val;
     double *obj;
@@ -87,7 +86,6 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
     SolutionContainer *solutionContainer = createSolutionContainer(size);
     int row, firstRow, lastRow, col, firstCol, lastCol, value, totalVariableCount, i, variablesInConstraint, block;
     int rowsInBlock = getRowsInBlock(gameState), colsInBlock = getColsInBlock(gameState);
-
 
     /* Create environment - log file is solutionContainer.log */
     error = GRBloadenv(&env, "sudoku.log");
@@ -105,7 +103,6 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
         solutionContainer->error = error;
         return solutionContainer;
     }
-
     /* Create an empty model named "sudoku" */
     error = GRBnewmodel(env, &model, "sudoku", 0, NULL, NULL, NULL, NULL, NULL);
     if (error) {
@@ -115,8 +112,9 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
         solutionContainer->error = error;
         return solutionContainer;
     }
+
     /* Add only variables that are legal for the current board state. */
-    totalVariableCount = 1;
+    totalVariableCount = 0;
     for (row = 0; row < size; row++) {
         for (col = 0; col < size; col++) {
             /* Only add variables for empty cells */
@@ -124,7 +122,7 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
                 for (value = 1; value <= size; value++) {
                     /* Only add variable for valid values */
                     if (isUserLegalMove(gameState, row, col, value)) {
-                        solutionContainer->variables[row][col][value] = totalVariableCount++;
+                        solutionContainer->variables[row][col][value - 1] = totalVariableCount++;
                     }
                 }
             }
@@ -133,8 +131,6 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
 
     obj = malloc(totalVariableCount * sizeof(double));
     variableTypes = malloc(totalVariableCount * sizeof(char));
-    ind = malloc(size * sizeof(int));
-    val = malloc(size * sizeof(double));
 
     /* Set target function and variable types per linear method */
     switch (linearMethod) {
@@ -143,12 +139,17 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
                 obj[i] = 0;
                 variableTypes[i] = GRB_BINARY;
             }
+            break;
         case (LP) :
             for (i = 0; i < totalVariableCount; i++) {
                 obj[i] = getRandom(1, 5);
                 variableTypes[i] = GRB_CONTINUOUS;
             }
+            break;
     }
+
+    ind = malloc(totalVariableCount * sizeof(int));
+    val = malloc(totalVariableCount * sizeof(double));
 
     /* Add variables to model */
     error = GRBaddvars(model, totalVariableCount, 0, NULL, NULL, NULL, obj, NULL, NULL, variableTypes, NULL);
@@ -183,14 +184,17 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
         for (col = 0; col < size; col++) {
             variablesInConstraint = 0;
             for (value = 1; value <= size; value++) {
-                if (solutionContainer->variables[row][col][value] > 0) {
-                    ind[variablesInConstraint] = solutionContainer->variables[row][col][value];
+                if (solutionContainer->variables[row][col][value - 1] > -1) {
+                    ind[variablesInConstraint] = solutionContainer->variables[row][col][value - 1];
                     val[variablesInConstraint] = 1;
                     variablesInConstraint++;
                 }
             }
+            if (variablesInConstraint == 0) {
+                continue;
+            }
             /* x_[row, col, 1] + ... + x_[row, col, variablesInConstraint] = 1 */
-            error = GRBaddconstr(model, variablesInConstraint, ind, val, GRB_EQUAL, 1, NULL);
+            error = GRBaddconstr(model, variablesInConstraint, ind, val, GRB_EQUAL, 1.0, "c1");
             if (error) {
                 printf("ERROR %d 1st GRBaddconstr(): %s\n", error, GRBgeterrormsg(env));
                 solutionContainer->error = error;
@@ -205,13 +209,16 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
         for (value = 1; value <= size; value++) {
             variablesInConstraint = 0;
             for (col = 0; col < size; col++) {
-                if (solutionContainer->variables[row][col][value] > 0) {
-                    ind[variablesInConstraint] = solutionContainer->variables[row][col][value];
+                if (solutionContainer->variables[row][col][value - 1] > -1) {
+                    ind[variablesInConstraint] = solutionContainer->variables[row][col][value - 1];
                     val[variablesInConstraint] = 1;
                     variablesInConstraint++;
                 }
             }
-            error = GRBaddconstr(model, variablesInConstraint, ind, val, GRB_EQUAL, 1, NULL);
+            if (variablesInConstraint == 0) {
+                continue;
+            }
+            error = GRBaddconstr(model, variablesInConstraint, ind, val, GRB_EQUAL, 1.0, "c2");
             if (error) {
                 printf("ERROR %d 2nd GRBaddconstr(): %s\n", error, GRBgeterrormsg(env));
                 solutionContainer->error = error;
@@ -226,13 +233,16 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
         for (value = 1; value <= size; value++) {
             variablesInConstraint = 0;
             for (row = 0; row < size; row++) {
-                if (solutionContainer->variables[row][col][value] > 0) {
-                    ind[variablesInConstraint] = solutionContainer->variables[row][col][value];
+                if (solutionContainer->variables[row][col][value - 1] > -1) {
+                    ind[variablesInConstraint] = solutionContainer->variables[row][col][value - 1];
                     val[variablesInConstraint] = 1;
                     variablesInConstraint++;
                 }
             }
-            error = GRBaddconstr(model, variablesInConstraint, ind, val, GRB_EQUAL, 1, NULL);
+            if (variablesInConstraint == 0) {
+                continue;
+            }
+            error = GRBaddconstr(model, variablesInConstraint, ind, val, GRB_EQUAL, 1.0, "c3");
             if (error) {
                 printf("ERROR %d 3rd GRBaddconstr(): %s\n", error, GRBgeterrormsg(env));
                 solutionContainer->error = error;
@@ -252,14 +262,17 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
                 firstCol = (block % rowsInBlock) * colsInBlock;
                 lastCol = firstCol + colsInBlock - 1;
                 for (col = firstCol; col <= lastCol; col++) {
-                    if (solutionContainer->variables[row][col][value] > 0) {
-                        ind[variablesInConstraint] = solutionContainer->variables[row][col][value];
+                    if (solutionContainer->variables[row][col][value - 1] > -1) {
+                        ind[variablesInConstraint] = solutionContainer->variables[row][col][value - 1];
                         val[variablesInConstraint] = 1;
                         variablesInConstraint++;
                     }
                 }
             }
-            error = GRBaddconstr(model, variablesInConstraint, ind, val, GRB_EQUAL, 1, NULL);
+            if (variablesInConstraint == 0) {
+                continue;
+            }
+            error = GRBaddconstr(model, variablesInConstraint, ind, val, GRB_EQUAL, 1.0, "c4");
             if (error) {
                 printf("ERROR %d 4th GRBaddconstr(): %s\n", error, GRBgeterrormsg(env));
                 solutionContainer->error = error;
@@ -305,7 +318,8 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
         return solutionContainer;
     }
 
-    /* get the solution - the assignment to each variable */
+    sol = malloc(totalVariableCount * sizeof(double));
+
     error = GRBgetdblattrarray(model, GRB_DBL_ATTR_X, 0, totalVariableCount, sol);
     if (error) {
         printf("ERROR %d GRBgetdblattrarray(): %s\n", error, GRBgeterrormsg(env));
@@ -321,18 +335,18 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
     /* solution found */
     if (optimstatus == GRB_OPTIMAL) {
         solutionContainer->solutionFound = true;
+        printf("Optimal\n");
     }
-    /* no solution found */
+        /* no solution found */
     else if (optimstatus == GRB_INF_OR_UNBD) {
         solutionContainer->solutionFound = false;
+        printf("Not found\n");
     }
-    /* error or calculation stopped */
+        /* error or calculation stopped */
     else {
         printf("Optimization was stopped early\n");
     }
-
     destroyGurobi(env, model, obj, variableTypes, ind, val);
-
     return solutionContainer;
 }
 
@@ -343,34 +357,42 @@ bool isSolvable(GameState *gameState) {
 }
 
 SolutionContainer *createSolutionContainer(int size) {
-    int i, j;
+    int i, j, k;
     SolutionContainer *solutionContainer = malloc(sizeof(SolutionContainer));
-    solutionContainer->solution = (double *) malloc(size * sizeof(double));
+    solutionContainer->solution = NULL;
     solutionContainer->variables = (int ***) malloc(size * sizeof(int **));
     for (i = 0; i < size; i++) {
         solutionContainer->variables[i] = (int **) malloc(size * sizeof(int *));
         for (j = 0; j < size; j++) {
             solutionContainer->variables[i][j] = (int *) calloc(size, sizeof(int));
+            for (k = 0; k < size; k++) {
+                solutionContainer->variables[i][j][k] = -1;
+            }
         }
     }
     return solutionContainer;
 }
 
-void destorySolutionContainer(SolutionContainer *solutionContainer, int size) {
-    int i;
-    free(solutionContainer->solution);
+void destroySolutionContainer(SolutionContainer *solutionContainer, int size) {
+    int i, j;
+    if (solutionContainer->solution != NULL) {
+        free(solutionContainer->solution);
+    }
     for (i = 0; i < size; i++) {
-        destroyMatrix(solutionContainer->variables[i], size);
+        for (j = 0; j < size; j++) {
+            free (solutionContainer->variables[i][j]);
+        }
+        free(solutionContainer->variables[i]);
     }
     free(solutionContainer->variables);
     free(solutionContainer);
 }
 
-void destoryGurobi(GRBenv *env, GRBmodel *model, double *obj, char *variableTypes, int *ind, double *val) {
+void destroyGurobi(GRBenv *env, GRBmodel *model, double *obj, char *variableTypes, int *ind, double *val) {
+    GRBfreemodel(model);
+    GRBfreeenv(env);
     free(obj);
     free(variableTypes);
     free(ind);
     free(val);
-    GRBfreemodel(model);
-    GRBfreeenv(env);
 }

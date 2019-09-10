@@ -44,6 +44,7 @@ void executeSolve(GameState **gameState, HistoryState **pHistoryState, char *fil
 
 void executeSave(GameState *gameState, char *filePath) {
     saveToFile(filePath, gameState);
+    printf("Filed saved successfully.\n");
 }
 
 void executeUndo(GameState *gameState, HistoryState **pHistoryState) {
@@ -111,7 +112,6 @@ void executeAutofill(GameState *gameState, HistoryState **pHistoryState) {
         setPrevState(historyState, *pHistoryState);
         setNextState(*pHistoryState, historyState);
         *pHistoryState = historyState;
-        printf("CHECK\n");
         /* This is the part that actually writes the filled values to the board */
         redoMove(getPreviousState(*pHistoryState), gameState, /* printEnabled= */ true);
     }
@@ -119,4 +119,14 @@ void executeAutofill(GameState *gameState, HistoryState **pHistoryState) {
 
 void executeNumSolutions (GameState* gameState) {
     printf("The number of possible solutions to this board is: %d.\n", solutionCounter(gameState));
+}
+
+void executeValidate (GameState* gameState) {
+    SolutionContainer* solutionContainer =  getSolution(gameState, ILP);
+    if (solutionContainer->solutionFound) {
+        printf("The board is solvable.\n");
+    } else {
+        printf("The board is unsolvable.\n");
+    }
+    destroySolutionContainer(solutionContainer, getSize(gameState));
 }

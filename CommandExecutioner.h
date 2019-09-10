@@ -4,6 +4,7 @@
 #include "HistoryHandler.h"
 #include "MainAux.h"
 #include "FileHandler.h"
+#include "Solver.h"
 
 /* Enum to represent the available commands made by the user. */
 typedef enum user_choice {
@@ -44,5 +45,7 @@ void executeReset(GameState* gameState, HistoryState** pHistoryState);
 void executeAutofill(GameState *gameState, HistoryState **pHistoryState);
 
 void executeNumSolutions (GameState* gameState);
+
+void executeValidate (GameState* gameState);
 
 #endif

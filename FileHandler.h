@@ -38,4 +38,5 @@ bool validSaveFile (char *filePath);
 /* Check if loaded file has correct format. */
 bool validFileFormat (char *filePath);
 
+
 #endif

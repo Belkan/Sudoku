@@ -1,6 +1,5 @@
 #include "FileHandler.h"
 
-
 /* Utility function for valid load path. */
 int getNumberEndPos(char *currLine, int start) {
     while (isdigit(currLine[++start]));
@@ -210,5 +209,4 @@ void saveToFile (char *filePath, GameState *currGame) {
 
     /* Close the saved game */
     fclose(saveGame);
-
 }
