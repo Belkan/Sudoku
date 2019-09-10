@@ -180,27 +180,30 @@ void saveToFile (char *filePath, GameState *currGame) {
         for (colIdx = 0; colIdx < getSize(currGame); colIdx++) {
             /* Get current cell */
             cell = getCellValue(rowIdx, colIdx, currGame);
-            /* Save cell to file. In EDITMODE, all cells are marked as fixed upon saving. */
-            if (getGameMode(currGame) == EDITMODE) {
-                if (cell != 0) {
-                    fprintf(saveGame, "%d. ", cell);
-                }
-                else {
-                    fprintf(saveGame, "%d ", cell);
-                }
-            }
-            /* Save cell to file. In SOLVEMODE, only fixed cells are marked as fixed upon saving. */
-            if (getGameMode(currGame) == SOLVEMODE) {
-                if (isFixed(rowIdx, colIdx, currGame)) {
-                    fprintf(saveGame, "%d. ", cell);
-                }
-                else {
-                    fprintf(saveGame, "%d ", cell);
-                }
-            }
+
             /* Reached end of the line */
-            if (colIdx == getSize(currGame) - 1) {
-                fprintf(saveGame, "\n");
+            if (colIdx == getSize(currGame - 1)) {
+                fprintf(saveGame, "%d\n", cell);
+            }
+            else {
+                /* Save cell to file. In EDITMODE, all cells are marked as fixed upon saving. */
+                if (getGameMode(currGame) == EDITMODE) {
+                    if (cell != 0) {
+                        fprintf(saveGame, "%d. ", cell);
+                    }
+                    else {
+                        fprintf(saveGame, "%d ", cell);
+                    }
+                }
+                /* Save cell to file. In SOLVEMODE, only fixed cells are marked as fixed upon saving. */
+                if (getGameMode(currGame) == SOLVEMODE) {
+                    if (isFixed(rowIdx, colIdx, currGame)) {
+                        fprintf(saveGame, "%d. ", cell);
+                    }
+                    else {
+                        fprintf(saveGame, "%d ", cell);
+                    }
+                }
             }
         }
     }

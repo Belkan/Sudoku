@@ -11,11 +11,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="When loading file, make sure they have correct #rows">
+    <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Sudoku.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Sudoku.cbp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -135,14 +133,7 @@
       <workItem from="1567980961602" duration="16433000" />
       <workItem from="1568043152671" duration="618000" />
       <workItem from="1568054436946" duration="429000" />
-      <workItem from="1568116482787" duration="3192000" />
-    </task>
-    <task id="LOCAL-00032" summary="Added random backtracker to generate a new board">
-      <created>1558636316989</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1558636316989</updated>
+      <workItem from="1568116482787" duration="7702000" />
     </task>
     <task id="LOCAL-00033" summary="Added random backtracker to generate a new board">
       <created>1558636482861</created>
@@ -470,7 +461,13 @@
       <option name="presentableId" value="LOCAL‎00080" />
       <updated>1568054846152</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL‎00081" summary="When saving file, check if editmode or solvemode">
+      <created>1568120792306</created>
+      <option name="number" value="LOCAL‎00081" />
+      <option name="presentableId" value="LOCAL‎00081" />
+      <updated>1568120792307</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -504,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Inject board size to InitializeGame &amp; StartGame" />
     <MESSAGE value="More options for commands are available now (undo, redo, edit, etc..) alongside support for new &quot;edit&quot; command" />
     <MESSAGE value="Bug fixes + minor changes" />
     <MESSAGE value="Added some errors for parsing commands" />
@@ -529,6 +525,7 @@
     <MESSAGE value="Refactoring of Solver module + code beautifying" />
     <MESSAGE value="Traversed forum to fix misunderstanding + other fixes" />
     <MESSAGE value="When loading file, make sure they have correct #rows" />
-    <option name="LAST_COMMIT_MESSAGE" value="When loading file, make sure they have correct #rows" />
+    <MESSAGE value="When saving file, check if editmode or solvemode" />
+    <option name="LAST_COMMIT_MESSAGE" value="When saving file, check if editmode or solvemode" />
   </component>
 </project>
