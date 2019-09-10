@@ -29,11 +29,11 @@ int getNumberEndPos(char *currLine, int start);
 /* Function to load an empty default board */
 GameState *loadEmptyBoard ();
 
-/* Check if given path is valid for saving a file. */
-bool validSavePath (char *filePath);
-
 /* Check if given path is valid for loading a file. */
 bool validLoadPath (char *filePath);
+
+/* Checks if given game state can be saved.*/
+bool validSaveFile (char *filePath);
 
 /* Check if loaded file has correct format. */
 bool validFileFormat (char *filePath);

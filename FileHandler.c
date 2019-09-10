@@ -10,7 +10,6 @@ int getNumberEndPos(char *currLine, int start) {
 /* Function to check for validity of loading a file: returns true if file can be loaded */
 bool validLoadPath (char *filePath) {
     FILE *file;
-
     /* File exists and can be loaded */
     if ((file = fopen(filePath, "r")) == NULL) {
         return false;
@@ -77,7 +76,7 @@ bool validFileFormat (char *filePath) {
     }
     /* We can't have too few lines in file. */
     if (rowsAmount != size) return false;
-    
+
     return true;
 }
 
@@ -181,14 +180,24 @@ void saveToFile (char *filePath, GameState *currGame) {
         for (colIdx = 0; colIdx < getSize(currGame); colIdx++) {
             /* Get current cell */
             cell = getCellValue(rowIdx, colIdx, currGame);
-            /* Save cell to file. All cells are marked as fixed upon saving. */
-            if (cell != 0) {
-                fprintf(saveGame, "%d. ", cell);
+            /* Save cell to file. In EDITMODE, all cells are marked as fixed upon saving. */
+            if (getGameMode(currGame) == EDITMODE) {
+                if (cell != 0) {
+                    fprintf(saveGame, "%d. ", cell);
+                }
+                else {
+                    fprintf(saveGame, "%d ", cell);
+                }
             }
-            else {
-                fprintf(saveGame, "%d ", cell);
+            /* Save cell to file. In SOLVEMODE, only fixed cells are marked as fixed upon saving. */
+            if (getGameMode(currGame) == SOLVEMODE) {
+                if (isFixed(rowIdx, colIdx, currGame)) {
+                    fprintf(saveGame, "%d. ", cell);
+                }
+                else {
+                    fprintf(saveGame, "%d ", cell);
+                }
             }
-
             /* Reached end of the line */
             if (colIdx == getSize(currGame) - 1) {
                 fprintf(saveGame, "\n");
