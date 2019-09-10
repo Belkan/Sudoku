@@ -1,7 +1,3 @@
-//
-// Created by User on 09/09/2019.
-//
-
 #ifndef SUDOKU_GUROBI_C_H
 #define SUDOKU_GUROBI_C_H
 #define GRB_INT_PAR_LOGTOCONSOLE 5
@@ -14,6 +10,8 @@
 #define GRB_DBL_ATTR_X 5
 #define GRB_OPTIMAL 5
 #define GRB_INF_OR_UNBD 5
+#define GRB_CONTINUOUS 5
+#define GRB_EQUAL 5
 #define GRB_BINARY 'a'
 typedef struct GRBenv GRBenv;
 typedef struct GRBmodel GRBmodel;
@@ -37,4 +35,4 @@ void GRBfreeenv(GRBenv* a);
 
 
 
-#endif //SUDOKU_GUROBI_C_H
+#endif
