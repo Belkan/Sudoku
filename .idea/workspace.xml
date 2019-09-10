@@ -11,9 +11,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="">
+    <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="When loading file, make sure they have correct #rows">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Sudoku.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Sudoku.cbp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -132,14 +134,8 @@
       <workItem from="1567905513530" duration="27000" />
       <workItem from="1567980961602" duration="16433000" />
       <workItem from="1568043152671" duration="618000" />
-      <workItem from="1568054436946" duration="379000" />
-    </task>
-    <task id="LOCAL-00031" summary="Added random backtracker to generate a new board">
-      <created>1558636173526</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1558636173526</updated>
+      <workItem from="1568054436946" duration="429000" />
+      <workItem from="1568116482787" duration="3192000" />
     </task>
     <task id="LOCAL-00032" summary="Added random backtracker to generate a new board">
       <created>1558636316989</created>
@@ -468,7 +464,13 @@
       <option name="presentableId" value="LOCAL‎00079" />
       <updated>1567999070377</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL‎00080" summary="When loading file, make sure they have correct #rows">
+      <created>1568054846151</created>
+      <option name="number" value="LOCAL‎00080" />
+      <option name="presentableId" value="LOCAL‎00080" />
+      <updated>1568054846152</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,7 +504,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add HistoryHandler.c/.h and HistoryState data structure" />
     <MESSAGE value="Inject board size to InitializeGame &amp; StartGame" />
     <MESSAGE value="More options for commands are available now (undo, redo, edit, etc..) alongside support for new &quot;edit&quot; command" />
     <MESSAGE value="Bug fixes + minor changes" />
@@ -527,6 +528,7 @@
     <MESSAGE value="Fixed num_solutions (now working 100%)" />
     <MESSAGE value="Refactoring of Solver module + code beautifying" />
     <MESSAGE value="Traversed forum to fix misunderstanding + other fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Traversed forum to fix misunderstanding + other fixes" />
+    <MESSAGE value="When loading file, make sure they have correct #rows" />
+    <option name="LAST_COMMIT_MESSAGE" value="When loading file, make sure they have correct #rows" />
   </component>
 </project>

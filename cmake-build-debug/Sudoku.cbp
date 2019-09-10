@@ -146,6 +146,9 @@
 		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/UnitTester.h">
 			<Option target="Sudoku"/>
 		</Unit>
+		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/gurobi_c.h">
+			<Option target="Sudoku"/>
+		</Unit>
 		<Unit filename="C:/Users/Adar/CLionProjects/Github/Sudoku/main.c">
 			<Option target="Sudoku"/>
 		</Unit>
