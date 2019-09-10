@@ -117,16 +117,28 @@ void executeAutofill(GameState *gameState, HistoryState **pHistoryState) {
     }
 }
 
-void executeNumSolutions (GameState* gameState) {
+void executeNumSolutions(GameState *gameState) {
     printf("The number of possible solutions to this board is: %d.\n", solutionCounter(gameState));
 }
 
-void executeValidate (GameState* gameState) {
-    SolutionContainer* solutionContainer =  getSolution(gameState, ILP);
+void executeValidate(GameState *gameState) {
+    SolutionContainer *solutionContainer = getSolution(gameState, ILP);
     if (solutionContainer->solutionFound) {
         printf("The board is solvable.\n");
     } else {
-        printf("The board is unsolvable.\n");
+        throw_boardUnsolvable();
     }
-    destroySolutionContainer(solutionContainer, getSize(gameState));
+    destroySolutionContainer(solutionContainer);
+}
+
+void executeHint(GameState *gameState, int row, int col) {
+    int value;
+    SolutionContainer *solutionContainer = getSolution(gameState, ILP);
+    if (!solutionContainer->solutionFound) {
+        throw_boardUnsolvable();
+        destroySolutionContainer(solutionContainer);
+        return;
+    }
+    value = getValueFromILPSolution(solutionContainer, row, col);
+    printf("Hint: Fill cell [%d,%d] with value %d.\n", row+1, col+1, value);
 }

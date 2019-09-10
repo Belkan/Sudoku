@@ -34,5 +34,6 @@ void throw_nothingToUndo();
 
 void throw_nothingToRedo();
 
+void throw_boardUnsolvable();
 
 #endif

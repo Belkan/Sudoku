@@ -48,4 +48,6 @@ void executeNumSolutions (GameState* gameState);
 
 void executeValidate (GameState* gameState);
 
+void executeHint (GameState* gameState, int row, int col);
+
 #endif

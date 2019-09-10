@@ -227,6 +227,11 @@ void executeCommand(GameState **pGameState, HistoryState **pHistoryState, USER_C
         case (VALIDATE):
             executeValidate(*pGameState);
             return;
+        case (HINT):
+            col = strtol(str[1], &endPtr, 10) - 1;
+            row = strtol(str[2], &endPtr, 10) - 1;
+            executeHint(*pGameState, row, col);
+            return;
         case (PRINT_BOARD):
             printBoard(*pGameState);
             return;

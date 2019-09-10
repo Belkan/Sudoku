@@ -11,6 +11,7 @@ typedef struct SolutionContainer {
     int ***variables;
     int numOfVariables;
     int error;
+    int boardSize;
     bool solutionFound;
 
 } SolutionContainer;
@@ -31,10 +32,11 @@ bool isSolvable(GameState *gameState);
 
 SolutionContainer *createSolutionContainer(int size);
 
-void destroySolutionContainer(SolutionContainer* solutionContainer, int size);
+void destroySolutionContainer(SolutionContainer* solutionContainer);
 
 void destroyGurobi(GRBenv* env, GRBmodel* model, double* obj, char* variableTypes, int* ind, double* val);
 
+int getValueFromILPSolution(SolutionContainer* solutionContainer, int row, int col) ;
 
 #endif
 

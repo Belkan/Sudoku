@@ -309,25 +309,25 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
         return solutionContainer;
     }
 
-    /* get the objective -- the optimal result of the function */
-    error = GRBgetdblattr(model, GRB_DBL_ATTR_OBJVAL, &objval);
-    if (error) {
-        printf("ERROR %d GRBgettdblattr(): %s\n", error, GRBgeterrormsg(env));
-        solutionContainer->error = error;
-        destroyGurobi(env, model, obj, variableTypes, ind, val);
-        return solutionContainer;
-    }
-
     sol = malloc(totalVariableCount * sizeof(double));
+    /* get the objective -- the optimal result of the function */
+    if (optimstatus == GRB_OPTIMAL) {
+        error = GRBgetdblattr(model, GRB_DBL_ATTR_OBJVAL, &objval);
+        if (error) {
+            printf("ERROR %d GRBgettdblattr(): %s\n", error, GRBgeterrormsg(env));
+            solutionContainer->error = error;
+            destroyGurobi(env, model, obj, variableTypes, ind, val);
+            return solutionContainer;
+        }
 
-    error = GRBgetdblattrarray(model, GRB_DBL_ATTR_X, 0, totalVariableCount, sol);
-    if (error) {
-        printf("ERROR %d GRBgetdblattrarray(): %s\n", error, GRBgeterrormsg(env));
-        solutionContainer->error = error;
-        destroyGurobi(env, model, obj, variableTypes, ind, val);
-        return solutionContainer;
+        error = GRBgetdblattrarray(model, GRB_DBL_ATTR_X, 0, totalVariableCount, sol);
+        if (error) {
+            printf("ERROR %d GRBgetdblattrarray(): %s\n", error, GRBgeterrormsg(env));
+            solutionContainer->error = error;
+            destroyGurobi(env, model, obj, variableTypes, ind, val);
+            return solutionContainer;
+        }
     }
-
     /* print results */
     printf("\nOptimization complete\n");
     solutionContainer->solution = sol;
@@ -360,6 +360,8 @@ SolutionContainer *createSolutionContainer(int size) {
     int i, j, k;
     SolutionContainer *solutionContainer = malloc(sizeof(SolutionContainer));
     solutionContainer->solution = NULL;
+    solutionContainer->solutionFound = false;
+    solutionContainer->boardSize = size;
     solutionContainer->variables = (int ***) malloc(size * sizeof(int **));
     for (i = 0; i < size; i++) {
         solutionContainer->variables[i] = (int **) malloc(size * sizeof(int *));
@@ -373,13 +375,13 @@ SolutionContainer *createSolutionContainer(int size) {
     return solutionContainer;
 }
 
-void destroySolutionContainer(SolutionContainer *solutionContainer, int size) {
+void destroySolutionContainer(SolutionContainer *solutionContainer) {
     int i, j;
     if (solutionContainer->solution != NULL) {
         free(solutionContainer->solution);
     }
-    for (i = 0; i < size; i++) {
-        for (j = 0; j < size; j++) {
+    for (i = 0; i < solutionContainer->boardSize; i++) {
+        for (j = 0; j < solutionContainer->boardSize; j++) {
             free (solutionContainer->variables[i][j]);
         }
         free(solutionContainer->variables[i]);
@@ -395,4 +397,15 @@ void destroyGurobi(GRBenv *env, GRBmodel *model, double *obj, char *variableType
     free(variableTypes);
     free(ind);
     free(val);
+}
+
+int getValueFromILPSolution(SolutionContainer* solutionContainer, int row, int col) {
+    int value, idx;
+    for (value = 1; value <= solutionContainer->boardSize; value++) {
+        idx = solutionContainer->variables[row][col][value-1];
+        if (idx != -1 && solutionContainer->solution[idx] == 1) {
+            return value;
+        }
+    }
+    return -1;
 }

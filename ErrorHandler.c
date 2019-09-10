@@ -69,3 +69,6 @@ void throw_nothingToRedo() {
     printf("Error: there is no move to redo.\n");
 }
 
+void throw_boardUnsolvable() {
+    printf("Error: The board is unsolvable in its current state.\n");
+}
