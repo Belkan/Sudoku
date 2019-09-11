@@ -50,4 +50,8 @@ void executeValidate (GameState* gameState);
 
 void executeHint (GameState* gameState, int row, int col);
 
+void executeGuessHint (GameState* gameState, int row, int col);
+
+void executeGuess(GameState *gameState, HistoryState **pHistoryState, float threshold);
+
 #endif

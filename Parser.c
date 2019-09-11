@@ -232,6 +232,14 @@ void executeCommand(GameState **pGameState, HistoryState **pHistoryState, USER_C
             row = strtol(str[2], &endPtr, 10) - 1;
             executeHint(*pGameState, row, col);
             return;
+        case (GUESS_HINT):
+            col = strtol(str[1], &endPtr, 10) - 1;
+            row = strtol(str[2], &endPtr, 10) - 1;
+            executeGuessHint(*pGameState, row, col);
+            return;
+        case (GUESS):
+            executeGuess(*pGameState, pHistoryState, atof(str[1]));
+            return;
         case (PRINT_BOARD):
             printBoard(*pGameState);
             return;

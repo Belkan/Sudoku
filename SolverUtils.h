@@ -47,6 +47,7 @@ int getNextCol(int size, int col);
 int getPrevRow(int row, int col);
 int getPrevCol(int size, int col);
 bool solvedBoard(GameState *gameState);
-void swap(int *x, int *y);
+void swap(double *x, double *y);
+void bubbleSort(double arr[], int size);
 
 #endif

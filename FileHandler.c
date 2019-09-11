@@ -7,7 +7,7 @@ int getNumberEndPos(char *currLine, int start) {
 }
 
 /* Function to check for validity of loading a file: returns true if file can be loaded */
-bool validLoadPath (char *filePath) {
+bool validLoadPath(char *filePath) {
     FILE *file;
     /* File exists and can be loaded */
     if ((file = fopen(filePath, "r")) == NULL) {
@@ -17,7 +17,7 @@ bool validLoadPath (char *filePath) {
 }
 
 /* Function to check whether loaded file has valid format. */
-bool validFileFormat (char *filePath) {
+bool validFileFormat(char *filePath) {
     FILE *file = fopen(filePath, "r");
     char *currLine = (char *) malloc(CHAR_MAX);
     int counter = 0, idx = 0, rowsInlbock = -1, colsInBlock = -1, size = 0, cell = 0, rowsAmount = 0;
@@ -33,8 +33,7 @@ bool validFileFormat (char *filePath) {
             /* Determine if we have found rowsInBlock element of size or cols in block. */
             if (rowsInlbock < 0) {
                 rowsInlbock = currLine[idx] - '0';
-            }
-            else {
+            } else {
                 colsInBlock = currLine[idx] - '0';
             }
             counter++;
@@ -65,7 +64,7 @@ bool validFileFormat (char *filePath) {
             /* Check if we have found an illegal character.
              * Legal characters are integers within range for board, or blanks.*/
             if (!isdigit(currLine[idx]) && !isblank(currLine[idx])
-                  && currLine[idx] != '.' && !isspace(currLine[idx])) {
+                && currLine[idx] != '.' && !isspace(currLine[idx])) {
                 return false;
             }
             idx++;
@@ -99,10 +98,10 @@ int getNextIdx(char *currLine, int currIdx) {
 }
 
 /* Function to load up a saved game board and update our game state with it */
-GameState *loadFromFile (char *filePath) {
-    char *rowSize = (char *)malloc(CHAR_MAX), *colSize = (char *)malloc(CHAR_MAX);
+GameState *loadFromFile(char *filePath) {
+    char *rowSize = (char *) malloc(CHAR_MAX), *colSize = (char *) malloc(CHAR_MAX);
     int idx = 0, rows = 0, cols = 0, rowIdx = 0, colIdx = 0, cell = 0, lineIdx = 0;
-    char *currLine = (char *)malloc(CHAR_MAX);
+    char *currLine = (char *) malloc(CHAR_MAX);
     FILE *loadedGame;
     GameState *newGame;
 
@@ -137,8 +136,7 @@ GameState *loadFromFile (char *filePath) {
             if ((cell - '0') == -2) {
                 setFixed(getPrevRow(rowIdx, colIdx), getPrevCol(rows * cols, colIdx), true, newGame);
                 idx--;
-            }
-            else {
+            } else {
                 setCellValue(rowIdx, colIdx, cell, newGame);
                 /* Handle edge case of fixing last column. */
                 if (colIdx == rows * cols - 1) {
@@ -164,7 +162,7 @@ GameState *loadFromFile (char *filePath) {
 }
 
 /* Function to save a board to a file at a given path. Paths can be relative or absolute. */
-void saveToFile (char *filePath, GameState *currGame) {
+void saveToFile(char *filePath, GameState *currGame) {
     int rowsInBlock = getRowsInBlock(currGame);
     int colInBlock = getColsInBlock(currGame);
     int rowIdx = 0, colIdx = 0;
@@ -181,16 +179,14 @@ void saveToFile (char *filePath, GameState *currGame) {
             cell = getCellValue(rowIdx, colIdx, currGame);
 
             /* Reached end of the line */
-            if (colIdx == getSize(currGame - 1)) {
+            if (colIdx == getSize(currGame) - 1) {
                 fprintf(saveGame, "%d\n", cell);
-            }
-            else {
+            } else {
                 /* Save cell to file. In EDITMODE, all cells are marked as fixed upon saving. */
                 if (getGameMode(currGame) == EDITMODE) {
                     if (cell != 0) {
                         fprintf(saveGame, "%d. ", cell);
-                    }
-                    else {
+                    } else {
                         fprintf(saveGame, "%d ", cell);
                     }
                 }
@@ -198,8 +194,7 @@ void saveToFile (char *filePath, GameState *currGame) {
                 if (getGameMode(currGame) == SOLVEMODE) {
                     if (isFixed(rowIdx, colIdx, currGame)) {
                         fprintf(saveGame, "%d. ", cell);
-                    }
-                    else {
+                    } else {
                         fprintf(saveGame, "%d ", cell);
                     }
                 }

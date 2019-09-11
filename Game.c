@@ -26,7 +26,6 @@ bool isBoardLegal(GameState *gameState) {
             if (getCellValue(row, col, gameState) != 0 &&
                 !isUserLegalMove(gameState, row, col, getCellValue(row, col, gameState))) {
                 return false;
-
             }
         }
     }

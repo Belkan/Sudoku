@@ -184,10 +184,7 @@ USER_CHOICE validateSave(GameState *gameState, int params) {
             printf("Details: Board is erroneous in EDIT mode, please fix the board before saving.\n");
             return INVALID_COMMAND;
         }
-        if (!isSolvable(gameState)) {
-            throw_unsolvableFileErrror();
-            return INVALID_COMMAND;
-        }
+        /* TODO: Validate solvable */
     }
     return SAVE;
 }

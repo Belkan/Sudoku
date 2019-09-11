@@ -132,13 +132,114 @@ void executeValidate(GameState *gameState) {
 }
 
 void executeHint(GameState *gameState, int row, int col) {
-    int value;
     SolutionContainer *solutionContainer = getSolution(gameState, ILP);
     if (!solutionContainer->solutionFound) {
         throw_boardUnsolvable();
         destroySolutionContainer(solutionContainer);
         return;
     }
-    value = getValueFromILPSolution(solutionContainer, row, col);
-    printf("Hint: Fill cell [%d,%d] with value %d.\n", row+1, col+1, value);
+    printf("Hint: Fill cell [%d,%d] with value %d.\n", row + 1, col + 1,
+           getValueFromILPSolution(solutionContainer, row, col));
+    destroySolutionContainer(solutionContainer);
 }
+
+void executeGuessHint(GameState *gameState, int row, int col) {
+    int value, idx;
+    SolutionContainer *solutionContainer = getSolution(gameState, LP);
+    if (!solutionContainer->solutionFound) {
+        throw_boardUnsolvable();
+        destroySolutionContainer(solutionContainer);
+        return;
+    }
+    printf("Possible values for [%d,%d] are:\n", row + 1, col + 1);
+    for (value = 1; value <= solutionContainer->boardSize; value++) {
+        idx = getIndexOfVariable(solutionContainer, row, col, value);
+        if (idx != -1 && solutionContainer->solution[idx] > 0) {
+            printf("%d with a score of %.2f.\n", value, solutionContainer->solution[idx]);
+        }
+    }
+    destroySolutionContainer(solutionContainer);
+}
+
+
+void executeGuess(GameState *gameState, HistoryState **pHistoryState, float threshold) {
+    int row, col, value, idx, randomVal, legalValsCount;
+    double randomDouble;
+    double *legalVals;
+    double sum;
+    HistoryState *historyState;
+    HistoryChange *tmpHistoryChange;
+    HistoryChange *historyChange = NULL;
+    SolutionContainer *solutionContainer = getSolution(gameState, LP);
+    if (!solutionContainer->solutionFound) {
+        throw_boardUnsolvable();
+        destroySolutionContainer(solutionContainer);
+        return;
+    }
+    for (row = 0; row < getSize(gameState); row++) {
+        for (col = 0; col < getSize(gameState); col++) {
+            if (getCellValue(row, col, gameState) == 0) {
+                legalValsCount = 0;
+                legalVals = calloc(getSize(gameState), sizeof(double));
+                for (value = 1; value <= getSize(gameState); value++) {
+                    idx = getIndexOfVariable(solutionContainer, row, col, value);
+                    if (idx != -1 && solutionContainer->solution[idx] > threshold &&
+                        isUserLegalMove(gameState, row, col, value)) {
+                        legalVals[value - 1] = solutionContainer->solution[idx];
+                        legalValsCount++;
+                        printf("%.2f ", solutionContainer->solution[idx]);
+                    }
+                }
+                if (legalValsCount == 0) {
+                    free(legalVals);
+                    continue;
+                }
+                printf("\n");
+                /* Normalize the values in intervals such that each interval is in the size of the probability. */
+                sum = 0.0;
+                for (value = 1; value <= getSize(gameState); value++) {
+                    sum += legalVals[value - 1];
+                    legalVals[value - 1] = sum;
+                    printf("%.2f ", legalVals[value - 1]);
+                }
+                printf("\n\n");
+                /* Randomize a double between 0 and sum. */
+                randomDouble = (rand() / (double) RAND_MAX) * sum;
+                /* Pick the selected number. */
+                for (value = 1; value <= getSize(gameState); value++) {
+                    if (randomDouble <= legalVals[value - 1]) {
+                        randomVal = value;
+                        break;
+                    }
+                }
+                /* Set the selected number. */
+                setCellValue(row, col, randomVal, gameState);
+                if (historyChange == NULL) {
+                    historyChange = createHistoryChange(row, col, 0, randomVal);
+                    tmpHistoryChange = historyChange;
+                } else {
+                    tmpHistoryChange->nextChange = createHistoryChange(row, col, 0, randomVal);
+                    tmpHistoryChange = tmpHistoryChange->nextChange;
+                }
+
+                free(legalVals);
+            }
+        }
+    }
+    if (historyChange != NULL) {
+        historyState = createHistoryState();
+        setChanges(historyState, historyChange);
+        setPrevState(historyState, *pHistoryState);
+        setNextState(*pHistoryState, historyState);
+        *pHistoryState = historyState;
+        printBoard(gameState);
+    }
+}
+
+/*void executeGenerate(GameState* gameState, HistoryState** pHistoryState, int fill, int clear) {
+    int attempt = 0;
+
+    while (attempt < 1000) {
+
+    }
+}*/

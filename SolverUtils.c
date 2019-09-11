@@ -1,7 +1,7 @@
 #include "SolverUtils.h"
 
 /* Initialize stack of given capacity. */
-struct recursion_stack* createStack(int capacity) {
+struct recursion_stack *createStack(int capacity) {
     struct recursion_stack *stack = malloc(sizeof(struct recursion_stack));
     int idx = 0;
 
@@ -101,22 +101,3 @@ int getPrevCol(int size, int col) {
     }
     return col - 1;
 }
-
-bool solvedBoard(GameState *gameState) {
-    int rowIdx = 0, colIdx = 0, cell = 0;
-
-    for (; rowIdx < gameState->rowsInBlock; rowIdx++) {
-        for(; colIdx < gameState->colsInBlock; colIdx++) {
-            cell = getCellValue(rowIdx, colIdx, gameState);
-            if (!safeMove(rowIdx, colIdx, cell, gameState)) return false;
-        }
-    }
-    return true;
-}
-
-void swap(int *x, int *y){
-    int tmp = *x;
-    *x = *y;
-    *y = tmp;
-}
-

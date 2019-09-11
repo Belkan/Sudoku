@@ -84,7 +84,7 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
     int optimstatus;
     double objval;
     SolutionContainer *solutionContainer = createSolutionContainer(size);
-    int row, firstRow, lastRow, col, firstCol, lastCol, value, totalVariableCount, i, variablesInConstraint, block;
+    int row, firstRow, lastRow, col, firstCol, lastCol, value, totalVariableCount, variablesForCell, variablesInConstraint, i, block;
     int rowsInBlock = getRowsInBlock(gameState), colsInBlock = getColsInBlock(gameState);
 
     /* Create environment - log file is solutionContainer.log */
@@ -119,11 +119,19 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
         for (col = 0; col < size; col++) {
             /* Only add variables for empty cells */
             if (getCellValue(row, col, gameState) == 0) {
+                variablesForCell = 0;
                 for (value = 1; value <= size; value++) {
                     /* Only add variable for valid values */
                     if (isUserLegalMove(gameState, row, col, value)) {
-                        solutionContainer->variables[row][col][value - 1] = totalVariableCount++;
+                        setIndexOfVariable(solutionContainer, row, col, value, totalVariableCount);
+                        totalVariableCount++;
+                        variablesForCell++;
                     }
+                }
+                if (variablesForCell == 0) {
+                    GRBfreemodel(model);
+                    GRBfreeenv(env);
+                    return solutionContainer;
                 }
             }
         }
@@ -184,8 +192,8 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
         for (col = 0; col < size; col++) {
             variablesInConstraint = 0;
             for (value = 1; value <= size; value++) {
-                if (solutionContainer->variables[row][col][value - 1] > -1) {
-                    ind[variablesInConstraint] = solutionContainer->variables[row][col][value - 1];
+                if (getIndexOfVariable(solutionContainer, row, col, value) > -1) {
+                    ind[variablesInConstraint] = getIndexOfVariable(solutionContainer, row, col, value);
                     val[variablesInConstraint] = 1;
                     variablesInConstraint++;
                 }
@@ -209,8 +217,8 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
         for (value = 1; value <= size; value++) {
             variablesInConstraint = 0;
             for (col = 0; col < size; col++) {
-                if (solutionContainer->variables[row][col][value - 1] > -1) {
-                    ind[variablesInConstraint] = solutionContainer->variables[row][col][value - 1];
+                if (getIndexOfVariable(solutionContainer, row, col, value) > -1) {
+                    ind[variablesInConstraint] = getIndexOfVariable(solutionContainer, row, col, value);
                     val[variablesInConstraint] = 1;
                     variablesInConstraint++;
                 }
@@ -233,8 +241,8 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
         for (value = 1; value <= size; value++) {
             variablesInConstraint = 0;
             for (row = 0; row < size; row++) {
-                if (solutionContainer->variables[row][col][value - 1] > -1) {
-                    ind[variablesInConstraint] = solutionContainer->variables[row][col][value - 1];
+                if (getIndexOfVariable(solutionContainer, row, col, value) > -1) {
+                    ind[variablesInConstraint] = getIndexOfVariable(solutionContainer, row, col, value);
                     val[variablesInConstraint] = 1;
                     variablesInConstraint++;
                 }
@@ -262,8 +270,8 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
                 firstCol = (block % rowsInBlock) * colsInBlock;
                 lastCol = firstCol + colsInBlock - 1;
                 for (col = firstCol; col <= lastCol; col++) {
-                    if (solutionContainer->variables[row][col][value - 1] > -1) {
-                        ind[variablesInConstraint] = solutionContainer->variables[row][col][value - 1];
+                    if (getIndexOfVariable(solutionContainer, row, col, value) > -1) {
+                        ind[variablesInConstraint] = getIndexOfVariable(solutionContainer, row, col, value);
                         val[variablesInConstraint] = 1;
                         variablesInConstraint++;
                     }
@@ -350,12 +358,6 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
     return solutionContainer;
 }
 
-/* TODO Check if board is solvable: SolutionContainer to the rescue. */
-bool isSolvable(GameState *gameState) {
-    UNUSED(gameState);
-    return true;
-}
-
 SolutionContainer *createSolutionContainer(int size) {
     int i, j, k;
     SolutionContainer *solutionContainer = malloc(sizeof(SolutionContainer));
@@ -382,7 +384,7 @@ void destroySolutionContainer(SolutionContainer *solutionContainer) {
     }
     for (i = 0; i < solutionContainer->boardSize; i++) {
         for (j = 0; j < solutionContainer->boardSize; j++) {
-            free (solutionContainer->variables[i][j]);
+            free(solutionContainer->variables[i][j]);
         }
         free(solutionContainer->variables[i]);
     }
@@ -399,10 +401,18 @@ void destroyGurobi(GRBenv *env, GRBmodel *model, double *obj, char *variableType
     free(val);
 }
 
-int getValueFromILPSolution(SolutionContainer* solutionContainer, int row, int col) {
+int getIndexOfVariable(SolutionContainer *solutionContainer, int row, int col, int val) {
+    return solutionContainer->variables[row][col][val - 1];
+}
+
+void setIndexOfVariable(SolutionContainer *solutionContainer, int row, int col, int val, int idx) {
+    solutionContainer->variables[row][col][val - 1] = idx;
+}
+
+int getValueFromILPSolution(SolutionContainer *solutionContainer, int row, int col) {
     int value, idx;
     for (value = 1; value <= solutionContainer->boardSize; value++) {
-        idx = solutionContainer->variables[row][col][value-1];
+        idx = getIndexOfVariable(solutionContainer, row, col, value);
         if (idx != -1 && solutionContainer->solution[idx] == 1) {
             return value;
         }
