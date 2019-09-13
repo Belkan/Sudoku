@@ -9,10 +9,10 @@ void testFileHandler() {
     /* Testing functionality of saving boards. */
     GameState *gameState = createGameState(3, 3);
 
-    set(gameState, 2, 2, 5);
-    set(gameState, 1, 1, 2);
-    set(gameState, 1, 2, 4);
-    set(gameState, 2, 1, 6);
+    setCellValue(2, 2, 5, gameState);
+    setCellValue(1, 1, 2, gameState);
+    setCellValue(1, 2, 4, gameState);
+    setCellValue(2, 1, 6, gameState);
     setFixed(2, 2, true, gameState);
 
     printBoard(gameState);

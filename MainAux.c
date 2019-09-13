@@ -110,6 +110,10 @@ void START_GAME() {
 
 /* Start game. Each loop is a line fed by the user. */
     while (fgets(input, MAX, stdin)) {
+        if (strlen(input) > 256) {
+            printf("Error: More than 256 characters. Please try again.\n");
+            continue;
+        }
         i = 0;
         while (input[i] == ' ' || input[i] == '\t' || input[i] == '\r' || input[i] == '\n') {
             if (input[i] == '\n') {
