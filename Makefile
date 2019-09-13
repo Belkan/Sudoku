@@ -1,5 +1,5 @@
 CC = gcc
-OBJS = main.o CommandExecutioner.o ErrorHandler.o FileHandler.o Game.o HistoryHandler.o MainAux.o Parser.o ParserUtils.o Solver.o UnitTester.o GeneralUtils.o SolverUtils.o
+OBJS = main.o CommandExecutioner.o ErrorHandler.o FileHandler.o Game.o HistoryHandler.o MainAux.o Parser.o ParserUtils.o Solver.o UnitTester.o SolverUtils.o
 EXEC = sudoku
 GUROBI_COMP = -I/usr/local/lib/gurobi563/include
 GUROBI_LIB = -L/usr/local/lib/gurobi563/lib -lgurobi56
@@ -12,7 +12,7 @@ CommandExecutioner.o: CommandExecutioner.c HistoryHandler.h MainAux.h FileHandle
 	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
 ErrorHandler.o: ErrorHandler.c Game.h
 	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
-FileHandler.o: FileHandler.c Game.h Solver.h MainAux.h GeneralUtils.h
+FileHandler.o: FileHandler.c Game.h Solver.h MainAux.h
 	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
 Game.o: Game.c MainAux.h
 	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
@@ -27,8 +27,6 @@ ParserUtils.o: ParserUtils.c CommandExecutioner.h ErrorHandler.h
 Solver.o: Solver.c MainAux.h Game.h
 	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
 UnitTester.o: UnitTester.c FileHandler.h Game.h MainAux.h
-	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
-GeneralUtils.o: GeneralUtils.c Game.h
 	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
 SolverUtils.o: SolverUtils.h Game.h
 	$(CC) $(COMP_FLAGS) $(GUROBI_COMP) -c $*.c
