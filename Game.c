@@ -117,7 +117,7 @@ int findBlock(int row, int col, GameState *gameState) {
     return (row / rows) * rows + (col / cols);
 }
 
-void checkFullBoard(GameState* gameState) {
+void checkFullBoard(GameState *gameState) {
     if (isUserBoardFull(gameState)) {
         if (isBoardLegal(gameState)) {
             printf("Congratulations! You successfully completed this puzzle!\n");
@@ -162,7 +162,7 @@ void setCellValue(int row, int col, int value, GameState *gameState) {
 
 int getCellValue(int row, int col, GameState *gameState) {
     return gameState->board[row][col];
-    }
+}
 
 void setFixed(int row, int col, bool value, GameState *gameState) {
     gameState->fixed[row][col] = value;
@@ -198,4 +198,16 @@ void setGameMode(GameState *gameState, GAME_MODE status) {
 
 GAME_MODE getGameMode(GameState *gameState) {
     return gameState->mode;
+}
+
+void copyFromBoardToBoard(GameState *gameStateFrom, GameState *gameStateTo) {
+    int row, col;
+    if (getSize(gameStateFrom) != getSize(gameStateTo)) {
+        return;
+    }
+    for (row = 0; row < getSize(gameStateFrom); row++) {
+        for (col = 0; col < getSize(gameStateFrom); col++) {
+            setCellValue(row, col, getCellValue(row, col, gameStateFrom), gameStateTo);
+        }
+    }
 }

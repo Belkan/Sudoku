@@ -2,11 +2,11 @@
 #include "HistoryHandler.h"
 
 HistoryState *createHistoryState() {
-    HistoryState *historyList = malloc(sizeof(HistoryState));
-    historyList->changes = NULL;
-    historyList->nextState = NULL;
-    historyList->prevState = NULL;
-    return historyList;
+    HistoryState *historyState = malloc(sizeof(HistoryState));
+    historyState->changes = NULL;
+    historyState->nextState = NULL;
+    historyState->prevState = NULL;
+    return historyState;
 }
 
 HistoryChange *createHistoryChange(int row, int col, int oldCellValue, int newCellValue) {
@@ -78,11 +78,17 @@ void clearForwardHistory(HistoryState *historyState) {
     if (historyState->nextState == NULL) {
         return;
     }
+    else {
+        tmp = historyState->nextState;
+        historyState->nextState = NULL;
+        historyState = tmp;
+    }
     while (historyState->nextState != NULL) {
         tmp = historyState->nextState;
         destroyHistoryState(historyState);
         historyState = tmp;
     }
+    destroyHistoryState(historyState);
 
 }
 
@@ -102,8 +108,7 @@ void undoMove(HistoryState *historyState, GameState *gameState, bool printEnable
     }
 }
 
-/* TODO had to put unused attribute for printEnabled in order to build, remove in future release. */
-void redoMove(HistoryState *historyState, GameState *gameState, __attribute__ ((unused)) bool printEnabled) {
+void redoMove(HistoryState *historyState, GameState *gameState, bool printEnabled) {
     HistoryChange *changes = getChanges(getNextState(historyState));
     int row, col, oldVal, newVal;
     while (changes != NULL) {

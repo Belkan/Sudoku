@@ -11,6 +11,7 @@ void executeSet(GameState *gameState, HistoryState **pHistoryState, int row, int
         printf("This cell is fixed, please try again.\n");
         return;
     }
+    clearForwardHistory(*pHistoryState);
     tmpHistoryState = createHistoryState();
     historyChange = createHistoryChange(row, col, oldVal, val);
     setChanges(tmpHistoryState, historyChange);
@@ -107,6 +108,7 @@ void executeAutofill(GameState *gameState, HistoryState **pHistoryState) {
         }
     }
     if (historyChange != NULL) {
+        clearForwardHistory(*pHistoryState);
         historyState = createHistoryState();
         setChanges(historyState, historyChange);
         setPrevState(historyState, *pHistoryState);
@@ -227,6 +229,7 @@ void executeGuess(GameState *gameState, HistoryState **pHistoryState, float thre
         }
     }
     if (historyChange != NULL) {
+        clearForwardHistory(*pHistoryState);
         historyState = createHistoryState();
         setChanges(historyState, historyChange);
         setPrevState(historyState, *pHistoryState);
@@ -236,10 +239,112 @@ void executeGuess(GameState *gameState, HistoryState **pHistoryState, float thre
     }
 }
 
-/*void executeGenerate(GameState* gameState, HistoryState** pHistoryState, int fill, int clear) {
-    int attempt = 0;
+void executeGenerate(GameState *gameState, HistoryState **pHistoryState, int toFill, int cellsLeft) {
+    HistoryState *historyState;
+    HistoryChange *tmpHistoryChange;
+    HistoryChange *historyChange = NULL;
+    SolutionContainer *solutionContainer;
+    int attempt = 0, cleared = 0;
+    int row, col, value, filled, legalValuesCount, randomVal, idx;
+    int toClear = getSize(gameState)*getSize(gameState) - cellsLeft;
+    int *legalValues;
+    bool attemptSuccessful;
+    GameState *cpyGameState;
 
     while (attempt < 1000) {
-
+        /* Initialize */
+        filled = 0;
+        attemptSuccessful = true;
+        cpyGameState = createGameState(getRowsInBlock(gameState), getColsInBlock(gameState));
+        copyFromBoardToBoard(gameState, cpyGameState);
+        /* Attempt to fill cells randomly */
+        while (filled < toFill) {
+            row = getRandom(0, getSize(cpyGameState) - 1);
+            col = getRandom(0, getSize(cpyGameState) - 1);
+            if (getCellValue(row, col, cpyGameState) != 0) {
+                continue;
+            }
+            legalValues = malloc(getSize(cpyGameState) * sizeof(int));
+            legalValuesCount = 0;
+            for (value = 1; value <= getSize(cpyGameState); value++) {
+                if (isUserLegalMove(gameState, row, col, value)) {
+                    legalValues[legalValuesCount++] = value;
+                }
+            }
+            if (legalValuesCount == 0) {
+                attemptSuccessful = false;
+                free(legalValues);
+                break;
+            }
+            randomVal = legalValues[getRandom(0, legalValuesCount - 1)];
+            setCellValue(row, col, randomVal, cpyGameState);
+            filled++;
+            free(legalValues);
+        }
+        if (!attemptSuccessful) {
+            attempt++;
+            destroyGameState(cpyGameState);
+            continue;
+        }
+        /* Attempt to solve the remaining board using ILP */
+        solutionContainer = getSolution(cpyGameState, ILP);
+        if (!solutionContainer->solutionFound) {
+            attempt++;
+            destroyGameState(cpyGameState);
+            destroySolutionContainer(solutionContainer);
+            continue;
+        }
+        /* Generate successful */
+        break;
     }
-}*/
+    if (attempt == 1000) {
+        printf("Error: Generate failed to generate a board after 1,000 attempts.\n");
+        return;
+    }
+    /* Fill cells with solution from ILP */
+    for (row = 0; row < getSize(cpyGameState); row++) {
+        for (col = 0; col < getSize(cpyGameState); col++) {
+            for (value = 1; value <= getSize(cpyGameState); value++) {
+                idx = getIndexOfVariable(solutionContainer, row, col, value);
+                if (idx != -1 && solutionContainer->solution[idx] == 1.0) {
+                    setCellValue(row,col,value,cpyGameState);
+                }
+            }
+        }
+    }
+    /* Clear toClear cells. */
+    while (cleared < toClear) {
+        row = getRandom(0, getSize(gameState) - 1);
+        col = getRandom(0, getSize(gameState) - 1);
+        if (getCellValue(row, col, cpyGameState) == 0) {
+            continue;
+        } else {
+            setCellValue(row, col, 0, cpyGameState);
+            cleared++;
+        }
+    }
+    /* Update History and Gamestate */
+    for (row = 0; row < getSize(gameState); row++) {
+        for (col = 0; col < getSize(gameState); col++) {
+            if (getCellValue(row, col, gameState) != getCellValue(row, col, cpyGameState)) {
+                setCellValue(row, col, getCellValue(row, col, cpyGameState), gameState);
+                if (historyChange == NULL) {
+                    historyChange = createHistoryChange(row, col, 0, getCellValue(row, col, gameState));
+                    tmpHistoryChange = historyChange;
+                } else {
+                    tmpHistoryChange->nextChange = createHistoryChange(row, col, 0, getCellValue(row, col, gameState));
+                    tmpHistoryChange = tmpHistoryChange->nextChange;
+                }
+            }
+        }
+    }
+    if (historyChange != NULL) {
+        clearForwardHistory(*pHistoryState);
+        historyState = createHistoryState();
+        setChanges(historyState, historyChange);
+        setPrevState(historyState, *pHistoryState);
+        setNextState(*pHistoryState, historyState);
+        *pHistoryState = historyState;
+    }
+    printBoard(gameState);
+}

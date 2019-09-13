@@ -240,6 +240,9 @@ void executeCommand(GameState **pGameState, HistoryState **pHistoryState, USER_C
         case (GUESS):
             executeGuess(*pGameState, pHistoryState, atof(str[1]));
             return;
+        case (GENERATE):
+            executeGenerate(*pGameState, pHistoryState, strtol(str[1], &endPtr, 10), strtol(str[2], &endPtr, 10));
+            return;
         case (PRINT_BOARD):
             printBoard(*pGameState);
             return;

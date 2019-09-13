@@ -54,4 +54,6 @@ void executeGuessHint (GameState* gameState, int row, int col);
 
 void executeGuess(GameState *gameState, HistoryState **pHistoryState, float threshold);
 
+void executeGenerate(GameState *gameState, HistoryState **pHistoryState, int toFill, int toClear);
+
 #endif
