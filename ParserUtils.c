@@ -46,7 +46,7 @@ bool paramsInRange(char **input, int params, int minVal, int maxVal) {
 }
 
 USER_CHOICE validateSet(GameState *gameState, int params, char **input) {
-    if (isMode(gameState, INITMODE)) {
+    if (isMode(gameState, INIT_MODE)) {
         return INVALID_COMMAND;
     }
     if (!paramsCountCorrect(params, 3, 3)) {
@@ -65,7 +65,7 @@ USER_CHOICE validateSet(GameState *gameState, int params, char **input) {
 
 
 USER_CHOICE validateAutofill(GameState *gameState, int params) {
-    if (isMode(gameState, INITMODE) || isMode(gameState, EDITMODE)) {
+    if (isMode(gameState, INIT_MODE) || isMode(gameState, EDIT_MODE)) {
         return INVALID_COMMAND;
     }
     if (!paramsCountCorrect(params, 0, 0)) {
@@ -81,7 +81,7 @@ USER_CHOICE validateAutofill(GameState *gameState, int params) {
 }
 
 USER_CHOICE validateUndo(GameState *gameState, int params) {
-    if (isMode(gameState, INITMODE)) {
+    if (isMode(gameState, INIT_MODE)) {
         return INVALID_COMMAND;
     }
     if (!paramsCountCorrect(params, 0, 0)) {
@@ -92,7 +92,7 @@ USER_CHOICE validateUndo(GameState *gameState, int params) {
 }
 
 USER_CHOICE validateRedo(GameState *gameState, int params) {
-    if (isMode(gameState, INITMODE)) {
+    if (isMode(gameState, INIT_MODE)) {
         return INVALID_COMMAND;
     }
     if (!paramsCountCorrect(params, 0, 0)) {
@@ -103,7 +103,7 @@ USER_CHOICE validateRedo(GameState *gameState, int params) {
 }
 
 USER_CHOICE validateReset(GameState *gameState, int params) {
-    if (isMode(gameState, INITMODE)) {
+    if (isMode(gameState, INIT_MODE)) {
         return INVALID_COMMAND;
     }
     if (!paramsCountCorrect(params, 0, 0)) {
@@ -113,7 +113,7 @@ USER_CHOICE validateReset(GameState *gameState, int params) {
 }
 
 USER_CHOICE validateMarkErrors(GameState *gameState, int params, char **input) {
-    if (isMode(gameState, INITMODE) || isMode(gameState, EDITMODE)) {
+    if (isMode(gameState, INIT_MODE) || isMode(gameState, EDIT_MODE)) {
         return INVALID_COMMAND;
     }
     if (!paramsCountCorrect(params, 1, 1) || !paramsInRange(input, 1, 0, 1)) {
@@ -132,7 +132,7 @@ USER_CHOICE validateExit(int params) {
 }
 
 USER_CHOICE validatePrintBoard(GameState *gameState, int params) {
-    if (isMode(gameState, INITMODE)) {
+    if (isMode(gameState, INIT_MODE)) {
         return INVALID_COMMAND;
     }
     if (!paramsCountCorrect(params, 0, 0)) {
@@ -171,14 +171,14 @@ USER_CHOICE validateSolve(int params, char **input) {
 }
 
 USER_CHOICE validateSave(GameState *gameState, int params) {
-    if (isMode(gameState, INITMODE)) {
+    if (isMode(gameState, INIT_MODE)) {
         return INVALID_COMMAND;
     }
     if (!paramsCountCorrect(params, 1, 1)) {
         printf("Details: <save X> must include exactly ONE parameter of the file path.\n");
         return INVALID_COMMAND;
     }
-    if (getGameMode(gameState) == EDITMODE) {
+    if (getGameMode(gameState) == EDIT_MODE) {
         if (!isBoardLegal(gameState)) {
             throw_illegalCommandForCurrentBoard();
             printf("Details: Board is erroneous in EDIT mode, please fix the board before saving.\n");
@@ -190,7 +190,7 @@ USER_CHOICE validateSave(GameState *gameState, int params) {
 }
 
 USER_CHOICE validateValidate(GameState *gameState, int params) {
-    if (isMode(gameState, INITMODE)) {
+    if (isMode(gameState, INIT_MODE)) {
         return INVALID_COMMAND;
     }
     if (!paramsCountCorrect(params, 0, 0)) {
@@ -206,7 +206,7 @@ USER_CHOICE validateValidate(GameState *gameState, int params) {
 }
 
 USER_CHOICE validateGuess(GameState *gameState, int params) {
-    if (isMode(gameState, INITMODE) || isMode(gameState, EDITMODE)) {
+    if (isMode(gameState, INIT_MODE) || isMode(gameState, EDIT_MODE)) {
         return INVALID_COMMAND;
     }
     if (!paramsCountCorrect(params, 1, 1)) {
@@ -222,7 +222,7 @@ USER_CHOICE validateGuess(GameState *gameState, int params) {
 }
 
 USER_CHOICE validateHint(GameState *gameState, int params, char **input) {
-    if (isMode(gameState, INITMODE) || isMode(gameState, EDITMODE)) {
+    if (isMode(gameState, INIT_MODE) || isMode(gameState, EDIT_MODE)) {
         return INVALID_COMMAND;
     }
     if (!paramsCountCorrect(params, 2, 2)) {
@@ -244,7 +244,7 @@ USER_CHOICE validateHint(GameState *gameState, int params, char **input) {
 }
 
 USER_CHOICE validateGuessHint(GameState *gameState, int params, char **input) {
-    if (isMode(gameState, INITMODE) || isMode(gameState, EDITMODE)) {
+    if (isMode(gameState, INIT_MODE) || isMode(gameState, EDIT_MODE)) {
         return INVALID_COMMAND;
     }
     if (!paramsCountCorrect(params, 2, 2)) {
@@ -266,7 +266,7 @@ USER_CHOICE validateGuessHint(GameState *gameState, int params, char **input) {
 }
 
 USER_CHOICE validateNumSolutions(GameState *gameState, int params) {
-    if (isMode(gameState, INITMODE)) {
+    if (isMode(gameState, INIT_MODE)) {
         return INVALID_COMMAND;
     }
     if (!paramsCountCorrect(params, 0, 0)) {
@@ -277,7 +277,7 @@ USER_CHOICE validateNumSolutions(GameState *gameState, int params) {
 }
 
 USER_CHOICE validateGenerate(GameState *gameState, int params, char** input) {
-    if (isMode(gameState, INITMODE) || isMode(gameState, SOLVEMODE)) {
+    if (isMode(gameState, INIT_MODE) || isMode(gameState, SOLVE_MODE)) {
         return INVALID_COMMAND;
     }
     if (!paramsCountCorrect(params, 2, 2)) {

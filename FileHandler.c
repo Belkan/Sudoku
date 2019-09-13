@@ -6,6 +6,21 @@ int getNumberEndPos(char *currLine, int start) {
     return start;
 }
 
+int nextInt(int startIdx, char *string) {
+    int res = string[startIdx] - '0';
+
+    while (isdigit(string[++startIdx])) {
+        res *= 10;
+        res += (string[startIdx] - '0');
+    }
+    return res;
+}
+
+bool cellInRange(int cell, int size) {
+    if (cell > size) return false;
+    return true;
+}
+
 /* Function to check for validity of loading a file: returns true if file can be loaded */
 bool validLoadPath(char *filePath) {
     FILE *file;
@@ -182,16 +197,16 @@ void saveToFile(char *filePath, GameState *currGame) {
             if (colIdx == getSize(currGame) - 1) {
                 fprintf(saveGame, "%d\n", cell);
             } else {
-                /* Save cell to file. In EDITMODE, all cells are marked as fixed upon saving. */
-                if (getGameMode(currGame) == EDITMODE) {
+                /* Save cell to file. In EDIT_MODE, all cells are marked as fixed upon saving. */
+                if (getGameMode(currGame) == EDIT_MODE) {
                     if (cell != 0) {
                         fprintf(saveGame, "%d. ", cell);
                     } else {
                         fprintf(saveGame, "%d ", cell);
                     }
                 }
-                /* Save cell to file. In SOLVEMODE, only fixed cells are marked as fixed upon saving. */
-                if (getGameMode(currGame) == SOLVEMODE) {
+                /* Save cell to file. In SOLVE_MODE, only fixed cells are marked as fixed upon saving. */
+                if (getGameMode(currGame) == SOLVE_MODE) {
                     if (isFixed(rowIdx, colIdx, currGame)) {
                         fprintf(saveGame, "%d. ", cell);
                     } else {

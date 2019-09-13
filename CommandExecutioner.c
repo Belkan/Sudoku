@@ -6,10 +6,13 @@ void executeSet(GameState *gameState, HistoryState **pHistoryState, int row, int
     HistoryChange *historyChange;
     HistoryState *tmpHistoryState;
     int oldVal = getCellValue(row, col, gameState);
-    SET_STATUS status = set(gameState, row, col, val);
-    if (status == CELL_FIXED) {
+    if (getGameMode(gameState) == EDIT_MODE) {
+        setCellValue(row, col, val, gameState);
+    } else if (isFixed(row, col, gameState)) {
         printf("This cell is fixed, please try again.\n");
         return;
+    } else {
+        setCellValue(row, col, val, gameState);
     }
     clearForwardHistory(*pHistoryState);
     tmpHistoryState = createHistoryState();
@@ -28,7 +31,7 @@ void executeEdit(GameState **gameState, HistoryState **pHistoryState, char *file
     } else {
         *gameState = loadEmptyBoard();
     }
-    setGameMode(*gameState, EDITMODE);
+    setGameMode(*gameState, EDIT_MODE);
     destroyAllHistory(*pHistoryState);
     *pHistoryState = createHistoryState();
     printBoard(*gameState);
@@ -37,7 +40,7 @@ void executeEdit(GameState **gameState, HistoryState **pHistoryState, char *file
 void executeSolve(GameState **gameState, HistoryState **pHistoryState, char *filePath) {
     destroyGameState(*gameState);
     *gameState = loadFromFile(filePath);
-    setGameMode(*gameState, SOLVEMODE);
+    setGameMode(*gameState, SOLVE_MODE);
     destroyAllHistory(*pHistoryState);
     *pHistoryState = createHistoryState();
     printBoard(*gameState);
@@ -246,7 +249,7 @@ void executeGenerate(GameState *gameState, HistoryState **pHistoryState, int toF
     SolutionContainer *solutionContainer;
     int attempt = 0, cleared = 0;
     int row, col, value, filled, legalValuesCount, randomVal, idx;
-    int toClear = getSize(gameState)*getSize(gameState) - cellsLeft;
+    int toClear = getSize(gameState) * getSize(gameState) - cellsLeft;
     int *legalValues;
     bool attemptSuccessful;
     GameState *cpyGameState;
@@ -307,7 +310,7 @@ void executeGenerate(GameState *gameState, HistoryState **pHistoryState, int toF
             for (value = 1; value <= getSize(cpyGameState); value++) {
                 idx = getIndexOfVariable(solutionContainer, row, col, value);
                 if (idx != -1 && solutionContainer->solution[idx] == 1.0) {
-                    setCellValue(row,col,value,cpyGameState);
+                    setCellValue(row, col, value, cpyGameState);
                 }
             }
         }

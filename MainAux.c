@@ -25,6 +25,17 @@ void destroyMatrix(int **matrix, int size) {
     free(matrix);
 }
 
+/* Checks if the board is full. If it is, prints according to whether or not it is a correct solution. */
+void checkFullBoard(GameState *gameState) {
+    if (isUserBoardFull(gameState)) {
+        if (isBoardLegal(gameState)) {
+            printf("Congratulations! You successfully completed this puzzle!\n");
+            setGameMode(gameState, INIT_MODE);
+        } else {
+            printf("Unfortunately, there is a mistake in your solution. You can still try to correct it!\n");
+        }
+    }
+}
 
 /* Prints the current board */
 void printBoard(GameState *gameState) {
@@ -55,9 +66,9 @@ void printBoard(GameState *gameState) {
                     printf(" ");
                 }
                 printf("%d", value);
-                if (isFixed(row, col, gameState) && getGameMode(gameState) == SOLVEMODE) {
+                if (isFixed(row, col, gameState) && getGameMode(gameState) == SOLVE_MODE) {
                     printf(". ");
-                } else if ((getMarkErrors(gameState) || getGameMode(gameState) == EDITMODE) &&
+                } else if ((getMarkErrors(gameState) || getGameMode(gameState) == EDIT_MODE) &&
                            !isUserLegalMove(gameState, row, col, value)) {
                     printf("* ");
                 } else {

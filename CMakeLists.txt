@@ -6,5 +6,5 @@ set(GCC_COVERAGE_COMPILE_FLAGS "-fmessage-length=0 -ansi -Wall -Wextra -Werror -
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}" )
 
 
-add_executable(Sudoku main.c Game.c Game.h MainAux.c MainAux.h Parser.c Parser.h Solver.c Solver.h FileHandler.h FileHandler.c ErrorHandler.c ErrorHandler.h HistoryHandler.c HistoryHandler.h UnitTester.c UnitTester.h CommandExecutioner.c CommandExecutioner.h ParserUtils.c ParserUtils.h SolverUtils.c SolverUtils.h GeneralUtils.c GeneralUtils.h gurobi_c.h)
+add_executable(Sudoku main.c Game.c Game.h MainAux.c MainAux.h Parser.c Parser.h Solver.c Solver.h FileHandler.h FileHandler.c ErrorHandler.c ErrorHandler.h HistoryHandler.c HistoryHandler.h UnitTester.c UnitTester.h CommandExecutioner.c CommandExecutioner.h ParserUtils.c ParserUtils.h SolverUtils.c SolverUtils.h gurobi_c.h)
 

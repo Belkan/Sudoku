@@ -5,12 +5,17 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+/*  The module responsible for logic involving the current state of the
+ * sudoku game, as well as the main struct "GameState" used to save the current state of the game. */
+
+/* Represents the current game mode. Used in GameState. */
 typedef enum game_mode {
-    EDITMODE,
-    SOLVEMODE,
-    INITMODE
+    EDIT_MODE,
+    SOLVE_MODE,
+    INIT_MODE
 } GAME_MODE;
 
+/* Represents the current state of the sudoku board. */
 typedef struct GameState{
     int size;
     int rowsInBlock;
@@ -21,47 +26,24 @@ typedef struct GameState{
     GAME_MODE mode;
 } GameState;
 
-typedef enum set_status {
-    SUCCESS,
-    CELL_FIXED
-} SET_STATUS;
-
-/* Tries to set value in (row, col) in board, and returns the mode of the request */
-SET_STATUS set(GameState *gameState, int row, int col, int value);
-
-void setMarkErrors(GameState *gameState, bool val);
-
-/* Validates if the current board is in a legal sudoku state. */
+/* Returns true if the current board is in a legal state. (i.e. not erroneous) */
 bool isBoardLegal(GameState *gameState);
 
-/* Checks if this set is a legal set (assuming input is valid i.e. not fixed cell) */
+/* Returns true if setting value in [row,col] results in a legal state (i.e. not erroneous). */
 bool isUserLegalMove(GameState *gameState, int row, int col, int value);
 
-/* Checks if the board is full */
+/* Returns true if the board is full */
 bool isUserBoardFull(GameState *gameState);
 
-void checkFullBoard(GameState* gameState);
-
-/* Returns number of empty cells in board */
+/* Returns number of empty cells in board. */
 int countBlanks(GameState *gameState);
 
-/* Checks if placement is legal */
-bool safeMove(int row, int col, int val, GameState* gameState);
-
-/* Util subfunctions used for safeMove */
-bool safeMoveRow(int row, int val, GameState* gameState);
-bool safeMoveCol(int col, int val, GameState* gameState);
-bool safeMoveBlock(int block, int val, GameState* gameState);
-int findBlock(int row, int col, GameState* gameState);
-
-/* Sets the amount of initial fixed cells for board */
-void setFixedCellsRand(GameState *gameState, int fixed);
-
-/* Util function to copy boards */
+/* Copies the content of the values between 2 GameState's boards.
+ * This does NOT copy anything else, such as game mode or fixed cells. */
 void copyFromBoardToBoard(GameState* gameStateFrom, GameState* gameStateTo);
 
-/* Getters, setters and general util for GameState */
-GameState *createGameState(int row, int col);
+/* Getters, setters and creator/destroyer for GameState */
+GameState *createGameState(int rowsInBlock, int colsInBlock);
 void destroyGameState(GameState *gameState);
 void setCellValue (int row, int col, int value, GameState* gameState);
 int getCellValue (int row, int col, GameState* gameState);
@@ -74,5 +56,6 @@ void setGameMode(GameState *gameState, GAME_MODE status);
 GAME_MODE getGameMode(GameState *gameState);
 void setMarkErrors(GameState *gameState, bool val);
 bool getMarkErrors(GameState *gameState);
+
 
 #endif

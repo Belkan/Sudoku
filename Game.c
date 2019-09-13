@@ -1,23 +1,19 @@
-
-#include <stdio.h>
 #include "Game.h"
 #include "MainAux.h"
 
-/* TODO: Remove this entire thing by making the needed checks in ParserUtils or CommandExecutioner. */
-/* Tries to set value in (row, col) in board, and returns the status of the request */
-SET_STATUS set(GameState *gameState, int row, int col, int value) {
-    SET_STATUS status = SUCCESS;
-    if (getGameMode(gameState) == EDITMODE) {
-        setCellValue(row, col, value, gameState);
-        return status;
-    }
-    if (isFixed(row, col, gameState)) {
-        status = CELL_FIXED;
-        return status;
-    }
-    setCellValue(row, col, value, gameState);
-    return status;
-}
+/*  The module responsible for logic involving the current state of the
+ * sudoku game, as well as the main struct "GameState" used to save the current state of the game. */
+
+/*----------------------DECLARATIONS----------------------------*/
+bool safeMove(int row, int col, int val, GameState* gameState);
+bool safeMoveRow(int row, int val, GameState *gameState);
+bool safeMoveCol(int col, int val, GameState *gameState);
+bool safeMoveBlock(int block, int val, GameState *gameState);
+int findBlock(int row, int col, GameState *gameState);
+
+/*--------------------------------------------------------------*/
+/*---------------------PUBLIC FUNCTIONS-------------------------*/
+/*--------------------------------------------------------------*/
 
 bool isBoardLegal(GameState *gameState) {
     int row, col;
@@ -32,7 +28,6 @@ bool isBoardLegal(GameState *gameState) {
     return true;
 }
 
-/* Checks if this set is a legal set  */
 bool isUserLegalMove(GameState *gameState, int row, int col, int value) {
     int oldValue = getCellValue(row, col, gameState);
     setCellValue(row, col, 0, gameState);
@@ -44,7 +39,6 @@ bool isUserLegalMove(GameState *gameState, int row, int col, int value) {
     return false;
 }
 
-/* Checks if the board is full */
 bool isUserBoardFull(GameState *gameState) {
     if (countBlanks(gameState) == 0) {
         return true;
@@ -52,7 +46,6 @@ bool isUserBoardFull(GameState *gameState) {
     return false;
 }
 
-/* Returns number of empty cells in board */
 int countBlanks(GameState *gameState) {
     int row, col, count = 0;
 
@@ -66,69 +59,17 @@ int countBlanks(GameState *gameState) {
     return count;
 }
 
-/* Checks if placement is legal */
-bool safeMove(int row, int col, int val, GameState *gameState) {
-    int block = findBlock(row, col, gameState);
-
-    return safeMoveRow(row, val, gameState) &&
-           safeMoveCol(col, val, gameState) &&
-           safeMoveBlock(block, val, gameState) &&
-           val > 0 && val <= gameState->size;
-}
-
-/* Util subfunctions used for safeMove */
-
-bool safeMoveRow(int row, int val, GameState *gameState) {
-    int col;
-    for (col = 0; col < getSize(gameState); col++) {
-        if (getCellValue(row, col, gameState) == val)
-            return false; /* val exists in row */
-    }
-    return true;
-}
-
-bool safeMoveCol(int col, int val, GameState *gameState) {
-    int row;
-
-    for (row = 0; row < getSize(gameState); row++) {
-        if (getCellValue(row, col, gameState) == val)
-            return false; /* val exists in column */
-    }
-    return true;
-}
-
-bool safeMoveBlock(int block, int val, GameState *gameState) {
+void copyFromBoardToBoard(GameState *gameStateFrom, GameState *gameStateTo) {
     int row, col;
-    int fromRow = (block / getRowsInBlock(gameState)) * getRowsInBlock(gameState);
-    int fromCol = (block % getRowsInBlock(gameState)) * getColsInBlock(gameState);
-    for (row = fromRow; row < fromRow + getRowsInBlock(gameState); row++) {
-        for (col = fromCol; col < fromCol + getColsInBlock(gameState); col++) {
-            if (getCellValue(row, col, gameState) == val) { /* val exists in block */
-                return false;
-            }
-        }
+    if (getSize(gameStateFrom) != getSize(gameStateTo)) {
+        return;
     }
-    return true;
-}
-
-int findBlock(int row, int col, GameState *gameState) {
-    int rows = getRowsInBlock(gameState);
-    int cols = getColsInBlock(gameState);
-    return (row / rows) * rows + (col / cols);
-}
-
-void checkFullBoard(GameState *gameState) {
-    if (isUserBoardFull(gameState)) {
-        if (isBoardLegal(gameState)) {
-            printf("Congratulations! You successfully completed this puzzle!\n");
-            setGameMode(gameState, INITMODE);
-        } else {
-            printf("Unfortunately, there is a mistake in your solution. You can still try to correct it!\n");
+    for (row = 0; row < getSize(gameStateFrom); row++) {
+        for (col = 0; col < getSize(gameStateFrom); col++) {
+            setCellValue(row, col, getCellValue(row, col, gameStateFrom), gameStateTo);
         }
     }
 }
-
-/* Getters, setters and general util for GameState */
 
 GameState *createGameState(int rowsInBlock, int colsInBlock) {
     int i;
@@ -138,7 +79,7 @@ GameState *createGameState(int rowsInBlock, int colsInBlock) {
     gameState->rowsInBlock = rowsInBlock;
     gameState->colsInBlock = colsInBlock;
     gameState->markErrors = false;
-    gameState->mode = INITMODE;
+    gameState->mode = INIT_MODE;
     gameState->board = (int **) malloc(size * sizeof(int *));
     for (i = 0; i < size; i++) {
         gameState->board[i] = (int *) calloc(size, sizeof(int));
@@ -200,14 +141,60 @@ GAME_MODE getGameMode(GameState *gameState) {
     return gameState->mode;
 }
 
-void copyFromBoardToBoard(GameState *gameStateFrom, GameState *gameStateTo) {
-    int row, col;
-    if (getSize(gameStateFrom) != getSize(gameStateTo)) {
-        return;
+/*--------------------------------------------------------------*/
+/*--------------------PRIVATE FUNCTIONS-------------------------*/
+/*--------------------------------------------------------------*/
+
+/* Returns true if val is in row, col, or block(row,col). */
+bool safeMove(int row, int col, int val, GameState *gameState) {
+    int block = findBlock(row, col, gameState);
+
+    return safeMoveRow(row, val, gameState) &&
+           safeMoveCol(col, val, gameState) &&
+           safeMoveBlock(block, val, gameState) &&
+           val > 0 && val <= getSize(gameState);
+}
+
+/* Returns true if val is in row. */
+bool safeMoveRow(int row, int val, GameState *gameState) {
+    int col;
+    for (col = 0; col < getSize(gameState); col++) {
+        if (getCellValue(row, col, gameState) == val)
+            return false; /* val exists in row */
     }
-    for (row = 0; row < getSize(gameStateFrom); row++) {
-        for (col = 0; col < getSize(gameStateFrom); col++) {
-            setCellValue(row, col, getCellValue(row, col, gameStateFrom), gameStateTo);
+    return true;
+}
+
+/* Returns true if val is in col. */
+bool safeMoveCol(int col, int val, GameState *gameState) {
+    int row;
+
+    for (row = 0; row < getSize(gameState); row++) {
+        if (getCellValue(row, col, gameState) == val)
+            return false; /* val exists in column */
+    }
+    return true;
+}
+
+/* Returns true if val is in block. */
+bool safeMoveBlock(int block, int val, GameState *gameState) {
+    int row, col;
+    int fromRow = (block / getRowsInBlock(gameState)) * getRowsInBlock(gameState);
+    int fromCol = (block % getRowsInBlock(gameState)) * getColsInBlock(gameState);
+    for (row = fromRow; row < fromRow + getRowsInBlock(gameState); row++) {
+        for (col = fromCol; col < fromCol + getColsInBlock(gameState); col++) {
+            if (getCellValue(row, col, gameState) == val) { /* val exists in block */
+                return false;
+            }
         }
     }
+    return true;
 }
+
+/* Returns the index of block(row,col), when 0 is the upper left block. */
+int findBlock(int row, int col, GameState *gameState) {
+    int rows = getRowsInBlock(gameState);
+    int cols = getColsInBlock(gameState);
+    return (row / rows) * rows + (col / cols);
+}
+

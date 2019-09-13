@@ -38,13 +38,13 @@ void throw_tooFewParametersError() {
 /* TODO: maybe add which commands are available in each mode */
 void throw_illegalCommandForMode(GAME_MODE gameMode) {
     switch (gameMode) {
-        case (INITMODE):
+        case (INIT_MODE):
             printf("Error: command is illegal for INIT board mode. Only available commands in this mode are solve and edit. Please try again.\n------------------------\n");
             break;
-        case (EDITMODE):
+        case (EDIT_MODE):
             printf("Error: command is illegal for EDIT board mode. Please try again.\n");
             break;
-        case (SOLVEMODE):
+        case (SOLVE_MODE):
             printf("Error: command is illegal for EDIT board mode. Please try again.\n");
             break;
         default:
