@@ -196,3 +196,4 @@ int findBlock(int row, int col, GameState *gameState) {
     return (row / rows) * rows + (col / cols);
 }
 
+

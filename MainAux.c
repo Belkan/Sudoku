@@ -11,7 +11,6 @@
 /*---------------------PUBLIC FUNCTIONS-------------------------*/
 /*--------------------------------------------------------------*/
 
-/* Generates pseudorandom number in given range */
 int getRandom(int lower, int upper) {
     int res;
     if (lower == upper) {
@@ -22,7 +21,6 @@ int getRandom(int lower, int upper) {
     return res;
 }
 
-/* Util function to free resources allocated for a matrix */
 void destroyMatrix(int **matrix, int size) {
     int i;
     for (i = 0; i < size; i++) {
@@ -31,7 +29,6 @@ void destroyMatrix(int **matrix, int size) {
     free(matrix);
 }
 
-/* Checks if the board is full. If it is, prints according to whether or not it is a correct solution. */
 void checkFullBoard(GameState *gameState) {
     if (isUserBoardFull(gameState)) {
         if (isBoardLegal(gameState)) {
@@ -43,7 +40,6 @@ void checkFullBoard(GameState *gameState) {
     }
 }
 
-/* Prints the current board */
 void printBoard(GameState *gameState) {
     int row;
     int col;
@@ -91,7 +87,6 @@ void printBoard(GameState *gameState) {
 }
 
 
-/* convert size_t to int */
 int size_t2int(size_t val) {
     return (val <= INT_MAX) ? (int) ((ssize_t) val) : -1;
 }
@@ -134,8 +129,6 @@ void START_GAME() {
         command = parseCommand(pGameState, parsedInput);
 
         executeCommand(pGameState, pHistoryState, command, input);
-
-        checkFullBoard(*pGameState);
     }
 }
 

@@ -21,6 +21,7 @@ void executeSet(GameState *gameState, HistoryState **pHistoryState, int row, int
     historyChange = createHistoryChange(row, col, oldVal, val);
     updateHistoryWithChange(pHistoryState, historyChange);
     printBoard(gameState);
+    checkFullBoard(gameState);
 }
 
 void executeEdit(GameState **gameState, HistoryState **pHistoryState, char *filePath, bool hasPath) {
@@ -113,9 +114,10 @@ void executeAutofill(GameState *gameState, HistoryState **pHistoryState) {
         /* This is the part that actually writes the filled values to the board */
         redoMove(getPreviousState(*pHistoryState), gameState, /* printEnabled= */ true);
         printBoard(gameState);
+        checkFullBoard(gameState);
     }
     else {
-        printf("No cells were filled.\n");
+        printf("No obvious cells - no cells were filled.\n");
     }
 }
 
@@ -193,7 +195,6 @@ void executeGuess(GameState *gameState, HistoryState **pHistoryState, float thre
                     free(legalVals);
                     continue;
                 }
-                printf("\n");
                 /* Normalize the values in intervals such that each interval is in the size of the probability. */
                 sum = 0.0;
                 for (value = 1; value <= getSize(gameState); value++) {
@@ -201,7 +202,6 @@ void executeGuess(GameState *gameState, HistoryState **pHistoryState, float thre
                     legalVals[value - 1] = sum;
                     printf("%.2f ", legalVals[value - 1]);
                 }
-                printf("\n\n");
                 /* Randomize a double between 0 and sum. */
                 randomDouble = (rand() / (double) RAND_MAX) * sum;
                 /* Pick the selected number. */
@@ -227,8 +227,9 @@ void executeGuess(GameState *gameState, HistoryState **pHistoryState, float thre
     }
     if (historyChange != NULL) {
         updateHistoryWithChange(pHistoryState, historyChange);
-        printBoard(gameState);
     }
+    printBoard(gameState);
+    checkFullBoard(gameState);
 }
 
 void executeGenerate(GameState *gameState, HistoryState **pHistoryState, int toFill, int cellsLeft) {
@@ -335,4 +336,5 @@ void executeGenerate(GameState *gameState, HistoryState **pHistoryState, int toF
         updateHistoryWithChange(pHistoryState, historyChange);
     }
     printBoard(gameState);
+    checkFullBoard(gameState);
 }
