@@ -4,7 +4,9 @@
 
 /*----------------------DECLARATIONS----------------------------*/
 int getNextIdx(char *currLine, int currIdx);
+
 int nextInt(int startIdx, char *string);
+
 bool cellInRange(int cell, int size);
 
 /*--------------------------------------------------------------*/
@@ -42,13 +44,16 @@ bool validFileFormat(char *filePath) {
             counter++;
         }
         if (!isdigit(currLine[idx]) && !isspace(currLine[idx]) && !isblank(currLine[idx])) {
+            free(currLine);
             return false;
         }
     }
     /* More than 2 numbers in header files, negative rows in block value or negative cols in block value:
      * these are all sufficient conditions for invalid file format. */
-    if (counter != 2 || rowsInlbock < 0 || colsInBlock < 0) return false;
-
+    if (counter != 2 || rowsInlbock < 0 || colsInBlock < 0) {
+        free(currLine);
+        return false;
+    }
     size = rowsInlbock * colsInBlock;
     /* Check all other lines don't contain illegal characters, or cells out of range. */
     while (fgets(currLine, CHAR_MAX, file)) {
@@ -60,24 +65,32 @@ bool validFileFormat(char *filePath) {
                 cell = nextInt(idx, currLine);
                 counter++;;
                 /* Make sure all entries of loaded board aren't too big. */
-                if (!cellInRange(cell, size)) return false;
+                if (!cellInRange(cell, size)) {
+                    free(currLine);
+                    return false;
+                }
                 while (isdigit(currLine[idx + 1])) idx++;
             }
-
             /* Check if we have found an illegal character.
              * Legal characters are integers within range for board, or blanks.*/
             if (!isdigit(currLine[idx]) && !isblank(currLine[idx])
                 && currLine[idx] != '.' && !isspace(currLine[idx])) {
+                free(currLine);
                 return false;
             }
             idx++;
         }
         /* A line cannot be too short or too long, e.g. if size is 9 we can't have a line with 4 integers. */
-        if (counter != size) return false;
+        if (counter != size) {
+            free(currLine);
+            return false;
+        }
     }
+    free(currLine);
     /* We can't have too few lines in file. */
-    if (rowsAmount != size) return false;
-
+    if (rowsAmount != size) {
+        return false;
+    }
     return true;
 }
 
@@ -92,20 +105,15 @@ GameState *loadFromFile(char *filePath) {
     char *currLine = (char *) malloc(CHAR_MAX);
     FILE *loadedGame;
     GameState *newGame;
-
     /* Load up the game */
     loadedGame = fopen(filePath, "r");
-
     /* Read first line of loaded game into board */
     fgets(currLine, CHAR_MAX, loadedGame);
-
     /* Read col/row values from text file. */
     rows = currLine[getNextIdx(currLine, idx++)] - '0';
     cols = currLine[getNextIdx(currLine, idx)] - '0';
-
     /* Get rid of old board to load up new one */
     newGame = createGameState(rows, cols);
-
     /* Read board */
     while (fgets(currLine, CHAR_MAX, loadedGame)) {
         lineIdx = 0;
@@ -115,11 +123,12 @@ GameState *loadFromFile(char *filePath) {
             cell = currLine[lineIdx];
             if (isdigit(cell)) {
                 cell = nextInt(lineIdx, currLine);
-                while (isdigit(currLine[lineIdx])) lineIdx++;
+                while (isdigit(currLine[lineIdx])) {
+                    lineIdx++;
+                }
             } else {
                 lineIdx++;
             }
-
             /* Check if cell needs to be fixed. */
             if ((cell - '0') == -2) {
                 setFixed(getPrevRow(rowIdx, colIdx), getPrevCol(rows * cols, colIdx), true, newGame);
@@ -138,13 +147,12 @@ GameState *loadFromFile(char *filePath) {
             }
         }
     }
-
     /* Close the game */
     fclose(loadedGame);
-
     /* Free resources */
     free(rowSize);
     free(colSize);
+    free(currLine);
 
     return newGame;
 }
