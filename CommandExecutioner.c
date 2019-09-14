@@ -236,7 +236,7 @@ void executeGenerate(GameState *gameState, HistoryState **pHistoryState, int toF
     HistoryChange *historyChange = NULL;
     SolutionContainer *solutionContainer;
     int attempt = 0, cleared = 0;
-    int row, col, value, filled, legalValuesCount, randomVal, idx;
+    int row, col, value, filled, legalValuesCount, randomVal, idx, oldCellVal, newCellVal;
     int toClear = getSize(gameState) * getSize(gameState) - cellsLeft;
     int *legalValues;
     bool attemptSuccessful;
@@ -258,7 +258,7 @@ void executeGenerate(GameState *gameState, HistoryState **pHistoryState, int toF
             legalValues = malloc(getSize(cpyGameState) * sizeof(int));
             legalValuesCount = 0;
             for (value = 1; value <= getSize(cpyGameState); value++) {
-                if (isUserLegalMove(gameState, row, col, value)) {
+                if (isUserLegalMove(cpyGameState, row, col, value)) {
                     legalValues[legalValuesCount++] = value;
                 }
             }
@@ -317,13 +317,15 @@ void executeGenerate(GameState *gameState, HistoryState **pHistoryState, int toF
     /* Update History and Gamestate */
     for (row = 0; row < getSize(gameState); row++) {
         for (col = 0; col < getSize(gameState); col++) {
-            if (getCellValue(row, col, gameState) != getCellValue(row, col, cpyGameState)) {
-                setCellValue(row, col, getCellValue(row, col, cpyGameState), gameState);
+            oldCellVal = getCellValue(row, col, gameState);
+            newCellVal = getCellValue(row, col, cpyGameState);
+            if (oldCellVal != newCellVal) {
+                setCellValue(row, col, newCellVal, gameState);
                 if (historyChange == NULL) {
-                    historyChange = createHistoryChange(row, col, 0, getCellValue(row, col, gameState));
+                    historyChange = createHistoryChange(row, col, oldCellVal, newCellVal);
                     tmpHistoryChange = historyChange;
                 } else {
-                    tmpHistoryChange->nextChange = createHistoryChange(row, col, 0, getCellValue(row, col, gameState));
+                    tmpHistoryChange->nextChange = createHistoryChange(row, col, oldCellVal, newCellVal);
                     tmpHistoryChange = tmpHistoryChange->nextChange;
                 }
             }
