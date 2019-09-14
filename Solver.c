@@ -2,8 +2,17 @@
 #include "Solver.h"
 #include "MainAux.h"
 
+/*
+ * This module verifies the board correction and manages the error status of each cell.
+ *
+ * We utilise Gurobi's implementation of Simplex algorithm and exhaustive backtracking with stack for recursion.
+ */
+
+/*--------------------------------------------------------------*/
+/*---------------------PUBLIC FUNCTIONS-------------------------*/
+/*--------------------------------------------------------------*/
+
 /* TODO compare with Ellie & Nofar num of solutions on various boards to ensure correctness. */
-/* Use exhaustive backtracking algorithm (using stack) to count the number of solutions for the board. */
 int solutionCounter(GameState *gameState) {
     bool foundMove = false, reachedEnd = false;
     int row = 0, col = 0, size = getSize(gameState), solutions = 0, idx = 0, move = -1;
@@ -390,6 +399,17 @@ void destroySolutionContainer(SolutionContainer *solutionContainer) {
     }
     free(solutionContainer->variables);
     free(solutionContainer);
+}
+
+bool isSolvable(GameState *gameState) {
+    bool isSolvable = false;
+
+    SolutionContainer *solutionContainer = getSolution(gameState, ILP);
+    if (solutionContainer->solutionFound) {
+        isSolvable = true;
+    }
+    destroySolutionContainer(solutionContainer);
+    return isSolvable;
 }
 
 void destroyGurobi(GRBenv *env, GRBmodel *model, double *obj, char *variableTypes, int *ind, double *val) {

@@ -1,8 +1,11 @@
+
 #ifndef SUDOKU_PARSERUTILS_H
 #define SUDOKU_PARSERUTILS_H
+
 #include "CommandExecutioner.h"
 #include "ErrorHandler.h"
 
+/* The module provides additional utilities for Parser, used for input validation. */
 
 USER_CHOICE validateSet (GameState *gameState, int params, char** input);
 

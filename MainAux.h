@@ -1,11 +1,11 @@
-/* functions to handle auxiliary methods */
 
 #ifndef SUDOKU_MAINAUX_H
 #define SUDOKU_MAINAUX_H
-#include <stdbool.h>
 
+#include <stdbool.h>
 #include "Game.h"
 
+/* This module provides auxiliary methods for main.c */
 
 /* Generates pseudorandom number in given range */
 int getRandom(int lower, int upper);
@@ -21,4 +21,6 @@ void START_GAME();
 
 /* Aux function to convert size_t to int */
 int size_t2int(size_t val);
+
+
 #endif

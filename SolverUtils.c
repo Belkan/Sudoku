@@ -1,5 +1,11 @@
 #include "SolverUtils.h"
 
+/* The module provides additional utilities for Solver, mainly stack that replaces recursion. */
+
+/*--------------------------------------------------------------*/
+/*---------------------PUBLIC FUNCTIONS-------------------------*/
+/*--------------------------------------------------------------*/
+
 /* Initialize stack of given capacity. */
 struct recursion_stack *createStack(int capacity) {
     struct recursion_stack *stack = malloc(sizeof(struct recursion_stack));
@@ -26,19 +32,16 @@ void destroyStack(struct recursion_stack *stack) {
     free(stack);
 }
 
-/* Check if stack is full (i.e. stack overflow). */
 bool isFull(struct recursion_stack *stack) {
     if (stack->top == stack->capacity) return true;
     return false;
 }
 
-/* Check if stack is empty (i.e. stack underflow). */
 bool isEmpty(struct recursion_stack *stack) {
     if (stack->top == -1) return true;
     return false;
 }
 
-/* Push new game state to top of the stack. */
 bool push(struct recursion_stack *stack, int row, int col) {
     /* Avoid stack overflow. */
     if (isFull(stack)) {
@@ -50,7 +53,6 @@ bool push(struct recursion_stack *stack, int row, int col) {
     return true;
 }
 
-/* Removes top element of stack. */
 bool pop(struct recursion_stack *stack) {
     /* Avoid stack underflow. */
     if (isEmpty(stack)) {
@@ -60,18 +62,14 @@ bool pop(struct recursion_stack *stack) {
     return true;
 }
 
-
-/* Retrieves top row element of the stack. */
 int peekRow(struct recursion_stack *stack) {
     return stack->rows[stack->top];
 }
 
-/* Retrieves top column element of the stack. */
 int peekCol(struct recursion_stack *stack) {
     return stack->cols[stack->top];
 }
 
-/* General purpose utility functions below. */
 int getNextRow(int size, int row, int col) {
     if (col < size - 1) {
         return row;

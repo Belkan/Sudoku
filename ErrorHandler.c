@@ -1,12 +1,16 @@
 #include "ErrorHandler.h"
 
-/* Errors regarding loading boards from given text file */
+/*  This module provides a collection of fixed error messages, aimed to address various possible illegal states. */
+
+/*--------------------------------------------------------------*/
+/*---------------------PUBLIC FUNCTIONS-------------------------*/
+/*--------------------------------------------------------------*/
 
 void throw_filePathError() {
     printf("Error: incorrect file path given! Please try again.\n");
 }
 
-void throw_unsolvableFileErrror() {
+void throw_unsolvableFileError() {
     printf("Error: unsolvable boards may not be saved! Please try again.\n");
 }
 

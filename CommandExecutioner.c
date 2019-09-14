@@ -1,6 +1,11 @@
 #include "CommandExecutioner.h"
 #include "ErrorHandler.h"
 
+/*  This module responsible for executing the input command, after having identified which command it is. */
+
+/*--------------------------------------------------------------*/
+/*---------------------PUBLIC FUNCTIONS-------------------------*/
+/*--------------------------------------------------------------*/
 
 void executeSet(GameState *gameState, HistoryState **pHistoryState, int row, int col, int val) {
     HistoryChange *historyChange;
@@ -127,13 +132,11 @@ void executeNumSolutions(GameState *gameState) {
 }
 
 void executeValidate(GameState *gameState) {
-    SolutionContainer *solutionContainer = getSolution(gameState, ILP);
-    if (solutionContainer->solutionFound) {
+    if (isSolvable(gameState)) {
         printf("The board is solvable.\n");
     } else {
         throw_boardUnsolvable();
     }
-    destroySolutionContainer(solutionContainer);
 }
 
 void executeHint(GameState *gameState, int row, int col) {

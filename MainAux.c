@@ -5,6 +5,12 @@
 #include "MainAux.h"
 #include "Parser.h"
 
+/* This module provides auxiliary methods for main.c */
+
+/*--------------------------------------------------------------*/
+/*---------------------PUBLIC FUNCTIONS-------------------------*/
+/*--------------------------------------------------------------*/
+
 /* Generates pseudorandom number in given range */
 int getRandom(int lower, int upper) {
     int res;

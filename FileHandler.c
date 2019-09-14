@@ -1,27 +1,16 @@
 #include "FileHandler.h"
 
-/* Utility function for valid load path. */
-int getNumberEndPos(char *currLine, int start) {
-    while (isdigit(currLine[++start]));
-    return start;
-}
+/*  The module responsible for loading and saving boards, as well as validations involving such actions. */
 
-int nextInt(int startIdx, char *string) {
-    int res = string[startIdx] - '0';
+/*----------------------DECLARATIONS----------------------------*/
+int getNextIdx(char *currLine, int currIdx);
+int nextInt(int startIdx, char *string);
+bool cellInRange(int cell, int size);
 
-    while (isdigit(string[++startIdx])) {
-        res *= 10;
-        res += (string[startIdx] - '0');
-    }
-    return res;
-}
+/*--------------------------------------------------------------*/
+/*---------------------PUBLIC FUNCTIONS-------------------------*/
+/*--------------------------------------------------------------*/
 
-bool cellInRange(int cell, int size) {
-    if (cell > size) return false;
-    return true;
-}
-
-/* Function to check for validity of loading a file: returns true if file can be loaded */
 bool validLoadPath(char *filePath) {
     FILE *file;
     /* File exists and can be loaded */
@@ -31,7 +20,6 @@ bool validLoadPath(char *filePath) {
     return true;
 }
 
-/* Function to check whether loaded file has valid format. */
 bool validFileFormat(char *filePath) {
     FILE *file = fopen(filePath, "r");
     char *currLine = (char *) malloc(CHAR_MAX);
@@ -98,21 +86,6 @@ GameState *loadEmptyBoard() {
     return gameState;
 }
 
-/* Utility function for loader: finds next position in line to read cell from. */
-int getNextIdx(char *currLine, int currIdx) {
-    int i = currIdx + 1;
-
-    if (isdigit(currLine[currIdx]) || currLine[currIdx] == '.') {
-        return currIdx;
-    }
-    /* Find next digit or fixed cell markup or \n in the line. */
-    while (currLine[i] == ' ' || currLine[i] == '\t' || currLine[i] == '\r') {
-        i++;
-    }
-    return i;
-}
-
-/* Function to load up a saved game board and update our game state with it */
 GameState *loadFromFile(char *filePath) {
     char *rowSize = (char *) malloc(CHAR_MAX), *colSize = (char *) malloc(CHAR_MAX);
     int idx = 0, rows = 0, cols = 0, rowIdx = 0, colIdx = 0, cell = 0, lineIdx = 0;
@@ -176,7 +149,6 @@ GameState *loadFromFile(char *filePath) {
     return newGame;
 }
 
-/* Function to save a board to a file at a given path. Paths can be relative or absolute. */
 void saveToFile(char *filePath, GameState *currGame) {
     int rowsInBlock = getRowsInBlock(currGame);
     int colInBlock = getColsInBlock(currGame);
@@ -219,4 +191,39 @@ void saveToFile(char *filePath, GameState *currGame) {
 
     /* Close the saved game */
     fclose(saveGame);
+}
+
+/*--------------------------------------------------------------*/
+/*---------------------PRIVATE FUNCTIONS-------------------------*/
+/*--------------------------------------------------------------*/
+
+/* Utility function for loader: finds next position in line to read cell from. */
+int getNextIdx(char *currLine, int currIdx) {
+    int i = currIdx + 1;
+
+    if (isdigit(currLine[currIdx]) || currLine[currIdx] == '.') {
+        return currIdx;
+    }
+    /* Find next digit or fixed cell markup or \n in the line. */
+    while (currLine[i] == ' ' || currLine[i] == '\t' || currLine[i] == '\r') {
+        i++;
+    }
+    return i;
+}
+
+/* Utility function that acts like Java's nextInt from Scanner class. */
+int nextInt(int startIdx, char *string) {
+    int res = string[startIdx] - '0';
+
+    while (isdigit(string[++startIdx])) {
+        res *= 10;
+        res += (string[startIdx] - '0');
+    }
+    return res;
+}
+
+/* Check if cell is in range for board. */
+bool cellInRange(int cell, int size) {
+    if (cell > size) return false;
+    return true;
 }

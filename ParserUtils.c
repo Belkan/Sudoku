@@ -1,49 +1,16 @@
 #include "ParserUtils.h"
 
-bool isMode(GameState *gameState, GAME_MODE gameMode) {
-    if (getGameMode(gameState) == gameMode) {
-        throw_illegalCommandForMode(gameMode);
-        return true;
-    }
-    return false;
-}
+/* The module provides additional utilities for Parser, used for input validation. */
 
-bool paramsCountCorrect(int params, int minParams, int maxParams) {
-    if (params > maxParams) {
-        throw_tooManyParametersError();
-        return false;
-    }
-    if (params < minParams) {
-        throw_tooFewParametersError();
-        return false;
-    }
-    return true;
-}
+/*----------------------DECLARATIONS----------------------------*/
+bool isMode(GameState *gameState, GAME_MODE gameMode);
+bool paramsCountCorrect(int params, int minParams, int maxParams);
+bool paramsAreDigits(char **input, int params);
+bool paramsInRange(char **input, int params, int minVal, int maxVal);
 
-bool paramsAreDigits(char **input, int params) {
-    int i;
-    for (i = 1; i <= params; i++) {
-        if (!isdigit(*input[i])) {
-            throw_illegalParameterValueError();
-            printf("Details: Parameter number %d is not a digit.\n", i);
-            return false;
-        }
-    }
-    return true;
-}
-
-bool paramsInRange(char **input, int params, int minVal, int maxVal) {
-    int i;
-    char *endPtr;
-    for (i = 1; i <= params; i++) {
-        if (strtol(input[i], &endPtr, 10) < minVal || strtol(input[i], &endPtr, 10) > maxVal) {
-            throw_illegalParameterRangeError();
-            printf("Details: Parameter number %d is not in the correct range of %d to %d.\n", i, minVal, maxVal);
-            return false;
-        }
-    }
-    return true;
-}
+/*--------------------------------------------------------------*/
+/*---------------------PUBLIC FUNCTIONS-------------------------*/
+/*--------------------------------------------------------------*/
 
 USER_CHOICE validateSet(GameState *gameState, int params, char **input) {
     if (isMode(gameState, INIT_MODE)) {
@@ -184,7 +151,10 @@ USER_CHOICE validateSave(GameState *gameState, int params) {
             printf("Details: Board is erroneous in EDIT mode, please fix the board before saving.\n");
             return INVALID_COMMAND;
         }
-        /* TODO: Validate solvable */
+    }
+    if (!isSolvable(gameState)) {
+        throw_unsolvableFileError();
+        return INVALID_COMMAND;
     }
     return SAVE;
 }
@@ -291,4 +261,57 @@ USER_CHOICE validateGenerate(GameState *gameState, int params, char** input) {
         return INVALID_COMMAND;
     }
     return GENERATE;
+}
+
+/*--------------------------------------------------------------*/
+/*--------------------PRIVATE FUNCTIONS-------------------------*/
+/*--------------------------------------------------------------*/
+
+/* Check if command matches mode. */
+bool isMode(GameState *gameState, GAME_MODE gameMode) {
+    if (getGameMode(gameState) == gameMode) {
+        throw_illegalCommandForMode(gameMode);
+        return true;
+    }
+    return false;
+}
+
+/* Check if parameter count is valid for command chosen. */
+bool paramsCountCorrect(int params, int minParams, int maxParams) {
+    if (params > maxParams) {
+        throw_tooManyParametersError();
+        return false;
+    }
+    if (params < minParams) {
+        throw_tooFewParametersError();
+        return false;
+    }
+    return true;
+}
+
+/* Check if parameters are digits. */
+bool paramsAreDigits(char **input, int params) {
+    int i;
+    for (i = 1; i <= params; i++) {
+        if (!isdigit(*input[i])) {
+            throw_illegalParameterValueError();
+            printf("Details: Parameter number %d is not a digit.\n", i);
+            return false;
+        }
+    }
+    return true;
+}
+
+/* Check if params are in legal range for command. */
+bool paramsInRange(char **input, int params, int minVal, int maxVal) {
+    int i;
+    char *endPtr;
+    for (i = 1; i <= params; i++) {
+        if (strtol(input[i], &endPtr, 10) < minVal || strtol(input[i], &endPtr, 10) > maxVal) {
+            throw_illegalParameterRangeError();
+            printf("Details: Parameter number %d is not in the correct range of %d to %d.\n", i, minVal, maxVal);
+            return false;
+        }
+    }
+    return true;
 }

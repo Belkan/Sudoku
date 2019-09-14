@@ -1,3 +1,4 @@
+
 #ifndef SUDOKU_PARSER_H
 #define SUDOKU_PARSER_H
 
@@ -6,14 +7,12 @@
 #include "ParserUtils.h"
 #define MAX 1024
 
-
-
-/* Checks if user input matches given regular expressions */
-bool matchesFormat(char* str, USER_CHOICE choice);
+/*  The module responsible for parsing user commands entered to console. */
 
 /* Scans user's input and returns it as String format */
 USER_CHOICE parseCommand(GameState **gameState, char *input);
 
+/* Execute command chosen by user */
 void executeCommand(GameState **pGameState, HistoryState** pHistoryState, USER_CHOICE commandType, char *input);
 
 #endif

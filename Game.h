@@ -1,3 +1,4 @@
+
 #ifndef SUDOKU_GAME_H
 #define SUDOKU_GAME_H
 
@@ -37,6 +38,9 @@ bool isUserBoardFull(GameState *gameState);
 
 /* Returns number of empty cells in board. */
 int countBlanks(GameState *gameState);
+
+/* Returns true if val is in row, col, or block(row,col). */
+bool safeMove(int row, int col, int val, GameState *gameState);
 
 /* Copies the content of the values between 2 GameState's boards.
  * This does NOT copy anything else, such as game mode or fixed cells. */

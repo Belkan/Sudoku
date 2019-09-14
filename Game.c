@@ -5,7 +5,6 @@
  * sudoku game, as well as the main struct "GameState" used to save the current state of the game. */
 
 /*----------------------DECLARATIONS----------------------------*/
-bool safeMove(int row, int col, int val, GameState* gameState);
 bool safeMoveRow(int row, int val, GameState *gameState);
 bool safeMoveCol(int col, int val, GameState *gameState);
 bool safeMoveBlock(int block, int val, GameState *gameState);
@@ -141,11 +140,6 @@ GAME_MODE getGameMode(GameState *gameState) {
     return gameState->mode;
 }
 
-/*--------------------------------------------------------------*/
-/*--------------------PRIVATE FUNCTIONS-------------------------*/
-/*--------------------------------------------------------------*/
-
-/* Returns true if val is in row, col, or block(row,col). */
 bool safeMove(int row, int col, int val, GameState *gameState) {
     int block = findBlock(row, col, gameState);
 
@@ -154,6 +148,10 @@ bool safeMove(int row, int col, int val, GameState *gameState) {
            safeMoveBlock(block, val, gameState) &&
            val > 0 && val <= getSize(gameState);
 }
+
+/*--------------------------------------------------------------*/
+/*--------------------PRIVATE FUNCTIONS-------------------------*/
+/*--------------------------------------------------------------*/
 
 /* Returns true if val is in row. */
 bool safeMoveRow(int row, int val, GameState *gameState) {

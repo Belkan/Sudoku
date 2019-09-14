@@ -1,6 +1,12 @@
 
 #include "HistoryHandler.h"
 
+/* This module handles the history of the board, and enables us to redo/undo a move made by user. */
+
+/*--------------------------------------------------------------*/
+/*---------------------PUBLIC FUNCTIONS-------------------------*/
+/*--------------------------------------------------------------*/
+
 HistoryState *createHistoryState() {
     HistoryState *historyState = malloc(sizeof(HistoryState));
     historyState->changes = NULL;

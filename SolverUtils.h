@@ -1,13 +1,13 @@
+
 #ifndef SUDOKU_SOLVERUTILS_H
 #define SUDOKU_SOLVERUTILS_H
+
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "Game.h"
 
-/* TODO remove this function for production, only needed for debugging/testing */
-/* Utility for unused variable */
-#define UNUSED(x) (void)(x)
+/* The module provides additional utilities for Solver, mainly stack that replaces recursion. */
 
 /* Stack to emulate recursion for exhaustive backtracking algorithm. */
 typedef struct recursion_stack {
@@ -41,7 +41,7 @@ int peekRow(struct recursion_stack *stack);
 /* Retrieves top column element of the stack. */
 int peekCol(struct recursion_stack *stack);
 
-/* Various "general purpose" utility functions. */
+/* Various "general purpose" utility functions, such as getters. */
 int getNextRow(int size, int row, int col);
 int getNextCol(int size, int col);
 int getPrevRow(int row, int col);
