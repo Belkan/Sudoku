@@ -49,7 +49,7 @@ void throw_illegalCommandForMode(GAME_MODE gameMode) {
             printf("Error: command is illegal for EDIT board mode. Please try again.\n");
             break;
         case (SOLVE_MODE):
-            printf("Error: command is illegal for EDIT board mode. Please try again.\n");
+            printf("Error: command is illegal for SOLVE board mode. Please try again.\n");
             break;
         default:
             break;

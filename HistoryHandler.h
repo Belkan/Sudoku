@@ -7,7 +7,7 @@
 
 /* This module handles the history of the board, and enables us to redo/undo a move made by user. */
 
-/* Struct represents changes that occurred in the board, nested within HistoryState. */
+/* Struct represents changes that occurred in the board by a single move. */
 typedef struct HistoryChange {
     int row;
     int col;
@@ -23,14 +23,17 @@ typedef struct HistoryState {
     struct HistoryState* prevState;
 } HistoryState;
 
-/* This function clears all forward history. */
+/* Clears all forward history. */
 void clearForwardHistory(HistoryState* historyState);
 
-/* This function undoes a move performed by user. */
+/* Undoes a move performed by user - updates the gameState. */
 void undoMove(HistoryState *historyState, GameState *gameState, bool printEnabled);
 
-/* This function redoes a move performed by user. */
-void redoMove(HistoryState* historyState, GameState* gameState, __attribute__ ((unused)) bool printEnabled);
+/* Redoes a move performed by user - updates the gameState. */
+void redoMove(HistoryState* historyState, GameState* gameState, bool printEnabled);
+
+/* Add change to history state, while deleting all forward history. */
+void updateHistoryWithChange(HistoryState** historyState, HistoryChange* historyChange);
 
 /* Getters, setters and creators/destroyers for the structs we have declared */
 HistoryState* createHistoryState ();

@@ -9,7 +9,6 @@
 
 void executeSet(GameState *gameState, HistoryState **pHistoryState, int row, int col, int val) {
     HistoryChange *historyChange;
-    HistoryState *tmpHistoryState;
     int oldVal = getCellValue(row, col, gameState);
     if (getGameMode(gameState) == EDIT_MODE) {
         setCellValue(row, col, val, gameState);
@@ -19,13 +18,8 @@ void executeSet(GameState *gameState, HistoryState **pHistoryState, int row, int
     } else {
         setCellValue(row, col, val, gameState);
     }
-    clearForwardHistory(*pHistoryState);
-    tmpHistoryState = createHistoryState();
     historyChange = createHistoryChange(row, col, oldVal, val);
-    setChanges(tmpHistoryState, historyChange);
-    setNextState(*pHistoryState, tmpHistoryState);
-    setPrevState(tmpHistoryState, *pHistoryState);
-    *pHistoryState = tmpHistoryState;
+    updateHistoryWithChange(pHistoryState, historyChange);
     printBoard(gameState);
 }
 
@@ -86,7 +80,6 @@ void executeReset(GameState *gameState, HistoryState **pHistoryState) {
 
 void executeAutofill(GameState *gameState, HistoryState **pHistoryState) {
     int row, col, val, singleVal, counter;
-    HistoryState *historyState;
     HistoryChange *tmpHistoryChange;
     HistoryChange *historyChange = NULL;
     for (row = 0; row < getSize(gameState); row++) {
@@ -116,14 +109,13 @@ void executeAutofill(GameState *gameState, HistoryState **pHistoryState) {
         }
     }
     if (historyChange != NULL) {
-        clearForwardHistory(*pHistoryState);
-        historyState = createHistoryState();
-        setChanges(historyState, historyChange);
-        setPrevState(historyState, *pHistoryState);
-        setNextState(*pHistoryState, historyState);
-        *pHistoryState = historyState;
+        updateHistoryWithChange(pHistoryState, historyChange);
         /* This is the part that actually writes the filled values to the board */
         redoMove(getPreviousState(*pHistoryState), gameState, /* printEnabled= */ true);
+        printBoard(gameState);
+    }
+    else {
+        printf("No cells were filled.\n");
     }
 }
 
@@ -175,7 +167,6 @@ void executeGuess(GameState *gameState, HistoryState **pHistoryState, float thre
     double randomDouble;
     double *legalVals;
     double sum;
-    HistoryState *historyState;
     HistoryChange *tmpHistoryChange;
     HistoryChange *historyChange = NULL;
     SolutionContainer *solutionContainer = getSolution(gameState, LP);
@@ -235,18 +226,12 @@ void executeGuess(GameState *gameState, HistoryState **pHistoryState, float thre
         }
     }
     if (historyChange != NULL) {
-        clearForwardHistory(*pHistoryState);
-        historyState = createHistoryState();
-        setChanges(historyState, historyChange);
-        setPrevState(historyState, *pHistoryState);
-        setNextState(*pHistoryState, historyState);
-        *pHistoryState = historyState;
+        updateHistoryWithChange(pHistoryState, historyChange);
         printBoard(gameState);
     }
 }
 
 void executeGenerate(GameState *gameState, HistoryState **pHistoryState, int toFill, int cellsLeft) {
-    HistoryState *historyState;
     HistoryChange *tmpHistoryChange;
     HistoryChange *historyChange = NULL;
     SolutionContainer *solutionContainer;
@@ -345,12 +330,7 @@ void executeGenerate(GameState *gameState, HistoryState **pHistoryState, int toF
         }
     }
     if (historyChange != NULL) {
-        clearForwardHistory(*pHistoryState);
-        historyState = createHistoryState();
-        setChanges(historyState, historyChange);
-        setPrevState(historyState, *pHistoryState);
-        setNextState(*pHistoryState, historyState);
-        *pHistoryState = historyState;
+        updateHistoryWithChange(pHistoryState, historyChange);
     }
     printBoard(gameState);
 }

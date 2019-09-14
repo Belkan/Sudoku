@@ -7,6 +7,67 @@
 /*---------------------PUBLIC FUNCTIONS-------------------------*/
 /*--------------------------------------------------------------*/
 
+
+void clearForwardHistory(HistoryState *historyState) {
+    HistoryState *tmp;
+    if (historyState->nextState == NULL) {
+        return;
+    }
+    else {
+        tmp = historyState->nextState;
+        historyState->nextState = NULL;
+        historyState = tmp;
+    }
+    while (historyState->nextState != NULL) {
+        tmp = historyState->nextState;
+        destroyHistoryState(historyState);
+        historyState = tmp;
+    }
+    destroyHistoryState(historyState);
+}
+
+void undoMove(HistoryState *historyState, GameState *gameState, bool printEnabled) {
+    HistoryChange *changes = getChanges(historyState);
+    int row, col, oldVal, newVal;
+    while (changes != NULL) {
+        row = changes->row;
+        col = changes->col;
+        newVal = changes->oldCellValue;
+        oldVal = changes->newCellValue;
+        setCellValue(row, col, newVal, gameState);
+        if (printEnabled) {
+            printf("Cell [%d,%d] changed from %d to %d.\n", row + 1, col + 1, oldVal, newVal);
+        }
+        changes = changes->nextChange;
+    }
+}
+
+void redoMove(HistoryState *historyState, GameState *gameState, bool printEnabled) {
+    HistoryChange *changes = getChanges(getNextState(historyState));
+    int row, col, oldVal, newVal;
+    while (changes != NULL) {
+        row = changes->row;
+        col = changes->col;
+        newVal = changes->newCellValue;
+        oldVal = changes->oldCellValue;
+        setCellValue(row, col, newVal, gameState);
+        if (printEnabled) {
+            printf("Cell [%d,%d] changed from %d to %d.\n", row + 1, col + 1, oldVal, newVal);
+        }
+        changes = changes->nextChange;
+    }
+}
+
+void updateHistoryWithChange(HistoryState** pHistoryState, HistoryChange* historyChange) {
+    HistoryState* tmpHistoryState = createHistoryState();
+    clearForwardHistory(*pHistoryState);
+    setChanges(tmpHistoryState, historyChange);
+    setNextState(*pHistoryState, tmpHistoryState);
+    setPrevState(tmpHistoryState, *pHistoryState);
+    *pHistoryState = tmpHistoryState;
+}
+
+
 HistoryState *createHistoryState() {
     HistoryState *historyState = malloc(sizeof(HistoryState));
     historyState->changes = NULL;
@@ -78,55 +139,3 @@ HistoryChange *getChanges(HistoryState *historyState) {
 void setChanges(HistoryState *historyState, HistoryChange *historyChange) {
     historyState->changes = historyChange;
 }
-
-void clearForwardHistory(HistoryState *historyState) {
-    HistoryState *tmp;
-    if (historyState->nextState == NULL) {
-        return;
-    }
-    else {
-        tmp = historyState->nextState;
-        historyState->nextState = NULL;
-        historyState = tmp;
-    }
-    while (historyState->nextState != NULL) {
-        tmp = historyState->nextState;
-        destroyHistoryState(historyState);
-        historyState = tmp;
-    }
-    destroyHistoryState(historyState);
-
-}
-
-void undoMove(HistoryState *historyState, GameState *gameState, bool printEnabled) {
-    HistoryChange *changes = getChanges(historyState);
-    int row, col, oldVal, newVal;
-    while (changes != NULL) {
-        row = changes->row;
-        col = changes->col;
-        newVal = changes->oldCellValue;
-        oldVal = changes->newCellValue;
-        setCellValue(row, col, newVal, gameState);
-        if (printEnabled) {
-            printf("Cell [%d,%d] changed from %d to %d.\n", row + 1, col + 1, oldVal, newVal);
-        }
-        changes = changes->nextChange;
-    }
-}
-
-void redoMove(HistoryState *historyState, GameState *gameState, bool printEnabled) {
-    HistoryChange *changes = getChanges(getNextState(historyState));
-    int row, col, oldVal, newVal;
-    while (changes != NULL) {
-        row = changes->row;
-        col = changes->col;
-        newVal = changes->newCellValue;
-        oldVal = changes->oldCellValue;
-        setCellValue(row, col, newVal, gameState);
-        if (printEnabled) {
-            printf("Cell [%d,%d] changed from %d to %d.\n", row + 1, col + 1, oldVal, newVal);
-        }
-        changes = changes->nextChange;
-    }
-}
-
