@@ -31,7 +31,7 @@ USER_CHOICE validateSave(GameState* gameState, int params);
 
 USER_CHOICE validateValidate (GameState* gameState, int params);
 
-USER_CHOICE validateGuess(GameState *gameState, int params);
+USER_CHOICE validateGuess(GameState *gameState, int params, char** input);
 
 USER_CHOICE validateHint(GameState *gameState, int params, char **input);
 

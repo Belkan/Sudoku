@@ -13,8 +13,6 @@ bool matchesFormat(char *str, USER_CHOICE choice);
 /*---------------------PUBLIC FUNCTIONS-------------------------*/
 /*--------------------------------------------------------------*/
 
-/*TODO: Make more useful INVALIDs
- * Also, maybe add a "help" command? Weird they didn't ask. */
 USER_CHOICE parseCommand(GameState **gameState, char *input) {
     int k = 0;
     char *str[MAX];
@@ -42,7 +40,7 @@ USER_CHOICE parseCommand(GameState **gameState, char *input) {
         return validateHint(*gameState, k, str);
     }
     if (matchesFormat(str[0], GUESS)) {
-        return validateGuess(*gameState, k);
+        return validateGuess(*gameState, k, str);
     }
     if (matchesFormat(str[0], GUESS_HINT)) {
         return validateGuessHint(*gameState, k, str);

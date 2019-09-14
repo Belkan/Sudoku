@@ -4,9 +4,18 @@
 
 /*----------------------DECLARATIONS----------------------------*/
 bool isMode(GameState *gameState, GAME_MODE gameMode);
+
+bool isInt(char *input);
+
+bool isFloat(char *input);
+
 bool paramsCountCorrect(int params, int minParams, int maxParams);
+
 bool paramsAreDigits(char **input, int params);
-bool paramsInRange(char **input, int params, int minVal, int maxVal);
+
+bool intsInRange(char **input, int params, int minVal, int maxVal);
+
+bool floatsInRange(char **input, int params, int minVal, int maxVal);
 
 /*--------------------------------------------------------------*/
 /*---------------------PUBLIC FUNCTIONS-------------------------*/
@@ -23,13 +32,12 @@ USER_CHOICE validateSet(GameState *gameState, int params, char **input) {
     if (!paramsAreDigits(input, params)) {
         return INVALID_COMMAND;
     }
-    if (!paramsInRange(input, params, 1, getSize(gameState))) {
+    if (!intsInRange(input, params, 1, getSize(gameState))) {
         printf("<set X Y Z> - sets cell <X,Y> to value Z.\nX,Y,Z must be within the board's range!\n");
         return INVALID_COMMAND;
     }
     return SET;
 }
-
 
 USER_CHOICE validateAutofill(GameState *gameState, int params) {
     if (isMode(gameState, INIT_MODE) || isMode(gameState, EDIT_MODE)) {
@@ -83,7 +91,7 @@ USER_CHOICE validateMarkErrors(GameState *gameState, int params, char **input) {
     if (isMode(gameState, INIT_MODE) || isMode(gameState, EDIT_MODE)) {
         return INVALID_COMMAND;
     }
-    if (!paramsCountCorrect(params, 1, 1) || !paramsInRange(input, 1, 0, 1)) {
+    if (!paramsCountCorrect(params, 1, 1) || !intsInRange(input, 1, 0, 1)) {
         printf("Details: mark_errors expects exactly ONE parameter - 1 or 0.\n");
         return INVALID_COMMAND;
     }
@@ -175,7 +183,7 @@ USER_CHOICE validateValidate(GameState *gameState, int params) {
     return VALIDATE;
 }
 
-USER_CHOICE validateGuess(GameState *gameState, int params) {
+USER_CHOICE validateGuess(GameState *gameState, int params, char **input) {
     if (isMode(gameState, INIT_MODE) || isMode(gameState, EDIT_MODE)) {
         return INVALID_COMMAND;
     }
@@ -183,6 +191,10 @@ USER_CHOICE validateGuess(GameState *gameState, int params) {
         printf("Details: <guess X> expects exactly ONE parameter.\n");
         return INVALID_COMMAND;
     }
+    if (!floatsInRange(input, params, 0, 1)) {
+        return INVALID_COMMAND;
+    }
+
     if (!isBoardLegal(gameState)) {
         throw_illegalCommandForCurrentBoard();
         printf("Details: <guess X> cannot be used on an erroneous board. Please fix the board and try again.\n");
@@ -202,7 +214,7 @@ USER_CHOICE validateHint(GameState *gameState, int params, char **input) {
     if (!paramsAreDigits(input, params)) {
         return INVALID_COMMAND;
     }
-    if (!paramsInRange(input, params, 1, getSize(gameState))) {
+    if (!intsInRange(input, params, 1, getSize(gameState))) {
         printf("Details: <hint X Y> - X,Y must be within the board's range!\n");
         return INVALID_COMMAND;
     }
@@ -224,7 +236,7 @@ USER_CHOICE validateGuessHint(GameState *gameState, int params, char **input) {
     if (!paramsAreDigits(input, params)) {
         return INVALID_COMMAND;
     }
-    if (!paramsInRange(input, params, 1, getSize(gameState))) {
+    if (!intsInRange(input, params, 1, getSize(gameState))) {
         printf("Details: <guess_hint X Y> - X,Y must be within the board's range!\n");
         return INVALID_COMMAND;
     }
@@ -246,7 +258,7 @@ USER_CHOICE validateNumSolutions(GameState *gameState, int params) {
     return NUM_SOLUTIONS;
 }
 
-USER_CHOICE validateGenerate(GameState *gameState, int params, char** input) {
+USER_CHOICE validateGenerate(GameState *gameState, int params, char **input) {
     if (isMode(gameState, INIT_MODE) || isMode(gameState, SOLVE_MODE)) {
         return INVALID_COMMAND;
     }
@@ -257,7 +269,7 @@ USER_CHOICE validateGenerate(GameState *gameState, int params, char** input) {
     if (!paramsAreDigits(input, params)) {
         return INVALID_COMMAND;
     }
-    if (!paramsInRange(input, params, 1, getSize(gameState)*getSize(gameState))){
+    if (!intsInRange(input, params, 1, getSize(gameState) * getSize(gameState))) {
         return INVALID_COMMAND;
     }
     return GENERATE;
@@ -303,15 +315,62 @@ bool paramsAreDigits(char **input, int params) {
 }
 
 /* Check if params are in legal range for command. */
-bool paramsInRange(char **input, int params, int minVal, int maxVal) {
+bool intsInRange(char **input, int params, int minVal, int maxVal) {
     int i;
     char *endPtr;
     for (i = 1; i <= params; i++) {
+        if (!isInt(input[i])) {
+            printf("Details: Parameter number %d is not an integer.\n", i);
+            return false;
+        }
         if (strtol(input[i], &endPtr, 10) < minVal || strtol(input[i], &endPtr, 10) > maxVal) {
             throw_illegalParameterRangeError();
             printf("Details: Parameter number %d is not in the correct range of %d to %d.\n", i, minVal, maxVal);
             return false;
         }
+    }
+    return true;
+}
+
+bool floatsInRange(char **input, int params, int minVal, int maxVal) {
+    int i;
+    for (i = 1; i <= params; i++) {
+        if (!isFloat(input[i])) {
+            printf("Details: Parameter number %d is not a float or integer.\n", i);
+            return false;
+        }
+        if (atof(input[i]) < minVal || atof(input[i]) > maxVal) {
+            throw_illegalParameterRangeError();
+            printf("Details: Parameter number %d is not in the correct range of %d to %d.\n", i, minVal, maxVal);
+            return false;
+        }
+    }
+    return true;
+}
+
+bool isInt(char *input) {
+    int i = 0;
+    while (input[i] != '\0') {
+        if (!(input[i] <= '9' && input[i] >= '0')) {
+            return false;
+        }
+        i++;
+    }
+    return false;
+}
+
+bool isFloat(char *input) {
+    int i = 0;
+    bool floatingPoint = false;
+    while (input[i] != '\0') {
+        if (!(input[i] <= '9' && input[i] >= '0')) {
+            if (input[i] == '.' && !floatingPoint) {
+                floatingPoint = true;
+            } else {
+                return false;
+            }
+        }
+        i++;
     }
     return true;
 }

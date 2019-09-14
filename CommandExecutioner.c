@@ -188,7 +188,6 @@ void executeGuess(GameState *gameState, HistoryState **pHistoryState, float thre
                         isUserLegalMove(gameState, row, col, value)) {
                         legalVals[value - 1] = solutionContainer->solution[idx];
                         legalValsCount++;
-                        printf("%.2f ", solutionContainer->solution[idx]);
                     }
                 }
                 if (legalValsCount == 0) {
@@ -200,7 +199,6 @@ void executeGuess(GameState *gameState, HistoryState **pHistoryState, float thre
                 for (value = 1; value <= getSize(gameState); value++) {
                     sum += legalVals[value - 1];
                     legalVals[value - 1] = sum;
-                    printf("%.2f ", legalVals[value - 1]);
                 }
                 /* Randomize a double between 0 and sum. */
                 randomDouble = (rand() / (double) RAND_MAX) * sum;
