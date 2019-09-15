@@ -111,6 +111,7 @@ GameState *loadFromFile(char *filePath) {
     loadedGame = fopen(filePath, "r");
     if (loadedGame == NULL) {
         perror("Fatal error occurred while opening file! Exiting...\n");
+        exit(EXIT_FAILURE);
     }
     /* Read first line of loaded game into board */
     fgets(currLine, CHAR_MAX, loadedGame);
