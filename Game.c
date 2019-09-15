@@ -15,7 +15,7 @@ int findBlock(int row, int col, GameState *gameState);
 /*--------------------------------------------------------------*/
 
 bool isBoardLegal(GameState *gameState) {
-    int row, col;
+    int row, col;ק
     for (row = 0; row < getSize(gameState); row++) {
         for (col = 0; col < getSize(gameState); col++) {
             if (getCellValue(row, col, gameState) != 0 &&

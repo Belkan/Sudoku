@@ -259,6 +259,11 @@ USER_CHOICE validateNumSolutions(GameState *gameState, int params) {
         printf("Details: <num_solutions> expects exactly ONE parameter.\n");
         return INVALID_COMMAND;
     }
+    if (!isBoardLegal(gameState)) {
+        throw_illegalCommandForCurrentBoard();
+        printf("Details: num_solutions may not be used for erroneous boards.\n");
+        return INVALID_COMMAND;
+    }
     return NUM_SOLUTIONS;
 }
 

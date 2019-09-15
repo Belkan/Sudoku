@@ -14,6 +14,7 @@
     <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game.c" beforeDir="false" afterPath="$PROJECT_DIR$/Game.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ParserUtils.c" beforeDir="false" afterPath="$PROJECT_DIR$/ParserUtils.c" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -137,14 +138,8 @@
       <workItem from="1568116482787" duration="10345000" />
       <workItem from="1568146817839" duration="797000" />
       <workItem from="1568406559423" duration="12194000" />
-      <workItem from="1568471025777" duration="26060000" />
-    </task>
-    <task id="LOCAL-00040" summary="Changed makefile">
-      <created>1560511113502</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1560511113502</updated>
+      <workItem from="1568471025777" duration="27122000" />
+      <workItem from="1568588016406" duration="138000" />
     </task>
     <task id="LOCAL-00041" summary="Changed makefile">
       <created>1560511346218</created>
@@ -464,7 +459,13 @@
       <option name="presentableId" value="LOCAL‎00088" />
       <updated>1568568682892</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL‎00089" summary="Mark errors true by default (Issue #9)">
+      <created>1568568794634</created>
+      <option name="number" value="LOCAL‎00089" />
+      <option name="presentableId" value="LOCAL‎00089" />
+      <updated>1568568794634</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +499,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add solve and print to parser" />
     <MESSAGE value="nitfix" />
     <MESSAGE value="Add mark_errors" />
     <MESSAGE value="Change history data structure" />
@@ -523,6 +523,7 @@
     <MESSAGE value="Removed some TODOs" />
     <MESSAGE value="Wrap every malloc with safeMalloc (issue #13)" />
     <MESSAGE value="Handle unexpected fopen errors (Issue #11)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Handle unexpected fopen errors (Issue #11)" />
+    <MESSAGE value="Mark errors true by default (Issue #9)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mark errors true by default (Issue #9)" />
   </component>
 </project>
