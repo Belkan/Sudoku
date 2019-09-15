@@ -9,7 +9,7 @@
 /* Initialize stack of given capacity. */
 struct recursion_stack *createStack(int capacity) {
     struct recursion_stack *stack = malloc(sizeof(struct recursion_stack));
-    int idx = 0;
+    int idx = 0, i = 0, j = 0;
 
     /* Initially, top index is 0. Index of -1 denotes empty stack. */
     stack->top = 0;
@@ -23,10 +23,18 @@ struct recursion_stack *createStack(int capacity) {
         stack->rows[idx] = 0;
         stack->cols[idx] = 0;
     }
+
+    /* Initialize visited matrix */
+    stack->visited = (bool **) malloc(capacity * sizeof(bool *));
+    for (i = 0; i < capacity; i++) {
+        stack->visited[i] = (bool *) calloc(capacity, sizeof(bool));
+    }
+
     return stack;
 }
 
 void destroyStack(struct recursion_stack *stack) {
+    destroyMatrix((int **) stack->visited, stack->capacity);
     free(stack->rows);
     free(stack->cols);
     free(stack);
@@ -60,6 +68,14 @@ bool pop(struct recursion_stack *stack) {
     }
     --stack->top;
     return true;
+}
+
+void setVisited(struct recursion_stack *stack, bool value, int row, int col) {
+    stack->visited[row][col] = value;
+}
+
+bool isVisited(struct recursion_stack *stack, int row, int col) {
+    return stack->visited[row][col];
 }
 
 int peekRow(struct recursion_stack *stack) {

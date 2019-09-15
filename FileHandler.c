@@ -63,7 +63,7 @@ bool validFileFormat(char *filePath) {
         while (currLine[idx] != '\n') {
             if (isdigit(currLine[idx])) {
                 cell = nextInt(idx, currLine);
-                counter++;;
+                counter++;
                 /* Make sure all entries of loaded board aren't too big. */
                 if (!cellInRange(cell, size)) {
                     free(currLine);
@@ -76,6 +76,7 @@ bool validFileFormat(char *filePath) {
             if (!isdigit(currLine[idx]) && !isblank(currLine[idx])
                 && currLine[idx] != '.' && !isspace(currLine[idx])) {
                 free(currLine);
+                printf("found bad, its %c at idx %d\n", currLine[idx], idx);
                 return false;
             }
             idx++;

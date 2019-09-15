@@ -18,6 +18,11 @@ int solutionCounter(GameState *gameState) {
     int row = 0, col = 0, size = getSize(gameState), solutions = 0, idx = 0, move = -1;
     struct recursion_stack *stack = createStack(gameState->size * gameState->size);
 
+    /* Handle edge case for unsolvable board. */
+    if (!isSolvable(gameState)) {
+        return 0;
+    }
+
     /* Iterating until stack empties replaces recursion. */
     while (!isEmpty(stack)) {
         foundMove = false, reachedEnd = false;
@@ -27,11 +32,22 @@ int solutionCounter(GameState *gameState) {
         /* Flag checks if we have reached the end of the board. */
         reachedEnd = (row == size - 1 && col == size - 1);
 
-        /* Handle edge case: fixed cells. */
+        /* Handle case of fixed cells. */
         if (isFixed(row, col, gameState)) {
             if (!reachedEnd) {
-                push(stack, getNextRow(size, row, col), getNextCol(size, col));
-                continue;
+                /* Case fixed cell was visited already, so we backtrack */
+                if (isVisited(stack, row, col)) {
+                    pop(stack);
+                    setVisited(stack, false, row, col);
+                    continue;
+                }
+                else {
+                    /* Case fixed cell wasn't visited already, so we push next coordinates to stack */
+                    push(stack, getNextRow(size, row, col), getNextCol(size, col));
+                    setVisited(stack, true, row, col);
+                    continue;
+                }
+                /* Cell is fixed and we have reached the end */
             } else {
                 solutions++;
                 pop(stack);

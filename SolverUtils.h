@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "Game.h"
+#include "MainAux.h"
 
 /* The module provides additional utilities for Solver, mainly stack that replaces recursion. */
 
@@ -15,6 +16,7 @@ typedef struct recursion_stack {
     int top;
     int *rows;
     int *cols;
+    bool **visited;
 } RECURSION_STACK ;
 
 /* Create stack that replaces recursion while getting #solutions for board. */
@@ -46,6 +48,8 @@ int getNextRow(int size, int row, int col);
 int getNextCol(int size, int col);
 int getPrevRow(int row, int col);
 int getPrevCol(int size, int col);
+void setVisited(struct recursion_stack *stack, bool value, int row, int col);
+bool isVisited(struct recursion_stack *stack, int row, int col);
 bool solvedBoard(GameState *gameState);
 void swap(double *x, double *y);
 void bubbleSort(double arr[], int size);

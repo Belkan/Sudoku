@@ -230,33 +230,6 @@ Game.c.s:
 	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/Game.c.s
 .PHONY : Game.c.s
 
-GeneralUtils.obj: GeneralUtils.c.obj
-
-.PHONY : GeneralUtils.obj
-
-# target to build an object file
-GeneralUtils.c.obj:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/GeneralUtils.c.obj
-.PHONY : GeneralUtils.c.obj
-
-GeneralUtils.i: GeneralUtils.c.i
-
-.PHONY : GeneralUtils.i
-
-# target to preprocess a source file
-GeneralUtils.c.i:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/GeneralUtils.c.i
-.PHONY : GeneralUtils.c.i
-
-GeneralUtils.s: GeneralUtils.c.s
-
-.PHONY : GeneralUtils.s
-
-# target to generate assembly for a file
-GeneralUtils.c.s:
-	$(MAKE) -f CMakeFiles\Sudoku.dir\build.make CMakeFiles/Sudoku.dir/GeneralUtils.c.s
-.PHONY : GeneralUtils.c.s
-
 HistoryHandler.obj: HistoryHandler.c.obj
 
 .PHONY : HistoryHandler.obj
@@ -494,9 +467,6 @@ help:
 	@echo ... Game.obj
 	@echo ... Game.i
 	@echo ... Game.s
-	@echo ... GeneralUtils.obj
-	@echo ... GeneralUtils.i
-	@echo ... GeneralUtils.s
 	@echo ... HistoryHandler.obj
 	@echo ... HistoryHandler.i
 	@echo ... HistoryHandler.s

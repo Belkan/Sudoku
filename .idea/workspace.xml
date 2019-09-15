@@ -11,18 +11,22 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="gitignore">
+    <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="Partition into private/public functions + more documentation.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommandExecutioner.c" beforeDir="false" afterPath="$PROJECT_DIR$/CommandExecutioner.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommandExecutioner.h" beforeDir="false" afterPath="$PROJECT_DIR$/CommandExecutioner.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game.c" beforeDir="false" afterPath="$PROJECT_DIR$/Game.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parser.c" beforeDir="false" afterPath="$PROJECT_DIR$/Parser.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ParserUtils.c" beforeDir="false" afterPath="$PROJECT_DIR$/ParserUtils.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Solver.c" beforeDir="false" afterPath="$PROJECT_DIR$/Solver.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Solver.h" beforeDir="false" afterPath="$PROJECT_DIR$/Solver.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SolverUtils.c" beforeDir="false" afterPath="$PROJECT_DIR$/SolverUtils.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SolverUtils.h" beforeDir="false" afterPath="$PROJECT_DIR$/SolverUtils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/objects1.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/objects1.rsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Sudoku.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Sudoku.cbp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,6 +77,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="CLionExternalConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -139,7 +144,13 @@
       <workItem from="1567814967706" duration="5106000" />
       <workItem from="1567893557724" duration="10754000" />
       <workItem from="1567905513530" duration="27000" />
-      <workItem from="1567980961602" duration="15142000" />
+      <workItem from="1567980961602" duration="16433000" />
+      <workItem from="1568043152671" duration="618000" />
+      <workItem from="1568054436946" duration="429000" />
+      <workItem from="1568116482787" duration="10345000" />
+      <workItem from="1568146817839" duration="797000" />
+      <workItem from="1568406559423" duration="12194000" />
+      <workItem from="1568471025777" duration="23310000" />
     </task>
     <task id="LOCAL-00035" summary="Added random backtracker to generate a new board">
       <created>1558638539314</created>
@@ -441,35 +452,35 @@
       <option name="presentableId" value="LOCAL‎00078" />
       <updated>1567904350829</updated>
     </task>
-    <task id="LOCAL‎00079" summary="Add basic gurobi template and fake interface">
-      <created>1568106586842</created>
+    <task id="LOCAL‎00079" summary="Traversed forum to fix misunderstanding + other fixes">
+      <created>1567999070377</created>
       <option name="number" value="LOCAL‎00079" />
       <option name="presentableId" value="LOCAL‎00079" />
-      <updated>1568106586843</updated>
+      <updated>1567999070377</updated>
     </task>
-    <task id="LOCAL‎00080" summary="Implement getSolution with gurobi">
-      <created>1568125634991</created>
+    <task id="LOCAL‎00080" summary="When loading file, make sure they have correct #rows">
+      <created>1568054846151</created>
       <option name="number" value="LOCAL‎00080" />
       <option name="presentableId" value="LOCAL‎00080" />
-      <updated>1568125634991</updated>
+      <updated>1568054846152</updated>
     </task>
-    <task id="LOCAL‎00081" summary="Implement Validate">
-      <created>1568146612827</created>
+    <task id="LOCAL‎00081" summary="When saving file, check if editmode or solvemode">
+      <created>1568120792306</created>
       <option name="number" value="LOCAL‎00081" />
       <option name="presentableId" value="LOCAL‎00081" />
-      <updated>1568146612827</updated>
+      <updated>1568120792307</updated>
     </task>
-    <task id="LOCAL‎00082" summary="gitignore">
-      <created>1568146661292</created>
+    <task id="LOCAL‎00082" summary="When saving file, newlines don't have spaces">
+      <created>1568127648048</created>
       <option name="number" value="LOCAL‎00082" />
       <option name="presentableId" value="LOCAL‎00082" />
-      <updated>1568146661292</updated>
+      <updated>1568127648048</updated>
     </task>
-    <task id="LOCAL‎00083" summary="Implement Hint">
-      <created>1568148557920</created>
+    <task id="LOCAL‎00083" summary="Partition into private/public functions + more documentation.">
+      <created>1568425722933</created>
       <option name="number" value="LOCAL‎00083" />
       <option name="presentableId" value="LOCAL‎00083" />
-      <updated>1568148557920</updated>
+      <updated>1568425722934</updated>
     </task>
     <option name="localTasksCounter" value="84" />
     <servers />
@@ -505,7 +516,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added some errors for parsing commands" />
     <MESSAGE value="Fixed typos in errors" />
     <MESSAGE value="Add set to parser and add executeCommand" />
     <MESSAGE value="Add more to set" />
@@ -525,11 +535,12 @@
     <MESSAGE value="Typing in edit [file.txt] in console now works as expected." />
     <MESSAGE value="Fixed num_solutions (now working 100%)" />
     <MESSAGE value="Refactoring of Solver module + code beautifying" />
-    <MESSAGE value="Add basic gurobi template and fake interface" />
-    <MESSAGE value="Implement getSolution with gurobi" />
-    <MESSAGE value="Implement Validate" />
-    <MESSAGE value="gitignore" />
-    <MESSAGE value="Implement Hint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement Hint" />
+    <MESSAGE value="Traversed forum to fix misunderstanding + other fixes" />
+    <MESSAGE value="When loading file, make sure they have correct #rows" />
+    <MESSAGE value="When saving file, check if editmode or solvemode" />
+    <MESSAGE value="When saving file, newlines don't have spaces" />
+    <MESSAGE value="Partition into private/public functions + more documentation" />
+    <MESSAGE value="Partition into private/public functions + more documentation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Partition into private/public functions + more documentation." />
   </component>
 </project>
