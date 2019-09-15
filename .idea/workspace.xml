@@ -13,16 +13,8 @@
   <component name="ChangeListManager">
     <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommandExecutioner.c" beforeDir="false" afterPath="$PROJECT_DIR$/CommandExecutioner.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game.c" beforeDir="false" afterPath="$PROJECT_DIR$/Game.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryHandler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryHandler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainAux.c" beforeDir="false" afterPath="$PROJECT_DIR$/MainAux.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainAux.h" beforeDir="false" afterPath="$PROJECT_DIR$/MainAux.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Solver.c" beforeDir="false" afterPath="$PROJECT_DIR$/Solver.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SolverUtils.c" beforeDir="false" afterPath="$PROJECT_DIR$/SolverUtils.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/depend.make" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -146,14 +138,7 @@
       <workItem from="1568116482787" duration="10345000" />
       <workItem from="1568146817839" duration="797000" />
       <workItem from="1568406559423" duration="12194000" />
-      <workItem from="1568471025777" duration="25139000" />
-    </task>
-    <task id="LOCAL-00037" summary="Handled edge cases">
-      <created>1559671203392</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1559671203392</updated>
+      <workItem from="1568471025777" duration="25896000" />
     </task>
     <task id="LOCAL-00038" summary="Handled edge cases">
       <created>1559671302776</created>
@@ -476,7 +461,13 @@
       <option name="presentableId" value="LOCAL‎00085" />
       <updated>1568566370986</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL‎00086" summary="Wrap every malloc with safeMalloc (issue #13)">
+      <created>1568568041565</created>
+      <option name="number" value="LOCAL‎00086" />
+      <option name="presentableId" value="LOCAL‎00086" />
+      <updated>1568568041565</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -510,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add more to set" />
     <MESSAGE value="Add more to set and edit" />
     <MESSAGE value="Add solve and print to parser" />
     <MESSAGE value="nitfix" />
@@ -535,6 +525,7 @@
     <MESSAGE value="Partition into private/public functions + more documentation." />
     <MESSAGE value="num_solutions now permits fixed cells (Issue #12)" />
     <MESSAGE value="Removed some TODOs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed some TODOs" />
+    <MESSAGE value="Wrap every malloc with safeMalloc (issue #13)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Wrap every malloc with safeMalloc (issue #13)" />
   </component>
 </project>

@@ -106,8 +106,12 @@ GameState *loadFromFile(char *filePath) {
     char *currLine = (char *) safeMalloc(malloc(CHAR_MAX));
     FILE *loadedGame;
     GameState *newGame;
+
     /* Load up the game */
     loadedGame = fopen(filePath, "r");
+    if (loadedGame == NULL) {
+        perror("Fatal error occurred while opening file! Exiting...\n");
+    }
     /* Read first line of loaded game into board */
     fgets(currLine, CHAR_MAX, loadedGame);
     /* Read col/row values from text file. */
