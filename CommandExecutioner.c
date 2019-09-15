@@ -254,7 +254,7 @@ void executeGenerate(GameState *gameState, HistoryState **pHistoryState, int toF
             if (getCellValue(row, col, cpyGameState) != 0) {
                 continue;
             }
-            legalValues = malloc(getSize(cpyGameState) * sizeof(int));
+            legalValues = safeMalloc(malloc(getSize(cpyGameState) * sizeof(int)));
             legalValuesCount = 0;
             for (value = 1; value <= getSize(cpyGameState); value++) {
                 if (isUserLegalMove(cpyGameState, row, col, value)) {

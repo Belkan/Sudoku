@@ -11,6 +11,14 @@
 /*---------------------PUBLIC FUNCTIONS-------------------------*/
 /*--------------------------------------------------------------*/
 
+void *safeMalloc(void *ptr) {
+    if (ptr == NULL) {
+        perror("Couldn't allocate memory! Exiting...\n");
+        exit(EXIT_FAILURE);
+    }
+    return ptr;
+}
+
 int getRandom(int lower, int upper) {
     int res;
     if (lower == upper) {
@@ -98,8 +106,8 @@ void START_GAME() {
     char input[MAX];
     char *parsedInput;
     USER_CHOICE command;
-    HistoryState **pHistoryState = malloc(sizeof(HistoryState *));
-    GameState **pGameState = malloc(sizeof(GameState *));
+    HistoryState **pHistoryState = safeMalloc(malloc(sizeof(HistoryState *)));
+    GameState **pGameState = safeMalloc(malloc(sizeof(GameState *)));
     int i = 0;
 
     /* Empty gamestate in initmode, represents the beginning of the game */

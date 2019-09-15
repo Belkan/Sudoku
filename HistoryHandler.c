@@ -69,7 +69,7 @@ void updateHistoryWithChange(HistoryState** pHistoryState, HistoryChange* histor
 
 
 HistoryState *createHistoryState() {
-    HistoryState *historyState = malloc(sizeof(HistoryState));
+    HistoryState *historyState = safeMalloc(malloc(sizeof(HistoryState)));
     historyState->changes = NULL;
     historyState->nextState = NULL;
     historyState->prevState = NULL;
@@ -77,7 +77,7 @@ HistoryState *createHistoryState() {
 }
 
 HistoryChange *createHistoryChange(int row, int col, int oldCellValue, int newCellValue) {
-    HistoryChange *historyChange = malloc(sizeof(HistoryChange));
+    HistoryChange *historyChange = safeMalloc(malloc(sizeof(HistoryChange)));
     historyChange->row = row;
     historyChange->col = col;
     historyChange->oldCellValue = oldCellValue;

@@ -8,15 +8,15 @@
 
 /* Initialize stack of given capacity. */
 struct recursion_stack *createStack(int capacity) {
-    struct recursion_stack *stack = malloc(sizeof(struct recursion_stack));
+    struct recursion_stack *stack = safeMalloc(malloc(sizeof(struct recursion_stack)));
     int idx = 0, i = 0, j = 0;
 
     /* Initially, top index is 0. Index of -1 denotes empty stack. */
     stack->top = 0;
     stack->capacity = capacity;
     /* Initialize rows/columns arrays. */
-    stack->rows = (int *) malloc(capacity * sizeof(int));
-    stack->cols = (int *) malloc(capacity * sizeof(int));
+    stack->rows = (int *) safeMalloc(malloc(capacity * sizeof(int)));
+    stack->cols = (int *) safeMalloc(malloc(capacity * sizeof(int)));
 
     /* Set entries to default values 0. */
     for (idx = 0; idx < capacity; idx++) {
@@ -25,7 +25,7 @@ struct recursion_stack *createStack(int capacity) {
     }
 
     /* Initialize visited matrix */
-    stack->visited = (bool **) malloc(capacity * sizeof(bool *));
+    stack->visited = (bool **) safeMalloc(malloc(capacity * sizeof(bool *)));
     for (i = 0; i < capacity; i++) {
         stack->visited[i] = (bool *) calloc(capacity, sizeof(bool));
     }

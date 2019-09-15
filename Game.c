@@ -72,18 +72,18 @@ void copyFromBoardToBoard(GameState *gameStateFrom, GameState *gameStateTo) {
 
 GameState *createGameState(int rowsInBlock, int colsInBlock) {
     int i;
-    GameState *gameState = malloc(sizeof(GameState));
+    GameState *gameState = safeMalloc(malloc(sizeof(GameState)));
     int size = rowsInBlock * colsInBlock;
     gameState->size = size;
     gameState->rowsInBlock = rowsInBlock;
     gameState->colsInBlock = colsInBlock;
     gameState->markErrors = false;
     gameState->mode = INIT_MODE;
-    gameState->board = (int **) malloc(size * sizeof(int *));
+    gameState->board = (int **) safeMalloc(malloc(size * sizeof(int *)));
     for (i = 0; i < size; i++) {
         gameState->board[i] = (int *) calloc(size, sizeof(int));
     }
-    gameState->fixed = (bool **) malloc(size * sizeof(bool *));
+    gameState->fixed = (bool **) safeMalloc(malloc(size * sizeof(bool *)));
     for (i = 0; i < size; i++) {
         gameState->fixed[i] = (bool *) calloc(size, sizeof(bool));
     }

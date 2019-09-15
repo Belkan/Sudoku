@@ -22,6 +22,9 @@ void printBoard(GameState *gameState);
 /* Aux function to convert size_t to int */
 int size_t2int(size_t val);
 
+/* Makre sure malloc was O.K. */
+void *safeMalloc(void *ptr);
+
 /* Start the game. This is the sole function that should be called from main. */
 void START_GAME();
 

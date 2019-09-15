@@ -78,6 +78,7 @@ CMakeFiles/Sudoku.dir/Solver.c.obj: ../SolverUtils.h
 CMakeFiles/Sudoku.dir/Solver.c.obj: ../gurobi_c.h
 
 CMakeFiles/Sudoku.dir/SolverUtils.c.obj: ../Game.h
+CMakeFiles/Sudoku.dir/SolverUtils.c.obj: ../MainAux.h
 CMakeFiles/Sudoku.dir/SolverUtils.c.obj: ../SolverUtils.c
 CMakeFiles/Sudoku.dir/SolverUtils.c.obj: ../SolverUtils.h
 

@@ -24,7 +24,7 @@ bool validLoadPath(char *filePath) {
 
 bool validFileFormat(char *filePath) {
     FILE *file = fopen(filePath, "r");
-    char *currLine = (char *) malloc(CHAR_MAX);
+    char *currLine = (char *) safeMalloc(malloc(CHAR_MAX));
     int counter = 0, idx = 0, rowsInlbock = -1, colsInBlock = -1, size = 0, cell = 0, rowsAmount = 0;
 
     /* Make sure first line has correct format. */
@@ -101,9 +101,9 @@ GameState *loadEmptyBoard() {
 }
 
 GameState *loadFromFile(char *filePath) {
-    char *rowSize = (char *) malloc(CHAR_MAX), *colSize = (char *) malloc(CHAR_MAX);
+    char *rowSize = (char *) safeMalloc(malloc(CHAR_MAX)), *colSize = (char *) safeMalloc(malloc(CHAR_MAX));
     int idx = 0, rows = 0, cols = 0, rowIdx = 0, colIdx = 0, cell = 0, lineIdx = 0;
-    char *currLine = (char *) malloc(CHAR_MAX);
+    char *currLine = (char *) safeMalloc(malloc(CHAR_MAX));
     FILE *loadedGame;
     GameState *newGame;
     /* Load up the game */

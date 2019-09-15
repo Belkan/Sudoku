@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "Game.h"
+#include "MainAux.h"
 
 /* This module handles the history of the board, and enables us to redo/undo a move made by user. */
 

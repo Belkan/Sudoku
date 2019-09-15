@@ -161,8 +161,8 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
         }
     }
 
-    obj = malloc(totalVariableCount * sizeof(double));
-    variableTypes = malloc(totalVariableCount * sizeof(char));
+    obj = safeMalloc(malloc(totalVariableCount * sizeof(double)));
+    variableTypes = safeMalloc(malloc(totalVariableCount * sizeof(char)));
 
     /* Set target function and variable types per linear method */
     switch (linearMethod) {
@@ -180,8 +180,8 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
             break;
     }
 
-    ind = malloc(totalVariableCount * sizeof(int));
-    val = malloc(totalVariableCount * sizeof(double));
+    ind = safeMalloc(malloc(totalVariableCount * sizeof(int)));
+    val = safeMalloc(malloc(totalVariableCount * sizeof(double)));
 
     /* Add variables to model */
     error = GRBaddvars(model, totalVariableCount, 0, NULL, NULL, NULL, obj, NULL, NULL, variableTypes, NULL);
@@ -341,7 +341,7 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
         return solutionContainer;
     }
 
-    sol = malloc(totalVariableCount * sizeof(double));
+    sol = safeMalloc(malloc(totalVariableCount * sizeof(double)));
     /* get the objective -- the optimal result of the function */
     if (optimstatus == GRB_OPTIMAL) {
         error = GRBgetdblattr(model, GRB_DBL_ATTR_OBJVAL, &objval);
@@ -384,13 +384,13 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
 
 SolutionContainer *createSolutionContainer(int size) {
     int i, j, k;
-    SolutionContainer *solutionContainer = malloc(sizeof(SolutionContainer));
+    SolutionContainer *solutionContainer = safeMalloc(malloc(sizeof(SolutionContainer)));
     solutionContainer->solution = NULL;
     solutionContainer->solutionFound = false;
     solutionContainer->boardSize = size;
-    solutionContainer->variables = (int ***) malloc(size * sizeof(int **));
+    solutionContainer->variables = (int ***) safeMalloc(malloc(size * sizeof(int **)));
     for (i = 0; i < size; i++) {
-        solutionContainer->variables[i] = (int **) malloc(size * sizeof(int *));
+        solutionContainer->variables[i] = (int **) safeMalloc(malloc(size * sizeof(int *)));
         for (j = 0; j < size; j++) {
             solutionContainer->variables[i][j] = (int *) calloc(size, sizeof(int));
             for (k = 0; k < size; k++) {
