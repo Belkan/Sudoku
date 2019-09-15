@@ -77,7 +77,7 @@ GameState *createGameState(int rowsInBlock, int colsInBlock) {
     gameState->size = size;
     gameState->rowsInBlock = rowsInBlock;
     gameState->colsInBlock = colsInBlock;
-    gameState->markErrors = false;
+    gameState->markErrors = true;
     gameState->mode = INIT_MODE;
     gameState->board = (int **) safeMalloc(malloc(size * sizeof(int *)));
     for (i = 0; i < size; i++) {

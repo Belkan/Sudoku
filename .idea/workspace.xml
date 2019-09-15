@@ -13,7 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game.c" beforeDir="false" afterPath="$PROJECT_DIR$/Game.c" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -137,14 +137,7 @@
       <workItem from="1568116482787" duration="10345000" />
       <workItem from="1568146817839" duration="797000" />
       <workItem from="1568406559423" duration="12194000" />
-      <workItem from="1568471025777" duration="25962000" />
-    </task>
-    <task id="LOCAL-00039" summary="Changed makefile">
-      <created>1559677687625</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1559677687625</updated>
+      <workItem from="1568471025777" duration="26060000" />
     </task>
     <task id="LOCAL-00040" summary="Changed makefile">
       <created>1560511113502</created>
@@ -465,7 +458,13 @@
       <option name="presentableId" value="LOCAL‎00087" />
       <updated>1568568654005</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL‎00088" summary="Handle unexpected fopen errors (Issue #11)">
+      <created>1568568682892</created>
+      <option name="number" value="LOCAL‎00088" />
+      <option name="presentableId" value="LOCAL‎00088" />
+      <updated>1568568682892</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
