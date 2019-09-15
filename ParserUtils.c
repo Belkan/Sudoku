@@ -13,7 +13,7 @@ bool paramsCountCorrect(int params, int minParams, int maxParams);
 
 bool paramsAreDigits(char **input, int params);
 
-bool intsInRange(char **input, int params, int minVal, int maxVal);
+bool intsInRange(char **input, int params, int paramIdx, int minVal, int maxVal);
 
 bool floatsInRange(char **input, int params, int minVal, int maxVal);
 
@@ -32,8 +32,12 @@ USER_CHOICE validateSet(GameState *gameState, int params, char **input) {
     if (!paramsAreDigits(input, params)) {
         return INVALID_COMMAND;
     }
-    if (!intsInRange(input, params, 1, getSize(gameState))) {
-        printf("<set X Y Z> - sets cell <X,Y> to value Z.\nX,Y,Z must be within the board's range!\n");
+    if (!intsInRange(input, 2, 1, 1, getSize(gameState))) {
+        printf("<set X Y Z> - X,Y must be between 1 and %d!\n", getSize(gameState));
+        return INVALID_COMMAND;
+    }
+    if (!intsInRange(input, 1, 3, 0, getSize(gameState))) {
+        printf("<set X Y Z> - X,Y,Z must be between 0 and %d!\n", getSize(gameState));
         return INVALID_COMMAND;
     }
     return SET;
@@ -91,7 +95,7 @@ USER_CHOICE validateMarkErrors(GameState *gameState, int params, char **input) {
     if (isMode(gameState, INIT_MODE) || isMode(gameState, EDIT_MODE)) {
         return INVALID_COMMAND;
     }
-    if (!paramsCountCorrect(params, 1, 1) || !intsInRange(input, 1, 0, 1)) {
+    if (!paramsCountCorrect(params, 1, 1) || !intsInRange(input, 1, 1, 0, 1)) {
         printf("Details: mark_errors expects exactly ONE parameter - 1 or 0.\n");
         return INVALID_COMMAND;
     }
@@ -214,7 +218,7 @@ USER_CHOICE validateHint(GameState *gameState, int params, char **input) {
     if (!paramsAreDigits(input, params)) {
         return INVALID_COMMAND;
     }
-    if (!intsInRange(input, params, 1, getSize(gameState))) {
+    if (!intsInRange(input, params, 1, 1, getSize(gameState))) {
         printf("Details: <hint X Y> - X,Y must be within the board's range!\n");
         return INVALID_COMMAND;
     }
@@ -236,7 +240,7 @@ USER_CHOICE validateGuessHint(GameState *gameState, int params, char **input) {
     if (!paramsAreDigits(input, params)) {
         return INVALID_COMMAND;
     }
-    if (!intsInRange(input, params, 1, getSize(gameState))) {
+    if (!intsInRange(input, params, 1, 1, getSize(gameState))) {
         printf("Details: <guess_hint X Y> - X,Y must be within the board's range!\n");
         return INVALID_COMMAND;
     }
@@ -269,7 +273,7 @@ USER_CHOICE validateGenerate(GameState *gameState, int params, char **input) {
     if (!paramsAreDigits(input, params)) {
         return INVALID_COMMAND;
     }
-    if (!intsInRange(input, params, 1, getSize(gameState) * getSize(gameState))) {
+    if (!intsInRange(input, params, 1, 1, getSize(gameState) * getSize(gameState))) {
         return INVALID_COMMAND;
     }
     return GENERATE;
@@ -315,10 +319,10 @@ bool paramsAreDigits(char **input, int params) {
 }
 
 /* Check if params are in legal range for command. */
-bool intsInRange(char **input, int params, int minVal, int maxVal) {
+bool intsInRange(char **input, int params, int paramIdx, int minVal, int maxVal) {
     int i;
     char *endPtr;
-    for (i = 1; i <= params; i++) {
+    for (i = paramIdx; i < params + paramIdx; i++) {
         if (!isInt(input[i])) {
             printf("Details: Parameter number %d is not an integer.\n", i);
             return false;
@@ -356,7 +360,7 @@ bool isInt(char *input) {
         }
         i++;
     }
-    return false;
+    return true;
 }
 
 bool isFloat(char *input) {

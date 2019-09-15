@@ -72,11 +72,15 @@ void executeRedo(GameState *gameState, HistoryState **pHistoryState) {
 }
 
 void executeReset(GameState *gameState, HistoryState **pHistoryState) {
+    bool shouldPrint = false;
     while (getPreviousState(*pHistoryState) != NULL) {
         undoMove(*pHistoryState, gameState, /* printEnabled= */ false);
         *pHistoryState = getPreviousState(*pHistoryState);
+        shouldPrint = true;
     }
-    printBoard(gameState);
+    if (shouldPrint) {
+        printBoard(gameState);
+    }
 }
 
 void executeAutofill(GameState *gameState, HistoryState **pHistoryState) {
@@ -115,8 +119,7 @@ void executeAutofill(GameState *gameState, HistoryState **pHistoryState) {
         redoMove(getPreviousState(*pHistoryState), gameState, /* printEnabled= */ true);
         printBoard(gameState);
         checkFullBoard(gameState);
-    }
-    else {
+    } else {
         printf("No obvious cells - no cells were filled.\n");
     }
 }
