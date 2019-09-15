@@ -47,7 +47,6 @@ bool isUserBoardFull(GameState *gameState) {
 
 int countBlanks(GameState *gameState) {
     int row, col, count = 0;
-
     for (row = 0; row < getSize(gameState); row++) {
         for (col = 0; col < getSize(gameState); col++) {
             if (getCellValue(row, col, gameState) == 0) {

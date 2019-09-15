@@ -263,6 +263,7 @@ USER_CHOICE validateNumSolutions(GameState *gameState, int params) {
 }
 
 USER_CHOICE validateGenerate(GameState *gameState, int params, char **input) {
+    char *endPtr;
     if (isMode(gameState, INIT_MODE) || isMode(gameState, SOLVE_MODE)) {
         return INVALID_COMMAND;
     }
@@ -275,6 +276,9 @@ USER_CHOICE validateGenerate(GameState *gameState, int params, char **input) {
     }
     if (!intsInRange(input, params, 1, 1, getSize(gameState) * getSize(gameState))) {
         return INVALID_COMMAND;
+    }
+    if (countBlanks(gameState) <= strtol(input[1], &endPtr, 10)) {
+        printf("Error: <generate X Y> - X can't be bigger than the amount of blank cells.\n");
     }
     return GENERATE;
 }
