@@ -11,22 +11,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="Partition into private/public functions + more documentation.">
+    <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Solver.c" beforeDir="false" afterPath="$PROJECT_DIR$/Solver.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SolverUtils.c" beforeDir="false" afterPath="$PROJECT_DIR$/SolverUtils.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SolverUtils.h" beforeDir="false" afterPath="$PROJECT_DIR$/SolverUtils.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/objects1.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/objects1.rsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Sudoku.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Sudoku.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Solver.h" beforeDir="false" afterPath="$PROJECT_DIR$/Solver.h" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -150,14 +137,7 @@
       <workItem from="1568116482787" duration="10345000" />
       <workItem from="1568146817839" duration="797000" />
       <workItem from="1568406559423" duration="12194000" />
-      <workItem from="1568471025777" duration="23310000" />
-    </task>
-    <task id="LOCAL-00035" summary="Added random backtracker to generate a new board">
-      <created>1558638539314</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1558638539314</updated>
+      <workItem from="1568471025777" duration="23647000" />
     </task>
     <task id="LOCAL-00036" summary="Simply moved generateRand to Solver module">
       <created>1558652358728</created>
@@ -482,7 +462,13 @@
       <option name="presentableId" value="LOCAL‎00083" />
       <updated>1568425722934</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL‎00084" summary="num_solutions now permits fixed cells (Issue #12)">
+      <created>1568566110008</created>
+      <option name="number" value="LOCAL‎00084" />
+      <option name="presentableId" value="LOCAL‎00084" />
+      <updated>1568566110009</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,7 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed typos in errors" />
     <MESSAGE value="Add set to parser and add executeCommand" />
     <MESSAGE value="Add more to set" />
     <MESSAGE value="Add more to set and edit" />
@@ -541,6 +526,7 @@
     <MESSAGE value="When saving file, newlines don't have spaces" />
     <MESSAGE value="Partition into private/public functions + more documentation" />
     <MESSAGE value="Partition into private/public functions + more documentation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Partition into private/public functions + more documentation." />
+    <MESSAGE value="num_solutions now permits fixed cells (Issue #12)" />
+    <option name="LAST_COMMIT_MESSAGE" value="num_solutions now permits fixed cells (Issue #12)" />
   </component>
 </project>

@@ -12,7 +12,6 @@
 /*---------------------PUBLIC FUNCTIONS-------------------------*/
 /*--------------------------------------------------------------*/
 
-/* TODO compare with Ellie & Nofar num of solutions on various boards to ensure correctness. */
 int solutionCounter(GameState *gameState) {
     bool foundMove = false, reachedEnd = false;
     int row = 0, col = 0, size = getSize(gameState), solutions = 0, idx = 0, move = -1;

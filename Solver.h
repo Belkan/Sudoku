@@ -30,7 +30,6 @@ typedef enum LinearMethod {
     LP
 } LinearMethod;
 
-/* TODO compare this with Ellie & Nofar */
 /* Use exhaustive backtracking algorithm (using stack) to count the number of solutions for the board. */
 int solutionCounter(GameState *gameState);
 
