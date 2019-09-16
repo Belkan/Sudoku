@@ -46,6 +46,9 @@ bool safeMove(int row, int col, int val, GameState *gameState);
  * This does NOT copy anything else, such as game mode or fixed cells. */
 void copyFromBoardToBoard(GameState* gameStateFrom, GameState* gameStateTo);
 
+/* Returns sub-board consisting only of fixed board cells. */
+GameState *getFixedGame(GameState *gameState);
+
 /* Getters, setters and creator/destroyer for GameState */
 GameState *createGameState(int rowsInBlock, int colsInBlock);
 void destroyGameState(GameState *gameState);

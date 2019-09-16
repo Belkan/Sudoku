@@ -99,39 +99,6 @@ int size_t2int(size_t val) {
     return (val <= INT_MAX) ? (int) ((ssize_t) val) : -1;
 }
 
-GameState *getFixedGame(GameState *gameState) {
-    int size = getSize(gameState), rows = getRowsInBlock(gameState), cols = getColsInBlock(gameState);
-    GameState *fixedGame = createGameState(rows, cols);
-    int rowIdx = 0, colIdx = 0, cell = 0;
-
-    /* Fill in new game state clone with only fixed cells. */
-    for (rowIdx = 0; rowIdx < size; rowIdx++) {
-        for (colIdx = 0; colIdx < size; colIdx++) {
-            if (isFixed(rowIdx, colIdx, gameState)) {
-                cell = getCellValue(rowIdx, colIdx, gameState);
-            }
-            else {
-                cell = 0;
-            }
-            setCellValue(rowIdx, colIdx, cell, fixedGame);
-        }
-    }
-    return fixedGame;
-}
-
-bool isLegalFixed(char *filePath) {
-    GameState *gameState = loadFromFile(filePath);
-    GameState *fixedGame = getFixedGame(gameState);
-    bool isLegal = true;
-
-    if (!isBoardLegal(fixedGame)) {
-        isLegal = false;
-    }
-    destroyGameState(fixedGame);
-    destroyGameState(gameState);
-    return isLegal;
-}
-
 /* TODO make START_GAME generic for different statuses, edit/init/solve */
 /* Start the game. This is the sole function that should be called from main. */
 void START_GAME() {

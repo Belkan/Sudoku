@@ -25,6 +25,9 @@ GameState *loadFromFile (char *filePath);
 /* Function to load an empty default board */
 GameState *loadEmptyBoard ();
 
+/* When loading a board for solve, check no conflicting fixed cells exist */
+bool isLegalLoadFixed(char *filePath);
+
 /* Check if given path is valid for loading a file. */
 bool validLoadPath (char *filePath);
 

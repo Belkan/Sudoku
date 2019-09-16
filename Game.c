@@ -95,6 +95,26 @@ void destroyGameState(GameState *gameState) {
     free(gameState);
 }
 
+GameState *getFixedGame(GameState *gameState) {
+    int size = getSize(gameState), rows = getRowsInBlock(gameState), cols = getColsInBlock(gameState);
+    GameState *fixedGame = createGameState(rows, cols);
+    int rowIdx = 0, colIdx = 0, cell = 0;
+
+    /* Fill in new game state clone with only fixed cells. */
+    for (rowIdx = 0; rowIdx < size; rowIdx++) {
+        for (colIdx = 0; colIdx < size; colIdx++) {
+            if (isFixed(rowIdx, colIdx, gameState)) {
+                cell = getCellValue(rowIdx, colIdx, gameState);
+            }
+            else {
+                cell = 0;
+            }
+            setCellValue(rowIdx, colIdx, cell, fixedGame);
+        }
+    }
+    return fixedGame;
+}
+
 void setCellValue(int row, int col, int value, GameState *gameState) {
     gameState->board[row][col] = value;
 }

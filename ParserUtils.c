@@ -137,7 +137,7 @@ USER_CHOICE validateEdit(int params, char **input) {
     return EDIT;
 }
 
-USER_CHOICE validateSolve(GameState *gameState, int params, char **input) {
+USER_CHOICE validateSolve(int params, char **input) {
     if (!paramsCountCorrect(params, 1, 1)) {
         printf("Details: <solve X> must include exactly ONE parameter of the file path.\n");
         return INVALID_COMMAND;
@@ -146,7 +146,7 @@ USER_CHOICE validateSolve(GameState *gameState, int params, char **input) {
         throw_filePathError();
         return INVALID_COMMAND;
     }
-    if (!isLegalFixed(input[1])) {
+    if (!isLegalLoadFixed(input[1])) {
         throw_illegalCommandForCurrentBoard();
         printf("Details: Boards with erroneous fixed cells may not be solved.\n");
         return INVALID_COMMAND;

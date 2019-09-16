@@ -22,6 +22,19 @@ bool validLoadPath(char *filePath) {
     return true;
 }
 
+bool isLegalLoadFixed(char *filePath) {
+    GameState *gameState = loadFromFile(filePath);
+    GameState *fixedGame = getFixedGame(gameState);
+    bool isLegal = true;
+
+    if (!isBoardLegal(fixedGame)) {
+        isLegal = false;
+    }
+    destroyGameState(fixedGame);
+    destroyGameState(gameState);
+    return isLegal;
+}
+
 bool validFileFormat(char *filePath) {
     FILE *file = fopen(filePath, "r");
     char *currLine = (char *) safeMalloc(malloc(CHAR_MAX));

@@ -76,7 +76,7 @@ USER_CHOICE parseCommand(GameState **gameState, char *input) {
         return validateEdit(k, str);
     }
     if (matchesFormat(str[0], SOLVE)) {
-        return validateSolve(*gameState, k, str);
+        return validateSolve(k, str);
     }
     if (matchesFormat(str[0], SAVE)) {
         return validateSave(*gameState, k);

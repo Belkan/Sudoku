@@ -25,12 +25,6 @@ int size_t2int(size_t val);
 /* Make sure malloc was O.K. */
 void *safeMalloc(void *ptr);
 
-/* Returns sub-board consisting of only fixed cells of the board */
-GameState *getFixedGame(GameState *gameState);
-
-/* Check if sub-board consisting of only fixed cells is erroneous. */
-bool isLegalFixed(char *filePath);
-
 /* Start the game. This is the sole function that should be called from main. */
 void START_GAME();
 
