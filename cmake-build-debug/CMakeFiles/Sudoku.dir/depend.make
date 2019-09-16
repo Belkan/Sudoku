@@ -31,6 +31,7 @@ CMakeFiles/Sudoku.dir/Game.c.obj: ../MainAux.h
 CMakeFiles/Sudoku.dir/HistoryHandler.c.obj: ../Game.h
 CMakeFiles/Sudoku.dir/HistoryHandler.c.obj: ../HistoryHandler.c
 CMakeFiles/Sudoku.dir/HistoryHandler.c.obj: ../HistoryHandler.h
+CMakeFiles/Sudoku.dir/HistoryHandler.c.obj: ../MainAux.h
 
 CMakeFiles/Sudoku.dir/MainAux.c.obj: ../CommandExecutioner.h
 CMakeFiles/Sudoku.dir/MainAux.c.obj: ../ErrorHandler.h

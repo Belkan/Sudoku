@@ -25,7 +25,7 @@ USER_CHOICE validatePrintBoard(GameState* gameState, int params);
 
 USER_CHOICE validateEdit(int params, char** input);
 
-USER_CHOICE validateSolve(int params, char** input);
+USER_CHOICE validateSolve(GameState *gameState, int params, char** input);
 
 USER_CHOICE validateSave(GameState* gameState, int params);
 
