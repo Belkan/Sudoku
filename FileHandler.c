@@ -88,7 +88,7 @@ bool validFileFormat(char *filePath) {
                 /* Make sure all entries of loaded board aren't too big. */
                 if (!cellInRange(cell, size)) {
                     free(currLine);
-                    printf("Details: file contains an element out of range. Please try again");
+                    printf("Details: file contains an element out of range. Please try again\n");
                     return false;
                 }
                 while (isdigit(currLine[idx + 1])) idx++;
@@ -98,7 +98,7 @@ bool validFileFormat(char *filePath) {
             if (!isdigit(currLine[idx]) && !isblank(currLine[idx])
                 && currLine[idx] != '.' && !isspace(currLine[idx])) {
                 free(currLine);
-                printf("Details: file contains illegal character. Please try again");
+                printf("Details: file contains illegal character. Please try again\n");
                 return false;
             }
             idx++;
@@ -106,14 +106,14 @@ bool validFileFormat(char *filePath) {
         /* A line cannot be too short or too long, e.g. if size is 9 we can't have a line with 4 integers. */
         if (counter != size) {
             free(currLine);
-            printf("Details: file contains a row with incorrect amount of columns. Please try again.");
+            printf("Details: file contains a row with incorrect amount of columns. Please try again.\n");
             return false;
         }
     }
     free(currLine);
     /* We can't have too few lines in file. */
     if (rowsAmount != size) {
-        printf("Details: file contains too many or too little rows. Please try again");
+        printf("Details: file contains too many or too little rows. Please try again.\n");
         return false;
     }
     return true;
