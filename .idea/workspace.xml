@@ -14,6 +14,7 @@
     <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/depend.make" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -140,14 +141,7 @@
       <workItem from="1568471025777" duration="27122000" />
       <workItem from="1568588016406" duration="138000" />
       <workItem from="1568622136862" duration="6970000" />
-      <workItem from="1568741817346" duration="2588000" />
-    </task>
-    <task id="LOCAL-00045" summary="Added FileHandler">
-      <created>1566165380142</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1566165380142</updated>
+      <workItem from="1568741817346" duration="5245000" />
     </task>
     <task id="LOCAL-00046" summary="Make GAME_STATUS a field in GameState">
       <created>1566313630138</created>
@@ -462,7 +456,13 @@
       <option name="presentableId" value="LOCAL‎00093" />
       <updated>1568742644132</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL‎00094" summary="fix">
+      <created>1568745002420</created>
+      <option name="number" value="LOCAL‎00094" />
+      <option name="presentableId" value="LOCAL‎00094" />
+      <updated>1568745002420</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -496,7 +496,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix build" />
     <MESSAGE value="Created UnitTester module" />
     <MESSAGE value="Added stack support to replace recursion" />
     <MESSAGE value="Implement solution counter (beta)" />
@@ -521,6 +520,7 @@
     <MESSAGE value="Refactored solve validations" />
     <MESSAGE value="Added details to validFileFormat" />
     <MESSAGE value="Added validFileFormat to validateSolve" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added validFileFormat to validateSolve" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
 </project>
