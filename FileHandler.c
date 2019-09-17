@@ -81,7 +81,8 @@ bool validFileFormat(char *filePath) {
         rowsAmount++;
         counter = 0;
         idx = 0;
-        while (currLine[idx] != '\n' && currLine[idx] != '\0') {
+
+        while (currLine[idx] != '\n' && currLine[idx] != '\0' ) {
             if (isdigit(currLine[idx])) {
                 cell = nextInt(idx, currLine);
                 counter++;
@@ -104,13 +105,19 @@ bool validFileFormat(char *filePath) {
             idx++;
         }
         /* A line cannot be too short or too long, e.g. if size is 9 we can't have a line with 4 integers. */
-        if (counter != size) {
+        if (counter != size && counter != 0) {
             free(currLine);
             printf("Details: file contains a row with incorrect amount of columns.\n");
             return false;
         }
+        /* Edge case: empty row, can be skipped. */
+        if (counter == 0) {
+            rowsAmount--;
+        }
     }
-    free(currLine);
+    if (currLine) {
+        free(currLine);
+    }
     /* We can't have too few lines in file. */
     if (rowsAmount != size) {
         printf("Details: file contains too many or too little rows.\n");
@@ -122,6 +129,19 @@ bool validFileFormat(char *filePath) {
 GameState *loadEmptyBoard() {
     GameState *gameState = createGameState(3, 3);
     return gameState;
+}
+
+bool emptyLine(char *line) {
+    int pos = 0;
+    int counter = 0;
+    int len = strlen(line);
+
+    for (pos = 0; pos < len; pos++) {
+        if (isdigit(line[pos])) {
+            counter++;
+        }
+    }
+    return counter == 0;
 }
 
 GameState *loadFromFile(char *filePath) {
@@ -155,6 +175,11 @@ GameState *loadFromFile(char *filePath) {
     /* Read board */
     while (fgets(currLine, CHAR_MAX, loadedGame)) {
         lineIdx = 0;
+
+        /* Do not iterate empty lines. */
+        if (emptyLine(currLine)) {
+            continue;
+        }
         /* Iterate line retrieved to update board. */
         for (idx = 0; idx < rows * cols; idx++) {
             lineIdx = getNextIdx(currLine, lineIdx);

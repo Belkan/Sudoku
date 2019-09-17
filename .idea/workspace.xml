@@ -14,7 +14,7 @@
     <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Sudoku.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.h" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -141,14 +141,7 @@
       <workItem from="1568471025777" duration="27122000" />
       <workItem from="1568588016406" duration="138000" />
       <workItem from="1568622136862" duration="6970000" />
-      <workItem from="1568741817346" duration="5245000" />
-    </task>
-    <task id="LOCAL-00046" summary="Make GAME_STATUS a field in GameState">
-      <created>1566313630138</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1566313630138</updated>
+      <workItem from="1568741817346" duration="11236000" />
     </task>
     <task id="LOCAL-00047" summary="Add HistoryHandler.c/.h and HistoryState data structure">
       <created>1566315236462</created>
@@ -462,7 +455,13 @@
       <option name="presentableId" value="LOCAL‎00094" />
       <updated>1568745002420</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL‎00095" summary="Fixed issue #20, files not ending with '\n'">
+      <created>1568747685415</created>
+      <option name="number" value="LOCAL‎00095" />
+      <option name="presentableId" value="LOCAL‎00095" />
+      <updated>1568747685415</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -496,7 +495,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Created UnitTester module" />
     <MESSAGE value="Added stack support to replace recursion" />
     <MESSAGE value="Implement solution counter (beta)" />
     <MESSAGE value="Debugged FileHandler (now working 100% yay)" />
@@ -521,6 +519,7 @@
     <MESSAGE value="Added details to validFileFormat" />
     <MESSAGE value="Added validFileFormat to validateSolve" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="Fixed issue #20, files not ending with '\n'" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue #20, files not ending with '\n'" />
   </component>
 </project>
