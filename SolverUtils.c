@@ -9,7 +9,7 @@
 /* Initialize stack of given capacity. */
 struct recursion_stack *createStack(int capacity) {
     struct recursion_stack *stack = safeMalloc(malloc(sizeof(struct recursion_stack)));
-    int idx = 0, i = 0, j = 0;
+    int idx = 0, i = 0;
 
     /* Initially, top index is 0. Index of -1 denotes empty stack. */
     stack->top = 0;

@@ -9,6 +9,8 @@ int nextInt(int startIdx, char *string);
 
 bool cellInRange(int cell, int size);
 
+int __cdecl isblank(int _C);
+
 /*--------------------------------------------------------------*/
 /*---------------------PUBLIC FUNCTIONS-------------------------*/
 /*--------------------------------------------------------------*/
@@ -41,7 +43,10 @@ bool validFileFormat(char *filePath) {
     int counter = 0, idx = 0, rowsInlbock = -1, colsInBlock = -1, size = 0, cell = 0, rowsAmount = 0;
 
     /* Make sure first line has correct format. */
-    fgets(currLine, sizeof(currLine), file);
+    if (fgets(currLine, sizeof(currLine), file) == NULL) {
+        free(currLine);
+        return false;
+    }
     for (idx = 0; idx < size_t2int(sizeof(currLine)); idx++) {
         if (currLine[idx] == '\n') {
             break;
@@ -124,10 +129,18 @@ GameState *loadFromFile(char *filePath) {
     loadedGame = fopen(filePath, "r");
     if (loadedGame == NULL) {
         perror("Fatal error occurred while opening file! Exiting...\n");
+        free(rowSize);
+        free(colSize);
+        free(currLine);
         exit(EXIT_FAILURE);
     }
     /* Read first line of loaded game into board */
-    fgets(currLine, CHAR_MAX, loadedGame);
+    if (fgets(currLine, CHAR_MAX, loadedGame) == NULL) {
+        free(rowSize);
+        free(colSize);
+        free(currLine);
+        exit(EXIT_FAILURE);
+    }
     /* Read col/row values from text file. */
     rows = currLine[getNextIdx(currLine, idx++)] - '0';
     cols = currLine[getNextIdx(currLine, idx)] - '0';

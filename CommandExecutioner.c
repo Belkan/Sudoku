@@ -168,11 +168,12 @@ void executeGuessHint(GameState *gameState, int row, int col) {
 
 
 void executeGuess(GameState *gameState, HistoryState **pHistoryState, float threshold) {
-    int row, col, value, idx, randomVal, legalValsCount;
+    int row, col, value, idx, legalValsCount;
+    int randomVal = 0;
     double randomDouble;
     double *legalVals;
     double sum;
-    HistoryChange *tmpHistoryChange;
+    HistoryChange *tmpHistoryChange = NULL;
     HistoryChange *historyChange = NULL;
     SolutionContainer *solutionContainer = getSolution(gameState, LP);
     if (!solutionContainer->solutionFound) {
@@ -234,15 +235,15 @@ void executeGuess(GameState *gameState, HistoryState **pHistoryState, float thre
 }
 
 void executeGenerate(GameState *gameState, HistoryState **pHistoryState, int toFill, int cellsLeft) {
-    HistoryChange *tmpHistoryChange;
+    HistoryChange *tmpHistoryChange = NULL;
     HistoryChange *historyChange = NULL;
-    SolutionContainer *solutionContainer;
+    SolutionContainer *solutionContainer = NULL;
     int attempt = 0, cleared = 0;
     int row, col, value, filled, legalValuesCount, randomVal, idx, oldCellVal, newCellVal;
     int toClear = getSize(gameState) * getSize(gameState) - cellsLeft;
     int *legalValues;
     bool attemptSuccessful;
-    GameState *cpyGameState;
+    GameState *cpyGameState = NULL;
 
     while (attempt < 1000) {
         /* Initialize */
