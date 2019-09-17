@@ -94,7 +94,6 @@ bool validFileFormat(char *filePath) {
             if (!isdigit(currLine[idx]) && !isblank(currLine[idx])
                 && currLine[idx] != '.' && !isspace(currLine[idx])) {
                 free(currLine);
-                printf("found bad, its %c at idx %d\n", currLine[idx], idx);
                 return false;
             }
             idx++;
