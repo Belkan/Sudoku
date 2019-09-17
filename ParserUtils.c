@@ -146,6 +146,10 @@ USER_CHOICE validateSolve(int params, char **input) {
         throw_filePathError();
         return INVALID_COMMAND;
     }
+    if (!validFileFormat(input[1])) {
+        throw_invalidFileFormatError();
+        return INVALID_COMMAND;
+    }
     if (!isLegalLoadFixed(input[1])) {
         throw_illegalCommandForCurrentBoard();
         printf("Details: Boards with erroneous fixed cells may not be solved.\n");

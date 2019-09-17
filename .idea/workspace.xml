@@ -13,7 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ParserUtils.c" beforeDir="false" afterPath="$PROJECT_DIR$/ParserUtils.c" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -140,14 +140,7 @@
       <workItem from="1568471025777" duration="27122000" />
       <workItem from="1568588016406" duration="138000" />
       <workItem from="1568622136862" duration="6970000" />
-      <workItem from="1568741817346" duration="674000" />
-    </task>
-    <task id="LOCAL-00043" summary="Added FileHandler">
-      <created>1566162322215</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1566162322216</updated>
+      <workItem from="1568741817346" duration="799000" />
     </task>
     <task id="LOCAL-00044" summary="Added FileHandler">
       <created>1566165013130</created>
@@ -464,7 +457,13 @@
       <option name="presentableId" value="LOCAL‎00091" />
       <updated>1568627837150</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL‎00092" summary="Added details to validFileFormat">
+      <created>1568742516691</created>
+      <option name="number" value="LOCAL‎00092" />
+      <option name="presentableId" value="LOCAL‎00092" />
+      <updated>1568742516692</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +497,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Change history data structure" />
     <MESSAGE value="Some more history stuff, starting to implement undo." />
     <MESSAGE value="Fix build" />
     <MESSAGE value="Created UnitTester module" />
@@ -523,6 +521,7 @@
     <MESSAGE value="Mark errors true by default (Issue #9)" />
     <MESSAGE value="Validate no conflicting fixed cells b4 solve (Issue #19)" />
     <MESSAGE value="Refactored solve validations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored solve validations" />
+    <MESSAGE value="Added details to validFileFormat" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added details to validFileFormat" />
   </component>
 </project>
