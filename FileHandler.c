@@ -45,6 +45,7 @@ bool validFileFormat(char *filePath) {
     /* Make sure first line has correct format. */
     if (fgets(currLine, sizeof(currLine), file) == NULL) {
         free(currLine);
+        printf("Details: first line of file is missing. Please try again.\n");
         return false;
     }
     for (idx = 0; idx < size_t2int(sizeof(currLine)); idx++) {
@@ -63,6 +64,7 @@ bool validFileFormat(char *filePath) {
         }
         if (!isdigit(currLine[idx]) && !isspace(currLine[idx]) && !isblank(currLine[idx])) {
             free(currLine);
+            printf("Details: file contains illegal character. Please try again.\n");
             return false;
         }
     }
@@ -70,6 +72,7 @@ bool validFileFormat(char *filePath) {
      * these are all sufficient conditions for invalid file format. */
     if (counter != 2 || rowsInlbock < 0 || colsInBlock < 0) {
         free(currLine);
+        printf("Details: file contains erroneous first line. Please try again\n");
         return false;
     }
     size = rowsInlbock * colsInBlock;
@@ -85,6 +88,7 @@ bool validFileFormat(char *filePath) {
                 /* Make sure all entries of loaded board aren't too big. */
                 if (!cellInRange(cell, size)) {
                     free(currLine);
+                    printf("Details: file contains an element out of range. Please try again");
                     return false;
                 }
                 while (isdigit(currLine[idx + 1])) idx++;
@@ -94,6 +98,7 @@ bool validFileFormat(char *filePath) {
             if (!isdigit(currLine[idx]) && !isblank(currLine[idx])
                 && currLine[idx] != '.' && !isspace(currLine[idx])) {
                 free(currLine);
+                printf("Details: file contains illegal character. Please try again");
                 return false;
             }
             idx++;
@@ -101,12 +106,14 @@ bool validFileFormat(char *filePath) {
         /* A line cannot be too short or too long, e.g. if size is 9 we can't have a line with 4 integers. */
         if (counter != size) {
             free(currLine);
+            printf("Details: file contains a row with incorrect amount of columns. Please try again.");
             return false;
         }
     }
     free(currLine);
     /* We can't have too few lines in file. */
     if (rowsAmount != size) {
+        printf("Details: file contains too many or too little rows. Please try again");
         return false;
     }
     return true;

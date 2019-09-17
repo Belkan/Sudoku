@@ -14,14 +14,6 @@
     <list default="true" id="aaa8ccff-d93d-4a7a-8257-d938445249ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/FileHandler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game.c" beforeDir="false" afterPath="$PROJECT_DIR$/Game.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainAux.c" beforeDir="false" afterPath="$PROJECT_DIR$/MainAux.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainAux.h" beforeDir="false" afterPath="$PROJECT_DIR$/MainAux.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parser.c" beforeDir="false" afterPath="$PROJECT_DIR$/Parser.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ParserUtils.c" beforeDir="false" afterPath="$PROJECT_DIR$/ParserUtils.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ParserUtils.h" beforeDir="false" afterPath="$PROJECT_DIR$/ParserUtils.h" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -147,14 +139,8 @@
       <workItem from="1568406559423" duration="12194000" />
       <workItem from="1568471025777" duration="27122000" />
       <workItem from="1568588016406" duration="138000" />
-      <workItem from="1568622136862" duration="5577000" />
-    </task>
-    <task id="LOCAL-00042" summary="Adjusting for n*m">
-      <created>1566155771530</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1566155771530</updated>
+      <workItem from="1568622136862" duration="6970000" />
+      <workItem from="1568741817346" duration="674000" />
     </task>
     <task id="LOCAL-00043" summary="Added FileHandler">
       <created>1566162322215</created>
@@ -472,7 +458,13 @@
       <option name="presentableId" value="LOCAL‎00090" />
       <updated>1568626366591</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL‎00091" summary="Refactored solve validations">
+      <created>1568627837150</created>
+      <option name="number" value="LOCAL‎00091" />
+      <option name="presentableId" value="LOCAL‎00091" />
+      <updated>1568627837150</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -506,7 +498,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add mark_errors" />
     <MESSAGE value="Change history data structure" />
     <MESSAGE value="Some more history stuff, starting to implement undo." />
     <MESSAGE value="Fix build" />
@@ -531,6 +522,7 @@
     <MESSAGE value="Handle unexpected fopen errors (Issue #11)" />
     <MESSAGE value="Mark errors true by default (Issue #9)" />
     <MESSAGE value="Validate no conflicting fixed cells b4 solve (Issue #19)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Validate no conflicting fixed cells b4 solve (Issue #19)" />
+    <MESSAGE value="Refactored solve validations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored solve validations" />
   </component>
 </project>
