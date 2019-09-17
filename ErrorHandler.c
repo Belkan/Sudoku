@@ -19,10 +19,6 @@ void throw_invalidFileFormatError() {
 }
 
 /* Errors regarding parsing commands given as input */
-void throw_illegalCommandNameError() {
-    printf("Error: invalid command given! Please try again.\n");
-}
-
 void throw_illegalParameterRangeError() {
     printf("Error: parameters given are not in range for this command! Please try again.\n------------------------\n");
 }
