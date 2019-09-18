@@ -10,15 +10,6 @@
 /*--------------------------------------------------------------*/
 /*---------------------PUBLIC FUNCTIONS-------------------------*/
 /*--------------------------------------------------------------*/
-
-void *safeMalloc(void *ptr) {
-    if (ptr == NULL) {
-        perror("Couldn't allocate memory! Exiting...\n");
-        exit(EXIT_FAILURE);
-    }
-    return ptr;
-}
-
 int getRandom(int lower, int upper) {
     int res;
     if (lower == upper) {
@@ -47,6 +38,9 @@ void checkFullBoard(GameState *gameState) {
         }
     }
 }
+
+
+
 
 void printBoard(GameState *gameState) {
     int row;
@@ -99,8 +93,14 @@ int size_t2int(size_t val) {
     return (val <= INT_MAX) ? (int) ((ssize_t) val) : -1;
 }
 
-/* TODO make START_GAME generic for different statuses, edit/init/solve */
-/* Start the game. This is the sole function that should be called from main. */
+void *safeMalloc(void *ptr) {
+    if (ptr == NULL) {
+        perror("Couldn't allocate memory! Exiting...\n");
+        exit(EXIT_FAILURE);
+    }
+    return ptr;
+}
+
 void START_GAME() {
     /*Initialize*/
     char input[MAX];
@@ -139,4 +139,3 @@ void START_GAME() {
         executeCommand(pGameState, pHistoryState, command, input);
     }
 }
-

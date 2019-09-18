@@ -1,7 +1,7 @@
 #include "CommandExecutioner.h"
 #include "ErrorHandler.h"
 
-/*  This module responsible for executing the input command, after having identified which command it is. */
+/*  This module responsible for executing the game's commands available to the user, after being parsed by the parser. */
 
 /*--------------------------------------------------------------*/
 /*---------------------PUBLIC FUNCTIONS-------------------------*/
@@ -31,6 +31,14 @@ void executeEdit(GameState **gameState, HistoryState **pHistoryState, char *file
     } else {
         *gameState = loadEmptyBoard();
     }
+    if (*gameState == NULL) {
+        perror("Fatal error occurred while opening file! Exiting...\n");
+        destroyHistoryState(*pHistoryState);
+        free(pHistoryState);
+        destroyGameState(*gameState);
+        free(gameState);
+        exit(EXIT_FAILURE);
+    }
     setGameMode(*gameState, EDIT_MODE);
     destroyAllHistory(*pHistoryState);
     *pHistoryState = createHistoryState();
@@ -40,6 +48,14 @@ void executeEdit(GameState **gameState, HistoryState **pHistoryState, char *file
 void executeSolve(GameState **gameState, HistoryState **pHistoryState, char *filePath) {
     destroyGameState(*gameState);
     *gameState = loadFromFile(filePath);
+    if (*gameState == NULL) {
+        perror("Fatal error occurred while opening file! Exiting...\n");
+        destroyHistoryState(*pHistoryState);
+        free(pHistoryState);
+        destroyGameState(*gameState);
+        free(gameState);
+        exit(EXIT_FAILURE);
+    }
     setGameMode(*gameState, SOLVE_MODE);
     destroyAllHistory(*pHistoryState);
     *pHistoryState = createHistoryState();
@@ -72,13 +88,13 @@ void executeRedo(GameState *gameState, HistoryState **pHistoryState) {
 }
 
 void executeReset(GameState *gameState, HistoryState **pHistoryState) {
-    bool shouldPrint = false;
+    bool shouldPrintBoard = false;
     while (getPreviousState(*pHistoryState) != NULL) {
         undoMove(*pHistoryState, gameState, /* printEnabled= */ false);
         *pHistoryState = getPreviousState(*pHistoryState);
-        shouldPrint = true;
+        shouldPrintBoard = true;
     }
-    if (shouldPrint) {
+    if (shouldPrintBoard) {
         printBoard(gameState);
     }
 }

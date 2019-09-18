@@ -8,7 +8,7 @@
 
 /* Initialize stack of given capacity. */
 struct recursion_stack *createStack(int capacity) {
-    struct recursion_stack *stack = safeMalloc(malloc(sizeof(struct recursion_stack)));
+    struct recursion_stack *stack = safeMalloc(malloc(sizeof(recursion_stack)));
     int idx = 0, i = 0;
 
     /* Initially, top index is 0. Index of -1 denotes empty stack. */
@@ -33,24 +33,28 @@ struct recursion_stack *createStack(int capacity) {
     return stack;
 }
 
-void destroyStack(struct recursion_stack *stack) {
+void destroyStack(recursion_stack *stack) {
     destroyMatrix((int **) stack->visited, stack->capacity);
     free(stack->rows);
     free(stack->cols);
     free(stack);
 }
 
-bool isFull(struct recursion_stack *stack) {
-    if (stack->top == stack->capacity) return true;
+bool isFull(recursion_stack *stack) {
+    if (stack->top == stack->capacity) {
+        return true;
+    }
     return false;
 }
 
-bool isEmpty(struct recursion_stack *stack) {
-    if (stack->top == -1) return true;
+bool isEmpty(recursion_stack *stack) {
+    if (stack->top == -1) {
+        return true;
+    }
     return false;
 }
 
-bool push(struct recursion_stack *stack, int row, int col) {
+bool push(recursion_stack *stack, int row, int col) {
     /* Avoid stack overflow. */
     if (isFull(stack)) {
         return false;
@@ -61,7 +65,7 @@ bool push(struct recursion_stack *stack, int row, int col) {
     return true;
 }
 
-bool pop(struct recursion_stack *stack) {
+bool pop(recursion_stack *stack) {
     /* Avoid stack underflow. */
     if (isEmpty(stack)) {
         return false;
@@ -70,19 +74,19 @@ bool pop(struct recursion_stack *stack) {
     return true;
 }
 
-void setVisited(struct recursion_stack *stack, bool value, int row, int col) {
+void setVisited(recursion_stack *stack, bool value, int row, int col) {
     stack->visited[row][col] = value;
 }
 
-bool isVisited(struct recursion_stack *stack, int row, int col) {
+bool isVisited(recursion_stack *stack, int row, int col) {
     return stack->visited[row][col];
 }
 
-int peekRow(struct recursion_stack *stack) {
+int peekRow(recursion_stack *stack) {
     return stack->rows[stack->top];
 }
 
-int peekCol(struct recursion_stack *stack) {
+int peekCol(recursion_stack *stack) {
     return stack->cols[stack->top];
 }
 

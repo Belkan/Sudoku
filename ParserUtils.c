@@ -4,17 +4,11 @@
 
 /*----------------------DECLARATIONS----------------------------*/
 bool isMode(GameState *gameState, GAME_MODE gameMode);
-
 bool isInt(char *input);
-
 bool isFloat(char *input);
-
 bool paramsCountCorrect(int params, int minParams, int maxParams);
-
 bool paramsAreDigits(char **input, int params);
-
 bool intsInRange(char **input, int params, int paramIdx, int minVal, int maxVal);
-
 bool floatsInRange(char **input, int params, int minVal, int maxVal);
 
 /*--------------------------------------------------------------*/
@@ -147,7 +141,6 @@ USER_CHOICE validateSolve(int params, char **input) {
         return INVALID_COMMAND;
     }
     if (!validFileFormat(input[1])) {
-        throw_invalidFileFormatError();
         return INVALID_COMMAND;
     }
     if (!isLegalLoadFixed(input[1])) {

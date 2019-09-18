@@ -5,7 +5,8 @@
 #include <stdio.h>
 #include "Game.h"
 
-/*  This module provides a collection of fixed error messages, aimed to address various possible illegal states. */
+/*  This module provides a collection of fixed error messages, aimed to address various possible illegal states.
+ *  Some of the more detailed errors that are more case specific are NOT included in this module, but are rather a part of the parser. */
 
 /* Below are errors regarding loading/saving a board from/to a text file */
 void throw_invalidFileFormatError();

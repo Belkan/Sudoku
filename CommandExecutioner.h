@@ -7,9 +7,9 @@
 #include "FileHandler.h"
 #include "Solver.h"
 
-/*  This module responsible for executing the input command, after having identified which command it is. */
+/*  This module responsible for executing the game's commands available to the user, after being parsed by the parser. */
 
-/* Enum to represent the available commands made by the user. */
+/* Enum for all the available commands */
 typedef enum user_choice {
     SET,
     HINT,

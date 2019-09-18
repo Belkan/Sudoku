@@ -9,7 +9,7 @@
 /*  The module responsible for logic involving the current state of the
  * sudoku game, as well as the main struct "GameState" used to save the current state of the game. */
 
-/* Represents the current game mode. Used in GameState. */
+/* Enum for the current game mode. Used in GameState. */
 typedef enum game_mode {
     EDIT_MODE,
     SOLVE_MODE,

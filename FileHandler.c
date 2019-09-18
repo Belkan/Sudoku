@@ -1,14 +1,12 @@
 #include "FileHandler.h"
+#include "ErrorHandler.h"
 
 /*  The module responsible for loading and saving boards, as well as validations involving such actions. */
 
 /*----------------------DECLARATIONS----------------------------*/
 int getNextIdx(char *currLine, int currIdx);
-
 int nextInt(int startIdx, char *string);
-
 bool cellInRange(int cell, int size);
-
 int __cdecl isblank(int _C);
 
 /*--------------------------------------------------------------*/
@@ -45,7 +43,8 @@ bool validFileFormat(char *filePath) {
     /* Make sure first line has correct format. */
     if (fgets(currLine, sizeof(currLine), file) == NULL) {
         free(currLine);
-        printf("Details: first line of file is missing.\n");
+        throw_invalidFileFormatError();
+        printf("Details: First line of file is missing.\n");
         return false;
     }
     for (idx = 0; idx < size_t2int(sizeof(currLine)); idx++) {
@@ -64,6 +63,7 @@ bool validFileFormat(char *filePath) {
         }
         if (!isdigit(currLine[idx]) && !isspace(currLine[idx]) && !isblank(currLine[idx])) {
             free(currLine);
+            throw_invalidFileFormatError();
             printf("Details: Header of file contains illegal character.\n");
             return false;
         }
@@ -72,7 +72,8 @@ bool validFileFormat(char *filePath) {
      * these are all sufficient conditions for invalid file format. */
     if (counter != 2 || rowsInlbock < 0 || colsInBlock < 0) {
         free(currLine);
-        printf("Details: file contains erroneous first line.\n");
+        throw_invalidFileFormatError();
+        printf("Details: File contains erroneous first line.\n");
         return false;
     }
     size = rowsInlbock * colsInBlock;
@@ -89,6 +90,7 @@ bool validFileFormat(char *filePath) {
                 /* Make sure all entries of loaded board aren't too big. */
                 if (!cellInRange(cell, size)) {
                     free(currLine);
+                    throw_invalidFileFormatError();
                     printf("Details: Body of file contains an element out of range.\n");
                     return false;
                 }
@@ -107,7 +109,8 @@ bool validFileFormat(char *filePath) {
         /* A line cannot be too short or too long, e.g. if size is 9 we can't have a line with 4 integers. */
         if (counter != size && counter != 0) {
             free(currLine);
-            printf("Details: file contains a row with incorrect amount of columns.\n");
+            throw_invalidFileFormatError();
+            printf("Details: File contains a row with incorrect amount of columns.\n");
             return false;
         }
         /* Edge case: empty row, can be skipped. */
@@ -120,7 +123,8 @@ bool validFileFormat(char *filePath) {
     }
     /* We can't have too few lines in file. */
     if (rowsAmount != size) {
-        printf("Details: file contains too many or too little rows.\n");
+        throw_invalidFileFormatError();
+        printf("Details: File contains too many or too little rows.\n");
         return false;
     }
     return true;
@@ -154,18 +158,17 @@ GameState *loadFromFile(char *filePath) {
     /* Load up the game */
     loadedGame = fopen(filePath, "r");
     if (loadedGame == NULL) {
-        perror("Fatal error occurred while opening file! Exiting...\n");
         free(rowSize);
         free(colSize);
         free(currLine);
-        exit(EXIT_FAILURE);
+        return NULL;
     }
     /* Read first line of loaded game into board */
     if (fgets(currLine, CHAR_MAX, loadedGame) == NULL) {
         free(rowSize);
         free(colSize);
         free(currLine);
-        exit(EXIT_FAILURE);
+        return NULL;
     }
     /* Read col/row values from text file. */
     rows = currLine[getNextIdx(currLine, idx++)] - '0';

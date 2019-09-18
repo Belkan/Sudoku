@@ -3,7 +3,7 @@
 #include "MainAux.h"
 
 /*
- * This module verifies the board correction and manages the error status of each cell.
+ * This module verifies the board correction and its related functions.
  *
  * We utilise Gurobi's implementation of Simplex algorithm and exhaustive backtracking with stack for recursion.
  */
@@ -16,11 +16,6 @@ int solutionCounter(GameState *gameState) {
     bool foundMove = false, reachedEnd = false;
     int row = 0, col = 0, size = getSize(gameState), solutions = 0, idx = 0, move = -1;
     struct recursion_stack *stack = createStack(gameState->size * gameState->size);
-
-    /* Handle edge case for unsolvable board. */
-    if (!isSolvable(gameState)) {
-        return 0;
-    }
 
     /* Iterating until stack empties replaces recursion. */
     while (!isEmpty(stack)) {
@@ -90,7 +85,6 @@ int solutionCounter(GameState *gameState) {
             }
         }
     }
-    printBoard(gameState);
     destroyStack(stack);
     return solutions;
 }
@@ -360,24 +354,18 @@ SolutionContainer *getSolution(GameState *gameState, LinearMethod linearMethod) 
             return solutionContainer;
         }
     }
-    /* print results */
-    printf("\nOptimization complete\n");
+
     solutionContainer->solution = sol;
 
     /* solution found */
     if (optimstatus == GRB_OPTIMAL) {
         solutionContainer->solutionFound = true;
-        printf("Optimal\n");
     }
         /* no solution found */
     else if (optimstatus == GRB_INF_OR_UNBD) {
         solutionContainer->solutionFound = false;
-        printf("Not found\n");
     }
-        /* error or calculation stopped */
-    else {
-        printf("Optimization was stopped early\n");
-    }
+
     destroyGurobi(env, model, obj, variableTypes, ind, val);
     return solutionContainer;
 }

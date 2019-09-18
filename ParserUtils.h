@@ -5,7 +5,7 @@
 #include "CommandExecutioner.h"
 #include "ErrorHandler.h"
 
-/* The module provides additional utilities for Parser, used for input validation. */
+/* This module is used by Parser.c to validate each specific command before executing it. */
 
 USER_CHOICE validateSet (GameState *gameState, int params, char** input);
 
